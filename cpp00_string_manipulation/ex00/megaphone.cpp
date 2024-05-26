@@ -1,34 +1,37 @@
 #include <iostream>
+#include <string>
 
-char *shout(char *str)
+void    shout_word(char *word, int argc, int *loc)
 {
-    int i = 0;
-
-    while (str[i])
+    std::string str = word;
+    std::string::iterator i;
+    i = str.begin();
+    while (i != str.end())
     {
-        str[i] = toupper(str[i]);
+        std::cout << static_cast<char>(std::toupper(*i));
         i ++;
     }
-    return (str);
+    *loc += 1;
+    if (*loc < argc)
+        std::cout << ' ';
 }
 
 int main(int argc, char **argv)
 {
+    int loc;
+
+    loc = 1;
     if (argc < 2)
+        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+    else
     {
-        (void)argv;
-        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
-        return (0);
+        argv ++;
+        while (*argv)
+        {
+            shout_word(*argv, argc, &loc);
+            argv ++;
+        }
+        std::cout << std::endl;
     }
-    argv++;
-    while (*argv)
-    {
-        *argv = shout(*argv);
-        std::cout << *argv;
-        argv++;
-        if (*argv)
-            std::cout << " ";
-    }
-    std::cout << "\n"; 
     return (0);
 }
