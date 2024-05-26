@@ -31,10 +31,19 @@ keyword), you must avoid memory leaks.
 Canonical Form, except when explicitely stated otherwise.
 
 References: 
-https://www.geeksforgeeks.org/static_cast-in-cpp/
-https://www.freecodecamp.org/news/c-string-std-string-example-in-cpp/
-https://devdocs.io/cpp/string/byte/toupper
-https://cplusplus.com/reference/string/string/
-https://www.geeksforgeeks.org/pre-increment-and-post-increment-in-c/
-https://stackoverflow.com/questions/131241/why-use-iterators-instead-of-array-indices
-https://stackoverflow.com/questions/19293642/why-does-the-main-function-work-with-no-return-value
+
+* https://www.geeksforgeeks.org/static_cast-in-cpp/
+
+* https://www.freecodecamp.org/news/c-string-std-string-example-in-cpp/
+
+* https://devdocs.io/cpp/string/byte/toupper
+
+* https://cplusplus.com/reference/string/string/
+
+* https://www.geeksforgeeks.org/pre-increment-and-post-increment-in-c/
+
+* https://stackoverflow.com/questions/131241/why-use-iterators-instead-of-array-indices
+
+* https://stackoverflow.com/questions/19293642/why-does-the-main-function-work-with-no-return-value
+
+* https://stackoverflow.com/questions/8960087/how-to-convert-a-char-array-to-a-string

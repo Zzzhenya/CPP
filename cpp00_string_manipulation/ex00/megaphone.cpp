@@ -3,9 +3,8 @@
 
 void    shout_word(char *word, int argc, int *loc)
 {
-    std::string str = word;
-    std::string::iterator i;
-    i = str.begin();
+    std::string str (word);
+    std::string::iterator i (str.begin());
     while (i != str.end())
     {
         std::cout << static_cast<char>(std::toupper(*i));
