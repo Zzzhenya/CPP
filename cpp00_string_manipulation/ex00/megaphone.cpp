@@ -7,9 +7,10 @@ void    shout_word(char *word, int argc, int *loc)
     std::string::iterator i (str.begin());
     while (i != str.end())
     {
-        std::cout << static_cast<char>(std::toupper(*i));
+        *i = std::toupper(*i);
         i ++;
     }
+    std::cout << str;
     *loc += 1;
     if (*loc < argc)
         std::cout << ' ';
