@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-void    shout_word(char *word, int argc, int *loc)
+void    shout_word(char *word)
 {
     std::string str (word);
     std::string::iterator i (str.begin());
@@ -11,9 +11,6 @@ void    shout_word(char *word, int argc, int *loc)
         i ++;
     }
     std::cout << str;
-    *loc += 1;
-    if (*loc < argc)
-        std::cout << ' ';
 }
 
 int main(int argc, char **argv)
@@ -28,7 +25,10 @@ int main(int argc, char **argv)
         argv ++;
         while (*argv)
         {
-            shout_word(*argv, argc, &loc);
+            shout_word(*argv);
+            loc += 1;
+            if (loc < argc)
+                std::cout << ' ';
             argv ++;
         }
         std::cout << std::endl;
