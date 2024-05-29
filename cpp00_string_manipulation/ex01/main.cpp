@@ -38,5 +38,6 @@ int main(void)
     //         std::cout << str << std::endl;
     // } 
     new_book.print_contacts();
+    new_book.~PhoneBook();
     return (0);
 }
