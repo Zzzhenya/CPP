@@ -7,11 +7,12 @@
 class Contact
 {
     public:
-        std::string name;
-        std::string number;
+        Contact(void);
+        ~Contact(void);
+        Contact(std::string c_name);
+        std::string getName(void);
     private:
-        
-        
+        std::string name;
 };
 
 #endif

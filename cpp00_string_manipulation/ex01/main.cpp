@@ -1,26 +1,35 @@
 #include <iostream>
 #include <string>
 #include "Contact.hpp"
+#include "PhoneBook.hpp"
 
 int main(void)
 {
-    Contact newContact;
+    PhoneBook new_book;
+    // Contact new_contact;
 
-    newContact.name = "a";
-    newContact.number = "123";
+    // new_contact.name ;
+    // Contact newContact;
 
-    std::cout << newContact.name << std::endl;
-    std::cout << newContact.number << std::endl;
+    // newContact.name = "a";
+    // newContact.number = "123";
 
-    // std::string str;
-    // init_new_phonebook();
-    // while (1)
-    // {
-    //     std::cout << "Phonebook" << std::endl;
-    //     std::cout << "ADD . SEARCH . EXIT" << std::endl;
-    //     std::cin >> str;
-    //     if (str.compare("EXIT") == 0)
-    //         break;
+    // std::cout << newContact.name << std::endl;
+    // std::cout << newContact.number << std::endl;
+
+    std::string str;
+    while (1)
+    {
+        std::cout << "Phonebook" << std::endl;
+        std::cout << "ADD . SEARCH . EXIT" << std::endl;
+        std::cin >> str;
+        if (str.compare("EXIT") == 0)
+            break;
+        else
+        {
+            new_book.add_contact(Contact(str));
+        }
+    }
     //     else if (str.compare("ADD") == 0)
     //         std::cout << "ADD" << str << std::endl;
     //     else if (str.compare("SEARCH") == 0)
@@ -28,5 +37,6 @@ int main(void)
     //     else
     //         std::cout << str << std::endl;
     // } 
+    new_book.print_contacts();
     return (0);
 }

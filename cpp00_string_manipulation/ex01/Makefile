@@ -4,7 +4,7 @@ CC = c++
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp #PhoneBook.cpp Contact.cpp Main.cpp
+SRC = main.cpp PhoneBook.cpp Contact.cpp
 
 #INCLUDE = PhoneBook.hpp Contact.hpp
 
