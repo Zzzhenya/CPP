@@ -37,6 +37,9 @@ void    PhoneBook::add_contact(Contact contact)
 	else
 	{
 		this->contacts[this->loc] = contact;
-		this->loc++;
+		if (this->loc == 7)
+			this->loc = 0;
+		else
+			this->loc++;
 	}
 }
