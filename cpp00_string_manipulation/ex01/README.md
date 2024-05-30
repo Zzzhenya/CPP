@@ -17,3 +17,5 @@ Reference:
 * https://cplusplus.com/reference/string/string/
 
 * https://www.w3schools.com/cpp/cpp_classes.asp
+
+* https://stackoverflow.com/questions/1658476/c-fopen-vs-open

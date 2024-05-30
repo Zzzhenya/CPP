@@ -17,19 +17,8 @@ int main(void)
     // std::cout << newContact.name << std::endl;
     // std::cout << newContact.number << std::endl;
 
-    std::string str;
-    while (1)
-    {
-        std::cout << "Phonebook" << std::endl;
-        std::cout << "ADD . SEARCH . EXIT" << std::endl;
-        std::cin >> str;
-        if (str.compare("EXIT") == 0)
-            break;
-        else
-        {
-            new_book.add_contact(Contact(str));
-        }
-    }
+    
+    new_book.init_phonebook();
     //     else if (str.compare("ADD") == 0)
     //         std::cout << "ADD" << str << std::endl;
     //     else if (str.compare("SEARCH") == 0)

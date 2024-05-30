@@ -1,6 +1,5 @@
 #include "PhoneBook.hpp"
 
-
 PhoneBook::PhoneBook(void)
 {
 	this->contact_count = 0;
@@ -42,4 +41,21 @@ void    PhoneBook::add_contact(Contact contact)
 		else
 			this->loc++;
 	}
+}
+
+void PhoneBook::init_phonebook(void)
+{
+	std::string str;
+    while (1)
+    {
+        std::cout << "Phonebook" << std::endl;
+        std::cout << "ADD . SEARCH . EXIT" << std::endl;
+        std::cin >> str;
+        if (str.compare("EXIT") == 0)
+            break;
+        else
+        {
+            this->add_contact(Contact(str));
+        }
+    }
 }

@@ -13,6 +13,7 @@ class PhoneBook
         void    add_contact(Contact contact);
         int     get_count(void);
         void    print_contacts(void);
+        void    init_phonebook(void);
         int     loc;
     private:
         Contact contacts[8];
