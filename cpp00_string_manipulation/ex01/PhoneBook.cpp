@@ -19,7 +19,7 @@ int     PhoneBook::get_count(void)
 
 void    PhoneBook::print_contacts(void)
 {
-	std::cout << this->get_count() << std::endl;
+	//std::cout << this->get_count() << std::endl;
 	for (int i = 0; i < this->get_count(); i ++)
 	{
 		std::cout << this->contacts[i].getname() << std::endl;
@@ -60,11 +60,15 @@ void PhoneBook::extract_contact(void)
 	std::string	first_name;
 	std::string last_name;
 	std::string phone_number;
+	std::string nickname;
+	std::string darkest_secret;
 
 	first_name = get_val("first name: ", first_name);
 	last_name = get_val("last name: ", last_name);
+	nickname = get_val("nickname: ", nickname);
 	phone_number = get_val("phone number: ", phone_number);
-    this->add_contact(Contact(first_name, last_name, phone_number));
+	darkest_secret = get_val("darkest secret: ", darkest_secret);
+    this->add_contact(Contact(first_name, last_name, nickname, phone_number, darkest_secret));
 }
 
 void PhoneBook::init_phonebook(void)
@@ -80,8 +84,13 @@ void PhoneBook::init_phonebook(void)
             break;
         else if (str.compare("SEARCH") == 0)
         {
-        	std::getline(std::cin, str);
-        	std::cout << "searching for	" << str << std::endl;
+        	if (this->get_count() > 0)
+        	{
+        		retrieve_phonebook();
+        		search_by_index();
+        	}
+        	else
+        		std::cout << "Phonebook is empty" << std::endl;
         }
         else if (str.compare("ADD") == 0)
         	extract_contact();
