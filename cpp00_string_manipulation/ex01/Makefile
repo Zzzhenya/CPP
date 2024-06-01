@@ -6,14 +6,12 @@ CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 SRC = main.cpp PhoneBook.cpp Contact.cpp PhoneBookSearch.cpp
 
-#INCLUDE = PhoneBook.hpp Contact.hpp
-
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
-#%.o: %.cpp
-#	$(CC) $(CPPFLAGS) -c -o $@ $<
+%.o: %.cpp
+	$(CC) $(CPPFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJ) Makefile
 	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
