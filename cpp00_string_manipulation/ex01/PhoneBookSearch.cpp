@@ -39,7 +39,7 @@ void	PhoneBook::show_contact_details(std::string input)
 {
 	int i;
 
-	i = std::stoi(input);
+	i = std::atoi(input.c_str());
 	std::cout << "index \t\t: "<< i << std::endl;
 	std::cout << "first name \t: "<< this->contacts[i].getname() << std::endl;
 	std::cout << "last name \t: "<< this->contacts[i].getlast_name() << std::endl;
@@ -52,9 +52,9 @@ void	PhoneBook::search_by_index(void)
 {
 	std::string input;
 
-	std::cout << "Type the index of the contact" << std::endl;
+	std::cout << "Type the index: ";
 	std::getline(std::cin, input);
-	if (input.length() == 1 && std::isdigit(input[0]) && input[0] < std::to_string(get_count())[0])
+	if (input.length() == 1 && std::isdigit(input[0]) && (std::atoi(input.c_str()) < get_count()))
 		show_contact_details(input);
 	else
 		std::cout << "Index out of range" << std::endl;

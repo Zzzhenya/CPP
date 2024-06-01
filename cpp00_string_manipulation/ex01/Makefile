@@ -2,7 +2,7 @@ NAME = phonebook
 
 CC = c++
 
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 SRC = main.cpp PhoneBook.cpp Contact.cpp PhoneBookSearch.cpp
 
@@ -15,7 +15,7 @@ all: $(NAME)
 #%.o: %.cpp
 #	$(CC) $(CPPFLAGS) -c -o $@ $<
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) Makefile
 	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 clean:

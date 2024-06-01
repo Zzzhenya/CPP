@@ -7,11 +7,6 @@ PhoneBook::PhoneBook(void)
 	return ;
 }
 
-PhoneBook::~PhoneBook(void)
-{
-	return ;
-}
-
 int     PhoneBook::get_count(void)
 {
 	return (this->contact_count);

@@ -5,12 +5,12 @@
 # include <iostream>
 # include <string>
 # include <iomanip>
+# include <cstdlib>
 
 class PhoneBook
 {
     public:
         PhoneBook(void);
-        ~PhoneBook(void);
         void    add_contact(Contact contact);
         int     get_count(void);
         void    print_contacts(void);
