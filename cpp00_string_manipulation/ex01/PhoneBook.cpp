@@ -62,7 +62,7 @@ void PhoneBook::init_phonebook(void)
 	std::cout << "\n\tWelcome to Phonebook!" << std::endl << std::endl;
     while (1)
     {
-        std::cout << "You can type ADD,SEARCH or EXIT: ";
+        std::cout << "You can type ADD,SEARCH or EXIT" << std::endl;
         std::getline(std::cin, str);
         if (str.compare("EXIT") == 0)
             break;

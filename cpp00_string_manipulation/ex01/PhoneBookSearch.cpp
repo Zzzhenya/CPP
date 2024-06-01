@@ -1,5 +1,15 @@
 #include "PhoneBook.hpp"
 
+std::string beautify_string(std::string str)
+{
+	if (str.length() > 10)
+	{
+		str.resize(9 , ' ');
+		str = str + ".";
+	}
+	return (str);
+}
+
 void    PhoneBook::retrieve_phonebook(void)
 {
 	std::string str;
@@ -12,25 +22,13 @@ void    PhoneBook::retrieve_phonebook(void)
 	{
 		std::cout << "|" << std::right << std::setw(10) << i << "|";
 		str = this->contacts[i].getname();
-		if (str.length() > 10)
-		{
-			str.resize(9 , ' ');
-			str = str + ".";
-		}
+		str = beautify_string(str);
 		std::cout << std::right << std::setw(10) << str << "|";
 		str = this->contacts[i].getlast_name();
-		if (str.length() > 10)
-		{
-			str.resize(9 , ' ');
-			str = str + ".";
-		}
+		str = beautify_string(str);
 		std::cout << std::right << std::setw(10) << str << "|";
 		str = this->contacts[i].getnickname();
-		if (str.length() > 10)
-		{
-			str.resize(9 , ' ');
-			str = str + ".";
-		}
+		str = beautify_string(str);
 		std::cout << std::right << std::setw(10) << str << "|"<< std::endl;
 	}
 }
