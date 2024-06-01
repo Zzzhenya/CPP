@@ -12,17 +12,6 @@ int     PhoneBook::get_count(void)
 	return (this->contact_count);
 }
 
-void    PhoneBook::print_contacts(void)
-{
-	//std::cout << this->get_count() << std::endl;
-	for (int i = 0; i < this->get_count(); i ++)
-	{
-		std::cout << this->contacts[i].getname() << std::endl;
-		std::cout << this->contacts[i].getlast_name() << std::endl;
-		std::cout << this->contacts[i].getphone_number() << std::endl;
-	}
-}
-
 void    PhoneBook::add_contact(Contact contact)
 {
 	if (this->get_count() < 8)
@@ -73,7 +62,7 @@ void PhoneBook::init_phonebook(void)
 	std::cout << "\n\tWelcome to Phonebook!" << std::endl << std::endl;
     while (1)
     {
-        std::cout << "Type ADD , SEARCH or EXIT" << std::endl;
+        std::cout << "You can type ADD,SEARCH or EXIT: ";
         std::getline(std::cin, str);
         if (str.compare("EXIT") == 0)
             break;

@@ -56,7 +56,6 @@ void	PhoneBook::search_by_index(void)
 	std::getline(std::cin, input);
 	if (input.length() == 1 && std::isdigit(input[0]) && (std::atoi(input.c_str()) < get_count()))
 		show_contact_details(input);
-	else
-		std::cout << "Index out of range" << std::endl;
-    
+	else if (input.length() > 0)
+		std::cout << "Index out of range" << std::endl;   
 }
