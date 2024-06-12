@@ -1,6 +1,6 @@
 NAME = phonebook
 
-CC = c++
+CXX = c++
 
 CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
@@ -11,10 +11,10 @@ OBJ = $(SRC:.cpp=.o)
 all: $(NAME)
 
 %.o: %.cpp
-	$(CC) $(CPPFLAGS) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJ) Makefile
-	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)
