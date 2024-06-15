@@ -4,7 +4,7 @@ CC = clang++
 
 CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
-SRC = Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
+SRC = Zombie.cpp newZombie.cpp main.cpp #randomChump.cpp
 
 INCLUDE = Zombie.hpp
 
