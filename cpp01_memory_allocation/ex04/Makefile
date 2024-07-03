@@ -4,7 +4,7 @@ SRC		=	main.cpp
 
 OBJ		= 	$(SRC:.cpp=.o)
 
-CXX		=	clang++
+CXX		=	c++
 
 #HEADER	=	
 
@@ -26,4 +26,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+leaks: $(NAME)
+	valgrind --track-fds=yes ./$(NAME) test_files/one hello world
+
+.PHONY: all clean fclean re leaks	

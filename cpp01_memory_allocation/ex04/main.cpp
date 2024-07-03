@@ -28,28 +28,32 @@ int main(int argc, char **argv)
 		std::cout << "Worng arg count" << std::endl;
 		return (0);
 	}
-	std::string filename(argv[1]);
-	//std::fstream s;
-
-	std::fstream s(filename,std::ios::in);
-	std::cout << "Filename: " << filename << std::endl;
+	//std::string filename(argv[1]);
+	
+	std::fstream s(argv[1],std::ios::in);
+	std::cout << "Filename: " << argv[1] << std::endl;
 	std::cout << "Replace " << argv[2] ;
 	std::cout << " with " << argv[3] << std::endl;
 	std::string line;
 	if (!s.is_open())
-		std::cout << "failed to open " << filename << "\n";
+		std::cout << "failed to open " << argv[1] << "\n";
 	else
 	{
-		while(1)
+		std::fstream outfile("outfile.replace", std::ios::out);
+		if (!outfile.is_open())
+		{
+			std::cout << "failed to create outfile.replace" << "\n";
+			return (1);	
+		}
+		while (1)
 		{
 			std::getline(s, line);
 			if (s.eof())
 				break;
-			//if (!line.empty())
-			std::cout << line <<"\n";
-			//else
-			//	break;
+			outfile << line << "\n";
 		}
+		s.close();
+		outfile.close();
 	}
 	// std::ifstream fin(filename);
 	return (0);
