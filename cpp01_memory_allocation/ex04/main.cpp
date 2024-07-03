@@ -29,23 +29,25 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	//std::string filename(argv[1]);
-	
-	std::fstream s(argv[1],std::ios::in);
+
+	std::fstream s(argv[1],std::ios::in);// );
 	std::cout << "Filename: " << argv[1] << std::endl;
 	std::cout << "Replace " << argv[2] ;
 	std::cout << " with " << argv[3] << std::endl;
 	std::string line;
 	if (!s.is_open())
-		std::cout << "failed to open " << argv[1] << "\n";
+		std::cout << "failed to open " << argv[1] << "\n";	
 	else
 	{
-		std::fstream outfile("outfile.replace", std::ios::out);
+		std::string outfile_name = std::string(argv[1]) + std::string(".replace");
+		const char *out_name_char = outfile_name.c_str();
+		std::fstream outfile((const char *)out_name_char, std::ios::out | std::ios::trunc);
 		if (!outfile.is_open())
 		{
 			std::cout << "failed to create outfile.replace" << "\n";
 			return (1);	
 		}
-		while (1)
+		while (1)	
 		{
 			std::getline(s, line);
 			if (s.eof())
@@ -55,6 +57,5 @@ int main(int argc, char **argv)
 		s.close();
 		outfile.close();
 	}
-	// std::ifstream fin(filename);
 	return (0);
 }

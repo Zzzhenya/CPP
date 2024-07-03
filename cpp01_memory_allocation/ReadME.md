@@ -11,3 +11,6 @@ https://en.cppreference.com/w/cpp/io/basic_istream/getline
 https://en.cppreference.com/w/cpp/language/initialization
 
 https://www.geeksforgeeks.org/what-is-the-efficient-way-of-reading-a-huge-text-file/
+
+
+https://cplusplus.com/doc/tutorial/files/
