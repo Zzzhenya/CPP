@@ -21,22 +21,42 @@ Forbidden functions : std::string::replace
 #include <fstream>
 #include <string>
 
+int has_needle(std::string haystack, std::string needle)
+{
+	size_t loc = haystack.find(needle);
+
+	if (loc != std::string::npos)
+		return (1);
+	else
+		return (0);
+}
+
+std::string replace_needle(std::string line, std::string s1, std::string s2)
+{
+	size_t loc = line.find(s1);
+
+	while (loc != std::string::npos)
+	{
+		line.erase(	loc, s1.length());
+		line.insert(loc, s2);
+		loc = line.find(s1, loc + 1);
+	}
+	return (line);
+}
+
 int main(int argc, char **argv)
 {
 	if (argc != 4)
 	{
-		std::cout << "Worng arg count" << std::endl;
+		std::cerr << "Wrong arg count" << std::endl;
 		return (0);
 	}
 	//std::string filename(argv[1]);
 
-	std::fstream s(argv[1],std::ios::in);// );
-	std::cout << "Filename: " << argv[1] << std::endl;
-	std::cout << "Replace " << argv[2] ;
-	std::cout << " with " << argv[3] << std::endl;
+	std::fstream s(argv[1],std::ios::in);
 	std::string line;
 	if (!s.is_open())
-		std::cout << "failed to open " << argv[1] << "\n";	
+		std::cerr << "failed to open " << argv[1] << "\n";	
 	else
 	{
 		std::string outfile_name = std::string(argv[1]) + std::string(".replace");
@@ -44,7 +64,8 @@ int main(int argc, char **argv)
 		std::fstream outfile((const char *)out_name_char, std::ios::out | std::ios::trunc);
 		if (!outfile.is_open())
 		{
-			std::cout << "failed to create outfile.replace" << "\n";
+			std::cerr << "failed to create " << out_name_char << "\n";
+			s.close();
 			return (1);	
 		}
 		while (1)	
@@ -52,6 +73,8 @@ int main(int argc, char **argv)
 			std::getline(s, line);
 			if (s.eof())
 				break;
+			if (has_needle(line, argv[2]))
+				line = replace_needle(line, argv[2], argv[3]);
 			outfile << line << "\n";
 		}
 		s.close();
