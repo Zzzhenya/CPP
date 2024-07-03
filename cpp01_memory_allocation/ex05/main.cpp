@@ -4,12 +4,12 @@
 int main(void)
 {
     Harl one;
-    int i = -1;
+    // int i = -1;
     
-    while (i < 10)
-    {
+    // while (i < 10)
+    // {
         one.complain("DEBUG");
-        i ++;
-    }
+    //     i ++;
+    // }
     return (0);
 }

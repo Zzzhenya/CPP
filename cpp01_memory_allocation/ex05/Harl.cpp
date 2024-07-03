@@ -39,7 +39,10 @@ std::string Harl::getLevel(size_t index)
 
 void    Harl::complain(std::string level)
 {
-    switch(getIndex(level))
+    int ret = getIndex(level);
+
+    std::cout << ret << std::endl;
+    switch(ret)
     {
         case 5:
             std::cout << "OUT OF BOUNDS\n";
@@ -51,6 +54,8 @@ void    Harl::complain(std::string level)
             warning();
         case 3:
             error();
+        default:
+            std::cout << "Mistake!\n";
     }
 }
 
