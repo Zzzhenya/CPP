@@ -41,21 +41,26 @@ void    Harl::complain(std::string level)
 {
     int ret = getIndex(level);
 
-    std::cout << ret << std::endl;
     switch(ret)
     {
         case 5:
             std::cout << "OUT OF BOUNDS\n";
+            break;
         case 0:
             debug();
+            break;
         case 1:
             info();
+            break;
         case 2:
             warning();
+            break;
         case 3:
             error();
+            break;
         default:
             std::cout << "Mistake!\n";
+            break;
     }
 }
 

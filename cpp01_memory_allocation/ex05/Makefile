@@ -23,7 +23,6 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
-	rm -rf test_files/*.replace
 
 re: fclean all
 
