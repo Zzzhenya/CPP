@@ -4,7 +4,6 @@ const std::string Harl::levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
 Harl::Harl(void)
 {
-    //std::cout << "Harl constructed.\n";
 }
 
 size_t  Harl::getIndex(std::string level)

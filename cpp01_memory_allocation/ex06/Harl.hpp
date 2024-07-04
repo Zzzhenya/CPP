@@ -19,7 +19,7 @@ class Harl
         void    error(void);
         void    unknown(void);
 
-        static const std::string levels[4];// = {"DEBUG", "INFO", "WARNING", "ERROR"};
+        static const std::string levels[4];
 
 };
 
