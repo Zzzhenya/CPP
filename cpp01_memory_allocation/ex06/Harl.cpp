@@ -38,7 +38,6 @@ std::string Harl::getLevel(size_t index)
 
 void    Harl::complain(std::string level)
 {
-    // int     ret = getIndex(level);
     void    (Harl::*func[5])(void) = {
         &Harl::debug, 
         &Harl::info, 
