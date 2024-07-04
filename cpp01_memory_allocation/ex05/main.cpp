@@ -8,7 +8,7 @@ int main(void)
     
     while (i < 10)
     {
-        std::cout << one.getLevel(i) << ":\t";
+        //std::cout << one.getLevel(i) << ":\t";
         one.complain(one.getLevel(i));
         i ++;
     }

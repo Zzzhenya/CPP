@@ -4,7 +4,7 @@ const std::string Harl::levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
 Harl::Harl(void)
 {
-    std::cout << "Created\n";
+    std::cout << "Harl constructed.\n";
 }
 
 size_t  Harl::getIndex(std::string level)
@@ -17,7 +17,7 @@ size_t  Harl::getIndex(std::string level)
             return (i);
         i ++;
     }
-    return (5);
+    return (4);
 }
 
 std::string Harl::getLevel(size_t index)
@@ -39,33 +39,26 @@ std::string Harl::getLevel(size_t index)
 
 void    Harl::complain(std::string level)
 {
-    int ret = getIndex(level);
+    int     ret = getIndex(level);
+    void    (Harl::*func[5])(void) = {
+        &Harl::debug, 
+        &Harl::info, 
+        &Harl::warning, 
+        &Harl::error,
+        &Harl::unknown
+    };
 
-    switch(ret)
-    {
-        case 5:
-            std::cout << "OUT OF BOUNDS\n";
-            break;
-        case 0:
-            debug();
-            break;
-        case 1:
-            info();
-            break;
-        case 2:
-            warning();
-            break;
-        case 3:
-            error();
-            break;
-        default:
-            std::cout << "Mistake!\n";
-            break;
-    }
+    (this->*func[ret])();  
+}
+
+void    Harl::unknown(void)
+{
+    std::cout << "Unknown level: \tSeriously, where is the manager?\n";
 }
 
 void    Harl::debug(void)
 {
+    std::cout << "DEBUG level: \t";
     std::cout << "I love having extra bacon for my";
     std::cout << "7XL-double-cheese-triple-pickle-specialketchup burger";
     std::cout << "I really do!\n";
@@ -73,6 +66,7 @@ void    Harl::debug(void)
 
 void    Harl::info(void)
 {
+    std::cout << "INFO level:\t";
     std::cout << "I cannot believe adding extra bacon ";
     std::cout << "costs more money. You didn’t put enough bacon in my burger! ";
     std::cout << "If you did, I wouldn’t be asking for more!\n";
@@ -80,6 +74,7 @@ void    Harl::info(void)
 
 void    Harl::warning(void)
 {
+    std::cout << "WARNING level: \t";
     std::cout << "I think I deserve to have some extra bacon ";
     std::cout << "for free. I’ve been coming for years whereas you ";
     std::cout << "started working here since last month.\n";
@@ -87,5 +82,6 @@ void    Harl::warning(void)
 
 void    Harl::error(void)
 {
+    std::cout << "ERROR level: \t";
     std::cout << "This is unacceptable! I want to speak to the manager now.\n";
 }

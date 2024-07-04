@@ -17,8 +17,10 @@ class Harl
         void    info(void);
         void    warning(void);
         void    error(void);
+        void    unknown(void);
 
-        static const std::string levels[4];
+        static const std::string levels[4];// = {"DEBUG", "INFO", "WARNING", "ERROR"};
+
 };
 
 #endif
