@@ -2,11 +2,14 @@
 # define FIXED_HPP
 
 # include <iostream>
+# include <cmath>
 
 class Fixed
 {
 	public:
 		Fixed(void);
+		Fixed(const int number);
+		Fixed(const float number);
 		~Fixed(void);
 		Fixed(Fixed& other);
 		Fixed& operator=(Fixed& other); 

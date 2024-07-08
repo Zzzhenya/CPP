@@ -35,3 +35,9 @@ https://en.cppreference.com/w/cpp/language/integer_literal
 * https://en.cppreference.com/w/cpp/language/copy_assignment
 
 
+Convert an integer to fixedpoint value:
+
+"To convert an integer number Num to a fixed point we multiply the number by 2^(n- 1) or we left shift the bits by (n - 1) where n is the fractional bits specified."
+
+https://medium.com/@oumaimafisaoui/floating-and-fixed-point-representation-in-c-what-is-going-on-b71af54718a5#:~:text=To%20convert%20an%20integer%20number,is%20the%20fractional%20bits%20specified.
+
