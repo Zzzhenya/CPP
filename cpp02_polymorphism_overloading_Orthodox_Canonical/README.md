@@ -41,3 +41,9 @@ Convert an integer to fixedpoint value:
 
 https://medium.com/@oumaimafisaoui/floating-and-fixed-point-representation-in-c-what-is-going-on-b71af54718a5#:~:text=To%20convert%20an%20integer%20number,is%20the%20fractional%20bits%20specified.
 
+
+* static_cast<int>(foo) vs (int)foo : https://stackoverflow.com/questions/103512/why-use-static-casttx-instead-of-tx
+
+Fixed point : https://tmewett.com/computers-numbers-fixed-point/
+
+https://stackoverflow.com/questions/7524838/fixed-point-vs-floating-point-number

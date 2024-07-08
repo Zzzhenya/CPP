@@ -14,8 +14,10 @@ class Fixed
 		Fixed(Fixed& other);
 		Fixed& operator=(Fixed& other); 
 
-		int					getRawBits(void) const;
-		void				setRawBits(int const raw);
+		int		getRawBits(void) const;
+		void	setRawBits(int const raw);
+		int		toInt(void) const;
+		float	toFloat(void) const;
 
 	private:
 		int					fixed_val;

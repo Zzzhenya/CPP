@@ -23,8 +23,8 @@ Fixed::Fixed(const int number)
 
 Fixed::Fixed(const float number)
 {
-	// Why bitshift on 1
 	this->fixed_val = roundf(number * (1 << this->fract));
+	//this->fixed_val = roundf(number * pow(2, this->fract));
 	std::cout << "Float constructor called.\n";
 }
 
@@ -63,4 +63,22 @@ void	Fixed::setRawBits(int const raw)
 {
 	std::cout << "setRawBits" << " member function called.\n";
 	this->fixed_val = raw;
+}
+
+// Converts the fixed point value to an integer value
+int		Fixed::toInt(void) const
+{
+	int ret = 0;
+
+	ret = this->fixed_val / static_cast<int>(pow(2, this->fract));
+	return (ret);
+}
+
+float		Fixed::toFloat(void) const
+{
+	float ret = 0;
+
+	//ret = roundf(this->fixed_val / pow(2, this->fract));
+	ret = this->fixed_val / pow(2, this->fract);
+	return (ret);
 }
