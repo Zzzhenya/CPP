@@ -29,14 +29,14 @@ Fixed::Fixed(const float number)
 }
 
 // Copy constructor
-Fixed::Fixed(Fixed& other)
+Fixed::Fixed(const Fixed& other)
 {
 	fixed_val = other.getRawBits();
 	std::cout << "Copy constructor called.\n";
 }
 
 //A copy assignment operator overload.
-Fixed& Fixed::operator=(Fixed& other)
+Fixed& Fixed::operator=(const Fixed& other)
 {
 	fixed_val = other.getRawBits();
 	std::cout << "Copy assignment operator called.\n";
@@ -75,4 +75,14 @@ float		Fixed::toFloat(void) const
 {
 	//ret = roundf(this->fixed_val / pow(2, this->fract));
 	return (this->fixed_val / pow(2, this->fract));
+}
+
+// An overload of the insertion («) operator 
+//that inserts a floating-point representation of the fixed-point number 
+//into the output stream object passed as parameter.
+
+std::ostream& operator<<(std::ostream& streamRef, const Fixed& number)
+{
+	streamRef << number.toFloat();
+	return (streamRef);
 }

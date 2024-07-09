@@ -11,8 +11,8 @@ class Fixed
 		Fixed(const int number);
 		Fixed(const float number);
 		~Fixed(void);
-		Fixed(Fixed& other);
-		Fixed& operator=(Fixed& other); 
+		Fixed(const Fixed& other);
+		Fixed& operator=(const Fixed& other); 
 
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
@@ -23,5 +23,7 @@ class Fixed
 		int					fixed_val;
 		static const int	fract = 8;
 };
+
+std::ostream& operator<<(std::ostream& streamRef,const Fixed& number);
 
 #endif
