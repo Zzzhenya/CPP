@@ -3,9 +3,9 @@
 
 int main(void)
 {
-	Fixed a(1.12f);
+	Fixed a(1.01f);
 	// float neads a f at the end?
-	Fixed b(2.99f); // 1.1d
+	Fixed b(2.01f); // 1.1d
 	//Fixed b( a );
 	Fixed c;
 	c = b;

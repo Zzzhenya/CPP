@@ -68,17 +68,11 @@ void	Fixed::setRawBits(int const raw)
 // Converts the fixed point value to an integer value
 int		Fixed::toInt(void) const
 {
-	int ret = 0;
-
-	ret = this->fixed_val / static_cast<int>(pow(2, this->fract));
-	return (ret);
+	return(this->fixed_val / static_cast<int>(pow(2, this->fract)));
 }
 
 float		Fixed::toFloat(void) const
 {
-	float ret = 0;
-
 	//ret = roundf(this->fixed_val / pow(2, this->fract));
-	ret = this->fixed_val / pow(2, this->fract);
-	return (ret);
+	return (this->fixed_val / pow(2, this->fract));
 }
