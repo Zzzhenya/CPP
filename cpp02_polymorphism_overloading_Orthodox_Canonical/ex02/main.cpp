@@ -157,7 +157,8 @@ void	int_tests(std::string op)
 	print_int_vals(1, 2, op);
 	print_int_vals(2, 1, op);
 	print_int_vals(1, 1, op);
-	print_int_vals(0, 0, op);
+	if (op != "/")
+		print_int_vals(0, 0, op);
 	print_int_vals(0, -1, op);
 	print_int_vals(-2, -1, op);
 	print_int_vals(2000, 3000, op);
@@ -171,7 +172,8 @@ void	float_tests(std::string op)
 	print_float_vals(1.1, 2.0, op);
 	print_float_vals(2.0, 1.1, op);
 	print_float_vals(1.10, 1.101, op);
-	print_float_vals(0, 0, op);
+	if (op != "/")
+		print_float_vals(0, 0, op);
 	print_float_vals(0, -1.12, op);
 	print_float_vals(-2.2, -1.12, op);
 	print_float_vals(-2.2, -2.19922, op);
@@ -212,9 +214,9 @@ int main(void)
 	std::cout << "\t_______ * _________" << std::endl;
 	int_tests("*");
 	float_tests("*");
-	// std::cout << "\t_______ / _________" << std::endl;
-	// int_tests("/");
-	// float_tests("/");
+	std::cout << "\t_______ / _________" << std::endl;
+	int_tests("/");
+	float_tests("/");
 
 	return (0);
 }
