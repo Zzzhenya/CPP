@@ -183,40 +183,44 @@ void	float_tests(std::string op)
 
 int main(void)
 {
+	Fixed a;
 
-	std::cout << "\t==========COMPARISON OPERATORS============\n";
-	std::cout << "\t_______ > _________" << std::endl;
-	int_tests(">");
-	float_tests(">");
-	std::cout << "\t_______ < _________" << std::endl;
-	int_tests("<");
-	float_tests("<");
-	std::cout << "\t_______ >= _________" << std::endl;
-	int_tests(">=");
-	float_tests(">=");
-	std::cout << "\t_______ <= _________" << std::endl;
-	int_tests("<=");
-	float_tests("<=");
-	std::cout << "\t_______ == _________" << std::endl;
-	int_tests("==");
-	float_tests("==");
-	std::cout << "\t_______ != _________" << std::endl;
-	int_tests("!=");
-	float_tests("!=");
+	std::cout << a << std::endl;
+	std::cout << a ++ << std::endl;
 
-	std::cout << "\n\t==========ARITHMETIC OPERATORS============\n";
-	std::cout << "\t_______ + _________" << std::endl;
-	int_tests("+");
-	float_tests("+");
-	std::cout << "\t_______ - _________" << std::endl;
-	int_tests("-");
-	float_tests("-");
-	std::cout << "\t_______ * _________" << std::endl;
-	int_tests("*");
-	float_tests("*");
-	std::cout << "\t_______ / _________" << std::endl;
-	int_tests("/");
-	float_tests("/");
+	// std::cout << "\t==========COMPARISON OPERATORS============\n";
+	// std::cout << "\t_______ > _________" << std::endl;
+	// int_tests(">");
+	// float_tests(">");
+	// std::cout << "\t_______ < _________" << std::endl;
+	// int_tests("<");
+	// float_tests("<");
+	// std::cout << "\t_______ >= _________" << std::endl;
+	// int_tests(">=");
+	// float_tests(">=");
+	// std::cout << "\t_______ <= _________" << std::endl;
+	// int_tests("<=");
+	// float_tests("<=");
+	// std::cout << "\t_______ == _________" << std::endl;
+	// int_tests("==");
+	// float_tests("==");
+	// std::cout << "\t_______ != _________" << std::endl;
+	// int_tests("!=");
+	// float_tests("!=");
+
+	// std::cout << "\n\t==========ARITHMETIC OPERATORS============\n";
+	// std::cout << "\t_______ + _________" << std::endl;
+	// int_tests("+");
+	// float_tests("+");
+	// std::cout << "\t_______ - _________" << std::endl;
+	// int_tests("-");
+	// float_tests("-");
+	// std::cout << "\t_______ * _________" << std::endl;
+	// int_tests("*");
+	// float_tests("*");
+	// std::cout << "\t_______ / _________" << std::endl;
+	// int_tests("/");
+	// float_tests("/");
 
 	return (0);
 }

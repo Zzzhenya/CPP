@@ -77,6 +77,22 @@ float		Fixed::toFloat(void) const
 	return (this->fixed_val / pow(2, this->fract));
 }
 
+/*
+	The 4 increment/decrement (
+		pre-increment and 
+		post-increment, 
+		pre-decrement and
+		post-decrement
+	) operators, that will increase or decrease the fixed-point value from
+the smallest representable ϵ such as 1 + ϵ > 1.
+*/
+
+Fixed	&Fixed::operator++(void)
+{
+	(*this).setRawBits(this->fixed_val + 1);
+	return (*this);
+}
+
 // An overload of the insertion («) operator 
 //that inserts a floating-point representation of the fixed-point number 
 //into the output stream object passed as parameter.

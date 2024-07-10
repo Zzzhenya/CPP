@@ -31,6 +31,8 @@ class Fixed
 		Fixed operator*(const Fixed& second);
 		Fixed operator/(const Fixed& second);
 
+		Fixed	operator++(void);
+
 	private:
 		int					fixed_val;
 		static const int	fract = 8;

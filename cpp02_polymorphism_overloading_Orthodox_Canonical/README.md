@@ -47,3 +47,7 @@ https://medium.com/@oumaimafisaoui/floating-and-fixed-point-representation-in-c-
 Fixed point : https://tmewett.com/computers-numbers-fixed-point/
 
 https://stackoverflow.com/questions/7524838/fixed-point-vs-floating-point-number
+
+Postfix and prefix operators: https://en.cppreference.com/w/cpp/language/operator_incdec
+
+
