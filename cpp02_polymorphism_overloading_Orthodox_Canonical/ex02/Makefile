@@ -1,6 +1,6 @@
 NAME	=	ex02
 
-SRC		=	main.cpp Fixed.cpp comparison_operators.cpp
+SRC		=	main.cpp Fixed.cpp comparison_operators.cpp arithmetic_operators.cpp
 
 OBJ		= 	$(SRC:.cpp=.o)
 

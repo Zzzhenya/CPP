@@ -18,8 +18,18 @@ class Fixed
 		void	setRawBits(int const raw);
 		int		toInt(void) const;
 		float	toFloat(void) const;
+
 		bool	operator>(const Fixed& second);
 		bool	operator<(const Fixed& second);
+		bool	operator>=(const Fixed& second);
+		bool	operator<=(const Fixed& second);
+		bool	operator==(const Fixed& second);
+		bool	operator!=(const Fixed& second);
+
+		Fixed operator+(const Fixed& second);
+		Fixed operator-(const Fixed& second);
+		Fixed operator*(const Fixed& second);
+		Fixed operator/(const Fixed& second);
 
 	private:
 		int					fixed_val;
