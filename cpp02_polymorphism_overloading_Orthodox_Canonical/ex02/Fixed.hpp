@@ -19,8 +19,8 @@ class Fixed
 		int		toInt(void) const;
 		float	toFloat(void) const;
 
-		bool	operator>(const Fixed& second);
-		bool	operator<(const Fixed& second);
+		bool	operator>(const Fixed& second) const;
+		bool	operator<(const Fixed& second) const;
 		bool	operator>=(const Fixed& second);
 		bool	operator<=(const Fixed& second);
 		bool	operator==(const Fixed& second);
@@ -31,7 +31,15 @@ class Fixed
 		Fixed operator*(const Fixed& second);
 		Fixed operator/(const Fixed& second);
 
-		Fixed	operator++(void);
+		Fixed&	operator++(void); //++a
+		Fixed	operator++(int val); //a++
+		Fixed&	operator--(void); //--a
+		Fixed	operator--(int val); //a--
+
+		static Fixed&		min(Fixed& first, Fixed& second);
+		static const Fixed&	min(const Fixed& first, const Fixed& second);
+		static Fixed&		max(Fixed& first, Fixed& second);
+		static const Fixed&	max(const Fixed& first, const Fixed& second);
 
 	private:
 		int					fixed_val;

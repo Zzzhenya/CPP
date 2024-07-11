@@ -87,10 +87,75 @@ float		Fixed::toFloat(void) const
 the smallest representable ϵ such as 1 + ϵ > 1.
 */
 
-Fixed	&Fixed::operator++(void)
+Fixed	Fixed::operator++(int val) //a++
+{
+	(void)val;
+	Fixed tmp(*this);
+	(*this).setRawBits(this->fixed_val + 1);
+	//operator++();
+	return (tmp);
+}
+
+Fixed&	Fixed::operator++(void) //++a
 {
 	(*this).setRawBits(this->fixed_val + 1);
 	return (*this);
+}
+
+Fixed&	Fixed::operator--(void) //--a
+{
+	(*this).setRawBits(this->fixed_val - 1);
+	return (*this);
+}
+
+Fixed	Fixed::operator--(int val) //a--
+{
+	(void)val;
+	Fixed tmp(*this);
+	//operator--();
+	(*this).setRawBits(this->fixed_val - 1);
+	return(tmp);
+}
+
+/* A static member function min that takes 
+as parameters two references on fixed-point numbers, and 
+returns a reference to the smallest one.*/
+Fixed&		Fixed::min(Fixed& first, Fixed& second)
+{
+	if (first < second)
+		return (first);
+	return (second);
+}
+
+/*
+• A static member function min that takes 
+as parameters two references to constant fixed-point numbers, 
+	and returns a reference to the smallest one.
+*/
+const Fixed&	Fixed::min(const Fixed &first, const Fixed	&second)
+{
+	if (first < second)
+		return (first);
+	return (second);
+}
+/*
+• A static member function max that takes as parameters two references on fixed-point
+numbers, and returns a reference to the greatest one.*/
+Fixed&		Fixed::max(Fixed& first, Fixed& second)
+{
+	if (first > second)
+		return (first);
+	return (second);
+}
+/*
+• A static member function max that takes as parameters two references to constant
+fixed-point numbers, and returns a reference to the greatest one.*/
+
+const Fixed&	Fixed::max(const Fixed &first, const Fixed	&second)
+{
+	if (first > second)
+		return (first);
+	return (second);
 }
 
 // An overload of the insertion («) operator 
