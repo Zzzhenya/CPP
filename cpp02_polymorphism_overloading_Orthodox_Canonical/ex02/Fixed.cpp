@@ -4,7 +4,7 @@
 Fixed::Fixed(void)
 {
 	this->fixed_val = 0;
-	//std::cout << "Default constructor called.\n";
+	std::cout << "Default constructor called.\n";
 }
 
 // Integer constructor
@@ -16,7 +16,7 @@ Fixed::Fixed(const int number)
 {
 	this->fixed_val = number << this->fract;
 	//this->fixed_val = number * static_cast<int>(pow(2, this->fract));
-	//std::cout << "Integer constructor called.\n";
+	std::cout << "Integer constructor called.\n";
 }
 
 // Float constructor
@@ -25,7 +25,7 @@ Fixed::Fixed(const float number)
 {
 	this->fixed_val = roundf(number * (1 << this->fract));
 	//this->fixed_val = roundf(number * pow(2, this->fract));
-	//std::cout << "Float constructor called.\n";
+	std::cout << "Float constructor called.\n";
 }
 
 // Copy constructor
@@ -46,14 +46,14 @@ Fixed& Fixed::operator=(const Fixed& other)
 //A destructor
 Fixed::~Fixed(void)
 {
-	//std::cout << "Destructor called.\n";
+	std::cout << "Destructor called.\n";
 }
 
 //A member function int getRawBits( void ) const;
 //that returns the raw value of the fixed-point value.
 int	Fixed::getRawBits(void) const
 {
-	// std::cout << "getRawBits" << " member function called.\n";
+	std::cout << "getRawBits" << " member function called.\n";
 	return(this->fixed_val);
 }
 
@@ -61,7 +61,7 @@ int	Fixed::getRawBits(void) const
 // that sets the raw value of the fixed-point number
 void	Fixed::setRawBits(int const raw)
 {
-	// std::cout << "setRawBits" << " member function called.\n";
+	std::cout << "setRawBits" << " member function called.\n";
 	this->fixed_val = raw;
 }
 
