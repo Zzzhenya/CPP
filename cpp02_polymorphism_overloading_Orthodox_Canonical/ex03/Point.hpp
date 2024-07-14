@@ -9,7 +9,8 @@ class Point
 	public:
 		Point(void);
 		~Point(void);
-		Point(const Fixed x, const Fixed y);
+		Point(const float x, const float y);
+		// Point(const Fixed x, const Fixed y);
 		Point(const Point &p);
 		Point& 	operator=(const Point &other);
 
@@ -18,8 +19,9 @@ class Point
 		Fixed getY(void) const;
 
 	private:
-		Fixed x;
-		Fixed y;
+		Fixed const x;
+		Fixed const y;
+
 };
 
 bool	is_inside_triangle(const Point& t1, const Point& t2, const Point& t3, const Point& p);
