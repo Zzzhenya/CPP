@@ -1,7 +1,7 @@
 NAME	=	ex02
 
 SRC		=	main.cpp Fixed.cpp comparison_operators.cpp\
-			arithmetic_operators.cpp Point.cpp
+			arithmetic_operators.cpp Point.cpp bsp.cpp
 
 OBJ		= 	$(SRC:.cpp=.o)
 

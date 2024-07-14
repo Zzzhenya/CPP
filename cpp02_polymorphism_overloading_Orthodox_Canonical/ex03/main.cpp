@@ -184,13 +184,17 @@
 
 int main(void)
 {
-	Point a(1, 2);
-	Fixed *ret = new Fixed[2];
+	Point t1(10, 20);
+	Point t2(4, 8);
+	Point t3(20, 10);
+	Point p(10, 8.5f);
 
-
-	ret = a.getPoint(ret);
-	std::cout << ret[0] << ", " << ret[1] << std::endl;
-
-	delete []ret;
+	std::cout << "\t";
+	if (is_inside_triangle(t1, t2, t3, p) && area_calc(t1, t2, t3, p))
+		std::cout << "is inside." << std::endl;
+	else if (is_inside_triangle(t1, t2, t3, p) || area_calc(t1, t2, t3, p))
+		std::cout << "Error." << std::endl;
+	else
+		std::cout << " is outside." << std::endl;
 	return (0);
 }

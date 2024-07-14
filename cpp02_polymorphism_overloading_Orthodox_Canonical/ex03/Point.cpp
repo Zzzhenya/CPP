@@ -3,6 +3,8 @@
 Point::Point(void)
 {
 	std::cout << "Default Point constructor called." << std::endl;
+	this->x = 0;
+	this->y = 0;
 }
 
 Point::~Point(void)
@@ -24,12 +26,33 @@ Point::Point(const Point &p)
 	this->y = p.y;
 }
 
-Fixed *Point::getPoint(Fixed ret[2])
+Point& 	Point::operator=(const Point &other)
 {
-	//Fixed *ret = new Fixed[2];
+	std::cout << "Poing copy assignment operator called.\n";
+	Fixed temp[2];
+	other.getPoint(temp);
+	x = temp[0];
+	y = temp[1];
+	// this->x = other.getX();
+	// this->y = other.getY();
+	return (*this);
+}
 
+Fixed* Point::getPoint(Fixed ret[2]) const
+{
 	ret[0] = this->x;
 	ret[1] = this->y;
-
 	return(ret);
+}
+
+Fixed Point::getX(void) const
+{
+	Fixed x = this->x;
+	return (x);
+}
+
+Fixed Point::getY(void) const
+{
+	Fixed y = this->y;
+	return (y);
 }
