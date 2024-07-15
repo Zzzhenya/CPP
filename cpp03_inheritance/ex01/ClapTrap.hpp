@@ -18,7 +18,7 @@ class ClapTrap
 
 		void	print_score(void);
 
-	private:
+	protected:
 		std::string 	name;
 		unsigned int	hitPoints;
 		unsigned int	energyPoints;
