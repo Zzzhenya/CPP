@@ -1,6 +1,6 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(void)
+DiamondTrap::DiamondTrap(void): ScavTrap(), FragTrap()
 {
 	std::cout << "Diamond default constructor." << std::endl;
 }
