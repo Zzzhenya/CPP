@@ -37,19 +37,34 @@ std::string	replace_needle(std::string line, std::string s1, std::string s2)
 
 	while (loc != std::string::npos)
 	{
-		line.erase(	loc, s1.length());
+		line.erase(loc, s1.length());
 		line.insert(loc, s2);
 		loc = line.find(s1, loc + 1);
 	}
 	return (line);
 }
 
+void	read_copy_loop(std::fstream &s, std::fstream &outfile,\
+			char *find, char *replace)
+{
+	std::string 	line;
+
+	while (1)	
+	{
+		std::getline(s, line);
+		if (s.eof())
+			break;
+		if (has_needle(line, find))
+			line = replace_needle(line, find, replace);
+		outfile << line << "\n";
+	}
+}
+
 
 int	openfile_and_read(char *filename, char *find, char *replace)
 {
 	std::fstream 	s(filename, std::ios::in);
-	std::string 	line;
-	std::string 	outfile_name
+	std::string 	outfile_name;
 
 	if (!s.is_open())
 	{
@@ -62,19 +77,11 @@ int	openfile_and_read(char *filename, char *find, char *replace)
 		std::fstream outfile((const char *)outfile_name.c_str(), std::ios::out | std::ios::trunc);
 		if (!outfile.is_open())
 		{
-			std::cerr << "failed to create " << outfile_name.c_str() << "\n";
+			std::cerr << "failed to create and open " << outfile_name.c_str() << "\n";
 			s.close();
 			return (0);	
 		}
-		while (1)	
-		{
-			std::getline(s, line);
-			if (s.eof())
-				break;
-			if (has_needle(line, find))
-				line = replace_needle(line, find, replace);
-			outfile << line << "\n";
-		}
+		read_copy_loop(s, outfile, find, replace);
 		s.close();
 		outfile.close();
 	}
