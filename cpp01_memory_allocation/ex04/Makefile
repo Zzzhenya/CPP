@@ -23,11 +23,12 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
-	rm -rf test_files/*.replace
+	rm -rf *.replace
+	rm -rf **/*.replace
 
 re: fclean all
 
-leaks: $(NAME)
-	valgrind --track-fds=yes ./$(NAME) test_files/one hello world
+# leaks: $(NAME)
+# 	valgrind --track-fds=yes ./$(NAME) test_files/one hello world
 
-.PHONY: all clean fclean re leaks	
+.PHONY: all clean fclean re #leaks	

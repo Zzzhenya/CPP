@@ -21,7 +21,7 @@ Forbidden functions : std::string::replace
 #include <fstream>
 #include <string>
 
-int has_needle(std::string haystack, std::string needle)
+int	has_needle(std::string haystack, std::string needle)
 {
 	size_t loc = haystack.find(needle);
 
@@ -31,7 +31,7 @@ int has_needle(std::string haystack, std::string needle)
 		return (0);
 }
 
-std::string replace_needle(std::string line, std::string s1, std::string s2)
+std::string	replace_needle(std::string line, std::string s1, std::string s2)
 {
 	size_t loc = line.find(s1);
 
@@ -44,41 +44,57 @@ std::string replace_needle(std::string line, std::string s1, std::string s2)
 	return (line);
 }
 
-int main(int argc, char **argv)
+
+int	openfile_and_read(char *filename, char *find, char *replace)
 {
-	if (argc != 4)
+	std::fstream 	s(filename, std::ios::in);
+	std::string 	line;
+	std::string 	outfile_name
+
+	if (!s.is_open())
 	{
-		std::cerr << "Wrong arg count" << std::endl;
+		std::cerr << "Failed to open file " << filename << std::endl;
 		return (0);
 	}
-	//std::string filename(argv[1]);
-
-	std::fstream s(argv[1],std::ios::in);
-	std::string line;
-	if (!s.is_open())
-		std::cerr << "failed to open " << argv[1] << "\n";	
 	else
 	{
-		std::string outfile_name = std::string(argv[1]) + std::string(".replace");
-		const char *out_name_char = outfile_name.c_str();
-		std::fstream outfile((const char *)out_name_char, std::ios::out | std::ios::trunc);
+		outfile_name = std::string(filename) + std::string(".replace");
+		std::fstream outfile((const char *)outfile_name.c_str(), std::ios::out | std::ios::trunc);
 		if (!outfile.is_open())
 		{
-			std::cerr << "failed to create " << out_name_char << "\n";
+			std::cerr << "failed to create " << outfile_name.c_str() << "\n";
 			s.close();
-			return (1);	
+			return (0);	
 		}
 		while (1)	
 		{
 			std::getline(s, line);
 			if (s.eof())
 				break;
-			if (has_needle(line, argv[2]))
-				line = replace_needle(line, argv[2], argv[3]);
+			if (has_needle(line, find))
+				line = replace_needle(line, find, replace);
 			outfile << line << "\n";
 		}
 		s.close();
 		outfile.close();
 	}
+	return (1);
+}
+
+int main(int argc, char **argv)
+{
+	if (argc != 4)
+	{
+		std::cerr << "Wrong arg count." << std::endl;
+		std::cerr << "Usage: filename \"Search word\" \"replacement word\"" << std::endl;
+		return (1);
+	}
+	if (std::string(argv[2]).length() == 0)
+	{
+		std::cerr << "Search word is empty." << std::endl;
+		return (1);
+	}
+	if (!openfile_and_read(argv[1], argv[2], argv[3]))
+		return (1);
 	return (0);
 }
