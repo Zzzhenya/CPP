@@ -52,11 +52,13 @@ void	read_copy_loop(std::fstream &s, std::fstream &outfile,\
 	while (1)	
 	{
 		std::getline(s, line);
-		if (s.eof())
+		if (s.eof() && line.length() == 0)
 			break;
 		if (has_needle(line, find))
 			line = replace_needle(line, find, replace);
 		outfile << line << "\n";
+		if (s.eof())
+			break;
 	}
 }
 
