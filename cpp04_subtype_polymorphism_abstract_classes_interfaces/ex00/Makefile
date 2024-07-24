@@ -1,25 +1,12 @@
 NAME = animals
 
+SRC =  main.cpp Animal.cpp
+
+HEADER = Animal.hpp 
+
+OBJ = $(SRC:.cpp=.o)
+
 CXX = c++
-
-SRC = main.cpp
-
-OBJ = $(SRC:.cpp=.o)
-
-all: $(NAME)
-
-$(NAME):
-
-
-NAME = claptrap
-
-SRC = ClapTrap.cpp main.cpp
-
-HEADER = ClapTrap.hpp
-
-OBJ = $(SRC:.cpp=.o)
-
-CXX = clang++
 
 CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98
 

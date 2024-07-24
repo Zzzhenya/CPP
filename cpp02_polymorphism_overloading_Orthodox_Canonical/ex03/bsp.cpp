@@ -26,7 +26,8 @@ bool	is_inside_triangle(const Point& t1, const Point& t2, const Point& t3, const
     side_3 = (x - ax) * ((cy - ay) - (cx - ax)) * (y - ay);
     // All the signs must be positive or all negative
     std::cout << side_1 << " " << side_2 << " " << side_3 << std::endl;
-    return (side_1 < 0) && (side_2 < 0) && (side_3 < 0);
+    return ((side_1 <=) && (side_2 < 0) && (side_3 < 0));
+	//return (side_1 < 0) && (side_2 < 0) && (side_3 < 0);
 }
 
 bool area_calc(const Point& t1, const Point& t2, const Point& t3, const Point& p)

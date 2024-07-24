@@ -51,3 +51,6 @@ https://stackoverflow.com/questions/7524838/fixed-point-vs-floating-point-number
 Postfix and prefix operators: https://en.cppreference.com/w/cpp/language/operator_incdec
 
 
+* https://www.baeldung.com/cs/check-if-point-is-in-2d-triangle
+
+
