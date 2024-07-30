@@ -1,10 +1,22 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/07/30 14:00:49 by sde-silv          #+#    #+#              #
+#    Updated: 2024/07/30 14:13:56 by sde-silv         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME	=	ex00
 
 SRC		=	main.cpp Fixed.cpp
 
 OBJ		= 	$(SRC:.cpp=.o)
 
-CXX		=	clang++
+CXX		=	c++
 
 HEADER	=	Fixed.hpp	
 
@@ -12,10 +24,10 @@ CPPFLAGS=	-Wall -Wextra -Werror -g -std=c++98
 
 all: $(NAME)
 
-%.o: %.cpp
+%.o: %.cpp Makefile $(HEADER)
 	$(CXX) $(CPPFLAGS) -c -o $@ $<
 
-$(NAME): $(OBJ) Makefile $(HEADER)
+$(NAME): $(OBJ)
 	$(CXX) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 clean:
@@ -29,4 +41,4 @@ re: fclean all
 leaks: $(NAME)
 	valgrind ./$(NAME) #--track-fds=yes
 
-.PHONY: all clean fclean re leaks	
+.PHONY: all clean fclean re leaks
