@@ -54,3 +54,14 @@ Postfix and prefix operators: https://en.cppreference.com/w/cpp/language/operato
 * https://www.baeldung.com/cs/check-if-point-is-in-2d-triangle
 
 
+ex03:
+
+* https://www.geeksforgeeks.org/check-whether-triangle-is-valid-or-not-if-three-points-are-given/
+
+* https://www.geeksforgeeks.org/area-of-a-polygon-with-given-n-ordered-vertices/
+
+* https://stackoverflow.com/questions/2049582/how-to-determine-if-a-point-is-in-a-2d-triangle#:~:text=A%20simple%20way%20is%20to,point%20is%20inside%20the%20triangle.
+
+* https://github.com/Laendrun/42-cpp/blob/main/cpp02/ex03/bsp.cpp
+
+
