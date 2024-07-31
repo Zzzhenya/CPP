@@ -11,7 +11,7 @@ class Point
 		~Point(void);
 		Point(const float x, const float y);
 		// Point(const Fixed x, const Fixed y);
-		Point(const Point &p);
+		Point(const Point &other);
 		Point& 	operator=(const Point &other);
 
 		Fixed *getPoint(Fixed ret[2]) const;
@@ -24,7 +24,6 @@ class Point
 
 };
 
-bool	is_inside_triangle(const Point& t1, const Point& t2, const Point& t3, const Point& p);
-bool 	area_calc(const Point& t1, const Point& t2, const Point& t3, const Point& p);
+bool bsp(Point const a, Point const b, Point const c, Point const point);
 
 #endif
