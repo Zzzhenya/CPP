@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/14 22:22:45 by sde-silv          #+#    #+#             */
+/*   Updated: 2024/08/01 21:13:13 by sde-silv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ClapTrap.hpp"
 
 int main (void)
@@ -14,7 +26,7 @@ int main (void)
 		else
 		{
 			b.attack("Two");
-			a.takeDamage(1);// b.getDamageCount()
+			a.takeDamage(b.getAttackDamage());
 		}
 		a.print_score();
 		b.print_score();
