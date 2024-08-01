@@ -8,7 +8,7 @@ OBJ		= 	$(SRC:.cpp=.o)
 
 DBGOBJ	= 	$(SRC:.cpp=.dbg.o)
 
-CXX		=	clang++
+CXX		=	c++
 
 HEADER	=	Fixed.hpp Point.hpp
 
