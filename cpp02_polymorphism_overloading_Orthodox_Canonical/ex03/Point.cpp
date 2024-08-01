@@ -5,7 +5,10 @@
 */
 Point::Point(void) : x(0), y(0)
 {
+#ifdef _DEBUG
+#else
 	std::cout << "Default Point constructor called." << std::endl;
+#endif
 }
 
 /*
@@ -13,12 +16,18 @@ Point::Point(void) : x(0), y(0)
 */
 Point::~Point(void)
 {
+#ifdef _DEBUG
+#else
 	std::cout << "Point destructor called." << std::endl;
+#endif
 }
 
 Point::Point(const float a, const float b) : x(Fixed(a)), y(Fixed(b))
 {
+#ifdef _DEBUG
+#else
 	std::cout << "Point constructor called with x,y float coordinates." << std::endl;
+#endif
 }
 
 /*
@@ -26,7 +35,10 @@ Point::Point(const float a, const float b) : x(Fixed(a)), y(Fixed(b))
 */
 Point::Point(const Point &other) : x(other.x), y(other.y)
 {
+#ifdef _DEBUG
+#else
 	std::cout << "Point copy constructor called." << std::endl;
+#endif
 }
 
 
@@ -35,8 +47,11 @@ Point::Point(const Point &other) : x(other.x), y(other.y)
 */
 Point& 	Point::operator=(const Point &other)
 {
+#ifdef _DEBUG
+#else
 	std::cout << "Unable to call Point copy assignment operator.";
 	std::cout << "Point class has const private variables." << std::endl;
+#endif
 	(void)other;
 	return (*this);
 }

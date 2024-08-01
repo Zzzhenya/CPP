@@ -75,7 +75,9 @@ bool	is_inside_triangle(Point const a, Point const b, Point const c, Point const
     side_3 = (x - ax) * (cy - ay) - (cx - ax) * (y - ay);
     if (on_the_edge(side_1, side_2, side_3))
     {
+#ifdef _DEBUG
     	std::cerr << "Point is on an edge." << std::endl;
+#endif
     	return (0);
     }
  	if ((side_1 < 0) && (side_2 < 0) && (side_3 < 0))
@@ -84,7 +86,9 @@ bool	is_inside_triangle(Point const a, Point const b, Point const c, Point const
  		return (1);
  	else
  	{
+#ifdef _DEBUG
  		std::cerr << "Point is outside of the triangle." << std::endl;
+#endif
  		return(0);
  	}
 }
@@ -93,12 +97,16 @@ bool	bsp(Point const a, Point const b, Point const c, Point const point)
 {
 	if (!is_a_triangle(a, b, c))
  	{
+#ifdef _DEBUG
  		std::cerr << "Points do not depict a triangle." << std::endl;
+#endif
  		return (0);
  	}
 	if (point_is_a_vertex(point, a) || point_is_a_vertex(point, b) || point_is_a_vertex(point, c))	
 	{
+#ifdef _DEBUG
 		std::cerr << "Point is a vertex." << std::endl;
+#endif
  		return (0);
 	}
  	if (is_inside_triangle(a, b, c, point))

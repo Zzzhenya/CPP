@@ -13,17 +13,26 @@ void	fail(void)
 	std::cerr  << "\t\t\t\t\t"<< "=0000=" << std::endl;
 }
 
+
 void	print_triangle(Point a, Point b, Point c)
 {
+#ifdef _DEBUG
 	std::cout << "Test: ";
 	std::cout << "(" << a.getX() << "," << a.getY() << "), ";
 	std::cout << "(" << b.getX() << "," << b.getY() << "), ";
 	std::cout << "(" << c.getX() << "," << c.getY() << ")" << std::endl;
+#else
+	(void)a; (void)b; (void)c;
+#endif
 }
 
 void print_point(Point p)
 {
+#ifdef _DEBUG
 	std::cout << "(" << p.getX() << "," << p.getY() << ")" << std::endl;
+#else
+	(void)p;
+#endif
 }
 
 void	negative_case(Point a, Point b, Point c, Point p)

@@ -64,4 +64,9 @@ ex03:
 
 * https://github.com/Laendrun/42-cpp/blob/main/cpp02/ex03/bsp.cpp
 
+Debuging with preprocessor directives - Including it in makefile
+
+* https://axon.cs.byu.edu/~martinez/classes/478/stuff/labhints/cpprefresher.html
+
+
 

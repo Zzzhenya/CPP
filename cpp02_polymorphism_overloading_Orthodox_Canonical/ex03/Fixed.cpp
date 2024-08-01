@@ -17,7 +17,10 @@
 */
 Fixed::Fixed(void)
 {
+#ifdef _DEBUG
+#else
 	std::cout << "Default constructor called.\n";
+#endif
 	this->fixed_val = 0;
 }
 
@@ -26,7 +29,10 @@ Fixed::Fixed(void)
 */
 Fixed::~Fixed(void)
 {
+#ifdef _DEBUG
+#else
 	std::cout << "Destructor called.\n";
+#endif
 }
 
 /*
@@ -36,7 +42,10 @@ Fixed::~Fixed(void)
 */
 Fixed::Fixed(const Fixed& other)
 {
+#ifdef _DEBUG
+#else
 	std::cout << "Copy constructor called.\n";
+#endif
 	fixed_val = other.getRawBits();
 }
 
@@ -47,7 +56,10 @@ Fixed::Fixed(const Fixed& other)
 */
 Fixed& Fixed::operator=(const Fixed& other)
 {
+#ifdef _DEBUG
+#else
 	std::cout << "Copy assignment operator called.\n";
+#endif
 	fixed_val = other.getRawBits();
 	return (*this);
 }
@@ -58,7 +70,10 @@ Fixed& Fixed::operator=(const Fixed& other)
 */
 int	Fixed::getRawBits(void) const
 {
+#ifdef _DEBUG
+#else
 	std::cout << "getRawBits" << " member function called.\n";
+#endif
 	return (this->fixed_val);
 }
 
@@ -68,7 +83,10 @@ int	Fixed::getRawBits(void) const
 */
 void	Fixed::setRawBits(int const raw)
 {
+#ifdef _DEBUG
+#else
 	std::cout << "setRawBits" << " member function called.\n";
+#endif
 	this->fixed_val = raw;
 }
 
@@ -81,7 +99,10 @@ void	Fixed::setRawBits(int const raw)
 */
 Fixed::Fixed(const int number)
 {
+#ifdef _DEBUG
+#else
 	std::cout << "Int constructor called.\n";
+#endif
 	this->fixed_val = number << this->fract;
 }
 
@@ -92,7 +113,10 @@ Fixed::Fixed(const int number)
 */
 Fixed::Fixed(const float number)
 {
+#ifdef _DEBUG
+#else
 	std::cout << "Float constructor called.\n";
+#endif
 	this->fixed_val = roundf(number * (1 << this->fract));
 }
 
