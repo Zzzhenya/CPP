@@ -1,8 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/05 16:14:39 by sde-silv          #+#    #+#             */
+/*   Updated: 2024/08/05 21:49:08 by sde-silv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SCAVTRAP_HPP
 # define SCAVTRAP_HPP
 
-# include <iostream>
 # include "ClapTrap.hpp"
+
+# define SCAV_HIT_POINTS 100
+# define SCAV_ENERGY_POINTS 50
+# define SCAV_DAMAGE_POINTS 20
 
 class ScavTrap : public ClapTrap
 {
@@ -13,9 +28,8 @@ class ScavTrap : public ClapTrap
 		ScavTrap& operator=(const ScavTrap& other);
 		ScavTrap(std::string name);
 
-		void	guardGate(void);
-		void	attack(const std::string& target);
-		
+		void			guardGate(void);
+		std::string		get_class_name(void);
 };
 
 #endif
