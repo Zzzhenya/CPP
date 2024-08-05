@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 22:22:25 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/01 21:13:48 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:36:20 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CLAPTRAP_HPP
 
 # include <iostream>
+# include <typeinfo>
 
 # define CLAP_HIT_POINTS 10
 # define CLAP_ENERGY_POINTS 10
