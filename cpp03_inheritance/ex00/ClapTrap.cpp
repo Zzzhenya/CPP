@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:32:34 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/05 15:04:59 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/06 22:01:34 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 std::string	ClapTrap::get_class_name(void)
 {
 	std::string c_name = typeid(this).name();
+	
 	if (c_name[0] == 'P')
 		return(&typeid(this).name()[2]);
 	else
@@ -23,35 +24,35 @@ std::string	ClapTrap::get_class_name(void)
 
 ClapTrap::ClapTrap(void)
 {
-	std::cout << (*this).get_class_name()\
-		<< " Default constructor." << std::endl;
 	this->name = "Default";
 	this->hitPoints = CLAP_HIT_POINTS;
 	this->energyPoints = CLAP_ENERGY_POINTS;
 	this->attackDamage = CLAP_DAMAGE_POINTS;
+	std::cout << (*this).get_class_name() << " ";
+	std::cout << this->name << " Default constructor." << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string& name)
 {
-	std::cout << (*this).get_class_name()\
-		<< " Constructor." << std::endl;
 	this->name = name;
 	this->hitPoints = CLAP_HIT_POINTS;
 	this->energyPoints = CLAP_ENERGY_POINTS;
 	this->attackDamage = CLAP_DAMAGE_POINTS;
+	std::cout << (*this).get_class_name() << " ";
+	std::cout << this->name << " Constructor." << std::endl;
 }
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << (*this).get_class_name()\
-		<< " Default destructor." << std::endl;
+	std::cout << (*this).get_class_name() << " ";
+	std::cout << this->name << " Default destructor." << std::endl;
 }
 
 /*Copy constructor*/
 ClapTrap::ClapTrap(const ClapTrap& other)
 {
-	std::cout << (*this).get_class_name()\
-		<< " Copy constructor." << std::endl;
+	std::cout << (*this).get_class_name() << " ";
+	std::cout << this->name << " Copy constructor." << std::endl;
 	this->name = other.name;
 	this->hitPoints = other.hitPoints;
 	this->energyPoints = other.energyPoints;
@@ -60,8 +61,8 @@ ClapTrap::ClapTrap(const ClapTrap& other)
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
-	std::cout << (*this).get_class_name()\
-		<< " Copy assignment operator overload." << std::endl;
+	std::cout << (*this).get_class_name() << " ";
+	std::cout << this->name << " Copy assignment operator overload." << std::endl;
 	this->name = other.name;
 	this->hitPoints = other.hitPoints;
 	this->energyPoints = other.energyPoints;
@@ -72,8 +73,8 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 void	ClapTrap::print_score(void)
 {
 	std::cout << name \
-		<<" :\t" << hitPoints << "\t" << energyPoints 
-		<< "\t\t" << attackDamage << std::endl;
+		<<" :\tHit:" << hitPoints << "\t\tE:" << energyPoints 
+		<< "\t\tDamage:" << attackDamage << std::endl;
 }
 
 unsigned int	ClapTrap::getAttackDamage(void)

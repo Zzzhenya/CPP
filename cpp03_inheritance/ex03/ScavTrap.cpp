@@ -1,30 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/05 16:14:31 by sde-silv          #+#    #+#             */
+/*   Updated: 2024/08/06 21:10:51 by sde-silv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ScavTrap.hpp"
+
+std::string	ScavTrap::get_class_name(void)
+{
+	std::string c_name = typeid(this).name();
+	
+	if (c_name[0] == 'P')
+		return(&typeid(this).name()[2]);
+	else
+		return(&typeid(this).name()[1]);
+}
 
 ScavTrap::ScavTrap(void) : ClapTrap()
 {
-	std::cout << "Scav default constructor.\n";
-	hitPoints = 100;
-	energyPoints = 50;
-	attackDamage = 20;
+	hitPoints = SCAV_HIT_POINTS;
+	energyPoints = SCAV_ENERGY_POINTS;
+	attackDamage = SCAV_DAMAGE_POINTS;
+	std::cout << this->get_class_name() << " ";
+	std::cout << this->name << " ";
+	std::cout << "default constructor.\n";
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	std::cout << "Scav constructor.\n";
-	hitPoints = 100;
-	energyPoints = 50;
-	attackDamage = 20;
+	hitPoints = SCAV_HIT_POINTS;
+	energyPoints = SCAV_ENERGY_POINTS;
+	attackDamage = SCAV_DAMAGE_POINTS;
+	std::cout << this->get_class_name() << " ";
+	std::cout << this->name << " ";
+	std::cout << "constructor.\n";
 }
 
 ScavTrap::~ScavTrap(void)
 {
-	std::cout << "Scav destructor.\n";
+	std::cout << this->get_class_name() << " ";
+	std::cout << this->name << " ";
+	std::cout << "destructor.\n";
 }
 
 // Copy Constructor
 ScavTrap::ScavTrap(const ScavTrap& other)
 {
-	std::cout << "Scav copy constructor.\n";
+	std::cout << this->get_class_name() << " ";
+	std::cout << this->name << " ";
+	std::cout << "copy constructor.\n";
 	name = other.name;
 	hitPoints = other.hitPoints;
 	energyPoints = other.energyPoints;
@@ -34,7 +64,9 @@ ScavTrap::ScavTrap(const ScavTrap& other)
 //Copy assignment overload
 ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 {
-	std::cout << "Scav copy assignment overload.\n";
+	std::cout << this->get_class_name() << " ";
+	std::cout << this->name << " ";
+	std::cout << "copy assignment overload.\n";
 	name = other.name;
 	hitPoints = other.hitPoints;
 	energyPoints = other.energyPoints;
@@ -44,16 +76,29 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 
 void ScavTrap::guardGate(void)
 {
-	std::cout << "ScavTrap " << name << " is now in Gate keeper mode." << std::endl;
+	std::cout << this->get_class_name() << " ";
+	std::cout << name << " is now in Gate keeper mode." << std::endl;
 }
 
-void	ScavTrap::attack(const std::string& target)
+/*
+	std::cout<< "From ScavTrap: ";
+	ClapTrap::attack(target);
+*/
+void 	ScavTrap::attack(const std::string& target)
 {
-	if (this->energyPoints > 0 && this->hitPoints > 0)
+
+	if (energyPoints > 0 && hitPoints > 0)
 	{
-		std::cout << "ScavTrap " << this->name << " attacks " << target << " , causing "<< this->attackDamage << " points of damage!" << std::endl;
-		this->energyPoints--;
+		std::cout << "ScavTrap" << " " << name \
+				<< " attacks " << target \
+				<< " , causing " << attackDamage \
+				<< " points of damage!" << std::endl;
+		energyPoints--;
 	}
+	else if (this->hitPoints <= 0)
+		std::cout << "ScavTrap" << " " << name \
+			<< " out of hit points." << std::endl;
 	else
-		std::cout << "ScavTrap " << this->name << " out of energy." << std::endl;
+		std::cout << "ScavTrap" << " " << name \
+			<< " out of energy." << std::endl;
 }

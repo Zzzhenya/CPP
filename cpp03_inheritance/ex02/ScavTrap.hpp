@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:14:39 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/05 21:49:08 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/06 21:18:49 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class ScavTrap : public ClapTrap
 
 		void			guardGate(void);
 		std::string		get_class_name(void);
+		void 			attack(const std::string& target);
 };
 
 #endif

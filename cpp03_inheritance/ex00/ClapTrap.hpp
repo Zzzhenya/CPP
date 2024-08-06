@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 22:22:25 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/05 15:07:50 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/06 21:59:57 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class ClapTrap
 		ClapTrap(void);
 		~ClapTrap(void);
 		ClapTrap(const ClapTrap& other);
-		ClapTrap&		operator=(const ClapTrap& other);
 		ClapTrap(const std::string& name);
+		ClapTrap&		operator=(const ClapTrap& other);
 
 		void 			attack(const std::string& target);
 		void 			takeDamage(unsigned int amount);
