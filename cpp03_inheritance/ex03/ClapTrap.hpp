@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:14:55 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/05 21:48:40 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/08 19:27:03 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ class ClapTrap
 {
 	public:
 		ClapTrap(void);
-		~ClapTrap(void);
+		virtual ~ClapTrap(void);
 		ClapTrap(const ClapTrap& other);
-		ClapTrap&		operator=(const ClapTrap& other);
-		ClapTrap(const std::string& name);
+		ClapTrap&				operator=(const ClapTrap& other);
+		ClapTrap(std::string new_name);
 
 		void 					attack(const std::string& target);
 		void 					takeDamage(unsigned int amount);

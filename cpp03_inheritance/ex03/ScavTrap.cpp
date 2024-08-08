@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:14:31 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/06 21:10:51 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/08 19:28:13 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,49 +24,40 @@ std::string	ScavTrap::get_class_name(void)
 
 ScavTrap::ScavTrap(void) : ClapTrap()
 {
+	std::cout << this->get_class_name() << " ";
+	std::cout << this->name << " default constructor.\n";
 	hitPoints = SCAV_HIT_POINTS;
 	energyPoints = SCAV_ENERGY_POINTS;
 	attackDamage = SCAV_DAMAGE_POINTS;
-	std::cout << this->get_class_name() << " ";
-	std::cout << this->name << " ";
-	std::cout << "default constructor.\n";
 }
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
+ScavTrap::ScavTrap(std::string new_name) : ClapTrap(new_name)
 {
+	std::cout << this->get_class_name() << " ";
+	std::cout << this->name << " constructor.\n";
 	hitPoints = SCAV_HIT_POINTS;
 	energyPoints = SCAV_ENERGY_POINTS;
 	attackDamage = SCAV_DAMAGE_POINTS;
-	std::cout << this->get_class_name() << " ";
-	std::cout << this->name << " ";
-	std::cout << "constructor.\n";
 }
 
 ScavTrap::~ScavTrap(void)
 {
 	std::cout << this->get_class_name() << " ";
-	std::cout << this->name << " ";
-	std::cout << "destructor.\n";
+	std::cout << this->name << " destructor.\n";
 }
 
 // Copy Constructor
-ScavTrap::ScavTrap(const ScavTrap& other)
+ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)
 {
 	std::cout << this->get_class_name() << " ";
-	std::cout << this->name << " ";
-	std::cout << "copy constructor.\n";
-	name = other.name;
-	hitPoints = other.hitPoints;
-	energyPoints = other.energyPoints;
-	attackDamage = other.attackDamage;
+	std::cout << this->name << " copy constructor.\n";
 }
 
 //Copy assignment overload
 ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 {
 	std::cout << this->get_class_name() << " ";
-	std::cout << this->name << " ";
-	std::cout << "copy assignment overload.\n";
+	std::cout << this->name << " copy assignment overload.\n";
 	name = other.name;
 	hitPoints = other.hitPoints;
 	energyPoints = other.energyPoints;
@@ -80,13 +71,8 @@ void ScavTrap::guardGate(void)
 	std::cout << name << " is now in Gate keeper mode." << std::endl;
 }
 
-/*
-	std::cout<< "From ScavTrap: ";
-	ClapTrap::attack(target);
-*/
 void 	ScavTrap::attack(const std::string& target)
 {
-
 	if (energyPoints > 0 && hitPoints > 0)
 	{
 		std::cout << "ScavTrap" << " " << name \

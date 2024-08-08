@@ -6,7 +6,7 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 15:22:01 by sde-silv          #+#    #+#              #
-#    Updated: 2024/08/06 17:25:51 by sde-silv         ###   ########.fr        #
+#    Updated: 2024/08/08 19:28:23 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ HEADER = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
 
 OBJ = $(SRC:.cpp=.o)
 
-CXX = c++
+CXX = c++ #g++
 
-CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98 #-Wshadow
 
 all: $(NAME)
 

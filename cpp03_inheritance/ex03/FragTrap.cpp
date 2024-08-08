@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:14:31 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/06 20:29:50 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/08 19:28:39 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,49 +24,40 @@ std::string	FragTrap::get_class_name(void)
 
 FragTrap::FragTrap(void) : ClapTrap()
 {
+	std::cout << this->get_class_name() << " ";
+	std::cout << this->name << " default constructor.\n";
 	hitPoints = FRAG_HIT_POINTS;
 	energyPoints = FRAG_ENERGY_POINTS;
 	attackDamage = FRAG_DAMAGE_POINTS;
-	std::cout << this->get_class_name() << " ";
-	std::cout << this->name << " ";
-	std::cout << "default constructor.\n";
 }
 
-FragTrap::FragTrap(std::string name) : ClapTrap(name)
+FragTrap::FragTrap(std::string new_name) : ClapTrap(new_name)
 {
+	std::cout << this->get_class_name() << " ";
+	std::cout << this->name << " constructor.\n";
 	hitPoints = FRAG_HIT_POINTS;
 	energyPoints = FRAG_ENERGY_POINTS;
 	attackDamage = FRAG_DAMAGE_POINTS;
-	std::cout << this->get_class_name() << " ";
-	std::cout << this->name << " ";
-	std::cout << "constructor.\n";
 }
 
 FragTrap::~FragTrap(void)
 {
 	std::cout << this->get_class_name() << " ";
-	std::cout << this->name << " ";
-	std::cout << "destructor.\n";
+	std::cout << this->name << " destructor.\n";
 }
 
 // Copy Constructor
-FragTrap::FragTrap(const FragTrap& other)
+FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other)
 {
 	std::cout << this->get_class_name() << " ";
-	std::cout << this->name << " ";
-	std::cout << "copy constructor.\n";
-	name = other.name;
-	hitPoints = other.hitPoints;
-	energyPoints = other.energyPoints;
-	attackDamage = other.attackDamage;
+	std::cout << this->name << " copy constructor.\n";
 }
 
 //Copy assignment overload
 FragTrap& FragTrap::operator=(const FragTrap& other)
 {
 	std::cout << this->get_class_name() << " ";
-	std::cout << this->name << " ";
-	std::cout << "copy assignment overload.\n";
+	std::cout << this->name << " copy assignment overload.\n";
 	name = other.name;
 	hitPoints = other.hitPoints;
 	energyPoints = other.energyPoints;
@@ -77,5 +68,23 @@ FragTrap& FragTrap::operator=(const FragTrap& other)
 void FragTrap::highFivesGuys(void)
 {
 	std::cout << this->get_class_name() << " ";
-	std::cout << name << " high fives guys." << std::endl;
+	std::cout << name << " high fives!" << std::endl;
+}
+
+void 	FragTrap::attack(const std::string& target)
+{
+	if (energyPoints > 0 && hitPoints > 0)
+	{
+		std::cout << "FragTrap" << " " << name \
+				<< " attacks " << target \
+				<< " , causing " << attackDamage \
+				<< " points of damage!" << std::endl;
+		energyPoints--;
+	}
+	else if (this->hitPoints <= 0)
+		std::cout << "FragTrap" << " " << name \
+			<< " out of hit points." << std::endl;
+	else
+		std::cout << "FragTrap" << " " << name \
+			<< " out of energy." << std::endl;
 }

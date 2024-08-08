@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:14:31 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/06 20:31:52 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/08 19:28:50 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,40 +22,27 @@ std::string	DiamondTrap::get_class_name(void)
 		return(&typeid(this).name()[2]);
 }
 
-// DiamondTrap::DiamondTrap(void) : FragTrap(),  ScavTrap()
-// {
-// 	this->name = "DT";
-// 	std::cout << this->get_class_name() << " ";
-// 	std::cout << "default constructor.\n";
-// 	//hitPoints = FragTrap::hitPoints;
-// 	hitPoints = FRAG_HIT_POINTS;
-// 	energyPoints = ScavTrap::energyPoints;
-// 	//attackDamage = FragTrap::attackDamage;
-// 	attackDamage = FRAG_DAMAGE_POINTS;
-	
-// }
-
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name")
+DiamondTrap::DiamondTrap() : ClapTrap()
 {
-	this->name = name;
+	this->name = "Default_D";
 	hitPoints = FragTrap::hitPoints;
-	energyPoints = ScavTrap::energyPoints;
+	energyPoints = SCAV_ENERGY_POINTS;
 	attackDamage = FragTrap::attackDamage;
 	std::cout << this->get_class_name() << " ";
 	std::cout << this->name << " ";
 	std::cout << "constructor.\n";
 }
 
-// DiamondTrap::DiamondTrap(std::string name) : FragTrap(name),  ScavTrap(name)
-// {
-// 	std::cout << this->get_class_name() << " ";
-// 	std::cout << this->name << " ";
-// 	std::cout << "constructor.\n";
-// 	this->name = name;
-// 	hitPoints = FragTrap::hitPoints;
-// 	energyPoints = ScavTrap::energyPoints;
-// 	attackDamage = FragTrap::attackDamage;
-// }
+DiamondTrap::DiamondTrap(std::string new_name) : ClapTrap(new_name + "_clap_name")
+{
+	this->name = new_name;
+	hitPoints = FragTrap::hitPoints;
+	energyPoints = SCAV_ENERGY_POINTS;
+	attackDamage = FragTrap::attackDamage;
+	std::cout << this->get_class_name() << " ";
+	std::cout << this->name << " ";
+	std::cout << "constructor.\n";
+}
 
 DiamondTrap::~DiamondTrap(void)
 {
@@ -65,15 +52,11 @@ DiamondTrap::~DiamondTrap(void)
 }
 
 // Copy Constructor
-DiamondTrap::DiamondTrap(const DiamondTrap& other)
+DiamondTrap::DiamondTrap(const DiamondTrap& other): ClapTrap(other), ScavTrap(other), FragTrap(other)
 {
 	std::cout << this->get_class_name() << " ";
 	std::cout << this->name << " ";
 	std::cout << "copy constructor.\n";
-	name = other.name;
-	hitPoints = other.hitPoints;
-	energyPoints = other.energyPoints;
-	attackDamage = other.attackDamage;
 }
 
 //Copy assignment overload
@@ -87,4 +70,16 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other)
 	energyPoints = other.energyPoints;
 	attackDamage = other.attackDamage;
 	return (*this);
+}
+
+void 	DiamondTrap::attack(const std::string& target)
+{
+	ScavTrap::attack(target);
+}
+
+void	DiamondTrap::whoAmI(void)
+{
+	std::cout << get_class_name() << " ";
+	std::cout << "name: \t" << name << "\t";
+	std::cout << "ClapTrap name: " << ClapTrap::name << std::endl;
 }

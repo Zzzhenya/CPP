@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:14:50 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/05 21:47:44 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/08 19:29:25 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,15 @@ void	frag_trap_test(void)
 	}
 }
 
+void	virtual_destructor_test(void)
+{
+	ClapTrap *b = new ScavTrap();
+	delete b;
+
+	ClapTrap *c = new FragTrap();
+	delete c;
+}
+
 int main (void)
 {
 	std::cout << std::endl << "=====ClapTrap tests:=====" << std::endl << std::endl;
@@ -103,5 +112,7 @@ int main (void)
 	scav_trap_test();
 	std::cout << std::endl << "=====FragTrap tests:=====" << std::endl << std::endl;
 	frag_trap_test();
+
+	virtual_destructor_test();
 	return (0);
 }

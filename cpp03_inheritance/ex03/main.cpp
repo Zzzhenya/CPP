@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 16:14:50 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/06 18:43:35 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/08 19:26:49 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void	diamond_trap_test(void)
 	a.print_score();
 	b.print_score();
 	
+	a.whoAmI();
+	b.whoAmI();
 	for(int i = 0; i < 5; i++)
 	{
 		if (!(i%4))
@@ -125,15 +127,58 @@ void	diamond_trap_test(void)
 	}
 }
 
+void	diamond_trap_base_test(void)
+{
+	{
+		DiamondTrap a;
+
+		a.whoAmI();
+		std::cout << a.getAttackDamage() << std::endl;
+		a.print_score();
+		a.attack("hahahahaha!");
+		a.print_score();
+	}
+	{
+		DiamondTrap b("HELLO");
+
+		b.whoAmI();
+		std::cout << b.getAttackDamage() << std::endl;
+		b.print_score();
+		b.attack("hahahahaha!");
+		b.print_score();
+	}
+}
+
+void	virtual_destructor_test(void)
+{
+	ClapTrap *b = new ScavTrap();
+	delete b;
+
+	ClapTrap *c = new FragTrap();
+	delete c;
+
+	ClapTrap *d = new DiamondTrap();
+	delete d;
+
+	ScavTrap *e = new DiamondTrap();
+	delete e;
+
+	FragTrap *f = new DiamondTrap();
+	delete f;
+}
+
 int main (void)
 {
-	// std::cout << std::endl << "=====ClapTrap tests:=====" << std::endl << std::endl;
-	// clap_trap_test();
-	// std::cout << std::endl << "=====ScavTrap tests:=====" << std::endl << std::endl;
-	// scav_trap_test();
-	// std::cout << std::endl << "=====FragTrap tests:=====" << std::endl << std::endl;
-	// frag_trap_test();
+	std::cout << std::endl << "=====ClapTrap tests:=====" << std::endl << std::endl;
+	clap_trap_test();
+	std::cout << std::endl << "=====ScavTrap tests:=====" << std::endl << std::endl;
+	scav_trap_test();
+	std::cout << std::endl << "=====FragTrap tests:=====" << std::endl << std::endl;
+	frag_trap_test();
 	std::cout << std::endl << "=====DiamondTrap tests:=====" << std::endl << std::endl;
+	diamond_trap_base_test();
+	std::cout << std::endl << std::endl;
 	diamond_trap_test();
+	virtual_destructor_test();
 	return (0);
 }

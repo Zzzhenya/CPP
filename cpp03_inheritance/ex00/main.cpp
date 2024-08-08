@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 22:22:45 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/05 15:25:27 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:58:43 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main (void)
 
 	a.print_score();
 	b.print_score();
-	for(int i = 0; i < 20; i++)
+	for(int i = 0; i < 11; i++)
 	{
 		if (!(i%4))
 			b.beRepaired(i);
