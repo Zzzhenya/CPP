@@ -3,6 +3,7 @@
 // Default constructor
 Animal::Animal(void)
 {
+    this->type = "Animal";
     std::cout << "Animal default constructor called." << std::endl;
 }
 
@@ -16,16 +17,30 @@ Animal::~Animal(void)
 Animal::Animal(const Animal& other)
 {
     std::cout << "Animal copy constructor called." << std::endl;
+    this->type = other.type;
 }
 
 //Copy constructor overload
 Animal&     Animal::operator=(const Animal& other)
 {
     std::cout << "Animal copy constructor overload called." << std::endl;
+    this->type = other.type;
+    return (*this);
 }
 
 // Constructor with type input
-Animal::Animal(const std::string type)
+// Animal::Animal(const std::string type)
+// {
+//     std::cout << "Animal constructor called." << std::endl;
+// }
+
+void    Animal::makeSound(void) const
 {
-    std::cout << "Animal constructor called." << std::endl;
+    std::cout << this->type << " ";
+    std::cout << "makes animal sound." << std::endl;
+}
+
+std::string    Animal::getType(void) const
+{
+    return (this->type);
 }

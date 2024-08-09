@@ -1,8 +1,8 @@
 NAME = animals
 
-SRC =  main.cpp Animal.cpp
+SRC =  main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
 
-HEADER = Animal.hpp 
+HEADER = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -12,10 +12,10 @@ CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98
 
 all: $(NAME)
 
-%.o: %.cpp 
+%.o: %.cpp Makefile $(HEADER)
 	$(CXX) $(CPPFLAGS) -c -o $@ $<
 
-$(NAME): $(OBJ) Makefile $(HEADER)
+$(NAME): $(OBJ)
 	$(CXX) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 clean:
