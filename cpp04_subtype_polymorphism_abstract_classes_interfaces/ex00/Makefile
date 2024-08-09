@@ -26,4 +26,7 @@ fclean: clean
 
 re: fclean all
 
+leaks: all
+	valgrind ./(NAME)
+
 .PHONY: all clean fclean re

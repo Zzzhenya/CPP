@@ -28,12 +28,6 @@ Animal&     Animal::operator=(const Animal& other)
     return (*this);
 }
 
-// Constructor with type input
-// Animal::Animal(const std::string type)
-// {
-//     std::cout << "Animal constructor called." << std::endl;
-// }
-
 void    Animal::makeSound(void) const
 {
     std::cout << this->type << " ";
