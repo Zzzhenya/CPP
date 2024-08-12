@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:31:57 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/12 17:38:03 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/12 17:41:08 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Dog: public Animal
         void    makeSound(void) const;
 
     private:
-        Brain   brain;
+        Brain   *brain;
 };
 
 #endif

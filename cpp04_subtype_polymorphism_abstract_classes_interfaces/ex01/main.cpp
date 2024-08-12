@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:30:02 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/12 17:37:54 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:26:28 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "Dog.hpp"
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
+#define ARRLEN 4
 
 void    print_no(int *i, std::string name, std::string detail)
 {
@@ -34,6 +35,78 @@ void    subject_tests(void)
     delete i;
 }
 
+void    animal_array_tests(void)
+{
+    int val = 1;
+    print_no(&val , "Surface Copy", "");
+    {
+        Cat one;
+        Cat two;
+        Dog three;
+        Dog four;
+        Animal animals[4] = {one, two, three, four};
+        int i = 0;
+
+        while (i < 4)
+        {
+            animals[i].makeSound();
+            i ++;
+        }
+    }
+    std::cout << std::endl;
+    print_no(&val, "Deep Copy", "In a loop");
+    {
+        Animal *animals[ARRLEN];
+        int i = 0;
+
+        while (i < ARRLEN)
+        {
+            if (i < ARRLEN/2)
+                animals[i] = new Cat();
+            else
+                animals[i] = new Dog();
+            i ++;
+        }
+        i = 0;
+
+        while (i < ARRLEN)
+        {
+            animals[i]->makeSound();
+            i ++;
+        }
+        i = 0;
+
+        while (i < ARRLEN)
+        {
+            delete animals[i];
+            i ++;
+        }
+    }
+    std::cout << std::endl;
+    print_no(&val, "Deep Copy", "Manual");
+    {
+        Cat *one = new Cat();
+        Cat *two = new Cat();
+        Dog *three = new Dog();
+        Dog *four = new Dog();
+        Animal *animals[4] = {one, two, three, four};
+        int i = 0;
+
+        while (i < 4)
+        {
+            animals[i]->makeSound();
+            i ++;
+        }
+
+        i = 0;
+        while (i < 4)
+        {
+            delete animals[i];
+            i ++;
+        }
+    }
+}
+
 int main (void)
 {
     int val = 1;
@@ -42,6 +115,11 @@ int main (void)
     print_no(&val, "Subject tests", "");
     std::cout << std::endl;
     subject_tests();
+
+    std::cout << std::endl;
+    print_no(&val, "Animal array tests", "");
+    std::cout << std::endl;
+    animal_array_tests();
 
     return (0);    
 }

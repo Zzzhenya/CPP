@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:03:55 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/12 17:38:15 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:36:36 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 Dog::Dog(void) : Animal()
 {
     this->type = "Dog";
+    this->brain = new Brain();
     std::cout << "Dog default constructor called." << std::endl;
 }
 
 Dog::~Dog(void)
 {
+    delete this->brain;
     std::cout << "Dog destructor called." << std::endl;
 }
 
