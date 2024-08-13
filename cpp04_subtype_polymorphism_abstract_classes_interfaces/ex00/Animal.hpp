@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:49:00 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/12 17:38:38 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:08:35 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Animal
         Animal(void);
         virtual ~Animal(void);
         Animal(const Animal& other);
-        Animal&     operator=(const Animal& other);
+        Animal&                 operator=(const Animal& other);
         
         virtual void            makeSound(void) const;
         std::string             getType(void) const;

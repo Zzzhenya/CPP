@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:49:00 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/12 17:39:25 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:15:43 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ class WrongCat: public WrongAnimal
         ~WrongCat(void);
         WrongCat(const WrongCat& other);
         WrongCat&    operator=(const WrongCat& other);
+    
+        void            makeSound(void) const;
 };
 
 #endif

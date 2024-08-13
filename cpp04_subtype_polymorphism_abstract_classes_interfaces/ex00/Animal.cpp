@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:49:00 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/12 17:38:34 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:44:16 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ Animal::Animal(const Animal& other)
     this->type = other.type;
 }
 
-//Copy constructor overload
+//Copy assignment operator overload
 Animal&     Animal::operator=(const Animal& other)
 {
-    std::cout << "Animal copy constructor overload called." << std::endl;
+    std::cout << "Animal copy assignment operator overload called." << std::endl;
     this->type = other.type;
     return (*this);
 }

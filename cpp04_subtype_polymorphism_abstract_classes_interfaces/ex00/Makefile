@@ -6,7 +6,7 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/09 22:49:00 by sde-silv          #+#    #+#              #
-#    Updated: 2024/08/12 17:38:59 by sde-silv         ###   ########.fr        #
+#    Updated: 2024/08/13 16:13:32 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJ = $(SRC:.cpp=.o)
 
 CXX = c++
 
-CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98 #-Wshadow
 
 all: $(NAME)
 
@@ -39,6 +39,6 @@ fclean: clean
 re: fclean all
 
 leaks: all
-	valgrind ./(NAME)
+	valgrind ./$(NAME)
 
 .PHONY: all clean fclean re
