@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:30:02 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/12 18:26:28 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:55:05 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,19 +107,38 @@ void    animal_array_tests(void)
     }
 }
 
+void brain_tests(void)
+{
+    Cat one;
+    std::string *ideas;
+    int i = 0;
+
+    ideas = one.getIdeas();
+    while (i < IDEA_LIMIT)
+    {
+        std::cout << ideas[i] << std::endl;
+        i ++;
+    }
+}
+
 int main (void)
 {
     int val = 1;
 
-    std::cout << std::endl;
-    print_no(&val, "Subject tests", "");
-    std::cout << std::endl;
-    subject_tests();
+    // std::cout << std::endl;
+    // print_no(&val, "Subject tests", "");
+    // std::cout << std::endl;
+    // subject_tests();
+
+    // std::cout << std::endl;
+    // print_no(&val, "Animal array tests", "");
+    // std::cout << std::endl;
+    // animal_array_tests();
 
     std::cout << std::endl;
-    print_no(&val, "Animal array tests", "");
+    print_no(&val, "Brain tests", "");
     std::cout << std::endl;
-    animal_array_tests();
+    brain_tests();
 
     return (0);    
 }
