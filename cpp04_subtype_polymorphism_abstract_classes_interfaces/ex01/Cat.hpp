@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:29:08 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/13 12:08:54 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/13 12:19:53 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class Cat: public Animal, virtual public Brain
     
         void        makeSound(void) const;
         std::string *getIdeas(void);
-        void        setIdeas(std::string &new_idea);
+        void        setIdeas(std::string new_idea);
     
     private:
         Brain   *brain;

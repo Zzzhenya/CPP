@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:03:55 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/13 12:11:10 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/13 12:21:54 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ std::string *Cat::getIdeas(void)
     return (Brain::getIdeas());
 }
 
-void    Cat::setIdeas(std::string &new_idea)
+void    Cat::setIdeas(std::string new_idea)
 {
     Brain::setIdeas(new_idea);
 }
