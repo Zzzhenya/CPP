@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:49:00 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/13 16:26:41 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:18:50 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ WrongCat&    WrongCat::operator=(const WrongCat& other)
 void    WrongCat::makeSound(void) const
 {
     std::cout << this->type << " ";
-    std::cout << "makes wrong animal sound." << std::endl;
+    std::cout << "makes wrong cat sound." << std::endl;
 }

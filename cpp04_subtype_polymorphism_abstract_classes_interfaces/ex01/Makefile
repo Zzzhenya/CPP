@@ -5,24 +5,24 @@
 #                                                     +:+ +:+         +:+      #
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/12 17:26:07 by sde-silv          #+#    #+#              #
-#    Updated: 2024/08/12 17:37:49 by sde-silv         ###   ########.fr        #
+#    Created: 2024/08/09 22:49:00 by sde-silv          #+#    #+#              #
+#    Updated: 2024/08/16 17:37:11 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = animals
 
-SRC =  main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp\
-		Brain.cpp
+SRC =  main.cpp Animal.cpp Cat.cpp Dog.cpp \
+		WrongAnimal.cpp WrongCat.cpp Brain.cpp
 
-HEADER = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp \
-			Brain.hpp
+HEADER = Animal.hpp Cat.hpp Dog.hpp \
+			WrongAnimal.hpp WrongCat.hpp Brain.hpp
 
 OBJ = $(SRC:.cpp=.o)
 
 CXX = c++
 
-CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98 #-Wshadow
 
 all: $(NAME)
 
@@ -41,6 +41,6 @@ fclean: clean
 re: fclean all
 
 leaks: all
-	valgrind ./(NAME)
+	valgrind ./$(NAME)
 
 .PHONY: all clean fclean re

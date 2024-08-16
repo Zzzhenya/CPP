@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:28:05 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/13 12:08:41 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:48:56 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ class Brain
 		Brain(void);
 		~Brain(void);
 
-		std::string	*getIdeas(void);
-		void		setIdeas(std::string &new_idea);
+		const std::string	*getIdeas(void) const;
+		void		setIdeas(std::string new_idea);
 
 	private:
 		std::string ideas[IDEA_LIMIT];

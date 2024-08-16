@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 16:59:06 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/13 15:44:41 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:54:42 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,32 +25,12 @@ void    print_no(int *i, std::string name, std::string detail)
     (*i) += 1;
 }
 
-void    subject_tests(void)
+void   print_seperator(std::string opt)
 {
-    const Animal* meta = new Animal();
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-    i->makeSound(); //will output the cat sound!
-    j->makeSound();
-    meta->makeSound();
-
-    delete meta;
-    delete i;
-    delete j;
-}
-
-void    wrong_subject_tests(void)
-{
-    const WrongAnimal* meta = new WrongAnimal();
-    const WrongAnimal* i = new WrongCat();
-    std::cout << i->getType() << " " << std::endl;
-    i->makeSound(); //will output the cat sound!
-    meta->makeSound();
-
-    delete meta;
-    delete i;
+    if (opt.empty())
+        std::cout << "=================" << std::endl;
+    else
+        std::cout << "================= " << opt << std::endl;
 }
 
 void    animal_tests(std::string name)
@@ -66,27 +46,23 @@ void    animal_tests(std::string name)
         Animal      aml;
         Animal *aml1 = new Animal(aml);
         aml1->makeSound();
-
         delete aml1;
     }
     {
         WrongAnimal waml;
         WrongAnimal *waml1 = new WrongAnimal(waml);
         waml1->makeSound();
-
         delete waml1;
     }
     {
         print_no(&i, name, "Copy assignment overload");
         Animal aml;
         Animal aml1;
-
         aml = aml1;
     }
     {
         WrongAnimal aml;
         WrongAnimal aml1;
-
         aml = aml1;
     }
 }
@@ -105,30 +81,24 @@ void    cat_tests(std::string name)
         print_no(&i, name, "Copy Constructor");
         Cat ct;
         Cat *ct1 = new Cat(ct);
-
         ct1->makeSound();
-
         delete ct1;
     }
     {
         WrongCat ct;
         WrongCat *ct1 = new WrongCat(ct);
-
         ct1->makeSound();
-
         delete ct1;        
     }
     {
         print_no(&i, name, "Copy assignment overload");
         Cat ct;
         Cat ct1;
-
         ct = ct1;
     }
     {
         WrongCat ct;
         WrongCat ct1;
-
         ct = ct1;    
     }
 }
@@ -241,6 +211,97 @@ void    animal_dog_tests(std::string name)
         aml.makeSound();
     }
 
+}
+
+void    subject_tests(void)
+{
+    const Animal* meta = new Animal();
+    const Animal* j = new Dog();
+    const Animal* i = new Cat();
+    std::cout << j->getType() << " " << std::endl;
+    std::cout << i->getType() << " " << std::endl;
+    i->makeSound(); //will output the cat sound!
+    j->makeSound();
+    meta->makeSound();
+
+    delete meta;
+    delete i;
+    delete j;
+}
+
+void    wrong_subject_tests(void)
+{
+    print_seperator("WrongAnimal * = new WrongAnimal()");
+    {
+        const WrongAnimal* meta = new WrongAnimal();
+        std::cout << meta->getType() << " " << std::endl;
+        meta->makeSound();
+        delete meta;
+    }
+    print_seperator("WrongAnimal * = new WrongCat()");
+    {
+        const WrongAnimal* i = new WrongCat();
+        std::cout << i->getType() << " " << std::endl;
+        i->makeSound(); //will output the wrong animal sound!
+        delete i;
+    }
+    print_seperator("WrongCat * = new WrongCat()");
+    {
+        const WrongCat* i = new WrongCat();
+        std::cout << i->getType() << " " << std::endl;
+        i->makeSound(); //will output the wrong cat sound!
+        delete i;
+    }
+    print_seperator(" WrongCat i");
+    {
+        const WrongCat i;
+        std::cout << i.getType() << " " << std::endl;
+        i.makeSound(); //will output the wrong cat sound!
+    }
+    print_seperator(" WrongAnimal i");
+    {
+        const WrongAnimal i;
+        std::cout << i.getType() << " " << std::endl;
+        i.makeSound(); //will output the wrong animal sound!
+    }
+    print_seperator(" WrongAnimal *meta new WrongAnimal() = WrongCat *i new WrongCat()");
+    {
+        WrongAnimal *meta = new WrongAnimal();
+        WrongCat     *i = new WrongCat();
+        std::cout << meta->getType() << " " << std::endl;
+        meta->makeSound(); //will output the wrong animal sound!
+        (*meta)=(*i);
+        std::cout << meta->getType() << " " << std::endl;
+        meta->makeSound(); //will output the wrong animal sound!
+        delete meta;
+        delete i;
+    }
+    print_seperator(" Animal meta = Cat i");
+    {
+        Animal *meta = new Animal();
+        Cat     *i = new Cat();
+        std::cout << meta->getType() << " " << std::endl;
+        meta->makeSound(); //Animal makes animal sound.
+        (*meta)=(*i);
+        std::cout << meta->getType() << " " << std::endl;
+        meta->makeSound(); //Cat makes animal sound.
+        delete meta;
+        delete i;
+    }
+    print_seperator(" Animal *meta = new Cat(*i)");
+    {
+        Animal *meta = new Animal();
+        Cat     *i = new Cat();
+        std::cout << meta->getType() << " " << std::endl;
+        meta->makeSound(); //Animal makes animal sound.
+        delete meta;
+        meta = new Cat(*i);
+        std::cout << meta->getType() << " " << std::endl;
+        meta->makeSound(); //Cat meows.
+        delete meta;
+        delete i;
+    }
+    
 }
 
 void unit_tests(void)

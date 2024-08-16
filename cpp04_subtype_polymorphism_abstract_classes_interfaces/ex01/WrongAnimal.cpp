@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/12 17:03:55 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/12 17:37:45 by sde-silv         ###   ########.fr       */
+/*   Created: 2024/08/09 22:49:00 by sde-silv          #+#    #+#             */
+/*   Updated: 2024/08/13 15:59:45 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,29 @@ WrongAnimal::~WrongAnimal(void)
     std::cout << "WrongAnimal destructor called." << std::endl;
 }
 
-//Copy constructor
+// Copy constructor
 WrongAnimal::WrongAnimal(const WrongAnimal& other)
 {
     std::cout << "WrongAnimal copy constructor called." << std::endl;
     this->type = other.type;
 }
 
-//Copy constructor overload
+// Copy assignment operator overload
 WrongAnimal&     WrongAnimal::operator=(const WrongAnimal& other)
 {
-    std::cout << "WrongAnimal copy constructor overload called." << std::endl;
+    std::cout << "WrongAnimal copy assignment operator overload called." << std::endl;
     this->type = other.type;
     return (*this);
 }
 
+// makeSound member function
 void    WrongAnimal::makeSound(void) const
 {
     std::cout << this->type << " ";
     std::cout << "makes wrong animal sound." << std::endl;
 }
 
+// getType member function
 std::string    WrongAnimal::getType(void) const
 {
     return (this->type);

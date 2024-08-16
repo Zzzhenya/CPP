@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:31:20 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/13 12:06:48 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:49:01 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ Brain::~Brain(void)
 	std::cout << std::endl;
 }
 
-std::string *Brain::getIdeas(void)
+const std::string *Brain::getIdeas(void) const
 {
 	return (this->ideas);
 }
 
-void	Brain::setIdeas(std::string &new_idea)
+void	Brain::setIdeas(std::string new_idea)
 {
 	int i = 0;
 
