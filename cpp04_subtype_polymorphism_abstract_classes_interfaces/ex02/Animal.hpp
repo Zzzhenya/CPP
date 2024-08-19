@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/12 17:28:05 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/19 21:42:20 by sde-silv         ###   ########.fr       */
+/*   Created: 2024/08/09 22:49:00 by sde-silv          #+#    #+#             */
+/*   Updated: 2024/08/19 19:21:15 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-# define BRAIN_HPP
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
 
 # include <iostream>
-# define IDEA_LIMIT 3
 
-class Brain
+class Animal
 {
-	public:
-		Brain(void);
-		~Brain(void);
-		Brain(const Brain &other);
-		Brain operator=(const Brain &other);
+    public:
+        Animal(void);
+        virtual ~Animal(void);
+        Animal(const Animal& other);
+        Animal&                 operator=(const Animal& other);
+        
+        virtual void            makeSound(void) const = 0;
+        std::string             getType(void) const;
 
-		const std::string	*getIdeas(void) const;
-		void		setIdeas(std::string new_idea);
-
-	private:
-		std::string ideas[IDEA_LIMIT];
+    protected:
+        std::string type;
 };
 
 #endif

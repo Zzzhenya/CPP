@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:49:00 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/16 20:02:24 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/19 19:31:36 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "Animal.hpp"
 # include "Brain.hpp"
 
-class Cat: public Animal//, public Brain
+class Cat: public Animal
 {
     public:
         Cat(void);

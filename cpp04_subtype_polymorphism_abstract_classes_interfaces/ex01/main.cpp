@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:30:02 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/16 20:09:12 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/19 19:08:50 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,6 @@ void    subject_tests(void)
 void    animal_array_tests(void)
 {
     int val = 1;
-    print_no(&val , "Surface Copy", "");
-    {
-        Cat one;
-        Cat two;
-        Dog three;
-        Dog four;
-        Animal animals[4] = {one, two, three, four};
-        int i = 0;
-
-        while (i < 4)
-        {
-            animals[i].makeSound();
-            i ++;
-        }
-    }
-    std::cout << std::endl;
     print_no(&val, "Deep Copy", "In a loop");
     {
         Animal *animals[ARRLEN];

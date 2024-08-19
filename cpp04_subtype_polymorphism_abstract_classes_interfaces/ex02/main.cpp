@@ -6,12 +6,12 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:30:02 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/12 20:00:54 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/19 19:26:22 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "AAnimal.hpp"
+#include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "WrongAnimal.hpp"
@@ -21,15 +21,19 @@
 void    print_no(int *i, std::string name, std::string detail)
 {
     std::cout << "======" << "Test: ";
-    std::cout << *i << (" " + name);
+    if (i)
+        std::cout << *i << (" " + name);
+    else
+        std::cout << (" " + name);
     std::cout << "======\t\t" << detail << std::endl;
-    (*i) += 1;
+    if (i)
+        (*i) += 1;
 }
 
 void    subject_tests(void)
 {
-    const AAnimal* j = new Dog();
-    const AAnimal* i = new Cat();
+    const Animal* j = new Dog();
+    const Animal* i = new Cat();
     
     delete j;//should not create a leak
     delete i;
@@ -38,26 +42,9 @@ void    subject_tests(void)
 void    animal_array_tests(void)
 {
     int val = 1;
-    /*
-    print_no(&val , "Surface Copy", "");
-    {
-        Cat one;
-        Cat two;
-        Dog three;
-        Dog four;
-        Animal animals[4] = {one, two, three, four};
-        int i = 0;
-
-        while (i < 4)
-        {
-            animals[i].makeSound();
-            i ++;
-        }
-    }
-    std::cout << std::endl;*/
     print_no(&val, "Deep Copy", "In a loop");
     {
-        AAnimal *animals[ARRLEN];
+        Animal *animals[ARRLEN];
         int i = 0;
 
         while (i < ARRLEN)
@@ -90,7 +77,7 @@ void    animal_array_tests(void)
         Cat *two = new Cat();
         Dog *three = new Dog();
         Dog *four = new Dog();
-        AAnimal *animals[4] = {one, two, three, four};
+        Animal *animals[4] = {one, two, three, four};
         int i = 0;
 
         while (i < 4)
@@ -108,6 +95,179 @@ void    animal_array_tests(void)
     }
 }
 
+void brain_tests(void)
+{
+    {
+        Cat one;
+        const std::string *ideas;
+        int i = 0;
+
+        ideas = one.getIdeas();
+        while (i < IDEA_LIMIT)
+        {
+            std::cout << ideas[i] << std::endl;
+            i ++;
+        }
+    }
+    {
+        Dog one;
+        const std::string *ideas;
+        int i = 0;
+
+        ideas = one.getIdeas();
+        while (i < IDEA_LIMIT)
+        {
+            std::cout << ideas[i] << std::endl;
+            i ++;
+        }
+        one.setIdeas("HAHAHAHA");
+        i = 0;
+        ideas = one.getIdeas();
+        while (i < IDEA_LIMIT)
+        {
+            std::cout << ideas[i] << std::endl;
+            i ++;
+        }
+    }
+    {
+        
+    }
+}
+
+void    print_ideas(const std::string *ideas)
+{
+    for (int i = 0; i < IDEA_LIMIT; i++)
+    {
+        std::cout << ideas[i] << std::endl;
+    }
+}
+
+void    deep_copy_tests(void)
+{
+    print_no(NULL, "Basic", "Dog");
+    {
+        Dog basic;
+        {
+            Dog tmp = basic;
+        }
+    }
+    print_no(NULL, "Basic", "Cat");
+    {
+        Cat basic;
+        {
+            Cat tmp = basic;
+        }
+    }
+    print_no(NULL, "Idea copy", "Dog");
+    {
+        const std::string *basic_i = NULL;
+        Dog basic("HAHA");
+        basic_i = basic.getIdeas();
+        print_ideas(basic_i);
+        {
+            const std::string *tmp_i = NULL;
+            Dog tmp = basic;
+            tmp_i = tmp.getIdeas();
+            print_ideas(tmp_i);
+        }
+    }
+    print_no(NULL, "Idea copy", "Cat");
+    {
+        const std::string *basic_i = NULL;
+        Cat basic("HAHA");
+        basic_i = basic.getIdeas();
+        print_ideas(basic_i);
+        {
+            const std::string *tmp_i = NULL;
+            Cat tmp = basic;
+            tmp_i = tmp.getIdeas();
+            print_ideas(tmp_i);
+        }
+    }
+    print_no(NULL, "Basic - Copy Assignment", "Dog");
+    {
+        Dog basic;
+        {
+            Dog tmp;
+            tmp = basic;
+        }
+    }
+    print_no(NULL, "Basic - Copy Assignment", "Cat");
+    {
+        Cat basic;
+        {
+            Cat tmp;
+            tmp = basic;
+        }
+    }
+    print_no(NULL, "Idea copy - Copy Assignment", "Dog");
+    {
+        const std::string *basic_i = NULL;
+        Dog basic("HAHA");
+        basic_i = basic.getIdeas();
+        print_ideas(basic_i);
+        {
+            const std::string *tmp_i = NULL;
+            Dog tmp;
+            tmp_i = tmp.getIdeas();
+            print_ideas(tmp_i);
+            tmp = basic;
+            tmp_i = tmp.getIdeas();
+            print_ideas(tmp_i);
+        }
+    }
+    print_no(NULL, "Idea copy - Copy Assignment", "Cat");
+    {
+        const std::string *basic_i = NULL;
+        Cat basic("HAHA");
+        basic_i = basic.getIdeas();
+        print_ideas(basic_i);
+        {
+            const std::string *tmp_i = NULL;
+            Cat tmp;
+            tmp_i = tmp.getIdeas();
+            print_ideas(tmp_i);
+            tmp = basic;
+            tmp_i = tmp.getIdeas();
+            print_ideas(tmp_i);
+        }
+    }
+}
+
+void    animal_tests(std::string name)
+{
+    int i = 1;
+    {
+        print_no(&i, name, "Default Constructor");
+        Animal      aml;
+        WrongAnimal waml;
+    }
+    {
+        print_no(&i, name, "Copy Constructor");
+        Animal      aml;
+        Animal *aml1 = new Animal(aml);
+        aml1->makeSound();
+        delete aml1;
+    }
+    {
+        WrongAnimal waml;
+        WrongAnimal *waml1 = new WrongAnimal(waml);
+        waml1->makeSound();
+        delete waml1;
+    }
+    {
+        print_no(&i, name, "Copy assignment overload");
+        Animal aml;
+        Animal aml1;
+        aml = aml1;
+    }
+    {
+        WrongAnimal aml;
+        WrongAnimal aml1;
+        aml = aml1;
+    }
+}
+
 int main (void)
 {
     int val = 1;
@@ -121,6 +281,18 @@ int main (void)
     print_no(&val, "Animal array tests", "");
     std::cout << std::endl;
     animal_array_tests();
+
+    std::cout << std::endl;
+    print_no(&val, "Brain tests", "");
+    std::cout << std::endl;
+    brain_tests();
+
+    std::cout << std::endl;
+    print_no(&val, "Deep Copy tests", "");
+    std::cout << std::endl;
+    deep_copy_tests();
+
+    // animal_tests("Animal");
 
     return (0);    
 }

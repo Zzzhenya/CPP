@@ -1,46 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.cpp                                       :+:      :+:    :+:   */
+/*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:49:00 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/16 14:18:50 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:44:16 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "WrongCat.hpp"
+#include "Animal.hpp"
 
 // Default constructor
-WrongCat::WrongCat(void) : WrongAnimal()
+Animal::Animal(void)
 {
-    this->type = "WrongCat";
-    std::cout << "WrongCat default constructor called." << std::endl;
+    this->type = "Animal";
+    std::cout << "Animal default constructor called." << std::endl;
 }
 
 // Destructor
-WrongCat::~WrongCat(void)
+Animal::~Animal(void)
 {
-    std::cout << "WrongCat destructor called." << std::endl;
+    std::cout << "Animal destructor called." << std::endl;
 }
 
-// Copy constructor
-WrongCat::WrongCat(const WrongCat& other): WrongAnimal(other)
+//Copy constructor
+Animal::Animal(const Animal& other)
 {
-    std::cout << "WrongCat copy constructor called." << std::endl;
+    std::cout << "Animal copy constructor called." << std::endl;
+    this->type = other.type;
 }
 
-// Copy assignment operator overload
-WrongCat&    WrongCat::operator=(const WrongCat& other)
+//Copy assignment operator overload
+Animal&     Animal::operator=(const Animal& other)
 {
-    std::cout << "WrongCat copy assignment operator overload called." << std::endl;
+    std::cout << "Animal copy assignment operator overload called." << std::endl;
     this->type = other.type;
     return (*this);
 }
 
-void    WrongCat::makeSound(void) const
+void    Animal::makeSound(void) const
 {
     std::cout << this->type << " ";
-    std::cout << "makes wrong cat sound." << std::endl;
+    std::cout << "makes animal sound." << std::endl;
+}
+
+std::string    Animal::getType(void) const
+{
+    return (this->type);
 }

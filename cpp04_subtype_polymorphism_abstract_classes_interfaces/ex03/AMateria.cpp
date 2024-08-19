@@ -1,15 +1,70 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/19 21:04:52 by sde-silv          #+#    #+#             */
+/*   Updated: 2024/08/19 21:04:53 by sde-silv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "AMateria.hpp"
 
-AMateria::AMateria(std::string const & new_type)
+/**
+ * Orthodox canonical form functions
+ * 
+ * 1. Default constructor
+ * 2. Destructor
+ * 3. Copy constructor
+ * 4. Copy assignment operator overload
+ */
+AMateria::AMateria(void)
 {
-	this->type = new_type;
-	std::cout << "AMateria constructor called.";
-	std::cout << " type: " << new_type << std::endl;
+	_type = "";
+	std::cout << "AMateria default constructor\n";
 }
 
+AMateria::~AMateria(void)
+{
+	std::cout << "AMateria destructor\n";
+}
+
+AMateria::AMateria(const AMateria &other)
+{
+	std::cout << "AMateria copy constructor\n";
+	this->_type = other._type;
+}
+
+AMateria AMateria::operator=(const AMateria &other)
+{
+	std::cout << "AMateria copy assignment\n";
+	this->_type = other._type;
+	return (*this);
+}
+
+/**
+ * Amateria constructor with _type
+ */
+AMateria::AMateria(std::string const & type)
+{
+	this->_type = type;
+	std::cout << "AMateria type constructor\n";
+}
+
+/**
+ * Getter for _type
+ */
 std::string const &AMateria::getType() const //Returns the materia type
 {
-	return(this->type);
+	return(this->_type);
+}
+
+AMateria*	AMateria::clone() const
+{
+	AMateria *copy = new AMateria(*this);
+	return (copy);
 }
 // virtual AMateria* clone() const = 0;
 // virtual void use(ICharacter& target);

@@ -1,8 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/08/19 21:05:18 by sde-silv          #+#    #+#              #
+#    Updated: 2024/08/19 21:05:19 by sde-silv         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = materia
 
-SRC =  main.cpp AMateria.cpp
+SRC =  main.cpp AMateria.cpp Ice.cpp Cure.cpp
 
-HEADER = AMateria.hpp
+HEADER = AMateria.hpp Ice.hpp Cure.hpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -27,6 +39,6 @@ fclean: clean
 re: fclean all
 
 leaks: all
-	valgrind ./(NAME)
+	valgrind ./$(NAME)
 
 .PHONY: all clean fclean re

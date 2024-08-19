@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/12 17:29:08 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/12 20:00:08 by sde-silv         ###   ########.fr       */
+/*   Created: 2024/08/09 22:49:00 by sde-silv          #+#    #+#             */
+/*   Updated: 2024/08/19 19:30:58 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,24 @@
 # define CAT_HPP
 
 # include <iostream>
-# include "AAnimal.hpp"
+# include "Animal.hpp"
 # include "Brain.hpp"
 
-class Cat: public AAnimal
+class Cat: public Animal
 {
     public:
         Cat(void);
         ~Cat(void);
         Cat(const Cat& other);
-        Cat&    operator=(const Cat& other);
-    
-        void        makeSound(void) const;
+        Cat&                operator=(const Cat& other);
+        Cat(std::string new_idea);
+
+        void                makeSound(void) const;
+        void                setIdeas(std::string new_idea);
+        const std::string   *getIdeas(void) const;
     
     private:
-        Brain   *brain;
+        Brain       *brain;
 };
 
 #endif

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/12 17:03:55 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/12 20:05:21 by sde-silv         ###   ########.fr       */
+/*   Created: 2024/08/09 22:49:00 by sde-silv          #+#    #+#             */
+/*   Updated: 2024/08/16 15:19:27 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ class WrongAnimal
         WrongAnimal(void);
         virtual ~WrongAnimal(void);
         WrongAnimal(const WrongAnimal& other);
-        WrongAnimal&     operator=(const WrongAnimal& other);
+        WrongAnimal&    operator=(const WrongAnimal& other);
         
         void            makeSound(void) const;
-        std::string             getType(void) const;
+        std::string     getType(void) const;
 
     protected:
-        std::string type;
+        std::string     type;
 };
 
 #endif
