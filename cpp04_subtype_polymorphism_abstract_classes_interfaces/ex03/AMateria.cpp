@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/19 21:04:53 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:19:25 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ AMateria::AMateria(const AMateria &other)
 	this->_type = other._type;
 }
 
-AMateria AMateria::operator=(const AMateria &other)
+AMateria &AMateria::operator=(const AMateria &other)
 {
 	std::cout << "AMateria copy assignment\n";
 	this->_type = other._type;
@@ -63,8 +63,8 @@ std::string const &AMateria::getType() const //Returns the materia type
 
 AMateria*	AMateria::clone() const
 {
-	AMateria *copy = new AMateria(*this);
+	AMateria *copy = NULL;
 	return (copy);
 }
-// virtual AMateria* clone() const = 0;
+
 // virtual void use(ICharacter& target);
