@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:47 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/19 21:04:49 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:14:51 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,26 @@ void draw_seperator(void)
 	std::cout << "===================================\n";
 }
 
-void amateria_tests_before_abstraction(void)
-{
-	draw_seperator();
-	{
-		AMateria abc("one");
+// void amateria_tests_before_abstraction(void)
+// {
+// 	draw_seperator();
+// 	{
+// 		AMateria abc("one");
 
-		std::cout << "Type: " << abc.getType() << std::endl;
-	}
-	draw_seperator();
-	{
-		AMateria one;
-		AMateria *two = NULL;
+// 		std::cout << "Type: " << abc.getType() << std::endl;
+// 	}
+// 	draw_seperator();
+// 	{
+// 		AMateria one;
+// 		AMateria *two = NULL;
 
-		std::cout << "Type: " << one.getType() << std::endl;
-		two = one.clone();
-		std::cout << "Type: " << two->getType() << std::endl;
+// 		std::cout << "Type: " << one.getType() << std::endl;
+// 		two = one.clone();
+// 		std::cout << "Type: " << two->getType() << std::endl;
 
-		delete two;
-	}	
-}
+// 		delete two;
+// 	}	
+// }
 
 void ice_tests_berfore_abstraction(void)
 {
