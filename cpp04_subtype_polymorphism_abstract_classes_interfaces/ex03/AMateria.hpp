@@ -6,14 +6,14 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:55 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/21 15:35:33 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/21 19:51:01 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AMATERIA_HPP
 # define AMATERIA_HPP
 
-#include <iostream>
+# include <iostream>
 
 class AMateria
 {

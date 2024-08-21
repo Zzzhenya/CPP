@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:47 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/21 16:18:45 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:11:22 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,35 @@ void ice_tests_berfore_abstraction(void)
 
 int main (void)
 {
-	//amateria_tests_before_abstraction();
-	//ice_tests_berfore_abstraction();
+	// amateria_tests_before_abstraction();
+	// ice_tests_berfore_abstraction();
+
 
 	Character *one = new Character("Hello");
-
-	//AMateria *c1 = new Cure();
+	Character *two = new Character("World");
 	Cure c1;
 	Ice i1;
-	{
-		one->equip(&c1);
-		one->equip(&i1);
-	}
-	//one.equip(c1);
+	Cure c2;
+	Cure c3;
+	Ice i2;
+	
+	one->equip(&c1);
+	one->equip(&i1);
+	one->equip(&c2);
+	one->equip(&c3);
+	one->equip(&i2);
+	one->use(0, *two);
+	one->use(1, *two);
+	one->use(2, *two);
+	one->use(3, *two);
+	one->equip(&c1);
+	one->use(0, *two);
+
+
+
 
 	delete one;
+	delete two;
+
 	return (0);
 }

@@ -6,6 +6,8 @@ Character::Character(void): ICharacter()
 	this->_name = "Default";
 	for (int i = 0; (i < INVENTORY_SIZE); i ++)
 		this->_inventory[i] = NULL;
+	for (int i = 0; (i < STASH_SIZE); i ++)
+		this->_stash[i] = NULL;
 }
 
 Character::Character(std::string name): ICharacter()
@@ -14,6 +16,8 @@ Character::Character(std::string name): ICharacter()
 	this->_name = name;
 	for (int i = 0; (i < INVENTORY_SIZE); i ++)
 		this->_inventory[i] = NULL;
+	for (int i = 0; (i < STASH_SIZE); i ++)
+		this->_stash[i] = NULL;
 }
 
 Character::~Character(void)
@@ -23,6 +27,11 @@ Character::~Character(void)
 	{
 		if ( this->_inventory[i] != NULL)
 			delete this->_inventory[i];
+	}
+	for (int i = 0; (i < STASH_SIZE) ; i ++)
+	{
+		if ( this->_stash[i] != NULL)
+			delete this->_stash[i];
 	}
 }
 
@@ -35,6 +44,14 @@ Character::Character(const Character &other)
 		{
 			delete this->_inventory[i];
 			this->_inventory[i] = other._inventory[i]->clone();
+		}
+	}
+	for (int i = 0; (i < STASH_SIZE); i ++)
+	{
+		if (this->_stash[i] != NULL)
+		{
+			delete this->_stash[i];
+			this->_stash[i] = other._stash[i]->clone();
 		}
 	}
 }
@@ -63,6 +80,8 @@ void Character::equip(AMateria *m)
 			this->_inventory[i] = (*m).clone();
 			break;
 		}
+		else if (this->_inventory[i] != NULL && m != NULL && i == INVENTORY_SIZE - 1)
+				std::cout << "\t\t\tInventory full" << std::endl;
 	}
 }
 
@@ -70,8 +89,19 @@ void Character::unequip(int idx)
 {
 	if (idx < INVENTORY_SIZE && idx >= 0 && this->_inventory[idx] != NULL)
 	{
+		for (int i = 0; i < STASH_SIZE; i++)
+		{
+			if (this->_stash[i] == NULL)
+			{
+				this->_stash[i] = this->_inventory[idx];
+				this->_inventory[idx] = NULL;
+				break;
+			}
+			else if (this->_stash[i] != NULL && i == STASH_SIZE - 1)
+				std::cout << "\t\t\tstash is full" << std::endl;
+		}
+		//lst.insertNode(this->_inventory[idx]);
 		// store_in_stash(this->_inventory[idx]);
-		this->_inventory[idx] = NULL;
 	}
 }
 
@@ -101,4 +131,6 @@ void Character::use(int idx, ICharacter &target)
 			this->unequip(idx);
 		}
 	}
+	else
+		std::cout << "\t\t\t\t\tError\n";
 }

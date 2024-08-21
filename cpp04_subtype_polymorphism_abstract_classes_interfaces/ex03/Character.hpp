@@ -8,6 +8,7 @@
 # include "Cure.hpp"
 
 # define INVENTORY_SIZE 4
+# define STASH_SIZE 5
 
 class Character: public ICharacter
 {
@@ -26,6 +27,7 @@ class Character: public ICharacter
 	private:
 		AMateria 		*_inventory[INVENTORY_SIZE];
 		std::string 	_name;
+		AMateria		*_stash[STASH_SIZE];
 
 };
 
