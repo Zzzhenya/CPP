@@ -6,13 +6,15 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:47 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/20 11:14:51 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:18:45 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
+#include "ICharacter.hpp"
+#include "Character.hpp"
 #include <iostream>
 
 void draw_seperator(void)
@@ -80,7 +82,19 @@ void ice_tests_berfore_abstraction(void)
 int main (void)
 {
 	//amateria_tests_before_abstraction();
-	ice_tests_berfore_abstraction();
+	//ice_tests_berfore_abstraction();
 
+	Character *one = new Character("Hello");
+
+	//AMateria *c1 = new Cure();
+	Cure c1;
+	Ice i1;
+	{
+		one->equip(&c1);
+		one->equip(&i1);
+	}
+	//one.equip(c1);
+
+	delete one;
 	return (0);
 }
