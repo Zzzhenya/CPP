@@ -2,15 +2,16 @@
 # define NODE_HPP
 
 # include <iostream>
+# include "../AMateria.hpp"
 
 class Node
 {
 	public:
-		Node 	*next;
-		int  	data;
+		Node 		*next;
+		AMateria  	*data;
 
 		Node();
-		Node(int val);
+		Node(AMateria  *val);
 		~Node();
 };
 

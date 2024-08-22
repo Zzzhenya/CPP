@@ -1,14 +1,20 @@
 #include "LinkedList.hpp"
+#include "../AMateria.hpp"
+#include "../Cure.hpp"
+#include "../Ice.hpp"
 #include <iostream>
 
 int main(void)
 {
 
+	AMateria *one = new Cure();
+	AMateria *two = new Cure();
 	LinkedList lst;
 
-	lst.insertNode(1);
-	lst.insertNode(22);
-	lst.insertNode(34);
+	lst.insertNode(one);
+	lst.insertNode(two);
+	// lst.insertNode(22);
+	// lst.insertNode(34);
 
 	lst.printList();
 	return (0);

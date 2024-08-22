@@ -2,12 +2,12 @@
 
 Node::Node()
 {
-	data = 0;
+	data = NULL;
 	next = NULL;
 	std::cout << "Node default constructor\n";
 }
 
-Node:: Node(int val)
+Node:: Node(AMateria  *val)
 {
 	this->data = val;
 	this->next = NULL;

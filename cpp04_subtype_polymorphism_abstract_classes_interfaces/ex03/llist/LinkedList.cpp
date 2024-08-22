@@ -16,7 +16,7 @@ LinkedList::LinkedList()
 	std::cout << "LL default constructor\n";
 }
 
-void LinkedList::insertNode(int val)
+void LinkedList::insertNode(AMateria *val)
 {
 
 	Node *newNode = new Node(val);
@@ -28,7 +28,7 @@ void LinkedList::insertNode(int val)
 	}
 
 	Node *temp = head;
-	
+
 	while (temp->next != NULL)
 		temp = temp->next;
 	temp->next = newNode;
@@ -46,7 +46,8 @@ void LinkedList::printList()
 
 	while (temp != NULL)
 	{
-		std::cout << temp->data << " ";
+		//std::cout << temp->data << " ";
+		std::cout << temp->data->getType() << " ";
 		temp = temp->next;
 	}
 	std::cout << std::endl;
