@@ -16,6 +16,22 @@ LinkedList::LinkedList()
 	std::cout << "LL default constructor\n";
 }
 
+LinkedList::~LinkedList()
+{
+	std::cout << "LL destructor\n";
+	if (this->head == NULL)
+		return;
+	Node *curr = head;
+	Node *temp = NULL;
+
+	while(curr != NULL)
+	{
+		temp = curr;
+		curr = curr->next;
+		delete temp;
+	}
+}
+
 void LinkedList::insertNode(AMateria *val)
 {
 

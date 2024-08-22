@@ -12,6 +12,7 @@ class LinkedList
 
 	public:
 		LinkedList();
+		~LinkedList();
 		void insertNode(AMateria *val);
 		void printList();
 		// void deleteNode(int val);

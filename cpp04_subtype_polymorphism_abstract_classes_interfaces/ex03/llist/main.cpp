@@ -13,9 +13,10 @@ int main(void)
 
 	lst.insertNode(one);
 	lst.insertNode(two);
-	// lst.insertNode(22);
-	// lst.insertNode(34);
 
 	lst.printList();
+
+	delete one;
+	delete two;
 	return (0);
 }
