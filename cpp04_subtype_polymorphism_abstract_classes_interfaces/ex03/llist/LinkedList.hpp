@@ -7,15 +7,18 @@
 
 class LinkedList
 {
-	private:
-		Node *head;
-
 	public:
 		LinkedList();
 		~LinkedList();
+		LinkedList(const LinkedList &other);
+		LinkedList	&operator=(const LinkedList &other);
+
 		void insertNode(AMateria *val);
 		void printList();
-		// void deleteNode(int val);
+
+	private:
+		Node *head;
+
 };
 
 #endif

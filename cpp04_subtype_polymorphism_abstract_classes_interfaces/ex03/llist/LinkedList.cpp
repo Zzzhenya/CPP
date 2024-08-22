@@ -16,6 +16,68 @@ LinkedList::LinkedList()
 	std::cout << "LL default constructor\n";
 }
 
+LinkedList::LinkedList(const LinkedList &other)
+{
+	std::cout << "LL copy constructor\n";
+	// if (this->head == NULL && other.head == NULL)
+	if (other.head == NULL)
+	{
+		this->head = NULL;
+		return;
+	}
+	// if (this->head != NULL)
+	// {
+	// 	Node *curr = this->head;
+	// 	Node *temp = NULL;
+
+	// 	while (curr != NULL)
+	// 	{
+	// 		temp = curr;
+	// 		curr = curr->next;
+	// 		delete temp;
+	// 	}
+	// }
+	//if (other.head == NULL)
+		// this->head = NULL;
+	this->head = NULL;
+	Node *curr = other.head;
+	while (curr != NULL)
+	{
+		this->insertNode(curr->data);
+		curr = curr->next;
+	}
+}
+
+LinkedList	&LinkedList::operator=(const LinkedList &other)
+{
+	std::cout << "LL copy assignment operator overload\n";
+	if (other.head == NULL)
+	{
+		this->head = NULL;
+		return (*this);
+	}
+	if (this->head != NULL)
+	{
+		Node *curr = this->head;
+		Node *temp = NULL;
+
+		while (curr != NULL)
+		{
+			temp = curr;
+			curr = curr->next;
+			delete temp;
+		}
+	}
+	this->head = NULL;
+	Node *curr = other.head;
+	while (curr != NULL)
+	{
+		this->insertNode(curr->data);
+		curr = curr->next;
+	}
+	return (*this);
+}
+
 LinkedList::~LinkedList()
 {
 	std::cout << "LL destructor\n";
