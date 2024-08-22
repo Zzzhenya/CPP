@@ -13,6 +13,9 @@ class Node
 		Node();
 		Node(AMateria  *val);
 		~Node();
+	private:
+		Node(const Node &other);
+		Node &operator=(const Node &other);
 };
 
 #endif
