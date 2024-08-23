@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:47 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/23 20:10:00 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/23 20:26:44 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void cure_ice_after_abs(void)
 	delete two;
 }
 
-void learn_and_create(void)
+void subject_tests(void)
 {
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
@@ -132,6 +132,6 @@ int main (void)
 	// ice_tests_berfore_abstraction();
 	// cure_ice_after_abs();
 
-	learn_and_create();
+	subject_tests();
 	return (0);
 }
