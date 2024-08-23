@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:47 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/23 13:57:01 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:12:04 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "Cure.hpp"
 #include "ICharacter.hpp"
 #include "Character.hpp"
+#include "LinkedList.hpp"
 #include <iostream>
 
 void draw_seperator(void)
@@ -79,10 +80,8 @@ void ice_tests_berfore_abstraction(void)
 	}
 }
 
-int main (void)
+void	equip_use_tests_after_abs(void)
 {
-	// amateria_tests_before_abstraction();
-	// ice_tests_berfore_abstraction();
 
 
 	Character *one = new Character("Hello");
@@ -105,11 +104,35 @@ int main (void)
 	// // one->equip(&c1);
 	// one->use(0, *two);
 
-
-
-
 	delete one;
 	delete two;
+}
+
+void linkedlist_tests(void)
+{
+	AMateria *c1 = new Cure();
+	AMateria *i1 = new Ice();
+	LinkedList lst;
+
+	lst.insertNode(c1);
+	lst.insertNode(i1);
+
+	lst.printList();
+
+	delete c1;
+	delete i1;
+	lst.printList();
+
+}
+
+int main (void)
+{
+	// amateria_tests_before_abstraction();
+	// ice_tests_berfore_abstraction();
+	// equip_use_tests_after_abs();
+
+	linkedlist_tests();
+
 
 	return (0);
 }
