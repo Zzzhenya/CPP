@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:47 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/23 16:12:04 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/23 17:55:06 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,9 +129,9 @@ int main (void)
 {
 	// amateria_tests_before_abstraction();
 	// ice_tests_berfore_abstraction();
-	// equip_use_tests_after_abs();
+	equip_use_tests_after_abs();
 
-	linkedlist_tests();
+	// linkedlist_tests();
 
 
 	return (0);
