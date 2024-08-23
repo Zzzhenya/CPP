@@ -6,15 +6,20 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/19 21:05:18 by sde-silv          #+#    #+#              #
-#    Updated: 2024/08/21 19:50:49 by sde-silv         ###   ########.fr        #
+#    Updated: 2024/08/23 19:39:25 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = materia
 
-SRC =  main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp
+SRC =  main.cpp AMateria.cpp \
+		Ice.cpp Cure.cpp \
+		Character.cpp MateriaSource.cpp
 
-HEADER = AMateria.hpp Ice.hpp Cure.hpp ICharacter.hpp Character.hpp
+HEADER = AMateria.hpp Ice.hpp \
+			Cure.hpp ICharacter.hpp \
+			Character.hpp IMateriaSource.hpp \
+			MateriaSource.hpp
 
 OBJ = $(SRC:.cpp=.o)
 

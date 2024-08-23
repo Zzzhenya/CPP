@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:47 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/23 13:57:01 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/23 20:10:00 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "Cure.hpp"
 #include "ICharacter.hpp"
 #include "Character.hpp"
+#include "IMateriaSource.hpp"
+#include "MateriaSource.hpp"
 #include <iostream>
 
 void draw_seperator(void)
@@ -79,12 +81,8 @@ void ice_tests_berfore_abstraction(void)
 	}
 }
 
-int main (void)
+void cure_ice_after_abs(void)
 {
-	// amateria_tests_before_abstraction();
-	// ice_tests_berfore_abstraction();
-
-
 	Character *one = new Character("Hello");
 	Character *two = new Character("World");
 	Cure c1;
@@ -105,11 +103,35 @@ int main (void)
 	// // one->equip(&c1);
 	// one->use(0, *two);
 
-
-
-
 	delete one;
 	delete two;
+}
 
+void learn_and_create(void)
+{
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	ICharacter* me = new Character("me");
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+	ICharacter* bob = new Character("bob");
+	me->use(0, *bob);
+	me->use(1, *bob);
+	delete bob;
+	delete me;
+	delete src;
+}
+
+int main (void)
+{
+	// amateria_tests_before_abstraction();
+	// ice_tests_berfore_abstraction();
+	// cure_ice_after_abs();
+
+	learn_and_create();
 	return (0);
 }
