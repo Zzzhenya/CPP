@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:35 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/19 21:04:38 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/23 13:49:00 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,14 @@ Cure*	Cure::clone() const
 {
 	Cure *copy = new Cure(*this);
 	return (copy);
+}
+
+void Cure::use(ICharacter& target)
+{
+    //else if (this->_inventory[idx]->getType() == TYPE_CURE)
+    {
+        std::cout << "Cure: \"* heals ";
+        std::cout << target.getName();
+        std::cout << "’s wounds *\"" << std::endl;
+    }
 }

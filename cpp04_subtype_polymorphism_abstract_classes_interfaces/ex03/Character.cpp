@@ -114,22 +114,22 @@ void Character::use(int idx, ICharacter &target)
 {
 	if (idx < INVENTORY_SIZE && idx >= 0 && this->_inventory[idx] != NULL)
 	{
-		// this->_inventory[idx]->use(target);
-		if (this->_inventory[idx]->getType() == TYPE_ICE)
-		{
-			std::cout << "Ice: \"* shoots an ice bolt at ";
-			std::cout << target.getName();
-			std::cout << " *\"" << std::endl;
+		this->_inventory[idx]->use(target);
+		// if (this->_inventory[idx]->getType() == TYPE_ICE)
+		// {
+		// 	std::cout << "Ice: \"* shoots an ice bolt at ";
+		// 	std::cout << target.getName();
+		// 	std::cout << " *\"" << std::endl;
 
-			this->unequip(idx);
-		}
-		else if (this->_inventory[idx]->getType() == TYPE_CURE)
-		{
-			std::cout << "Cure: \"* heals ";
-			std::cout << target.getName();
-			std::cout << "’s wounds *\"" << std::endl;
-			this->unequip(idx);
-		}
+		this->unequip(idx);
+		// }
+		// else if (this->_inventory[idx]->getType() == TYPE_CURE)
+		// {
+		// 	std::cout << "Cure: \"* heals ";
+		// 	std::cout << target.getName();
+		// 	std::cout << "’s wounds *\"" << std::endl;
+		// 	this->unequip(idx);
+		// }
 	}
 	else
 		std::cout << "\t\t\t\t\tError\n";

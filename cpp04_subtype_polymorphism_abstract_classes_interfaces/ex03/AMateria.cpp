@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/20 11:24:21 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/23 13:50:28 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,7 @@ AMateria*	AMateria::clone() const
 	return (copy);
 }
 
-// virtual void use(ICharacter& target);
+void AMateria::use(ICharacter& target)
+{
+	(void)target;
+}

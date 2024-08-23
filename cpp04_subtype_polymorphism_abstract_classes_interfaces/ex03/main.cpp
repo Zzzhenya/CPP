@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:47 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/21 20:11:22 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/23 13:57:01 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,13 @@ int main (void)
 	one->equip(&i1);
 	one->equip(&c2);
 	one->equip(&c3);
-	one->equip(&i2);
+	// one->equip(&i2);
 	one->use(0, *two);
 	one->use(1, *two);
 	one->use(2, *two);
-	one->use(3, *two);
-	one->equip(&c1);
-	one->use(0, *two);
+	// one->use(3, *two);
+	// // one->equip(&c1);
+	// one->use(0, *two);
 
 
 

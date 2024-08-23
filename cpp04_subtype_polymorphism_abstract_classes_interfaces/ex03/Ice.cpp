@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:42 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/20 11:17:18 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/23 13:50:10 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,11 @@ Ice*	Ice::clone() const
 {
 	Ice *copy = new Ice(*this);
 	return (copy);
+}
+
+void Ice::use(ICharacter& target)
+{
+    std::cout << "Ice: \"* shoots an ice bolt at ";
+    std::cout << target.getName();
+    std::cout << " *\"" << std::endl;
 }
