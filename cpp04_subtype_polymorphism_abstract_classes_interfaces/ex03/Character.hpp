@@ -16,7 +16,7 @@ class Character: public ICharacter
 		Character(void);
 		~Character(void);
 		Character(const Character &other);
-		// Character operator=(const Character &other);
+		Character &operator=(const Character &other);
 		Character(std::string name);
 
 		void equip(AMateria *m);

@@ -40,35 +40,53 @@ Character::Character(const Character &other)
 	std::cout << "Character copy constructor" << std::endl;
 	for (int i = 0; (i < INVENTORY_SIZE); i ++)
 	{
-		if (this->_inventory[i] != NULL)
+		if (other._inventory[i] != NULL)
 		{
-			delete this->_inventory[i];
-			this->_inventory[i] = other._inventory[i]->clone();
+			if (this->_inventory[i] != NULL)
+			{
+				// delete this->_inventory[i];
+				this->_inventory[i] = other._inventory[i]->clone();
+			}
 		}
+		else
+			this->_inventory[i] = NULL;
 	}
-	for (int i = 0; (i < STASH_SIZE); i ++)
-	{
-		if (this->_stash[i] != NULL)
-		{
-			delete this->_stash[i];
-			this->_stash[i] = other._stash[i]->clone();
-		}
-	}
+	// for (int i = 0; (i < STASH_SIZE); i ++)
+	// {
+	// 	if (this->_stash[i] != NULL)
+	// 	{
+	// 		delete this->_stash[i];
+	// 		this->_stash[i] = other._stash[i]->clone();
+	// 	}
+	// }
 }
 
-// Character Character::operator=(const Character &other)
-// {
-// 	std::cout << "Character copy assignment operator overload." << std::endl;
-// 	for (int i = 0; (i < INVENTORY_SIZE); i ++)
-// 	{
-// 		if (this->_inventory[i] != NULL)
-// 		{
-// 			delete this->_inventory[i];
-// 			this->_inventory[i] = other._inventory[i]->clone();
-// 		}
-// 	}
-// 	return (*this);
-// }
+Character &Character::operator=(const Character &other)
+{
+	std::cout << "Character copy assignment operator overload." << std::endl;
+	for (int i = 0; (i < INVENTORY_SIZE); i ++)
+	{
+		if (other._inventory[i] != NULL)
+		{
+			if (this->_inventory[i] != NULL)
+			{
+				delete this->_inventory[i];
+				this->_inventory[i] = other._inventory[i]->clone();
+			}
+		}
+		else
+			this->_inventory[i] = NULL;
+	}
+	// for (int i = 0; (i < STASH_SIZE); i ++)
+	// {
+	// 	if (this->_stash[i] != NULL)
+	// 	{
+	// 		delete this->_stash[i];
+	// 		this->_stash[i] = other._stash[i]->clone();
+	// 	}
+	// }
+	return (*this);
+}
 
 // (*)m is cloned to make sure to avoid double free
 void Character::equip(AMateria *m)
