@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:47 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/23 20:26:44 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:07:43 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,17 @@ void subject_tests(void)
 	delete src;
 }
 
+void check_clone_calls_copy_constructor(void)
+{
+	Cure c1;
+	AMateria *c2;
+
+	c2 = c1.clone();
+	// *c2 = c1;
+	std::cout << c2->getType() << std::endl;
+	delete c2;
+}
+
 int main (void)
 {
 	// amateria_tests_before_abstraction();
@@ -133,5 +144,7 @@ int main (void)
 	// cure_ice_after_abs();
 
 	subject_tests();
+	// check_clone_calls_copy_constructor();
+
 	return (0);
 }
