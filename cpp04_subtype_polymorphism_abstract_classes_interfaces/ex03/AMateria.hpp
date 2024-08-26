@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:55 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/23 14:01:10 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/26 13:43:50 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@ class AMateria
 	protected:
 		std::string _type;
 
+	private:
+		AMateria &operator=(const AMateria &other);
+
 	public:
 		AMateria(void);
 		virtual ~AMateria(void);
 		AMateria(const AMateria &other);
-		AMateria &operator=(const AMateria &other);
 
 		AMateria(std::string const & type);
 		
