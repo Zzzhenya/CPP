@@ -6,7 +6,7 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/19 21:05:18 by sde-silv          #+#    #+#              #
-#    Updated: 2024/08/23 20:26:51 by sde-silv         ###   ########.fr        #
+#    Updated: 2024/08/26 15:24:09 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ HEADER = AMateria.hpp Ice.hpp \
 
 OBJ = $(SRC:.cpp=.o)
 
-CXX = g++
+CXX = clang++
 
 CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98 -Wshadow
 
@@ -44,6 +44,6 @@ fclean: clean
 re: fclean all
 
 leaks: all
-	valgrind ./$(NAME)
+	valgrind --leak-check=full ./$(NAME)
 
 .PHONY: all clean fclean re

@@ -61,7 +61,7 @@ Character::Character(const Character &other)
 	// }
 }
 
-Character &Character::operator=(const Character &other)
+Character Character::operator=(const Character &other)
 {
 	std::cout << "Character copy assignment operator overload." << std::endl;
 	for (int i = 0; (i < INVENTORY_SIZE); i ++)
@@ -95,7 +95,7 @@ void Character::equip(AMateria *m)
 	{
 		if (this->_inventory[i] == NULL && m != NULL)
 		{
-			this->_inventory[i] = (*m).clone();
+			this->_inventory[i] = m;
 			break;
 		}
 		else if (this->_inventory[i] != NULL && m != NULL && i == INVENTORY_SIZE - 1)
