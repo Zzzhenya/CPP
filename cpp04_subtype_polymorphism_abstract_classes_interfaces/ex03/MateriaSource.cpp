@@ -30,13 +30,10 @@ void MateriaSource::learnMateria(AMateria *old)
 		if (_source[i] == NULL)
 		{
 			_source[i] = old;
-			break;
-		}
-		else if(_source[i] != NULL && i - 1 == SOURCE_LIMIT)
-		{
-			std::cout << "Source is full\n";
+			return;
 		}
 	}
+	std::cout << "Source is full\n";
 }
 
 /**
