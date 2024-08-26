@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:05:11 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/26 12:51:56 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/26 23:13:47 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include "AMateria.hpp"
+# include "debug.hpp"
 
 # define TYPE_ICE "ice"
 

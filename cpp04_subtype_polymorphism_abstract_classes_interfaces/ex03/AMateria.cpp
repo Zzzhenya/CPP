@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/26 14:01:31 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/26 23:04:28 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,23 @@
 AMateria::AMateria(void)
 {
 	_type = "";
-	std::cout << "AMateria default constructor\n";
+	debug(std::cout << "AMateria default constructor\n");
 }
 
 AMateria::~AMateria(void)
 {
-	std::cout << "AMateria destructor\n";
+	debug(std::cout << "AMateria destructor\n");
 }
 
 AMateria::AMateria(const AMateria &other)
 {
-	std::cout << "AMateria copy constructor\n";
+	debug(std::cout << "AMateria copy constructor\n");
 	this->_type = other._type;
 }
 
 AMateria &AMateria::operator=(const AMateria &other)
 {
-	std::cout << "AMateria copy assignment\n";
+	debug(std::cout << "AMateria copy assignment\n");
 
 	this->_type = other._type;
 	return (*this);
@@ -51,7 +51,7 @@ AMateria &AMateria::operator=(const AMateria &other)
 AMateria::AMateria(std::string const & type)
 {
 	this->_type = type;
-	std::cout << "AMateria type constructor\n";
+	debug(std::cout << "AMateria type constructor\n");
 }
 
 /**

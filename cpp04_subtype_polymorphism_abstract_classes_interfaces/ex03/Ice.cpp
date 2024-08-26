@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:42 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/26 14:03:06 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/26 23:14:38 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,22 @@
 
 Ice::Ice(void) : AMateria(TYPE_ICE)
 {
-    std::cout << "Ice default constructor\n";
+    debug(std::cout << "Ice default constructor\n");
 }
 
 Ice::~Ice(void)
 {
-    std::cout << "Ice destructor\n";
+    debug(std::cout << "Ice destructor\n");
 }
 
 Ice::Ice(const Ice &other) : AMateria(other)
 {
-    std::cout << "Ice copy constructor\n";
+    debug(std::cout << "Ice copy constructor\n");
 }
 
 Ice &Ice::operator=(const Ice &other)
 {
-    std::cout << "Ice copy assignment\n";
+    debug(std::cout << "Ice copy assignment\n");
     (void)other;
     // this->_type = other._type;
     return (*this);

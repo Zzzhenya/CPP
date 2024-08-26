@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:35 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/26 14:03:14 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/26 23:11:45 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,22 @@
 
 Cure::Cure(void) : AMateria(TYPE_CURE)
 {
-    std::cout << "Cure default constructor\n";
+    debug(std::cout << "Cure default constructor\n");
 }
 
 Cure::~Cure(void)
 {
-    std::cout << "Cure destructor\n";
+    debug(std::cout << "Cure destructor\n");
 }
 
 Cure::Cure(const Cure &other) : AMateria(other)
 {
-    std::cout << "Cure copy constructor\n";
+    debug(std::cout << "Cure copy constructor\n");
 }
 
 Cure &Cure::operator=(const Cure &other)
 {
-    std::cout << "Cure copy assignment\n";
+    debug(std::cout << "Cure copy assignment\n");
     (void)other;
     // this->_type = other._type;
     return (*this);

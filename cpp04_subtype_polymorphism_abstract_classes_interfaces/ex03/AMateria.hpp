@@ -6,12 +6,14 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:55 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/26 13:43:50 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/26 23:02:17 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AMATERIA_HPP
 # define AMATERIA_HPP
+
+# include "debug.hpp"
 
 # include <iostream>
 # include "ICharacter.hpp"

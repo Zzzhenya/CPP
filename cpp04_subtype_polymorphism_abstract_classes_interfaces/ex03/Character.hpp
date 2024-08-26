@@ -6,6 +6,7 @@
 # include "AMateria.hpp"
 # include "Ice.hpp"
 # include "Cure.hpp"
+# include "debug.hpp"
 
 # define INVENTORY_SIZE 4
 # define STASH_SIZE 5

@@ -6,6 +6,7 @@
 # include "IMateriaSource.hpp"
 # include "Ice.hpp"
 # include "Cure.hpp"
+# include "debug.hpp"
 
 # define SOURCE_LIMIT 4
 

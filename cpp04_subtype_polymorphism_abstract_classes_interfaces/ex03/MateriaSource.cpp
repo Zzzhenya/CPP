@@ -2,6 +2,7 @@
 
 MateriaSource::MateriaSource()
 {
+	debug(std::cout << "MateriaSource default constructor.\n");
 	for (int i = 0; i < SOURCE_LIMIT; i++)
 	{
 		_source[i] = NULL;
@@ -10,6 +11,7 @@ MateriaSource::MateriaSource()
 
 MateriaSource::~MateriaSource()
 {
+	debug(std::cout << "MateriaSource destructor.\n");
 	for (int i = 0; i < SOURCE_LIMIT; i++)
 	{
 		if ( _source[i] != NULL)
