@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:42 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/23 13:50:10 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:03:06 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,13 @@ Ice::Ice(const Ice &other) : AMateria(other)
     std::cout << "Ice copy constructor\n";
 }
 
-// Ice Ice::operator=(const Ice &other)
-// {
-
-// }
+Ice &Ice::operator=(const Ice &other)
+{
+    std::cout << "Ice copy assignment\n";
+    (void)other;
+    // this->_type = other._type;
+    return (*this);
+}
 
 Ice*	Ice::clone() const
 {

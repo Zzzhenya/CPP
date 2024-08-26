@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:35 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/23 13:49:00 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:03:14 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,13 @@ Cure::Cure(const Cure &other) : AMateria(other)
     std::cout << "Cure copy constructor\n";
 }
 
-// Cure Cure::operator=(const Cure &other)
-// {
-
-// }
+Cure &Cure::operator=(const Cure &other)
+{
+    std::cout << "Cure copy assignment\n";
+    (void)other;
+    // this->_type = other._type;
+    return (*this);
+}
 
 Cure*	Cure::clone() const
 {

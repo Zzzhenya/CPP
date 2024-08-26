@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:05:11 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/23 13:50:18 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:51:56 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Ice: public AMateria
         Ice(void);
         ~Ice(void);
         Ice(const Ice &other);
-        // Ice operator=(const Ice &other);
+        Ice &operator=(const Ice &other);
 
         Ice* clone() const;
         void use(ICharacter& target);
