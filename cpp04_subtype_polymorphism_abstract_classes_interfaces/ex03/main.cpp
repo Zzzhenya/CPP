@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:47 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/27 20:01:43 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 22:13:41 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void subject_tests(void)
 	delete me;
 	delete src;
 }
+
 void materia_tests(void)
 {
 	draw_seperator();
@@ -106,7 +107,46 @@ void materia_source_tests(void)
 		delete me;
 		delete src;
 	}
+}
 
+/*
+	Not functional : AMateria copy assignment is private
+	{
+		AMateria *c1 = new Cure();
+		AMateria *i1 = new Ice();
+
+		std::cout << i1->getType() << std::endl;
+		*i1 = *c1;
+
+		std::cout << i1->getType() << std::endl;
+		delete c1;
+		delete i1;
+	}
+*/
+void copy_assignment_tests(void)
+{
+	{
+		Cure *c1 = new Cure();
+		Cure *i1 = new Cure();
+
+		std::cout << i1->getType() << std::endl;
+		*i1 = *c1;
+
+		std::cout << i1->getType() << std::endl;
+		delete c1;
+		delete i1;
+	}
+	{
+		Ice *c1 = new Ice();
+		Ice *i1 = new Ice();
+
+		std::cout << i1->getType() << std::endl;
+		*i1 = *c1;
+
+		std::cout << i1->getType() << std::endl;
+		delete c1;
+		delete i1;
+	}
 }
 
 int main (void)
@@ -114,6 +154,6 @@ int main (void)
 	subject_tests();
 	materia_source_tests();
 	materia_tests();
-	
+	copy_assignment_tests();
 	return (0);
 }

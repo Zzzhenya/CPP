@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:57:11 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/27 16:07:56 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 21:14:52 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,10 @@ Character::Character(const Character &other): ICharacter()
 	debug(std::cout << "Character copy constructor" << std::endl);
 	for (int i = 0; (i < INVENTORY_SIZE); i ++)
 	{
+		if (this->_inventory[i] != NULL)
+			delete this->_inventory[i];
 		if (other._inventory[i] != NULL)
-		{
-			if (this->_inventory[i] != NULL)
-				this->_inventory[i] = other._inventory[i]->clone();
-		}
+			this->_inventory[i] = other._inventory[i]->clone();
 		else
 			this->_inventory[i] = NULL;
 	}
@@ -76,14 +75,10 @@ Character &Character::operator=(const Character &other)
 	debug(std::cout << "Character copy assignment operator overload." << std::endl);
 	for (int i = 0; (i < INVENTORY_SIZE); i ++)
 	{
+		if (this->_inventory[i] != NULL)
+			delete this->_inventory[i];
 		if (other._inventory[i] != NULL)
-		{
-			if (this->_inventory[i] != NULL)
-			{
-				delete this->_inventory[i];
-			}
 			this->_inventory[i] = other._inventory[i]->clone();
-		}
 		else
 			this->_inventory[i] = NULL;
 	}
@@ -111,9 +106,15 @@ Character::Character(std::string name): ICharacter()
  * 
  * (*m) doesn't need to be cloned as per subject tests
  * because m is a AMateria * we assume it is already in the heap
+ * m->clone()
  */
 void Character::equip(AMateria *m)
 {
+	if (m == NULL)
+	{
+		debug(std::cout << "null pointer" << std::endl);
+		return ;
+	}
 	for (int i = 0; (i < INVENTORY_SIZE); i ++)
 	{
 		if (this->_inventory[i] == NULL && m != NULL)
@@ -122,10 +123,8 @@ void Character::equip(AMateria *m)
 			return;
 		}
 	}
-	if (m == NULL)
-		debug(std::cout << "\t\t\tnull pointer" << std::endl);
-	else
-		debug(std::cout << "\t\t\tInventory full" << std::endl);
+	delete m;
+	debug(std::cout << "Inventory full" << std::endl);
 }
 
 /**
@@ -147,12 +146,12 @@ void	Character::unequip(int idx)
 				return;
 			}			
 		}
-		debug(std::cout << "\t\t\tstash is full" << std::endl);
+		debug(std::cout << "stash is full" << std::endl);
 	}
 	else if (idx >= INVENTORY_SIZE || idx < 0)
-		debug(std::cout << "\t\t\tidx out of range" << std::endl);
+		debug(std::cout << "idx out of range" << std::endl);
 	else
-		debug(std::cout << "\t\t\tno materia at idx" << idx << std::endl);
+		debug(std::cout << "no materia at idx" << idx << std::endl);
 }
 
 /**

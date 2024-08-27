@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:59:56 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/27 19:59:00 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 20:17:54 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,14 @@
  */
 MateriaSource::MateriaSource(): IMateriaSource()
 {
-	debug(std::cout << "MateriaSource default constructor.\n");
+	debug(std::cout << "MateriaSource default constructor\n");
 	for (int i = 0; i < SOURCE_LIMIT; i++)
-	{
 		_source[i] = NULL;
-	}
 }
 
 MateriaSource::~MateriaSource()
 {
-	debug(std::cout << "MateriaSource destructor.\n");
+	debug(std::cout << "MateriaSource destructor\n");
 	for (int i = 0; i < SOURCE_LIMIT; i++)
 	{
 		if ( _source[i] != NULL)
@@ -44,6 +42,8 @@ MateriaSource::MateriaSource(const MateriaSource &other):IMateriaSource()
 	debug(std::cout << "MateriaSource copy construcotr\n");
 	for (int i = 0; i < SOURCE_LIMIT; i++)
 	{
+		if (this->_source[i] != NULL)
+			delete this->_source[i];
 		if (other._source[i] != NULL)
 			this->_source[i] = other._source[i]->clone();
 		else
@@ -51,17 +51,15 @@ MateriaSource::MateriaSource(const MateriaSource &other):IMateriaSource()
 	}
 }
 
-MateriaSource &MateriaSource::operator=(const MateriaSource &other)
+MateriaSource	&MateriaSource::operator=(const MateriaSource &other)
 {
 	debug(std::cout << "MateriaSource copy assignment operator\n");
 	for (int i = 0; i < SOURCE_LIMIT; i++)
 	{
+		if (this->_source[i] != NULL)
+			delete this->_source[i];
 		if (other._source[i] != NULL)
-		{
-			if (this->_source[i] != NULL)
-				delete this->_source[i];
 			this->_source[i] = other._source[i]->clone();
-		}
 		else
 			this->_source[i] = NULL;
 	}
@@ -73,22 +71,25 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
  * and store it in memory so it can be cloned later. 
  * Like the Character, the MateriaSource can know at most 4 Materias. 
  * They are not necessarily unique.
+ * We assume temp is in heap
  * _source[i] = temp->clone();
  * */
-void MateriaSource::learnMateria(AMateria *temp)
+void	MateriaSource::learnMateria(AMateria *temp)
 {
+	if (temp == NULL)
+	{
+		debug(std::cout << "null pointer\n");
+		return ;
+	}
 	for (int i = 0; i < SOURCE_LIMIT; i++)
 	{
 		if (_source[i] == NULL && temp != NULL)
 		{
 			_source[i] = temp;
-			return;
+			return ;
 		}
 	}
-	if (temp == NULL)
-		debug(std::cout << "null pointer\n");
-	else
-		debug(std::cout << "Source is full\n");
+	debug(std::cout << "Source is full\n");
 }
 
 /**
@@ -97,7 +98,7 @@ void MateriaSource::learnMateria(AMateria *temp)
  * the MateriaSource whose type equals the one passed as parameter. 
  * Returns 0 if the type is unknown.
  * */
-AMateria* MateriaSource::createMateria(std::string const & type)
+AMateria*	MateriaSource::createMateria(std::string const &type)
 {
 	for (int i = 0; i < SOURCE_LIMIT; i++)
 	{
@@ -109,15 +110,20 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 	debug(std::cout << type << " is not available in source\n");
 	return (0);
 }
-
-AMateria		*MateriaSource::getSourceItem(int idx)
+/**
+ * private getter for printing materia types in the _source
+ */
+AMateria	*MateriaSource::getSourceItem(int idx) const
 {
 	if (this->_source[idx] == NULL)
 		return (0);
 	return(this->_source[idx]);	
 }
 
-void			MateriaSource::print_source(void)
+/**
+ * public member function to print the materia types in the _source
+ */
+void	MateriaSource::print_source(void)
 {
 	AMateria *curr = NULL;
 	

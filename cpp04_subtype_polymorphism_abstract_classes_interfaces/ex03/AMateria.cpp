@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/27 14:11:38 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 22:09:00 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,10 @@ AMateria::AMateria(const AMateria &other): _type(other._type)
 }
 
 /**
- * Copy assignment operator overload is private
- * 	to avoid object slicing and
- * 	to avoid assigning Ice = Cure
+ * Copy assignment is non-functional and private
+ * Making a deep copy causes memory leaks
+ * delete this ?
+ * return (*other.clone())
 */
 AMateria &AMateria::operator=(const AMateria &other)
 {

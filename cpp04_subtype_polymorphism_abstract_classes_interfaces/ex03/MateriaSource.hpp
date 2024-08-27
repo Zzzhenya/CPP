@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:59:29 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/27 19:56:20 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 20:17:00 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ class MateriaSource: public IMateriaSource
 		void			print_source(void);
 
 	private:
-		AMateria		*getSourceItem(int idx);
+		AMateria		*getSourceItem(int idx) const;
 		AMateria 		*_source[SOURCE_LIMIT];
 };
 
