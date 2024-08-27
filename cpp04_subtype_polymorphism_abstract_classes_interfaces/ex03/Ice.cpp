@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:42 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/27 14:11:58 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 15:58:25 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
  * 3. Copy constructor
  * 4. Copy assignment operator overload
  */
-
 Ice::Ice(void) : AMateria(TYPE_ICE)
 {
     debug(std::cout << "Ice default constructor\n");

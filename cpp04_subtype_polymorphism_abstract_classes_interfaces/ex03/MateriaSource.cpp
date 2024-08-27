@@ -1,6 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   MateriaSource.cpp                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/27 14:59:56 by sde-silv          #+#    #+#             */
+/*   Updated: 2024/08/27 16:14:45 by sde-silv         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "MateriaSource.hpp"
 
-MateriaSource::MateriaSource()
+/**
+ * Orthodox canonical form functions
+ * 
+ * 1. Default constructor
+ * 2. Destructor
+ * 3. Copy constructor
+ * 4. Copy assignment operator overload
+ */
+MateriaSource::MateriaSource(): IMateriaSource()
 {
 	debug(std::cout << "MateriaSource default constructor.\n");
 	for (int i = 0; i < SOURCE_LIMIT; i++)
@@ -19,23 +39,55 @@ MateriaSource::~MateriaSource()
 	}
 }
 
+MateriaSource::MateriaSource(const MateriaSource &other):IMateriaSource()
+{
+	debug(std::cout << "MateriaSource copy construcotr\n");
+	for (int i = 0; i < SOURCE_LIMIT; i++)
+	{
+		if (other._source[i] != NULL)
+			this->_source[i] = other._source[i]->clone();
+		else
+			this->_source[i] = NULL;
+	}
+}
+
+MateriaSource &MateriaSource::operator=(const MateriaSource &other)
+{
+	debug(std::cout << "MateriaSource copy assignment operator\n");
+	for (int i = 0; i < SOURCE_LIMIT; i++)
+	{
+		if (other._source[i] != NULL)
+		{
+			if (this->_source[i] != NULL)
+				delete this->_source[i];
+			this->_source[i] = other._source[i]->clone();
+		}
+		else
+			this->_source[i] = NULL;
+	}
+	return (*this);
+}
+
 /**
  * Copies the Materia passed as a parameter 
  * and store it in memory so it can be cloned later. 
  * Like the Character, the MateriaSource can know at most 4 Materias. 
  * They are not necessarily unique.
  * */
-void MateriaSource::learnMateria(AMateria *old)
+void MateriaSource::learnMateria(AMateria *temp)
 {
 	for (int i = 0; i < SOURCE_LIMIT; i++)
 	{
-		if (_source[i] == NULL)
+		if (_source[i] == NULL && temp != NULL)
 		{
-			_source[i] = old;
+			_source[i] = temp;
 			return;
 		}
 	}
-	std::cout << "Source is full\n";
+	if (temp == NULL)
+		debug(std::cout << "null pointer\n");
+	else
+		debug(std::cout << "Source is full\n");
 }
 
 /**
@@ -46,8 +98,6 @@ void MateriaSource::learnMateria(AMateria *old)
  * */
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
-	// AMateria *cpy = NULL;
-
 	for (int i = 0; i < SOURCE_LIMIT; i++)
 	{
 		if ( _source[i] != NULL && type == _source[i]->getType())
@@ -55,5 +105,6 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 			return (_source[i]->clone());
 		}
 	}
+	debug(std::cout << type << " is not available in source\n");
 	return (0);
 }

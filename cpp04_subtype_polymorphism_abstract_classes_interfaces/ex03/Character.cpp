@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:57:11 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/27 14:57:12 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:07:56 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ Character &Character::operator=(const Character &other)
 			if (this->_inventory[i] != NULL)
 			{
 				delete this->_inventory[i];
-				this->_inventory[i] = other._inventory[i]->clone();
 			}
+			this->_inventory[i] = other._inventory[i]->clone();
 		}
 		else
 			this->_inventory[i] = NULL;
