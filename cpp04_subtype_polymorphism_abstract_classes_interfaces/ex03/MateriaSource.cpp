@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:59:56 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/27 16:14:45 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:24:03 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void MateriaSource::learnMateria(AMateria *temp)
 	{
 		if (_source[i] == NULL && temp != NULL)
 		{
-			_source[i] = temp;
+			_source[i] = temp->clone();
 			return;
 		}
 	}
@@ -107,4 +107,26 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 	}
 	debug(std::cout << type << " is not available in source\n");
 	return (0);
+}
+
+AMateria		*MateriaSource::getSourceItem(int idx)
+{
+	if (this->_source[idx] == NULL)
+		return (0);
+	return(this->_source[idx]);	
+}
+
+void			MateriaSource::print_source(void)
+{
+	AMateria *curr = NULL;
+	
+	for (int i = 0; i < SOURCE_LIMIT; i++)
+	{
+		curr = this->getSourceItem(i);
+		if (curr != NULL)
+			std::cout << curr->getType() << " ";
+		else
+			std::cout << "empty ";
+	}
+	std::cout << std::endl;
 }

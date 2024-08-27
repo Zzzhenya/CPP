@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:59:29 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/27 16:09:34 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:33:40 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ class MateriaSource: public IMateriaSource
 		void			learnMateria(AMateria *temp);
 		AMateria*		createMateria(std::string const & type);
 
+		void			print_source(void);
+
 	private:
+		AMateria		*getSourceItem(int idx);
 		AMateria *_source[SOURCE_LIMIT];
 };
-
 
 #endif

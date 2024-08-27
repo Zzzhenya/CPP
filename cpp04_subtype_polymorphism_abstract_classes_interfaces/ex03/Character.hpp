@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:57:18 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/27 14:57:19 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:24:34 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "debug.hpp"
 
 # define INVENTORY_SIZE 4
-# define STASH_SIZE 5
+# define STASH_SIZE 100
 
 class Character: public ICharacter
 {
