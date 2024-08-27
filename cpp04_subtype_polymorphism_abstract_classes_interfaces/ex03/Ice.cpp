@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:42 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/26 23:14:38 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 14:11:58 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,31 @@ Ice::Ice(const Ice &other) : AMateria(other)
     debug(std::cout << "Ice copy constructor\n");
 }
 
-Ice &Ice::operator=(const Ice &other)
+/**
+ * Ice copy assignment can only copy another ice object
+ * Ice objects only have type variable set to "ice"
+ *  therefore : no need to copy the type
+ */
+Ice     &Ice::operator=(const Ice &other)
 {
     debug(std::cout << "Ice copy assignment\n");
     (void)other;
-    // this->_type = other._type;
     return (*this);
 }
 
-Ice*	Ice::clone() const
+/**
+ *  Member function clone
+ */
+Ice*    Ice::clone() const
 {
 	Ice *copy = new Ice(*this);
 	return (copy);
 }
 
-void Ice::use(ICharacter& target)
+/**
+ *  Member function use
+ */
+void    Ice::use(ICharacter& target)
 {
     std::cout << "Ice: \"* shoots an ice bolt at ";
     std::cout << target.getName();

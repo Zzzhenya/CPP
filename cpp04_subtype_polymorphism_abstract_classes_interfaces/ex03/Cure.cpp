@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:35 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/26 23:11:45 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 14:15:29 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,33 @@ Cure::Cure(const Cure &other) : AMateria(other)
     debug(std::cout << "Cure copy constructor\n");
 }
 
+/**
+ * Cure copy assignment can only copy another Cure object
+ * Cure objects only have type variable already set to "cure"
+ *  therefore : no need to copy the type
+ */
 Cure &Cure::operator=(const Cure &other)
 {
     debug(std::cout << "Cure copy assignment\n");
     (void)other;
-    // this->_type = other._type;
     return (*this);
 }
 
+/**
+ *  member function clone
+ */
 Cure*	Cure::clone() const
 {
 	Cure *copy = new Cure(*this);
 	return (copy);
 }
 
+/**
+ *  member function use
+ */
 void Cure::use(ICharacter& target)
 {
-    //else if (this->_inventory[idx]->getType() == TYPE_CURE)
-    {
-        std::cout << "Cure: \"* heals ";
-        std::cout << target.getName();
-        std::cout << "’s wounds *\"" << std::endl;
-    }
+    std::cout << "Cure: \"* heals ";
+    std::cout << target.getName();
+    std::cout << "’s wounds *\"" << std::endl;
 }

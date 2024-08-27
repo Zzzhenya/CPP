@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/26 23:04:28 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 14:11:38 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@
  * 3. Copy constructor
  * 4. Copy assignment operator overload
  */
-AMateria::AMateria(void)
+AMateria::AMateria(void): _type("materia")
 {
-	_type = "";
 	debug(std::cout << "AMateria default constructor\n");
 }
 
@@ -31,16 +30,19 @@ AMateria::~AMateria(void)
 	debug(std::cout << "AMateria destructor\n");
 }
 
-AMateria::AMateria(const AMateria &other)
+AMateria::AMateria(const AMateria &other): _type(other._type)
 {
 	debug(std::cout << "AMateria copy constructor\n");
-	this->_type = other._type;
 }
 
+/**
+ * Copy assignment operator overload is private
+ * 	to avoid object slicing and
+ * 	to avoid assigning Ice = Cure
+*/
 AMateria &AMateria::operator=(const AMateria &other)
 {
 	debug(std::cout << "AMateria copy assignment\n");
-
 	this->_type = other._type;
 	return (*this);
 }
@@ -48,27 +50,26 @@ AMateria &AMateria::operator=(const AMateria &other)
 /**
  * Amateria constructor with _type
  */
-AMateria::AMateria(std::string const & type)
+AMateria::AMateria(std::string const & type): _type(type)
 {
-	this->_type = type;
 	debug(std::cout << "AMateria type constructor\n");
 }
 
 /**
  * Getter for _type
+ * Returns the materia type
  */
-std::string const &AMateria::getType() const //Returns the materia type
+std::string const &AMateria::getType() const 
 {
+	debug(std::cout << "AMateria getType member function\n");
 	return(this->_type);
 }
 
-// AMateria*	AMateria::clone() const
-// {
-// 	AMateria *copy = NULL;
-// 	return (copy);
-// }
-
+/**
+ * Non functional non-pure virtual function 
+ */
 void AMateria::use(ICharacter& target)
 {
+	debug(std::cout << "AMateria use member function\n");
 	(void)target;
 }

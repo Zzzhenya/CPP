@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:47 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/26 22:24:45 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 14:00:48 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,38 @@ void subject_tests(void)
 	delete src;
 }
 
+void materia_tests(void)
+{
+	{
+		ICharacter *ch1 = new Character("BoB");
+		AMateria *i1 = new Ice();
+		AMateria *c1 = new Cure();
+		std::cout << i1->getType() << std::endl;
+		i1->use(*ch1);
+		std::cout << c1->getType() << std::endl;
+		c1->use(*ch1);
+		delete i1;
+		delete c1;
+		delete ch1;
+	}
+	{
+		ICharacter *ch1 = new Character("Jane");
+		AMateria *am1 = NULL;
+		Ice i1;
+		am1 = &i1;
+
+		std::cout << am1->getType() << std::endl;
+		std::cout << i1.getType() << std::endl;
+		am1->use(*ch1);
+
+		delete ch1;
+	}
+}
+
 int main (void)
 {
 
-	subject_tests();
-
+	//subject_tests();
+	materia_tests();
 	return (0);
 }

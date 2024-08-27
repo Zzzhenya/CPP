@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:05:05 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/26 23:11:11 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 14:15:51 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ class Cure: public AMateria
         Cure(void);
         ~Cure(void);
         Cure(const Cure &other);
-        Cure &operator=(const Cure &other);
+        Cure    &operator=(const Cure &other);
 
-        Cure* clone() const;
-        void use(ICharacter& target);
+        Cure*   clone() const;
+        void    use(ICharacter& target);
 };
 
 #endif
