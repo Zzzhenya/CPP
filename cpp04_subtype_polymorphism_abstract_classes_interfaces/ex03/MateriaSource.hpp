@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:59:29 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/27 17:33:40 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:56:20 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class AMateria;
 class MateriaSource: public IMateriaSource
 {
 	public:
-		MateriaSource();
+		MateriaSource(void);
 		~MateriaSource();
 		MateriaSource(const MateriaSource &other);
 		MateriaSource	&operator=(const MateriaSource &other);
@@ -37,7 +37,7 @@ class MateriaSource: public IMateriaSource
 
 	private:
 		AMateria		*getSourceItem(int idx);
-		AMateria *_source[SOURCE_LIMIT];
+		AMateria 		*_source[SOURCE_LIMIT];
 };
 
 #endif

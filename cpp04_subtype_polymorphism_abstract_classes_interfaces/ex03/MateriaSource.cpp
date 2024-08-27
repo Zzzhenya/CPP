@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:59:56 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/27 17:24:03 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:59:00 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
  * and store it in memory so it can be cloned later. 
  * Like the Character, the MateriaSource can know at most 4 Materias. 
  * They are not necessarily unique.
+ * _source[i] = temp->clone();
  * */
 void MateriaSource::learnMateria(AMateria *temp)
 {
@@ -80,7 +81,7 @@ void MateriaSource::learnMateria(AMateria *temp)
 	{
 		if (_source[i] == NULL && temp != NULL)
 		{
-			_source[i] = temp->clone();
+			_source[i] = temp;
 			return;
 		}
 	}

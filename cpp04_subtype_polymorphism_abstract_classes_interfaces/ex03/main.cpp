@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 21:04:47 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/08/27 17:33:47 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/08/27 20:01:43 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ void draw_seperator(void)
 void subject_tests(void)
 {
 	IMateriaSource* src = new MateriaSource();
-	AMateria *i1 = new Ice();
-	AMateria *c1 = new Cure();
-	src->learnMateria(i1);
-	src->learnMateria(c1);
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
 	ICharacter* me = new Character("me");
 	AMateria* tmp = NULL;
 	tmp = src->createMateria("ice");
@@ -43,8 +41,6 @@ void subject_tests(void)
 	delete bob;
 	delete me;
 	delete src;
-	delete i1;
-	delete c1;
 }
 void materia_tests(void)
 {
@@ -93,10 +89,10 @@ void materia_source_tests(void)
 	draw_seperator();
 	{
 		IMateriaSource* src = new MateriaSource();
-		Ice i1;
-		Cure c1;
-		src->learnMateria(&i1);
-		src->learnMateria(&c1);
+		Ice *i1 = new Ice();
+		Cure *c1 = new Cure();
+		src->learnMateria(i1);
+		src->learnMateria(c1);
 		ICharacter* me = new Character("me");
 		AMateria* tmp;
 		tmp = src->createMateria("ice");
@@ -117,7 +113,7 @@ int main (void)
 {
 	subject_tests();
 	materia_source_tests();
-	// materia_tests();
+	materia_tests();
 	
 	return (0);
 }
