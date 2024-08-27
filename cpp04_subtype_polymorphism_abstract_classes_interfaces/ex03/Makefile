@@ -6,7 +6,7 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/19 21:05:18 by sde-silv          #+#    #+#              #
-#    Updated: 2024/08/26 22:57:07 by sde-silv         ###   ########.fr        #
+#    Updated: 2024/08/27 12:53:48 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,8 @@ SRC =  main.cpp AMateria.cpp \
 HEADER = AMateria.hpp Ice.hpp \
 			Cure.hpp ICharacter.hpp \
 			Character.hpp IMateriaSource.hpp \
-			MateriaSource.hpp
-
-DBGHEADER = $(HEADER) debug.hpp
+			MateriaSource.hpp \
+			debug.hpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -40,7 +39,7 @@ all: $(NAME)
 %.o: %.cpp Makefile $(HEADER)
 	$(CXX) $(CPPFLAGS) -c -o $@ $<
 
-%.dbg.o: %.cpp Makefile $(DBGHEADER)
+%.dbg.o: %.cpp Makefile $(HEADER)
 	$(CXX) $(DBGCPPFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJ)
@@ -63,5 +62,8 @@ debug: $(DBGNAME)
 
 leaks: all
 	valgrind --leak-check=full ./$(NAME)
+
+dbg_leaks: debug
+	valgrind --leak-check=full ./$(DBGNAME)
 
 .PHONY: all clean fclean re debug
