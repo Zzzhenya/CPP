@@ -41,6 +41,7 @@ class Bureaucrat: public Exceptions
 	public:
 		Bureaucrat(void);
 		~Bureaucrat(void);
+		Bureaucrat(const Bureaucrat &other);
 		Bureaucrat(std::string name, int grade);
 
 		const std::string		&getName(void) const;
@@ -48,12 +49,12 @@ class Bureaucrat: public Exceptions
 		void					upGrade(void);
 		void					downGrade(void);
 
-
 	private:
 		const std::string		_name;
 		unsigned int			_grade;
 
 		void					setGrade(unsigned int new_grade);
+		Bureaucrat				&operator=(const Bureaucrat &other);
 	
 };
 
