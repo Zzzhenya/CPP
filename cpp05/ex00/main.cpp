@@ -179,9 +179,7 @@ void	combination_test(void)
 
 int main(void)
 {
-	bool i = 1;
 	simple_tests();
 	combination_test();
-	assert(i);
 	return (0);
 }
