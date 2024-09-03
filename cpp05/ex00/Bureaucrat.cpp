@@ -34,9 +34,9 @@ void	Bureaucrat::setGrade(unsigned int new_grade)
 	this->_grade = new_grade;
 }
 
-void	Bureaucrat::upGrade(int val)
+void	Bureaucrat::upGrade(void)
 {
-	int new_grade = getGrade() - val;
+	int new_grade = getGrade() - 1;
 	if (new_grade < HIGHEST_GRADE)
 		throw Bureaucrat::GradeTooHighException();
 	else if (new_grade > LOWEST_GRADE)
@@ -44,13 +44,20 @@ void	Bureaucrat::upGrade(int val)
 	setGrade((unsigned int)new_grade);
 }
 
-void	Bureaucrat::downGrade(int val)
+void	Bureaucrat::downGrade(void)
 {
-	int new_grade = getGrade() + val;
+	int new_grade = getGrade() + 1;
 
 	if (new_grade < HIGHEST_GRADE)
 		throw Bureaucrat::GradeTooHighException();
 	else if (new_grade > LOWEST_GRADE)
 		throw Bureaucrat::GradeTooLowException();
 	setGrade((unsigned int)new_grade);
+}
+
+std::ostream& operator<<(std::ostream& streamRef,const Bureaucrat& bcat)
+{
+	streamRef << bcat.getName() << ", bureaucrat grade ";
+	streamRef << bcat.getGrade() << "." << std::endl;
+	return (streamRef);
 }

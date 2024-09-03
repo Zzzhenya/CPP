@@ -45,8 +45,8 @@ class Bureaucrat: public Exceptions
 
 		const std::string		&getName(void) const;
 		const unsigned int		&getGrade(void) const;
-		void					upGrade(int val);
-		void					downGrade(int val);
+		void					upGrade(void);
+		void					downGrade(void);
 
 
 	private:
@@ -56,5 +56,7 @@ class Bureaucrat: public Exceptions
 		void					setGrade(unsigned int new_grade);
 	
 };
+
+std::ostream& operator<<(std::ostream& streamRef,const Bureaucrat& bcat);
 
 #endif
