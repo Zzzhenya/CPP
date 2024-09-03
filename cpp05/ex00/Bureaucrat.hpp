@@ -41,12 +41,12 @@ class Bureaucrat: public Exceptions
 	public:
 		Bureaucrat(void);
 		~Bureaucrat(void);
-		Bureaucrat(std::string name, unsigned int grade);
+		Bureaucrat(std::string name, int grade);
 
 		const std::string		&getName(void) const;
 		const unsigned int		&getGrade(void) const;
-		void					upGrade(unsigned int val);
-		void					downGrade(unsigned int val);
+		void					upGrade(int val);
+		void					downGrade(int val);
 
 
 	private:

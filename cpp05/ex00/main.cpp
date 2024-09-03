@@ -1,22 +1,17 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
 
-void	too_low(void)
+void	basic_stack(std::string name, int val)
 {
-	Bureaucrat b2 = Bureaucrat("Bob", 400);
+	Bureaucrat b2 = Bureaucrat(name, val);
 	std::cout << b2.getName() << " " << b2.getGrade() << std::endl;
 }
 
-void	too_high(void)
+void	basic_heap(std::string name, int val)
 {
-	Bureaucrat b2 = Bureaucrat("Bob", 0);
-	std::cout << b2.getName() << " " << b2.getGrade() << std::endl;
-}
-
-void	negative(void)
-{
-	Bureaucrat b2 = Bureaucrat("Bob", -20);
-	std::cout << b2.getName() << " " << b2.getGrade() << std::endl;
+	Bureaucrat *b1 = new Bureaucrat(name, val);
+	std::cout << b1->getName() << " " << b1->getGrade() << std::endl;
+	delete b1;
 }
 
 void basic(void)
@@ -28,8 +23,7 @@ void basic(void)
 		debug(std::cerr << "=======================================\n");
 	}
 	{
-		Bureaucrat b1 = Bureaucrat("Bob", 20);
-		std::cout << b1.getName() << " " << b1.getGrade() << std::endl;
+		basic_stack("Bob", 20);
 		debug(std::cerr << "=======================================\n");
 	}
 	{
@@ -56,42 +50,87 @@ void	simple_tests(void)
 		catch (std::exception & e)
 		{
 			std::cerr << e.what() << std::endl;
+			std::cerr << "ERROR" << std::endl;
 		}
 	}
+	std::cout << "Stack\n";
 	{
 		try
 		{
-			too_low();
+			basic_stack("Bob", 0);
 		}
 		catch (std::exception & e)
 		{
-			std::cerr << e.what() << std::endl;
-			if (std::string(e.what()) == E_TOO_LOW)
-				std::cout << "\t\t\t\t\tPASS" << std::endl;
-		}
-	}
-	{
-		try
-		{
-			too_high();
-		}
-		catch (std::exception & e)
-		{
-			std::cerr << e.what() << std::endl;
 			if (std::string(e.what()) == E_TOO_HIGH)
-				std::cout << "\t\t\t\t\tPASS" << std::endl;
+				std::cerr << e.what() << std::endl;
+			else
+				std::cerr << "ERROR" << std::endl;
 		}
 	}
 	{
 		try
 		{
-			negative();
+			basic_stack("Bob", 400);
 		}
 		catch (std::exception & e)
 		{
-			std::cerr << e.what() << std::endl;
 			if (std::string(e.what()) == E_TOO_LOW)
-				std::cout << "\t\t\t\t\tPASS" << std::endl;
+				std::cerr << e.what() << std::endl;
+			else
+				std::cerr << "ERROR" << std::endl;
+		}
+	}
+	{
+		try
+		{
+			basic_stack("Bob", -10);
+		}
+		catch (std::exception & e)
+		{
+			if (std::string(e.what()) == E_TOO_HIGH)
+				std::cerr << e.what() << std::endl;
+			else
+				std::cerr << "ERROR" << std::endl;
+		}
+	}
+	std::cout << "Heap\n";
+	{
+		try
+		{
+			basic_heap("Bob", 0);
+		}
+		catch (std::exception & e)
+		{
+			if (std::string(e.what()) == E_TOO_HIGH)
+				std::cerr << e.what() << std::endl;
+			else
+				std::cerr << "ERROR" << std::endl;
+		}
+	}
+	{
+		try
+		{
+			basic_heap("Bob", 400);
+		}
+		catch (std::exception & e)
+		{
+			if (std::string(e.what()) == E_TOO_LOW)
+				std::cerr << e.what() << std::endl;
+			else
+				std::cerr << "ERROR" << std::endl;
+		}
+	}
+	{
+		try
+		{
+			basic_heap("Bob", -10);
+		}
+		catch (std::exception & e)
+		{
+			if (std::string(e.what()) == E_TOO_HIGH)
+				std::cerr << e.what() << std::endl;
+			else
+				std::cerr << "ERROR" << std::endl;
 		}
 	}
 }

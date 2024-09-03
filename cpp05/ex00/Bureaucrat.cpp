@@ -10,7 +10,7 @@ Bureaucrat::~Bureaucrat(void)
 	debug(std::cout << "Bureaucrat destructor\n");
 }
 
-Bureaucrat::Bureaucrat(std::string name, unsigned int grade):_name(name), _grade(grade)
+Bureaucrat::Bureaucrat(std::string name, int grade):_name(name), _grade(grade)
 {
 	if (grade > LOWEST_GRADE)
 		throw Bureaucrat::GradeTooLowException();
@@ -34,7 +34,7 @@ void	Bureaucrat::setGrade(unsigned int new_grade)
 	this->_grade = new_grade;
 }
 
-void	Bureaucrat::upGrade(unsigned int val)
+void	Bureaucrat::upGrade(int val)
 {
 	int new_grade = getGrade() - val;
 	if (new_grade < HIGHEST_GRADE)
@@ -44,7 +44,7 @@ void	Bureaucrat::upGrade(unsigned int val)
 	setGrade((unsigned int)new_grade);
 }
 
-void	Bureaucrat::downGrade(unsigned int val)
+void	Bureaucrat::downGrade(int val)
 {
 	int new_grade = getGrade() + val;
 
