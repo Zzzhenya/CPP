@@ -12,7 +12,29 @@
 # define debug(x)
 # endif
 
-class Bureaucrat
+class MyExceptions
+{
+	public:
+		class GradeTooHighException: public std::exception 
+		{
+			public:
+				virtual const char * what() const throw()
+				{
+	    			return ("Grade too high");
+	    		}
+		};
+
+		class GradeTooLowException: public std::exception 
+		{
+			public:
+				virtual const char * what() const throw()
+				{
+	    			return ("Grade too low");
+				}
+		};
+};
+
+class Bureaucrat : public MyExceptions
 {
 	public:
 		Bureaucrat(void);
@@ -21,6 +43,27 @@ class Bureaucrat
 
 		const std::string		&getName(void) const;
 		const unsigned int		&getGrade(void) const;
+		void					setGrade(unsigned int new_grade);
+		void					upGrade(unsigned int val);
+		void					downGrade(unsigned int val);
+
+		// class GradeTooHighException: public std::exception 
+		// {
+    	// 	public:
+		// 		virtual const char * what() const throw()
+		// 		{
+        // 			return ("Grade too high");
+    	// 		}
+		// };
+
+		// class GradeTooLowException: public std::exception 
+		// {
+    	// 	public:
+		// 		virtual const char * what() const throw()
+		// 		{
+        // 			return ("Grade too low");
+    	// 		}
+		// };
 
 	private:
 		const std::string	_name;
