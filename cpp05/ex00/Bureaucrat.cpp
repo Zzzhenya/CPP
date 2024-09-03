@@ -17,7 +17,6 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other):_name(other._name),_grade(other.
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
-	//this->_name = other._name;
 	this->_grade = other._grade;
 	debug(std::cout << "Bureaucrat copy assignment operator overload\n");
 	return (*this);
