@@ -5,6 +5,8 @@
 
 # define LOWEST_GRADE 150
 # define HIGHEST_GRADE 1
+# define E_TOO_LOW "Exception: Grade too low"
+# define E_TOO_HIGH "Exception: Grade too high"
 
 # ifdef _DEBUG
 # define debug(x) ((x))
@@ -12,7 +14,7 @@
 # define debug(x)
 # endif
 
-class MyExceptions
+class Exceptions
 {
 	public:
 		class GradeTooHighException: public std::exception 
@@ -20,7 +22,7 @@ class MyExceptions
 			public:
 				virtual const char * what() const throw()
 				{
-	    			return ("Grade too high");
+	    			return (E_TOO_HIGH);
 	    		}
 		};
 
@@ -29,12 +31,12 @@ class MyExceptions
 			public:
 				virtual const char * what() const throw()
 				{
-	    			return ("Grade too low");
+	    			return (E_TOO_LOW);
 				}
 		};
 };
 
-class Bureaucrat : public MyExceptions
+class Bureaucrat: public Exceptions
 {
 	public:
 		Bureaucrat(void);
@@ -43,31 +45,15 @@ class Bureaucrat : public MyExceptions
 
 		const std::string		&getName(void) const;
 		const unsigned int		&getGrade(void) const;
-		void					setGrade(unsigned int new_grade);
 		void					upGrade(unsigned int val);
 		void					downGrade(unsigned int val);
 
-		// class GradeTooHighException: public std::exception 
-		// {
-    	// 	public:
-		// 		virtual const char * what() const throw()
-		// 		{
-        // 			return ("Grade too high");
-    	// 		}
-		// };
-
-		// class GradeTooLowException: public std::exception 
-		// {
-    	// 	public:
-		// 		virtual const char * what() const throw()
-		// 		{
-        // 			return ("Grade too low");
-    	// 		}
-		// };
 
 	private:
-		const std::string	_name;
-		unsigned int		_grade;
+		const std::string		_name;
+		unsigned int			_grade;
+
+		void					setGrade(unsigned int new_grade);
 	
 };
 

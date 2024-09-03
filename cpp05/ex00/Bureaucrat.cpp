@@ -13,9 +13,9 @@ Bureaucrat::~Bureaucrat(void)
 Bureaucrat::Bureaucrat(std::string name, unsigned int grade):_name(name), _grade(grade)
 {
 	if (grade > LOWEST_GRADE)
-		throw Bureaucrat::GradeTooHighException();
-	else if (grade < HIGHEST_GRADE)
 		throw Bureaucrat::GradeTooLowException();
+	else if (grade < HIGHEST_GRADE)
+		throw Bureaucrat::GradeTooHighException();
 	debug(std::cout << "Bureaucrat constructor\n");
 }
 
@@ -47,7 +47,7 @@ void	Bureaucrat::upGrade(unsigned int val)
 void	Bureaucrat::downGrade(unsigned int val)
 {
 	int new_grade = getGrade() + val;
-	
+
 	if (new_grade < HIGHEST_GRADE)
 		throw Bureaucrat::GradeTooHighException();
 	else if (new_grade > LOWEST_GRADE)
