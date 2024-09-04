@@ -3,10 +3,10 @@ NAME = bureucrat
 DBGNAME = dbg_bureucrat
 
 SRC =  main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
-		#RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+		RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 
 HEADER = Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp \
-			#RobotomyRequestForm.hpp PresidentialPardonForm.hpp
+			RobotomyRequestForm.hpp PresidentialPardonForm.hpp
 
 OBJ = $(SRC:.cpp=.o)
 

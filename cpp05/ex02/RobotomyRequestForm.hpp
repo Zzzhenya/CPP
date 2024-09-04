@@ -2,6 +2,8 @@
 # define ROBOTOMYREQUESTFORM_HPP
 
 # include <iostream>
+# include <cstdlib>
+# include <ctime>
 # include "AForm.hpp"
 
 # ifdef _DEBUG
@@ -19,6 +21,11 @@ class RobotomyRequestForm: public AForm
 		RobotomyRequestForm(void);
 		~RobotomyRequestForm(void);
 		RobotomyRequestForm(std::string target);
+
+		const std::string &getTarget(void) const;
+
+		void		beSigned(const Bureaucrat &bcat);
+		void		execute(Bureaucrat const & executor) const;
 
 	private:
 		std::string	_target;

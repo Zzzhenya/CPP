@@ -2,7 +2,7 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm(void): AForm("ShrubberyCreationForm", SHRUB_SIGN, SHRUB_EXEC)
 {
-	this->_target = ".";
+	this->_target = "Default";
 	debug(std::cout << "Shrubbery default constructor\n");
 }
 
