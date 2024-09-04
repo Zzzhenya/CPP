@@ -74,6 +74,16 @@ void AForm::beSigned(const Bureaucrat &bcat)
 	bcat.signForm(this);
 }
 
+void	AForm::execute(Bureaucrat const & executor) const
+{
+	unsigned int bcatgrade = executor.getGrade();
+	if (bcatgrade > getExecGrade())
+		throw Bureaucrat::GradeTooLowException();
+	else if (bcatgrade < HIGHEST_GRADE)
+		throw Bureaucrat::GradeTooHighException();
+	executor.executeForm(*this);
+}
+
 
 std::ostream& operator<<(std::ostream& streamRef,const AForm& AForm)
 {

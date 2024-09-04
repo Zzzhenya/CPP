@@ -26,7 +26,8 @@ class AForm
 		unsigned int 		getExecGrade(void) const;
 		void				setStatus(bool status);
 
-		void				beSigned(const Bureaucrat &bcat);
+		virtual void		beSigned(const Bureaucrat &bcat) = 0;
+		virtual void		execute(Bureaucrat const & executor) const = 0;
 
 	private:
 		const std::string	_name;

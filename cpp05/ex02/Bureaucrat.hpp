@@ -52,6 +52,7 @@ class Bureaucrat: public Exceptions
 		void					upGrade(void);
 		void					downGrade(void);
 		void					signForm(AForm *form) const;
+		void					executeForm(AForm const & form) const;
 
 	private:
 		const std::string		_name;

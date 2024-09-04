@@ -83,6 +83,21 @@ void	Bureaucrat::signForm(AForm *form) const
 	}
 }
 
+void	Bureaucrat::executeForm(AForm const & form) const
+{
+	if (form.getStatus() == false)
+	{
+		std::cout << this->getName();
+		std::cout << " couldn’t execute " << form.getName();
+		std::cout << " because form is not signed." << std::endl;
+		return;
+	}
+	{
+		std::cout << this->getName();
+		std::cout << " executed " << form.getName() << std::endl;
+	}
+}
+
 std::ostream& operator<<(std::ostream& streamRef,const Bureaucrat& bcat)
 {
 	streamRef << bcat.getName() << ", bureaucrat grade ";
