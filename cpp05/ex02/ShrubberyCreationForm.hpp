@@ -2,6 +2,10 @@
 # define SHRUBBERYCREATIONFORM_HPP
 
 # include <iostream>
+# include <fstream>
+# include <string>
+# include <cstdlib>
+# include <ctime>
 # include "AForm.hpp"
 # include "Bureaucrat.hpp"
 

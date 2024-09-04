@@ -23,3 +23,7 @@ virtual const char* what() const throw();
 exception specification of overriding function is more lax than base version
 
 * https://stackoverflow.com/questions/53829852/exception-specification-of-overriding-function-is-more-lax-than-base-version
+
+Why my random values with rand() the same?
+
+* https://cplusplus.com/forum/beginner/5131/
