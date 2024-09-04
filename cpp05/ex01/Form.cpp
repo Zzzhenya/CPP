@@ -1,8 +1,26 @@
 #include "Form.hpp"
 
-Form::Form(void):_name("default"),_signed(0),_sign_grade(HIGHEST_GRADE),_exec_grade(LOWEST_GRADE)
+Form::Form(void):_name("default"),_signed(0),
+	_sign_grade(HIGHEST_GRADE),_exec_grade(LOWEST_GRADE)
 {
 	debug(std::cout << "Form default constructor\n");
+}
+
+Form::Form(const Form &other):_name(other._name),_signed(0),
+	_sign_grade(other._sign_grade),_exec_grade(other._exec_grade)
+{
+	debug(std::cout << "Form copy constructor\n");
+}
+
+/*
+	Cannot copy assing _name, _sign_grade and _exec_grade - const
+	Copy assignment non-functional, therefore private
+*/
+Form	&Form::operator=(const Form &other)
+{
+	this->_signed = other._signed;
+	debug(std::cout << "Form copy assignment operator overload\n");
+	return (*this);
 }
 
 Form::Form(std::string name, int sign_grade, int exec_grade):_name(name),

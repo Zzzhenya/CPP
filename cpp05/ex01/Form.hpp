@@ -12,21 +12,21 @@
 
 class Bureaucrat;
 
-class Form//: public Exceptions
+class Form
 {
 	public:
 		Form(void);
 		~Form(void);
-
+		Form(const Form &other);
 		Form(std::string name, int sign_grade, int exec_grade);
 
-		bool			getStatus(void) const;
-		std::string 	getName(void) const;
-		unsigned int 	getSignGrade(void) const;
-		unsigned int 	getExecGrade(void) const;
-		void			setStatus(bool status);
+		bool				getStatus(void) const;
+		std::string 		getName(void) const;
+		unsigned int 		getSignGrade(void) const;
+		unsigned int 		getExecGrade(void) const;
+		void				setStatus(bool status);
 
-		void beSigned(const Bureaucrat &bcat);
+		void				beSigned(const Bureaucrat &bcat);
 
 	private:
 		const std::string	_name;
@@ -34,8 +34,10 @@ class Form//: public Exceptions
 		const unsigned int 	_sign_grade;
 		const unsigned int 	_exec_grade;
 
+		Form				&operator=(const Form &other);
+
 };
 
-std::ostream& operator<<(std::ostream& streamRef,const Form& form);
+std::ostream& 				operator<<(std::ostream& streamRef,const Form& form);
 
 #endif
