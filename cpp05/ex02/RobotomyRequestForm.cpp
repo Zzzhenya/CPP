@@ -11,6 +11,22 @@ RobotomyRequestForm::~RobotomyRequestForm(void)
 	debug(std::cout << "Robotomy destructor\n");
 }
 
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other):AForm(other)
+{
+	this->_target = other._target;
+	debug(std::cout << "Robotomy copy constructor\n");
+}
+
+// Not copying the status, only target
+// this->setStatus(other.getStatus());
+RobotomyRequestForm	&RobotomyRequestForm::operator=(const RobotomyRequestForm &other)
+{
+	this->_target = other._target;
+	debug(std::cout << "Robotomy copy assignment operator overload\n");
+	return (*this);
+}
+
+
 RobotomyRequestForm::RobotomyRequestForm(std::string target): AForm("RobotomyRequestForm", ROBO_SIGN, ROBO_EXEC)
 {
 	this->_target = target;
@@ -51,4 +67,11 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 		std::cout << getTarget() << " has been robotomized successfully\n";
 	else
 		std::cout << getTarget() << " robotomy failed\n";
+}
+
+std::ostream& operator<<(std::ostream& streamRef,const RobotomyRequestForm& form)
+{
+	streamRef << *(AForm*)&form;
+	streamRef << "\t\t\t\t\ttarget: " << form.getTarget() << std::endl;
+	return (streamRef);
 }

@@ -11,6 +11,21 @@ PresidentialPardonForm::~PresidentialPardonForm(void)
 	debug(std::cout << "Presidential destructor\n");
 }
 
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other):AForm(other)
+{
+	this->_target = other._target;
+	debug(std::cout << "Presidential copy constructor\n");
+}
+
+// Not copying the status, only target
+// this->setStatus(other.getStatus());
+PresidentialPardonForm	&PresidentialPardonForm::operator=(const PresidentialPardonForm &other)
+{
+	this->_target = other._target;
+	debug(std::cout << "Presidential copy assignment operator overload\n");
+	return (*this);
+}
+
 PresidentialPardonForm::PresidentialPardonForm(std::string target): AForm("PresidentialPardonForm", PRES_SIGN, PRES_EXEC)
 {
 	this->_target = target;
@@ -46,4 +61,11 @@ void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 	{
 		std::cerr << e.what() << std::endl;
 	}
+}
+
+std::ostream& operator<<(std::ostream& streamRef,const PresidentialPardonForm& form)
+{
+	streamRef << *(AForm*)&form;
+	streamRef << "\t\t\t\t\ttarget: " << form.getTarget() << std::endl;
+	return (streamRef);
 }

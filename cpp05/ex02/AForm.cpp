@@ -85,14 +85,14 @@ void	AForm::execute(Bureaucrat const & executor) const
 }
 
 
-std::ostream& operator<<(std::ostream& streamRef,const AForm& AForm)
+std::ostream& operator<<(std::ostream& streamRef,const AForm& form)
 {
-	streamRef << AForm.getName() << " \t\t: ";
-	if (AForm.getStatus())
+	streamRef << form.getName() << " \t\t: ";
+	if (form.getStatus())
 		streamRef << "Signed";
 	else
 		streamRef << "Unsigned";
-	streamRef << "\tS: " << AForm.getSignGrade();
-	streamRef << "  E: " << AForm.getExecGrade() << std::endl;
+	streamRef << "\tS: " << form.getSignGrade();
+	streamRef << "  E: " << form.getExecGrade() << std::endl;
 	return (streamRef);
 }

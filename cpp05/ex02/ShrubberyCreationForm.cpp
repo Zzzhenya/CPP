@@ -11,6 +11,21 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 	debug(std::cout << "Shrubbery destructor\n");
 }
 
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other):AForm(other)
+{
+	this->_target = other._target;
+	debug(std::cout << "Shrubbery copy constructor\n");
+}
+
+// Not copying the status, only target
+// this->setStatus(other.getStatus());
+ShrubberyCreationForm	&ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other)
+{
+	this->_target = other._target;
+	debug(std::cout << "Shrubbery copy assignment operator overload\n");
+	return (*this);
+}
+
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target): AForm("ShrubberyCreationForm", SHRUB_SIGN, SHRUB_EXEC)
 {
 	this->_target = target;
@@ -102,4 +117,11 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	}
 	draw_shrubs(outfile);
 	outfile.close();
+}
+
+std::ostream& operator<<(std::ostream& streamRef,const ShrubberyCreationForm& form)
+{
+	streamRef << *(AForm*)&form;
+	streamRef << "\t\t\t\t\ttarget: " << form.getTarget() << std::endl;
+	return (streamRef);
 }

@@ -41,7 +41,25 @@ void basic(void)
 
 int main(void)
 {
-	basic();
+	// basic();
 	//AForm form;
+
+	// copy constructor
+	// PresidentialPardonForm one = PresidentialPardonForm("bin");
+	// PresidentialPardonForm two = PresidentialPardonForm(one);
+
+	PresidentialPardonForm one = PresidentialPardonForm("bin");
+	PresidentialPardonForm two = PresidentialPardonForm("home");
+	Bureaucrat bcat = Bureaucrat("Tom", 2);
+
+	two.beSigned(bcat);
+	std::cout << one;
+	std::cout << two;
+
+
+	one = two;
+
+	std::cout << one;
+	std::cout << two;
 	return (0);
 }
