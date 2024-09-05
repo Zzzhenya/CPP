@@ -1,6 +1,18 @@
-NAME = bureucrat
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/05 00:54:22 by sde-silv          #+#    #+#              #
+#    Updated: 2024/09/05 16:06:29 by sde-silv         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-DBGNAME = dbg_bureucrat
+NAME = forms
+
+DBGNAME = dbg_forms
 
 SRC =  main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
 		RobotomyRequestForm.cpp PresidentialPardonForm.cpp
