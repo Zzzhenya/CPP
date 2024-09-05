@@ -27,3 +27,7 @@ exception specification of overriding function is more lax than base version
 Why my random values with rand() the same?
 
 * https://cplusplus.com/forum/beginner/5131/
+
+Why I can't make a function pointer array using constructors of different classes
+
+* https://softwareengineering.stackexchange.com/questions/245613/why-doesnt-c-allow-you-to-take-the-address-of-a-constructor
