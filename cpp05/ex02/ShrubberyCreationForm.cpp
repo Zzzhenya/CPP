@@ -22,7 +22,7 @@ const std::string &ShrubberyCreationForm::getTarget(void) const
 	return (this->_target);
 }
 
-void		ShrubberyCreationForm::beSigned(const Bureaucrat &bcat)
+void	ShrubberyCreationForm::beSigned(const Bureaucrat &bcat)
 {
 	try
 	{
@@ -34,18 +34,21 @@ void		ShrubberyCreationForm::beSigned(const Bureaucrat &bcat)
 	}
 }
 
-void 	draw_shrubs(std::fstream &outfile)
+void	draw_tree(std::fstream &outfile, int num)
 {
-	std::srand(std::time(0));
-	int num = std::rand() % 50 + 3;
-	
 	int k = 0;
-	int top = num;
 	int l = num;
-	for (int j = 0; j < top; j++)
+	for (int i = 0; i < num; i++)
 	{
 		for (int i = 0; i < l; i++)
+		{
+			if (num > 5)
+			{
+				if (l%2 && i == 0)
+					outfile << "  ";
+			}
 			outfile << " ";
+		}
 		for (int i = k; i > 0; i --)
 			outfile << "*";
 		for (int i = k; i > 0; i --)
@@ -57,6 +60,20 @@ void 	draw_shrubs(std::fstream &outfile)
 		l--;
 	 	outfile << std::endl;
 	}
+	for (int i = 0; i < num/2; i++)
+	{
+		for (int i = 0; i < (num*9)/10 + 1; i++)
+			outfile << " ";
+		for (int i = 0; i < num/4; i++)
+			outfile << "*";
+		outfile << std::endl;
+	}
+}
+
+void 	draw_shrubs(std::fstream &outfile)
+{
+	std::srand(std::time(0));
+	draw_tree(outfile, std::rand() % 50 + 5);
 }
 
 /**
