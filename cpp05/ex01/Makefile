@@ -1,6 +1,18 @@
-NAME = bureucrat
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/04 01:32:40 by sde-silv          #+#    #+#              #
+#    Updated: 2024/09/05 16:08:18 by sde-silv         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-DBGNAME = dbg_bureucrat
+NAME = form
+
+DBGNAME = dbg_form
 
 SRC =  main.cpp Bureaucrat.cpp Form.cpp
 
