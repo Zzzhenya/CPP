@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 23:44:21 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/06 00:53:51 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/06 01:11:43 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ class Intern
 		Intern(void);
 		~Intern(void);
 
-		AForm	*makeForm(std::string name, std::string target);
+		AForm		*makeForm(std::string name, std::string target);
+
+	private:
+		Intern(const Intern &other);
+		Intern		&operator=(const Intern &other);
 };
 
 #endif

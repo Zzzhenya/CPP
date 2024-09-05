@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 00:53:05 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/06 00:53:45 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/06 01:13:18 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,23 @@ Intern::Intern(void)
 {
 	debug(std::cout << "Intern default constructor\n");
 }
+
 Intern::~Intern(void)
 {
 	debug(std::cout << "Intern destructor\n");
+}
+
+Intern::Intern(const Intern &other)
+{
+	debug(std::cout << "Intern copy constructor\n");
+	(void)other;
+}
+
+Intern	&Intern::operator=(const Intern &other)
+{
+	debug(std::cout << "Intern copy assignment operator\n");
+	(void)other;
+	return (*this);
 }
 
 // int getindex(std::string arr[3], std::string &name)
