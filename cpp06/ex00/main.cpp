@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:19:39 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/08 01:14:39 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/08 01:30:33 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ int main(void)
 		ScalarConverter::convert("ABC");
 		ScalarConverter::convert("0");
 		ScalarConverter::convert("12");
+		ScalarConverter::convert("34");
+		ScalarConverter::convert("nan");
+		ScalarConverter::convert("-inf");
+		ScalarConverter::convert("inf");
+		ScalarConverter::convert("+inf");
+		ScalarConverter::convert("NULL");
+		ScalarConverter::convert(" ");
 
 	}
 	return (0);

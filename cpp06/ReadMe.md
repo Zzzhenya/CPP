@@ -27,3 +27,5 @@ C++ casts
 
 
 * https://www.geeksforgeeks.org/casting-operators-in-cpp/
+
+* https://en.cppreference.com/w/cpp/header/string

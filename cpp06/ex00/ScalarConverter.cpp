@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/08 01:13:21 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/08 01:28:55 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,23 @@ ScalarConverter::ScalarConverter(void)
  * 4. display the results to std::cout
  * */
 
-int detect_type(const char *ptr)
+// int detect_type(const char *ptr)
+int detect_type(const std::string &val)
 {
-	std::string		val = ptr;
-	long int ret = strtol(ptr, NULL, 10);
-	std::cout << ret << std::endl;
-	(void)ret;
+	// std::string		val = ptr;
+	// long int ret = strtol(ptr, NULL, 10);
+	// std::cout << ret << std::endl;
+	// (void)ret;
+	try
+	{
+		std::cout << "result: " << std::stol(val, NULL, 10) << std::endl;
+	}
+	catch (std::exception & e)
+	{
+		std::cerr << "exception: "<< e.what() << std::endl;
+		return (UKWN);
+	}
+
 	if (val.empty())
 		return (EMPT);
 	if (val.length() == 1) // not considering digits
