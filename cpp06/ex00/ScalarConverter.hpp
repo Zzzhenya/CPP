@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:49 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/08 00:38:08 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/08 01:11:34 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ Except for char parameters, only the decimal notation will be used.
 # define SCALARCONVERTER_HPP
 
 # include <iostream>
+# include <cstdlib>  // for strtol
 
 # define UKWN 0
 # define EMPT 1
