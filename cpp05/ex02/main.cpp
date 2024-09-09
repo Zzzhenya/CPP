@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 15:14:02 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/05 16:06:14 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:54:54 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,6 @@
 void basic(void)
 {
 	Bureaucrat b1 = Bureaucrat("Bob", 2);
-
-	{
-		AForm	*form = new ShrubberyCreationForm("home");
-		std::cout << *form;
-		form->beSigned(b1);
-		std::cout << *form;
-		form->execute(b1);
-		std::cout << *form;
-		delete form;
-	}
 	{
 		AForm 	*form = new RobotomyRequestForm("target_one");
 		std::cout << *form;
@@ -48,12 +38,21 @@ void basic(void)
 		std::cout << *form;
 		delete form;
 	}
+	{
+		AForm	*form = new ShrubberyCreationForm("home");
+		std::cout << *form;
+		form->beSigned(b1);
+		std::cout << *form;
+		form->execute(b1);
+		std::cout << *form;
+		delete form;
+	}
 
 }
 
 int main(void)
 {
-	// basic();
+	 basic();
 	//AForm form;
 
 	// copy constructor
