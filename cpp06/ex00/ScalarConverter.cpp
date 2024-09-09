@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/08 01:28:55 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/09 02:21:38 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,72 @@ int detect_type(const std::string &val)
 	return (UKWN);
 }
 
-static int value_is_null(const char *ptr)
+int value_is_null(const char *ptr)
 {
 	if (!ptr)
 		return (1);
 	return (0);
+}
+
+int	value_is_empty(std::string &val)
+{
+	if (val.empty())
+		return (1);
+	return (0);
+}
+
+int is_a_char(std::string &val)
+{
+	// Convert actual single character strings to char
+	std::cout << "char: ";
+	if (val.length() == 1 && (val[0] < 32 && val[0] > 126))
+	{
+		std::cout << "Non displayable" << std::endl;
+		return (1);
+	}
+	if (val.length() == 1 && (val[0] >= 32 && val[0] <= 126))// not considering digits?
+	{
+		 std::cout << val << std::endl;
+		 return (1);
+	}
+	// Convert ASCII decimals to char
+	std::cout << "Could be ascii val of a char" << std::endl;
+	return (1);
+	//int ret = convert_to_int()
+	//if (ret >= 32 && ret <= 126)
+	//{
+		// std::cout << "\'" << (char)ret << "\'" << std::endl;
+		// return (1);
+	//}
+	//float retf = convert_to_float()
+	//if (retf >= 32 && retf <= 126)
+	// {
+		// std::cout << "\'" << (char)retf << "\'" << std::endl;
+		// return (1);
+	// }
+	std::cout << "Impossible" << std::endl;
+	return (0);
+}
+
+int is_an_int(std::string &val)
+{
+	(void)val;
+	std::cout << "is an int\n";
+	return (1);
+}
+
+int is_a_double(std::string &val)
+{
+	(void)val;
+	std::cout << "is a double\n";
+	return (1);
+}
+
+int is_a_float(std::string &val)
+{
+	(void)val;
+	std::cout << "is a float\n";
+	return (1);
 }
 
 void	ScalarConverter::convert(const char *ptr)
@@ -81,20 +142,29 @@ void	ScalarConverter::convert(const char *ptr)
 		return;
 	}
 	std::string		val = ptr;
-	switch(detect_type(ptr))
+	if (value_is_empty(val))
 	{
-		case EMPT:
-			std::cout << "Value is empty.\n";
-			break;
-		case CHAR:
-			std::cout << val << " is a char.\n";
-			break;
-		case STRG:
-			std::cout << val << " is a string.\n";
-			break;
-		default:
-			std::cout << val << " is of unknown type.\n";
+		std::cout << "Value is empty." << std::endl;
+		return;
 	}
+	is_a_char(val);
+	is_an_int(val);
+	is_a_double(val);
+	is_a_float(val);
+	// switch(detect_type(ptr))
+	// {
+	// 	case EMPT:
+	// 		std::cout << "Value is empty.\n";
+	// 		break;
+	// 	case CHAR:
+	// 		std::cout << val << " is a char.\n";
+	// 		break;
+	// 	case STRG:
+	// 		std::cout << val << " is a string.\n";
+	// 		break;
+	// 	default:
+	// 		std::cout << val << " is of unknown type.\n";
+	// }
 }
 
 // void	*ScalarConverter::convert(std::string val)
