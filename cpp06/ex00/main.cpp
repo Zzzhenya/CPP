@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:19:39 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/09 17:33:01 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/09 23:40:33 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int main(int argc, char **argv)
 		// 	std::cout << static_cast <char> (argv[1][0]) << std::endl;
 		// else
 		// 	std::cout << static_cast <char> (std::stol(std::string(argv[1]), NULL, 10)) << std::endl;
-
+// 		#include <climits>
+// std::cout << std::numeric_limits<double>::max() << std::endl;
 	}
 	{
 		ScalarConverter::convert(argv[1]);

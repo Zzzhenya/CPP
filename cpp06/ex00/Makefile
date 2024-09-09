@@ -6,7 +6,7 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/06 01:17:00 by sde-silv          #+#    #+#              #
-#    Updated: 2024/09/06 01:19:33 by sde-silv         ###   ########.fr        #
+#    Updated: 2024/09/09 21:08:20 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,22 +22,22 @@ OBJ = $(SRC:.cpp=.o)
 
 DBGOBJ = $(SRC:.cpp=.dbg.o)
 
-CXX = clang++
+CXX = g++
 
-CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98 #-Wshadow
+CXXFLAGS = -Wall -Wextra -Werror -g -std=c++98 -ansi -pedantic-errors #-Wshadow
 
-DBGCPPFLAGS = $(CPPFLAGS) -D_DEBUG
+DBGCPPFLAGS = $(CXXFLAGS) -D_DEBUG
 
 all: $(NAME) $(DBGNAME)
 
 %.o: %.cpp Makefile $(HEADER)
-	$(CXX) $(CPPFLAGS) -c -o $@ $<
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 %.dbg.o: %.cpp Makefile $(HEADER)
 	$(CXX) $(DBGCPPFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJ)
-	$(CXX) $(CPPFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 $(DBGNAME): $(DBGOBJ)
 	$(CXX) $(DBGCPPFLAGS) $(DBGOBJ) -o $(DBGNAME)
