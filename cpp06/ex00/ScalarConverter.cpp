@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/09 02:21:38 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/09 20:18:16 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,37 +80,91 @@ int	value_is_empty(std::string &val)
 	return (0);
 }
 
+void	convert_to_char(int val)
+{
+	std::cout << "char:\t";
+	if (val < 32 || val > 126)
+		std::cout << "Non displayable" << std::endl;
+	else if ((val >= 32 && val <= 126))
+		std::cout << static_cast <char>(val) << std::endl;
+}
+
+// void try_char(std::string &val)
+// {
+// 	float ret = 0;
+// }
+
 int is_a_char(std::string &val)
 {
 	// Convert actual single character strings to char
-	std::cout << "char: ";
-	if (val.length() == 1 && (val[0] < 32 && val[0] > 126))
+	
+	if (val.length() == 1)
 	{
-		std::cout << "Non displayable" << std::endl;
+		//convert_to_char(val[0]);
 		return (1);
 	}
-	if (val.length() == 1 && (val[0] >= 32 && val[0] <= 126))// not considering digits?
-	{
-		 std::cout << val << std::endl;
-		 return (1);
-	}
-	// Convert ASCII decimals to char
-	std::cout << "Could be ascii val of a char" << std::endl;
-	return (1);
-	//int ret = convert_to_int()
-	//if (ret >= 32 && ret <= 126)
-	//{
-		// std::cout << "\'" << (char)ret << "\'" << std::endl;
-		// return (1);
-	//}
-	//float retf = convert_to_float()
-	//if (retf >= 32 && retf <= 126)
+	// else
 	// {
-		// std::cout << "\'" << (char)retf << "\'" << std::endl;
-		// return (1);
+	// 	try
+	// 	{
+	// 		//ret = std::stol(val, NULL, 10);
+	// 		if (!is_a_float(val) || !is_a_double(val))
+	// 			return
+	// 		ret = std::stol(val, 0);
+	// 		std::cout << ret << std::endl;
+	// 		convert_to_char(ret);
+	// 		return (1);
+	// 	}
+	// 	catch (std::exception &e)
+	// 	{
+	// 		std::cout << e.what() << std::endl;
+	// 		std::cout << "char: Impossible" << std::endl;
+	// 		return (0);
+	// 	}
 	// }
-	std::cout << "Impossible" << std::endl;
 	return (0);
+}
+
+void try_int(std::string &val)
+{
+	try
+	{
+		int ret = std::stoi(val, 0);
+		std::cout << "int:\t" << static_cast <int>(ret) << std::endl;
+	}
+	catch(std::exception &e)
+	{
+		std::cout << "int:\t" << "Impossible" << std::endl;
+		debug(std::cerr << e.what() << std::endl);
+	}
+}
+
+void try_float(std::string &val)
+{
+	try
+	{
+		float ret = std::stof(val, 0);
+		std::cout << "float:\t" << static_cast <float>(ret) << std::endl;
+	}
+	catch(std::exception &e)
+	{
+		std::cout << "float:\t" << "Impossible" << std::endl;
+		debug(std::cerr << e.what() << std::endl);
+	}
+}
+
+void try_double(std::string &val)
+{
+	try
+	{
+		double ret = std::stod(val, 0);
+		std::cout << "double:\t" << static_cast <double>(ret) << std::endl;
+	}
+	catch(std::exception &e)
+	{
+		std::cout << "double:\t" << "Impossible" << std::endl;
+		debug(std::cerr << e.what() << std::endl);
+	}
 }
 
 int is_an_int(std::string &val)
@@ -147,23 +201,28 @@ void	ScalarConverter::convert(const char *ptr)
 		std::cout << "Value is empty." << std::endl;
 		return;
 	}
-	is_a_char(val);
-	is_an_int(val);
-	is_a_double(val);
-	is_a_float(val);
-	// switch(detect_type(ptr))
+	if (is_a_char(val))
+	{
+		convert_to_char(val[0]);
+		try_int(val);
+		try_double(val);
+		try_float(val);
+		return;
+	}
+	// if (is_an_int(val))
 	// {
-	// 	case EMPT:
-	// 		std::cout << "Value is empty.\n";
-	// 		break;
-	// 	case CHAR:
-	// 		std::cout << val << " is a char.\n";
-	// 		break;
-	// 	case STRG:
-	// 		std::cout << val << " is a string.\n";
-	// 		break;
-	// 	default:
-	// 		std::cout << val << " is of unknown type.\n";
+	// 	try_char; convert_to_int; try_double;try_float;\
+	// 	return;
+	// }
+	// if (is_a_double(val))
+	// {
+	// 	try_char; try_int; convert_to_double;try_float;\
+	// 	return;
+	// }
+	// if (is_a_float(val))
+	// {
+	// 	try_char; try_int; try_double ;convert_to_float;\
+	// 	return;
 	// }
 }
 

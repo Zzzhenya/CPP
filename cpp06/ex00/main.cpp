@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:19:39 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/09 02:53:50 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:33:01 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,21 @@ int main(int argc, char **argv)
 		// ScalarConverter::convert("+inf");
 		// ScalarConverter::convert("NULL");
 		// ScalarConverter::convert(" ");
-		std::cout << static_cast <char> (42) << std::endl;
-		std::cout << static_cast <char> (42.3f) << std::endl;
-		std::cout << static_cast <char> (0) << std::endl;
-		std::cout << static_cast <char> ('a') << std::endl;
-		std::cout << static_cast <char> ("a"[0]) << std::endl;
-		std::cout << static_cast <char> (std::string("a")[0]) << std::endl;
-		std::cout << static_cast <char> (std::string("0")[0]) << std::endl;
-		if (std::string(argv[1]).length() == 1)
-			std::cout << static_cast <char> (argv[1][0]) << std::endl;
-		else
-			std::cout << static_cast <char> (std::stol(std::string(argv[1]), NULL, 10)) << std::endl;
+		// std::cout << static_cast <char> (42) << std::endl;
+		// std::cout << static_cast <char> (42.3f) << std::endl;
+		// std::cout << static_cast <char> (0) << std::endl;
+		// std::cout << static_cast <char> ('a') << std::endl;
+		// std::cout << static_cast <char> ("a"[0]) << std::endl;
+		// std::cout << static_cast <char> (std::string("a")[0]) << std::endl;
+		// std::cout << static_cast <char> (std::string("0")[0]) << std::endl;
+		// if (std::string(argv[1]).length() == 1)
+		// 	std::cout << static_cast <char> (argv[1][0]) << std::endl;
+		// else
+		// 	std::cout << static_cast <char> (std::stol(std::string(argv[1]), NULL, 10)) << std::endl;
 
+	}
+	{
+		ScalarConverter::convert(argv[1]);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:49 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/08 01:19:18 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/09 20:16:28 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ Except for char parameters, only the decimal notation will be used.
 # include <iostream>
 # include <cstdlib>  // for strtol <- if using strtol
 # include <string>
+
+# ifdef _DEBUG
+# define debug(x) ((x))
+# else
+# define debug(x)
+# endif
 
 # define UKWN 0
 # define EMPT 1
