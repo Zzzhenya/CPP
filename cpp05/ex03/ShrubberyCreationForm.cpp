@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 15:53:13 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/05 16:06:51 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:59:34 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,14 +121,20 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		return;
 	}
 	std::string outfile_name = std::string(getTarget()) + std::string("_shrubbery");
-	std::fstream outfile((const char *)outfile_name.c_str(), std::ios::out | std::ios::trunc);
-	if (!outfile.is_open())
+	try
 	{
-		std::cerr << "failed to create and open " << outfile_name.c_str() << "\n";
-		return;	
+		std::fstream outfile ((const char *)outfile_name.c_str(), std::ios::out | std::ios::trunc);
+		outfile.exceptions(std::ifstream::failbit|std::ifstream::badbit);
+		draw_shrubs(outfile);
+		outfile.close();
 	}
-	draw_shrubs(outfile);
-	outfile.close();
+	catch(const std::ios_base::failure& fail)
+	{
+		std::cerr << "failed to create and open " << outfile_name.c_str() << std::endl;
+		debug(std::cerr << fail.what() << std::endl);
+		return;
+	}
+	std::cout << "Successfully created " << outfile_name.c_str() << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& streamRef,const ShrubberyCreationForm& form)

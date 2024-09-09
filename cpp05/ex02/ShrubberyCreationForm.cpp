@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 15:53:13 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/09 19:54:23 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:59:42 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,9 +131,10 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	catch(const std::ios_base::failure& fail)
 	{
 		std::cerr << "failed to create and open " << outfile_name.c_str() << std::endl;
+		debug(std::cerr << fail.what() << std::endl);
 		return;
 	}
-	std::cout << "Successfully executed " << outfile_name.c_str() << std::endl;
+	std::cout << "Successfully created " << outfile_name.c_str() << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& streamRef,const ShrubberyCreationForm& form)
