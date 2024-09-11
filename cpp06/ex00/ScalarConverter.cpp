@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/11 17:50:00 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:31:27 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,18 +214,69 @@ void	convert_to_float(std::string &val)
 		std::cout << "Impossible" << std::endl;
 }
 
+int is_float_structure(std::string &str)
+{
+	std::string::iterator it; 
+      
+    it = str.begin();
+    while (it != str.end())
+    {
+    	if (std::isdigit(*it))
+    		it++;
+    	else
+    		break;
+    }
+    if (it != str.end() && *it == '.')
+    	it++;
+    while (it != str.end())
+    {
+    	if (std::isdigit(*it))
+    		it++;
+    	else
+    		break;
+    }  
+    if (it != str.end() && *it == 'f')
+    	it++;
+	if (it == str.end())
+		return (1);
+	else
+		return(0);
+}
+
+int is_special_float(std::string &val)
+{
+	if (val == "nanf" || val == "+inff" || val == "-inff" || val == "inff")
+		return (1);
+	return (0);
+}
+
 int is_a_float(std::string &val)
 {
 	try
 	{
-		std::stof(val);
-		return(1);
+		if (is_float_structure(val) || is_special_float(val))
+			std::stof(val);
+		else
+			return (0);
+		return (1);
 	}
 	catch(std::exception &e)
 	{
 		debug(std::cerr << e.what() << std::endl);
 		return (0);
 	}
+}
+
+int get_type(std::string &val)
+{
+	if (is_a_char(val))
+		return (CHAR);
+	if (is_an_int(val))
+		return (INT);
+	if (is_a_double(val))
+		return (DBL);
+	if (is_a_float(val))
+		return (FLT);
 	return (0);
 }
 
@@ -243,33 +294,21 @@ void	ScalarConverter::convert(const char *ptr)
 		std::cout << "Value is empty." << std::endl;
 		return;
 	}
-	if (is_a_char(val))
+	switch(get_type(val))
 	{
-		std::cout << "Is a char\n";
-		convert_to_char(val[0]); try_int(val);
-		try_double(val); try_float(val);
-		return;
+		case CHAR:
+			convert_to_char(val[0]); try_int(val); try_double(val); try_float(val);
+			break;
+		case INT:
+			try_char(val); convert_to_int(val); try_double(val); try_float(val);
+			break;
+		case DBL:
+			try_char(val); try_int(val); try_double(val); try_float(val);
+			break;
+		case FLT:
+			try_char(val); try_int(val); try_double(val); convert_to_float(val);
+			break;
+		default:
+			try_char(val); try_int(val); try_double(val); try_float(val);
 	}
-	if (is_an_int(val))
-	{
-		std::cout << "Is an int\n";
-		try_char(val); convert_to_int(val);
-		try_double(val); try_float(val);
-		return;
-	}
-	if (is_a_double(val))
-	{
-		std::cout << "Is a double\n";
-		try_char(val); try_int(val);
-		try_double(val); try_float(val);
-		return;
-	}
-	if (is_a_float(val))
-	{
-		std::cout << "Is a float\n";
-		try_char(val); try_int(val);
-		try_double(val); convert_to_float(val);
-		return;
-	}
-	std::cout << "Unknown\n";
 }

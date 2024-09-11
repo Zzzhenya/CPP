@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:49 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/09 22:43:09 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:26:15 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,18 @@ long      strtol( const char* str, char** str_end, int base );
 # include <string>
 # include <sstream>
 
+# include <cmath>
+
 # ifdef _DEBUG
 # define debug(x) ((x))
 # else
 # define debug(x)
 # endif
 
-# define UKWN 0
-# define EMPT 1
-# define CHAR 2
-# define STRG 3
-
+# define CHAR 1
+# define INT 2
+# define DBL 3
+# define FLT 4
 
 class ScalarConverter
 {
