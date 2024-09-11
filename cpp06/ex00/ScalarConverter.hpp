@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:49 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/11 19:26:15 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:38:49 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ long      strtol( const char* str, char** str_end, int base );
 # include <sstream>
 
 # include <cmath>
+# include <cctype>
 
 # ifdef _DEBUG
 # define debug(x) ((x))

@@ -6,11 +6,18 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/11 19:31:27 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:56:48 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+
+int is_special_float(std::string &val)
+{
+	if (val == "nanf" || val == "+inff" || val == "-inff" || val == "inff")
+		return (1);
+	return (0);
+}
 
 ScalarConverter::~ScalarConverter(void)
 {
@@ -197,7 +204,7 @@ void	convert_to_float(std::string &val)
 	{
 		try
 		{
-			float ret = std::stof(val, 0);
+			float ret = std::stof(val);
 			std::cout << static_cast<float>(ret);
 		}
 		catch(std::exception &e)
@@ -206,8 +213,13 @@ void	convert_to_float(std::string &val)
 			std::cout << "Impossible" << std::endl;
 			return;
 		}
-		if (val.find('.') == val.npos)
-			std::cout << ".0";
+		if (!is_special_float(val))
+		{
+			if (val.find('.') == val.npos)
+				std::cout << ".0";
+			else if (val.find('.') != val.npos && std::stol(val) == std::stof(val))
+				std::cout << ".0";
+		}
 		std::cout << "f" << std::endl;
 	}
 	else
@@ -241,13 +253,6 @@ int is_float_structure(std::string &str)
 		return (1);
 	else
 		return(0);
-}
-
-int is_special_float(std::string &val)
-{
-	if (val == "nanf" || val == "+inff" || val == "-inff" || val == "inff")
-		return (1);
-	return (0);
 }
 
 int is_a_float(std::string &val)
