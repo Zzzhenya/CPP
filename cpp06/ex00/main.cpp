@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:19:39 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/09 23:40:33 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/11 23:36:47 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,38 @@
 
 int main(int argc, char **argv)
 {
-	(void)argc;
-	{
-		// void *ret = NULL;
-		// ret = ScalarConverter::convert("A");
-		// std::cout << (char *)ret << std::endl;
-		// delete (char *)ret;
-	}
-	{
-		// Char
-		// char *val = NULL;
-		// ScalarConverter::convert("A");
-		// ScalarConverter::convert("");
-		// ScalarConverter::convert(NULL);
-		// ScalarConverter::convert(val);
-		// ScalarConverter::convert("ABC");
-		// ScalarConverter::convert("0");
-		// ScalarConverter::convert("12");
-		// ScalarConverter::convert("34");
-		// ScalarConverter::convert("nan");
-		// ScalarConverter::convert("-inf");
-		// ScalarConverter::convert("inf");
-		// ScalarConverter::convert("+inf");
-		// ScalarConverter::convert("NULL");
-		// ScalarConverter::convert(" ");
-		// std::cout << static_cast <char> (42) << std::endl;
-		// std::cout << static_cast <char> (42.3f) << std::endl;
-		// std::cout << static_cast <char> (0) << std::endl;
-		// std::cout << static_cast <char> ('a') << std::endl;
-		// std::cout << static_cast <char> ("a"[0]) << std::endl;
-		// std::cout << static_cast <char> (std::string("a")[0]) << std::endl;
-		// std::cout << static_cast <char> (std::string("0")[0]) << std::endl;
-		// if (std::string(argv[1]).length() == 1)
-		// 	std::cout << static_cast <char> (argv[1][0]) << std::endl;
-		// else
-		// 	std::cout << static_cast <char> (std::stol(std::string(argv[1]), NULL, 10)) << std::endl;
-// 		#include <climits>
-// std::cout << std::numeric_limits<double>::max() << std::endl;
-	}
-	{
+	if (argc == 2)
 		ScalarConverter::convert(argv[1]);
+	else
+		std::cout << "Too many arguments." << std::endl;
+#ifdef _DEBUG
+	{
+		char *val = NULL;
+		ScalarConverter::convert("A");
+		ScalarConverter::convert("");
+		ScalarConverter::convert(NULL);
+		ScalarConverter::convert(val);
+		ScalarConverter::convert("ABC");
+		ScalarConverter::convert("0");
+		ScalarConverter::convert("12");
+		ScalarConverter::convert("34");
+		ScalarConverter::convert("nan");
+		ScalarConverter::convert("-inf");
+		ScalarConverter::convert("inf");
+		ScalarConverter::convert("+inf");
+		ScalarConverter::convert("NULL");
+		ScalarConverter::convert(" ");
 	}
+#endif
+	// {
+	// 	// std::cout << std::numeric_limits<double>::max() << std::endl;
+	// 	std::cout << std::numeric_limits<double>::min() << std::endl;
+	// 	// std::cout << std::numeric_limits<float>::max() << std::endl;
+	// 	// std::cout << std::numeric_limits<float>::min() << std::endl;
+	// 	ScalarConverter::convert(argv[1]);
+	// 	// std::cout << static_cast <float> (std::stof(argv[1])) << std::endl;
+	// 	std::cout << std::numeric_limits<float>::max() << std::endl;
+	// 	std::cout << std::numeric_limits<float>::min() << std::endl;
+	// }
 	return (0);
 }

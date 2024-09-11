@@ -6,18 +6,11 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/11 19:56:48 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/11 23:31:20 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-
-int is_special_float(std::string &val)
-{
-	if (val == "nanf" || val == "+inff" || val == "-inff" || val == "inff")
-		return (1);
-	return (0);
-}
 
 ScalarConverter::~ScalarConverter(void)
 {
@@ -47,6 +40,13 @@ ScalarConverter::ScalarConverter(void)
  * 4. display the results to std::cout
  * */
 
+int is_special_float(const std::string &val)
+{
+	if (val == "nanf" || val == "+inff" || val == "-inff" || val == "inff")
+		return (1);
+	return (0);
+}
+
 int value_is_null(const char *ptr)
 {
 	if (!ptr)
@@ -54,32 +54,33 @@ int value_is_null(const char *ptr)
 	return (0);
 }
 
-int	value_is_empty(std::string &val)
+int	value_is_empty(const std::string &val)
 {
 	if (val.empty())
 		return (1);
 	return (0);
 }
 
-void	convert_to_char(int val)
+void	convert_to_char(const int val)
 {
 	std::cout << "char:\t";
+	
 	if ((val < 32  && val >= 0 )|| val == 127)
 		std::cout << "Non displayable" << std::endl;
-	else if ((val >= 32 && val <= 126))
-		std::cout << static_cast <char>(val) << std::endl;
+	else if (std::isprint(val))
+		std::cout << "'" << static_cast <char>(val) << "'" << std::endl;
 	else
 		std::cout << "Impossible" << std::endl;
 }
 
-int is_a_char(std::string &val)
+int is_a_char(const std::string &val)
 {
 	if (val.length() == 1)
 		return (1);
 	return (0);
 }
 
-void try_int(std::string &val)
+void try_int(const std::string &val)
 {
 	try
 	{
@@ -93,16 +94,16 @@ void try_int(std::string &val)
 	}
 }
 
-void	convert_to_int(std::string &val)
+void	convert_to_int(const std::string &val)
 {
 	try_int(val);
 }
 
-void try_float(std::string &val)
+void try_float(const std::string &val)
 {
 	try
 	{
-		float ret = std::stof(val, 0);
+		float ret = std::stof(val);
 		std::cout << "float:\t" << static_cast <float>(ret) << "f" << std::endl;
 	}
 	catch(std::exception &e)
@@ -113,7 +114,7 @@ void try_float(std::string &val)
 }
 
 
-void try_double(std::string &val)
+void try_double(const std::string &val)
 {
 	try
 	{
@@ -127,7 +128,7 @@ void try_double(std::string &val)
 	}
 }
 
-void	try_char(std::string &val)
+void	try_char(const std::string &val)
 {
 	try
 	{
@@ -142,7 +143,7 @@ void	try_char(std::string &val)
 	}
 }
 
-int is_an_int(std::string &val)
+int is_an_int(const std::string &val)
 {
 	try
 	{
@@ -163,7 +164,7 @@ int is_an_int(std::string &val)
 	return (0);
 }
 
-int is_a_double(std::string &val)
+int is_a_double(const std::string &val)
 {
 	try
 	{
@@ -184,28 +185,25 @@ int is_a_double(std::string &val)
 	return (0);
 }
 
-// 	//ss << "f" ;
-// 	// std::string a;
-// 	// ss >> a;
-// 	// std::cout << "float:kjashak\t" << a << std::endl;
-// 		// Add a .0 if int, 
-// 		// add a .0 if double but no .
-// 		// add a f
-// 	// std::cout << "float:\t" << static_cast <float>(ret) << "f" << std::endl;
+// int 	out_of_range()
+// {
+// 	std::numeric_limits<float>::max();
+// }
 
 
-void	convert_to_float(std::string &val)
+void	convert_to_float(const std::string &val)
 {
-	//size_t 		dec_loc = val.find('.');
-	size_t		f_loc = val.find('f');
+	size_t				f_loc = val.find('f');
+	std::ostringstream 	os;
 
 	std::cout << "float:\t";
 	if (f_loc == (val.length() - 1))
 	{
 		try
 		{
-			float ret = std::stof(val);
-			std::cout << static_cast<float>(ret);
+			//float ret = std::stof(val);
+			double ret = std::stof(val);
+			os << static_cast<float>(ret);
 		}
 		catch(std::exception &e)
 		{
@@ -213,40 +211,49 @@ void	convert_to_float(std::string &val)
 			std::cout << "Impossible" << std::endl;
 			return;
 		}
-		if (!is_special_float(val))
+		try
 		{
-			if (val.find('.') == val.npos)
-				std::cout << ".0";
-			else if (val.find('.') != val.npos && std::stol(val) == std::stof(val))
-				std::cout << ".0";
+			if (!is_special_float(val))
+			{
+				if (val.find('.') == val.npos || !(os.str().find('+') && os.str().find('-')))
+					os << ".0";
+				else if (val.find('.') != val.npos && std::stol(val) == std::stof(val))
+					os << ".0";
+			}
+			os << "f";
+			std::cout << os.str() << std::endl;
 		}
-		std::cout << "f" << std::endl;
+		catch(std::exception &e)
+		{
+			debug(std::cout << e.what() << std::endl);
+			std::cout << "Impossible" << std::endl;
+			return;
+		}
 	}
 	else
 		std::cout << "Impossible" << std::endl;
 }
 
-int is_float_structure(std::string &str)
+void	loop_through_digits(std::string &str, std::string::iterator &it)
+{
+	while (it != str.end())
+	{
+		if (std::isdigit(*it))
+			it++;
+		else
+			break;
+	}
+}
+
+int is_float_structure(std::string str)
 {
 	std::string::iterator it; 
       
     it = str.begin();
-    while (it != str.end())
-    {
-    	if (std::isdigit(*it))
-    		it++;
-    	else
-    		break;
-    }
+    loop_through_digits(str, it);
     if (it != str.end() && *it == '.')
     	it++;
-    while (it != str.end())
-    {
-    	if (std::isdigit(*it))
-    		it++;
-    	else
-    		break;
-    }  
+    loop_through_digits(str, it); 
     if (it != str.end() && *it == 'f')
     	it++;
 	if (it == str.end())
@@ -255,7 +262,7 @@ int is_float_structure(std::string &str)
 		return(0);
 }
 
-int is_a_float(std::string &val)
+int is_a_float(const std::string &val)
 {
 	try
 	{
@@ -272,7 +279,7 @@ int is_a_float(std::string &val)
 	}
 }
 
-int get_type(std::string &val)
+int get_type(const std::string &val)
 {
 	if (is_a_char(val))
 		return (CHAR);
@@ -293,7 +300,7 @@ void	ScalarConverter::convert(const char *ptr)
 		std::cout << "Value passed is a null pointer." << std::endl;
 		return;
 	}
-	std::string		val = ptr;
+	const std::string		val = ptr;
 	if (value_is_empty(val))
 	{
 		std::cout << "Value is empty." << std::endl;
@@ -302,18 +309,23 @@ void	ScalarConverter::convert(const char *ptr)
 	switch(get_type(val))
 	{
 		case CHAR:
+			std::cout << val << " is a char" << std::endl;
 			convert_to_char(val[0]); try_int(val); try_double(val); try_float(val);
 			break;
 		case INT:
+			std::cout << val << " is an int" << std::endl;
 			try_char(val); convert_to_int(val); try_double(val); try_float(val);
 			break;
 		case DBL:
+			std::cout << val << " is a double" << std::endl;
 			try_char(val); try_int(val); try_double(val); try_float(val);
 			break;
 		case FLT:
+			std::cout << val << " is a float" << std::endl;
 			try_char(val); try_int(val); try_double(val); convert_to_float(val);
 			break;
 		default:
+			std::cout << val << " is unknown" << std::endl;
 			try_char(val); try_int(val); try_double(val); try_float(val);
 	}
 }
