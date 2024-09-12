@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/11 23:31:20 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/12 02:40:15 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ int is_special_float(const std::string &val)
 	return (0);
 }
 
+int is_special_double(const std::string &val)
+{
+	if (val == "nan" || val == "+inf" || val == "-inf" || val == "inf")
+		return (1);
+	return (0);
+}
+
 int value_is_null(const char *ptr)
 {
 	if (!ptr)
@@ -60,6 +67,7 @@ int	value_is_empty(const std::string &val)
 		return (1);
 	return (0);
 }
+
 
 void	convert_to_char(const int val)
 {
@@ -101,16 +109,50 @@ void	convert_to_int(const std::string &val)
 
 void try_float(const std::string &val)
 {
+	std::ostringstream 	os;
+
+	std::cout << "float:\t";
 	try
 	{
-		float ret = std::stof(val);
-		std::cout << "float:\t" << static_cast <float>(ret) << "f" << std::endl;
+		//float ret = std::stof(val);
+		double ret = std::stof(val);
+		os << static_cast<float>(ret);
 	}
 	catch(std::exception &e)
 	{
-		std::cout << "float:\t" << "Impossible" << std::endl;
 		debug(std::cerr << e.what() << std::endl);
+		std::cout << "Impossible" << std::endl;
+		return;
 	}
+	try
+	{
+		if (!is_special_float(val) && !is_special_double(val))
+		{
+			if (val.find('.') == val.npos || !(os.str().find('+') && os.str().find('-')))
+				os << ".0";
+			else if (val.find('.') != val.npos && std::stol(val) == std::stof(val))
+				os << ".0";
+		}
+		os << "f";
+		std::cout << os.str() << std::endl;
+	}
+	catch(std::exception &e)
+	{
+		debug(std::cerr << e.what() << std::endl);
+		std::cout << "Impossible" << std::endl;
+		return;
+	}
+}
+
+
+void	convert_to_float(const std::string &val)
+{
+	size_t		f_loc = val.find('f');
+
+	if (f_loc == (val.length() - 1))
+		try_float(val);
+	else
+		std::cout << "Impossible" << std::endl;
 }
 
 
@@ -133,8 +175,10 @@ void	try_char(const std::string &val)
 	try
 	{
 		float ret = std::stof(val, 0);
-		debug(std::cerr << ret << std::endl);
-		convert_to_char(ret);
+		if (ret < 0 || ret > 127)
+			std::cout << "char:\t" << "Impossible" << std::endl;
+		else
+			convert_to_char(ret);
 	}
 	catch (std::exception &e)
 	{
@@ -185,54 +229,7 @@ int is_a_double(const std::string &val)
 	return (0);
 }
 
-// int 	out_of_range()
-// {
-// 	std::numeric_limits<float>::max();
-// }
 
-
-void	convert_to_float(const std::string &val)
-{
-	size_t				f_loc = val.find('f');
-	std::ostringstream 	os;
-
-	std::cout << "float:\t";
-	if (f_loc == (val.length() - 1))
-	{
-		try
-		{
-			//float ret = std::stof(val);
-			double ret = std::stof(val);
-			os << static_cast<float>(ret);
-		}
-		catch(std::exception &e)
-		{
-			std::cout << e.what() << std::endl;
-			std::cout << "Impossible" << std::endl;
-			return;
-		}
-		try
-		{
-			if (!is_special_float(val))
-			{
-				if (val.find('.') == val.npos || !(os.str().find('+') && os.str().find('-')))
-					os << ".0";
-				else if (val.find('.') != val.npos && std::stol(val) == std::stof(val))
-					os << ".0";
-			}
-			os << "f";
-			std::cout << os.str() << std::endl;
-		}
-		catch(std::exception &e)
-		{
-			debug(std::cout << e.what() << std::endl);
-			std::cout << "Impossible" << std::endl;
-			return;
-		}
-	}
-	else
-		std::cout << "Impossible" << std::endl;
-}
 
 void	loop_through_digits(std::string &str, std::string::iterator &it)
 {
@@ -292,7 +289,7 @@ int get_type(const std::string &val)
 	return (0);
 }
 
-
+// static void	ScalarConverter::convert(const std::string val)
 void	ScalarConverter::convert(const char *ptr)
 {
 	if (value_is_null(ptr))

@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:49 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/11 23:36:55 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/12 02:33:40 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,8 @@ Except for char parameters, only the decimal notation will be used.
 
 # include <iostream>
 # include <cstdlib>  // for atof atoi atol strtol 
-/*
-
-std::strtod
-
-double      strtod( const char* str, char** str_end );
-
-std::atof
-
-double atof( const char* str );
-
-std::atoi
-
-int       atoi( const char* str );
-
-std::atol
-
-long      atol( const char* str )
-
-std::strtol
-long      strtol( const char* str, char** str_end, int base );
-
-*/
 # include <string>
 # include <sstream>
-
 # include <cmath>
 # include <cctype>
 # include <climits>
@@ -72,12 +49,12 @@ long      strtol( const char* str, char** str_end, int base );
 class ScalarConverter
 {
 	public:
-		~ScalarConverter(void);
-		//static void	*convert(std::string val);
+		// static void			convert(const std::string val);
 		static void		convert(const char *ptr);
 
 	private:
 		ScalarConverter(void);
+		~ScalarConverter(void);
 };
 
 #endif

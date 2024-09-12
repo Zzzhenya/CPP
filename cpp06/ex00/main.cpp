@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:19:39 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/11 23:36:47 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/12 02:32:25 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int main(int argc, char **argv)
 	if (argc == 2)
 		ScalarConverter::convert(argv[1]);
 	else
-		std::cout << "Too many arguments." << std::endl;
+	{
+		std::cout << "Usage: ./converter <value>" << std::endl;
+		std::cout << "Usage(debug): ./dbg_converter <value>" << std::endl;
+	}
 #ifdef _DEBUG
 	{
 		char *val = NULL;
