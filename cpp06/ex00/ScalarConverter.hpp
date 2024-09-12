@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:49 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/12 02:33:40 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:51:08 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,13 @@ Except for char parameters, only the decimal notation will be used.
 class ScalarConverter
 {
 	public:
-		// static void			convert(const std::string val);
-		static void		convert(const char *ptr);
+		static void			convert(const std::string val);
 
 	private:
 		ScalarConverter(void);
 		~ScalarConverter(void);
+		ScalarConverter(const ScalarConverter &other);
+		ScalarConverter		&operator=(const ScalarConverter &other);
 };
 
 #endif

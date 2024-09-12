@@ -6,41 +6,68 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:19:39 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/12 02:32:25 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:05:34 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 #include <iostream>
 
+int value_is_null(const char *ptr)
+{
+	if (!ptr)
+		return (1);
+	return (0);
+}
+
+void	run_converter(const char *ptr)
+{
+	if (value_is_null(ptr))
+	{
+		std::cout << "Value passed is a null pointer." << std::endl;
+		return;
+	}
+	std::cout << ptr;
+	const std::string		val = ptr;
+	ScalarConverter::convert(val);
+}
+
 int main(int argc, char **argv)
 {
 	if (argc == 2)
-		ScalarConverter::convert(argv[1]);
+		run_converter(argv[1]);
 	else
 	{
 		std::cout << "Usage: ./converter <value>" << std::endl;
 		std::cout << "Usage(debug): ./dbg_converter <value>" << std::endl;
 	}
-#ifdef _DEBUG
+// #ifdef _DEBUG
 	{
-		char *val = NULL;
-		ScalarConverter::convert("A");
-		ScalarConverter::convert("");
-		ScalarConverter::convert(NULL);
-		ScalarConverter::convert(val);
-		ScalarConverter::convert("ABC");
-		ScalarConverter::convert("0");
-		ScalarConverter::convert("12");
-		ScalarConverter::convert("34");
-		ScalarConverter::convert("nan");
-		ScalarConverter::convert("-inf");
-		ScalarConverter::convert("inf");
-		ScalarConverter::convert("+inf");
-		ScalarConverter::convert("NULL");
-		ScalarConverter::convert(" ");
+		int a = 120;
+		// char *val = NULL;
+		// run_converter("A");
+		// run_converter("");
+		// run_converter(NULL);
+		// run_converter(val);
+		// run_converter("ABC");
+		// run_converter("0");
+		// run_converter("12");
+		// run_converter("34");
+		// run_converter("nan");
+		// run_converter("-inf");
+		// run_converter("inf");
+		// run_converter("+inf");
+		// run_converter("NULL");
+		// run_converter(" ");
+		try {
+			run_converter((char *)&a);
+			run_converter((char *)120);
+		}
+		catch (std::exception &e){
+			std::cout << e.what() << std::endl;
+		}
 	}
-#endif
+// #endif
 	// {
 	// 	// std::cout << std::numeric_limits<double>::max() << std::endl;
 	// 	std::cout << std::numeric_limits<double>::min() << std::endl;

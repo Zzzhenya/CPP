@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/12 02:40:15 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:54:50 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,19 @@ ScalarConverter::~ScalarConverter(void)
 ScalarConverter::ScalarConverter(void)
 {
 	std::cout << "ScalarConverter default constructor\n";
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &other)
+{
+	(void)other;
+	std::cout << "ScalarConverter copy constructor\n";
+}
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
+{
+	(void)other;
+	std::cout << "ScalarConverter copy assignment operator overload\n";
+	return (*this);
 }
 
 /**
@@ -50,13 +63,6 @@ int is_special_float(const std::string &val)
 int is_special_double(const std::string &val)
 {
 	if (val == "nan" || val == "+inf" || val == "-inf" || val == "inf")
-		return (1);
-	return (0);
-}
-
-int value_is_null(const char *ptr)
-{
-	if (!ptr)
 		return (1);
 	return (0);
 }
@@ -289,15 +295,9 @@ int get_type(const std::string &val)
 	return (0);
 }
 
-// static void	ScalarConverter::convert(const std::string val)
-void	ScalarConverter::convert(const char *ptr)
+// void	ScalarConverter::convert(const char *ptr)
+void	ScalarConverter::convert(const std::string val)
 {
-	if (value_is_null(ptr))
-	{
-		std::cout << "Value passed is a null pointer." << std::endl;
-		return;
-	}
-	const std::string		val = ptr;
 	if (value_is_empty(val))
 	{
 		std::cout << "Value is empty." << std::endl;
@@ -306,23 +306,23 @@ void	ScalarConverter::convert(const char *ptr)
 	switch(get_type(val))
 	{
 		case CHAR:
-			std::cout << val << " is a char" << std::endl;
+			std::cout << std::endl << val << " is a char" << std::endl << std::endl;
 			convert_to_char(val[0]); try_int(val); try_double(val); try_float(val);
 			break;
 		case INT:
-			std::cout << val << " is an int" << std::endl;
+			std::cout << std::endl << val << " is an int" << std::endl << std::endl;
 			try_char(val); convert_to_int(val); try_double(val); try_float(val);
 			break;
 		case DBL:
-			std::cout << val << " is a double" << std::endl;
+			std::cout << std::endl << val << " is a double" << std::endl << std::endl;
 			try_char(val); try_int(val); try_double(val); try_float(val);
 			break;
 		case FLT:
-			std::cout << val << " is a float" << std::endl;
+			std::cout << std::endl << val << " is a float" << std::endl << std::endl;
 			try_char(val); try_int(val); try_double(val); convert_to_float(val);
 			break;
 		default:
-			std::cout << val << " is unknown" << std::endl;
+			std::cout << std::endl << val << " is unknown" << std::endl << std::endl;
 			try_char(val); try_int(val); try_double(val); try_float(val);
 	}
 }
