@@ -13,7 +13,7 @@
 
 	* dynamic - to down cast
 	// cast
-		dynamic_cats <new_type> (num);
+		dynamic_cast <new_type> (num);
 
 	* const - modify const/volatile nature of a variable to temporarily modify
 	// cast
@@ -65,5 +65,7 @@ deserialize
 * https://stackoverflow.com/questions/1845482/what-is-the-uintptr-t-data-type
 
 * https://pubs.opengroup.org/onlinepubs/000095399/basedefs/stdint.h.html
+
+* https://blog.feabhas.com/2024/02/navigating-memory-in-c-a-guide-to-using-stduintptr_t-for-address-handling/
 
 
