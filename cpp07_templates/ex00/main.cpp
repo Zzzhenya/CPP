@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 23:27:06 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/13 23:27:36 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/13 23:36:05 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,21 @@ void swap_tests(void)
 	{
 		int x = 2; int y = 6;
 		std::cout << "x: " << x << " | y: " << y << std::endl;
-		swap <int> (x, y);
+		::swap <int> (x, y);
 		std::cout << "x: " << x << " | y: " << y << std::endl;
 	}
 	std::cout << std::endl << "=========== float ==========" << std::endl << std::endl;
 	{
 		float x = 2.23f; float y = 6.98f;
 		std::cout << "x: " << x << " | y: " << y << std::endl;
-		swap <float > (x, y);
+		::swap <float > (x, y);
 		std::cout << "x: " << x << " | y: " << y << std::endl;	
 	}
 	std::cout << std::endl << "=========== double ==========" << std::endl << std::endl;
 	{
 		double x = 2.232; double y = 6.982;
 		std::cout << "x: " << x << " | y: " << y << std::endl;
-		swap <double> (x, y);
+		::swap <double> (x, y);
 		std::cout << "x: " << x << " | y: " << y << std::endl;	
 	}
 	std::cout << std::endl << "=========== char * ==========" << std::endl << std::endl;
@@ -85,7 +85,7 @@ void swap_tests(void)
 		// swap <char [1]> (x, y);
 		char *x = new char('A'); char *y = new char('B');
 		std::cout << "x: " << (void *)&x << " - " << x << " | y: " << (void *)&y << " - " << y << std::endl;
-		swap <char *> (x, y);
+		::swap <char *> (x, y);
 		std::cout << "x: " << (void *)&x << " - " << x << " | y: " << (void *)&y << " - " << y << std::endl;
 		delete x; delete y;
 	}
@@ -94,7 +94,7 @@ void swap_tests(void)
 		std::string x = std::string("Hello"); 
 		std::string y = std::string("World");
 		std::cout << "x: " << &x << " - " << x << " | y: " << &y << " - " << y << std::endl;
-		swapstr <std::string> (x, y);
+		::swap <std::string> (x, y);
 		std::cout << "x: " << &x << " - " << x << " | y: " << &y << " - " << y << std::endl;
 	}
 	std::cout << "===========std::string *==========" << std::endl;
@@ -102,7 +102,7 @@ void swap_tests(void)
 		std::string *x = new std::string("Hello"); 
 		std::string *y = new std::string("World");
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - " << *y << std::endl;
-		swapstr <std::string *> (x, y);
+		::swap <std::string *> (x, y);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - " << *y << std::endl;
 		delete x; delete y;
 	}
@@ -110,14 +110,14 @@ void swap_tests(void)
 	{
 		char x = 'A'; char y = 'B';
 		std::cout << "x: " << (void *)&x << " - "  << x << " | y: " << (void *)&y << " - "  << y << std::endl;
-		swap <char > (x, y);
+		::swap <char > (x, y);
 		std::cout << "x: " << (void *)&x << " - "  << x << " | y: " << (void *)&y << " - "   << y << std::endl;
 	}
 	std::cout << std::endl << "=========== int =============" << std::endl << std::endl;
 	{
 		int x[1] = {2}; int y[1] = {6};
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - " << *y << std::endl;
-		swap <int> (*x, *y);
+		::swap <int> (*x, *y);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - " << *y << std::endl;
 	}
 	std::cout << std::endl << "=========== int * ===========" << std::endl << std::endl;
@@ -125,7 +125,7 @@ void swap_tests(void)
 		//int x[1] = {2}; int y[1] = {6};
 		int *x = new int(2); int *y = new int(6);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - " << *y << std::endl;
-		swap <int *> (x, y);
+		::swap <int *> (x, y);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - " << *y << std::endl;
 		delete x; delete y;
 	}
@@ -138,7 +138,7 @@ void swap_tests(void)
 		char *y = new char (str2.length() + 1);
 		std::strcpy (y, str2.c_str());
 		std::cout << "x: " << (void *)&x << " - " << x << " | y: " << (void *)&y << " - " << y << std::endl;
-		swap <char *> (x, y);
+		::swap <char *> (x, y);
 		std::cout << "x: " << (void *)&x << " - " << x << " | y: " << (void *)&y << " - " << y << std::endl;
 		delete x; delete y;
 	}
@@ -146,7 +146,7 @@ void swap_tests(void)
 	{
 		float *x = new float(4.23f); float *y = new float(2.78f);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - " << *y << std::endl;
-		swap <float *> (x, y);
+		::swap <float *> (x, y);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - " << *y << std::endl;
 		delete x; delete y;
 	}
@@ -154,7 +154,7 @@ void swap_tests(void)
 	{
 		size_t *x = new size_t(4); size_t *y = new size_t(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - " << *y << std::endl;
-		swap <size_t *> (x, y);
+		::swap <size_t *> (x, y);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - " << *y << std::endl;
 		delete x; delete y;
 	}
@@ -162,14 +162,14 @@ void swap_tests(void)
 	{
 		Test x = Test(2); Test y = Test(6);
 		std::cout << "x: " << &x._a << " - " << x._a << " | y: " << &y._a << " - " << y._a << std::endl;
-		swap <Test> (x, y);
+		::swap <Test> (x, y);
 		std::cout << "x: " << &x._a << " - " << x._a << " | y: " << &y._a << " - " << y._a << std::endl;
 	}
 	std::cout << std::endl << "=========== Class * ===========" << std::endl << std::endl;
 	{
 		Test *x = new Test(); Test *y = new Test();
 		std::cout << "x: " << x << " | y: " << y  << std::endl;
-		swap <Test *> (x, y);
+		::swap <Test *> (x, y);
 		std::cout << "x: " << x << " | y: " << y  << std::endl;
 		delete x; delete y;
 	}
@@ -181,71 +181,71 @@ void max_tests(void)
 	{
 		int x = 2; int y = 6;
 		std::cout << "x: " << &x << " - " << x << " | y: " << &y << " - "<< y << std::endl;
-		std::cout << "max :" << &max <int> (x, y) << " - " << max <int> (x, y) << std::endl;
+		std::cout << "max :" << &::max <int> (x, y) << " - " << ::max <int> (x, y) << std::endl;
 		x = 2; y = 2;
 		std::cout << "x: " << &x << " - " << x << " | y: " << &y << " - "<< y << std::endl;
-		std::cout << "max :" << &max <int> (x, y) << " - " << max <int> (x, y) << std::endl;
+		std::cout << "max :" << &::max <int> (x, y) << " - " << ::max <int> (x, y) << std::endl;
 		x = 6; y = 2;
 		std::cout << "x: " << &x << " - " << x << " | y: " << &y << " - "<< y << std::endl;
-		std::cout << "max :" << &max <int> (x, y) << " - " << max <int> (x, y) << std::endl;
+		std::cout << "max :" << &::max <int> (x, y) << " - " << ::max <int> (x, y) << std::endl;
 	}
 	std::cout << std::endl << "=========== int * ============" << std::endl << std::endl;
 	{
 		int *x = new int(2); 
 		int *y = new int(6);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "max :" << max <int *> (x, y) << " - " << *max <int *> (x, y) << std::endl;
+		std::cout << "max :" << ::max <int *> (x, y) << " - " << *::max <int *> (x, y) << std::endl;
 		delete x; delete y;
 		x = new int(2); y = new int(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "max :" << max <int *> (x, y) << " - " << *max <int *> (x, y) << std::endl;
+		std::cout << "max :" << ::max <int *> (x, y) << " - " << *::max <int *> (x, y) << std::endl;
 		delete x; delete y;
 		x = new int(6); y = new int(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "max :" << max <int *> (x, y) << " - " << *max <int *> (x, y) << std::endl;
+		std::cout << "max :" << ::max <int *> (x, y) << " - " << *::max <int *> (x, y) << std::endl;
 	}
 	std::cout << std::endl << "=========== Class ============" << std::endl << std::endl;
 	{
 		Test *x = new Test(2); 
 		Test *y = new Test(6);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "max :" << &(max <Test> (*x, *y)) << " - " << max <Test> (*x, *y) << std::endl;
+		std::cout << "max :" << &(::max <Test> (*x, *y)) << " - " << ::max <Test> (*x, *y) << std::endl;
 		delete x; delete y;
 		x = new Test(2); y = new Test(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "max :" << &(max <Test> (*x, *y)) << " - " << max <Test> (*x, *y) << std::endl;
+		std::cout << "max :" << &(::max <Test> (*x, *y)) << " - " << ::max <Test> (*x, *y) << std::endl;
 		delete x; delete y;
 		x = new Test(6); y = new Test(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "max :" << &(max <Test> (*x, *y)) << " - " << max <Test> (*x, *y) << std::endl;
+		std::cout << "max :" << &(::max <Test> (*x, *y)) << " - " << ::max <Test> (*x, *y) << std::endl;
 	}
 	std::cout << std::endl << "=========== Class * ============" << std::endl << std::endl;
 	{
 		Test *x = new Test(2); 
 		Test *y = new Test(6);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "max :" << max <Test *> (x, y) << " - " << *max <Test *> (x, y) << std::endl;
+		std::cout << "max :" << ::max <Test *> (x, y) << " - " << *::max <Test *> (x, y) << std::endl;
 		delete x; delete y;
 		x = new Test(2); y = new Test(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "max :" << max <Test *> (x, y) << " - " << *max <Test *> (x, y) << std::endl;
+		std::cout << "max :" << ::max <Test *> (x, y) << " - " << *::max <Test *> (x, y) << std::endl;
 		delete x; delete y;
 		x = new Test(6); y = new Test(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "max :" << max <Test *> (x, y) << " - " << *max <Test *> (x, y) << std::endl;
+		std::cout << "max :" << ::max <Test *> (x, y) << " - " << *::max <Test *> (x, y) << std::endl;
 	}
 	std::cout << std::endl << "=========== std::string ============" << std::endl << std::endl;
 	{
 		std::string x = std::string("Hello");
 		std::string y = std::string("World");
 		std::cout << "x: " << &x << " - " << x << " | y: " << &y << " - "<< y << std::endl;
-		std::cout << "max :" << &max <std::string> (x, y) << " - " << max <std::string> (x, y) << std::endl;
+		std::cout << "max :" << &::max <std::string> (x, y) << " - " << ::max <std::string> (x, y) << std::endl;
 		y = std::string("Hello");
 		std::cout << "x: " << &x << " - " << x << " | y: " << &y << " - "<< y << std::endl;
-		std::cout << "max :" << &max <std::string> (x, y) << " - " << max <std::string> (x, y) << std::endl;
+		std::cout << "max :" << &::max <std::string> (x, y) << " - " << ::max <std::string> (x, y) << std::endl;
 		x = std::string("World");
 		std::cout << "x: " << &x << " - " << x << " | y: " << &y << " - "<< y << std::endl;
-		std::cout << "max :" << &max <std::string> (x, y) << " - " << max <std::string> (x, y) << std::endl;
+		std::cout << "max :" << &::max <std::string> (x, y) << " - " << ::max <std::string> (x, y) << std::endl;
 	}
 }
 
@@ -255,72 +255,89 @@ void min_tests(void)
 	{
 		int x = 2; int y = 6;
 		std::cout << "x: " << &x << " - " << x << " | y: " << &y << " - "<< y << std::endl;
-		std::cout << "min :" << &min <int> (x, y) << " - " << min <int> (x, y) << std::endl;
+		std::cout << "min :" << &::min <int> (x, y) << " - " << ::min <int> (x, y) << std::endl;
 		x = 2; y = 2;
 		std::cout << "x: " << &x << " - " << x << " | y: " << &y << " - "<< y << std::endl;
-		std::cout << "min :" << &min <int> (x, y) << " - " << min <int> (x, y) << std::endl;
+		std::cout << "min :" << &::min <int> (x, y) << " - " << ::min <int> (x, y) << std::endl;
 		x = 6; y = 2;
 		std::cout << "x: " << &x << " - " << x << " | y: " << &y << " - "<< y << std::endl;
-		std::cout << "min :" << &min <int> (x, y) << " - " << min <int> (x, y) << std::endl;
+		std::cout << "min :" << &::min <int> (x, y) << " - " << ::min <int> (x, y) << std::endl;
 	}
 	std::cout << std::endl << "=========== int * ============" << std::endl << std::endl;
 	{
 		int *x = new int(2); 
 		int *y = new int(6);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "min :" << min <int *> (x, y) << " - " << *min <int *> (x, y) << std::endl;
+		std::cout << "min :" << ::min <int *> (x, y) << " - " << *::min <int *> (x, y) << std::endl;
 		delete x; delete y;
 		x = new int(2); y = new int(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "min :" << min <int *> (x, y) << " - " << *min <int *> (x, y) << std::endl;
+		std::cout << "min :" << ::min <int *> (x, y) << " - " << *::min <int *> (x, y) << std::endl;
 		delete x; delete y;
 		x = new int(6); y = new int(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "min :" << min <int *> (x, y) << " - " << *min <int *> (x, y) << std::endl;
+		std::cout << "min :" << ::min <int *> (x, y) << " - " << *::min <int *> (x, y) << std::endl;
 	}
 	std::cout << std::endl << "=========== Class ============" << std::endl << std::endl;
 	{
 		Test *x = new Test(2); 
 		Test *y = new Test(6);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "min :" << &(min <Test> (*x, *y)) << " - " << min <Test> (*x, *y) << std::endl;
+		std::cout << "min :" << &(::min <Test> (*x, *y)) << " - " << ::min <Test> (*x, *y) << std::endl;
 		delete x; delete y;
 		x = new Test(2); y = new Test(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "min :" << &(min <Test> (*x, *y)) << " - " << min <Test> (*x, *y) << std::endl;
+		std::cout << "min :" << &(::min <Test> (*x, *y)) << " - " << ::min <Test> (*x, *y) << std::endl;
 		delete x; delete y;
 		x = new Test(6); y = new Test(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "min :" << &(min <Test> (*x, *y)) << " - " << min <Test> (*x, *y) << std::endl;
+		std::cout << "min :" << &(::min <Test> (*x, *y)) << " - " << ::min <Test> (*x, *y) << std::endl;
 	}
 	std::cout << std::endl << "=========== Class * ============" << std::endl << std::endl;
 	{
 		Test *x = new Test(2); 
 		Test *y = new Test(6);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "min :" << min <Test *> (x, y) << " - " << *min <Test *> (x, y) << std::endl;
+		std::cout << "min :" << ::min <Test *> (x, y) << " - " << *::min <Test *> (x, y) << std::endl;
 		delete x; delete y;
 		x = new Test(2); y = new Test(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "min :" << min <Test *> (x, y) << " - " << *min <Test *> (x, y) << std::endl;
+		std::cout << "min :" << ::min <Test *> (x, y) << " - " << *::min <Test *> (x, y) << std::endl;
 		delete x; delete y;
 		x = new Test(6); y = new Test(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
-		std::cout << "min :" << min <Test *> (x, y) << " - " << *min <Test *> (x, y) << std::endl;
+		std::cout << "min :" << ::min <Test *> (x, y) << " - " << *::min <Test *> (x, y) << std::endl;
 	}
 	std::cout << std::endl << "=========== std::string ============" << std::endl << std::endl;
 	{
 		std::string x = std::string("Hello");
 		std::string y = std::string("World");
 		std::cout << "x: " << &x << " - " << x << " | y: " << &y << " - "<< y << std::endl;
-		std::cout << "min :" << &min <std::string> (x, y) << " - " << min <std::string> (x, y) << std::endl;
+		std::cout << "min :" << &::min <std::string> (x, y) << " - " << ::min <std::string> (x, y) << std::endl;
 		y = std::string("Hello");
 		std::cout << "x: " << &x << " - " << x << " | y: " << &y << " - "<< y << std::endl;
-		std::cout << "min :" << &min <std::string> (x, y) << " - " << min <std::string> (x, y) << std::endl;
+		std::cout << "min :" << &::min <std::string> (x, y) << " - " << ::min <std::string> (x, y) << std::endl;
 		x = std::string("World");
 		std::cout << "x: " << &x << " - " << x << " | y: " << &y << " - "<< y << std::endl;
-		std::cout << "min :" << &min <std::string> (x, y) << " - " << min <std::string> (x, y) << std::endl;
+		std::cout << "min :" << &::min <std::string> (x, y) << " - " << ::min <std::string> (x, y) << std::endl;
 	}
+}
+
+void	subject_tests(void)
+{
+	int a = 2;
+	int b = 3;
+
+	::swap( a, b );
+	std::cout << "a = " << a << ", b = " << b << std::endl;
+	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
+	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
+	std::string c = "chaine1";
+	std::string d = "chaine2";
+	::swap(c, d);
+	std::cout << "c = " << c << ", d = " << d << std::endl;
+	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
+	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
 }
 
 int main(void)
@@ -331,6 +348,8 @@ int main(void)
 	max_tests();
 	std::cout << std::endl << "============================\tmin\t====" << std::endl;
 	min_tests();
+	std::cout << std::endl << "============================\tsubject tests\t====" << std::endl;
+	subject_tests();
 	std::cout << std::endl;
 	return (0);
 }
