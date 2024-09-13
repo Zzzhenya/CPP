@@ -31,3 +31,5 @@
 * https://stackoverflow.com/questions/1600936/officially-what-is-typename-for
 
 * https://en.cppreference.com/w/cpp/keyword/typename
+
+* https://stackoverflow.com/questions/49429546/check-whether-an-operator-is-overloaded-in-c
