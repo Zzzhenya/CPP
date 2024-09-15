@@ -77,6 +77,71 @@ int main(void)
 		delete arr1; delete arr2;
 
 	}
+	{
+		// subscript operator
+		const unsigned int len = 4;
+		Array<int> arr = Array<int>(len);
+		for (unsigned int i = 0; i < len; i++)
+		{
+			if (i == len - 1)
+				std::cout << arr[i] << std::endl;
+			else
+				std::cout << arr[i] << " ";
+		}
+		arr[0] = 12;
+		arr[1] = 2;
+		arr[2] = 0;
+		arr[3] = 2290;
+		for (unsigned int i = 0; i < len; i++)
+		{
+			if (i == len - 1)
+				std::cout << arr[i] << std::endl;
+			else
+				std::cout << arr[i] << " ";
+		}
+	}
+	{
+		// subscript operator
+		const unsigned int len = 4;
+		Array<int> *arr = new Array<int>(len);
+		for (unsigned int i = 0; i < len ; i++)
+		{
+			if (i == len - 1)
+				std::cout << (*arr)[i] << std::endl;
+			else
+				std::cout << (*arr)[i] << " ";
+		}
+		delete arr;
+	}
+	{
+		// checking the weird 3rd value at initiation
+		int *arr = new int[12];
+		for (int i = 0; i < 12; i++)
+			std::cout << arr[i] << std::endl;
+		delete [] arr;
+	}
+
+	{
+		// subscript operator - out of range
+		const unsigned int len = 4;
+		Array<int> *arr = new Array<int>(len);
+		try
+		{
+			for (unsigned int i = 0; i < len  + 1; i++)
+			{
+				if (i == len - 1)
+					std::cout << (*arr)[i] << std::endl;
+				else
+					std::cout << (*arr)[i] << " ";
+			}
+		}
+		catch(std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+			
+		}
+		delete arr;
+	}
 	// Array<int>();
 	return (0);
 }

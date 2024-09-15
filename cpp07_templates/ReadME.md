@@ -33,3 +33,12 @@
 * https://en.cppreference.com/w/cpp/keyword/typename
 
 * https://stackoverflow.com/questions/49429546/check-whether-an-operator-is-overloaded-in-c
+
+# Template files
+
+* https://stackoverflow.com/questions/44774036/why-use-a-tpp-file-when-implementing-templated-functions-and-classes-defined-i
+
+
+# Member access operators
+
+* https://en.cppreference.com/w/cpp/language/operator_member_access

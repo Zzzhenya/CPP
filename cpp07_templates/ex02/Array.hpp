@@ -13,6 +13,7 @@ class Array
 		Array(const unsigned int n);
 		Array(const Array &other);
 		Array 				&operator=(const Array &other);
+		T 					&operator[](unsigned int i) const;
 
 		T 					*_arr;
 		unsigned int		_n;
@@ -20,14 +21,16 @@ class Array
 
 
 template <typename T> 
-Array<T>::Array(void): _arr(NULL), _n(0)
+Array<T>::Array(void):  _n(0)
 {
+	_arr = new T[0];
 	std::cout << "default arr constructor\n";
 }
 
 template <typename T> 
-Array<T>::Array(const unsigned int n):_arr(new T[n]), _n(n)
+Array<T>::Array(const unsigned int n): _n(n)
 {
+	_arr = new T[n];
 	std::cout << "n len = " << n << " arr constructor\n";
 }
 
@@ -67,6 +70,14 @@ Array<T> &Array<T>::operator=(const Array &other)
 	std::cout << "copy assignment operator overload\n";
 
 	return (*this);
+}
+
+template <typename T>
+T  	&Array<T>::operator[](unsigned int i) const
+{
+	if (i >= _n)
+		throw std::out_of_range("exception: index out of range");
+	return (this->_arr[i]);
 }
 
 #endif
