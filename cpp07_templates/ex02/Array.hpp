@@ -15,6 +15,8 @@ class Array
 		Array 				&operator=(const Array &other);
 		T 					&operator[](unsigned int i) const;
 
+		const unsigned int &size(void) const;
+
 		T 					*_arr;
 		unsigned int		_n;
 };
@@ -78,6 +80,12 @@ T  	&Array<T>::operator[](unsigned int i) const
 	if (i >= _n)
 		throw std::out_of_range("exception: index out of range");
 	return (this->_arr[i]);
+}
+
+template <typename T>
+const unsigned int &Array<T>::size(void) const
+{
+	return(this->_n);
 }
 
 #endif

@@ -142,6 +142,15 @@ int main(void)
 		}
 		delete arr;
 	}
+
+	{
+		// size
+		const unsigned int len = 4;
+		Array<int> *arr = new Array<int>(len);
+		// arr->size() = 20;
+		std::cout << arr->size() << std::endl;
+		delete arr;
+	}
 	// Array<int>();
 	return (0);
 }
