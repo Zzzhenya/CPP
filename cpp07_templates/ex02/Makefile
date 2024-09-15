@@ -6,7 +6,7 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/13 23:17:41 by sde-silv          #+#    #+#              #
-#    Updated: 2024/09/15 14:17:38 by sde-silv         ###   ########.fr        #
+#    Updated: 2024/09/15 19:15:45 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = array
 
 SRC = main.cpp
 
-HEADER = Array.hpp
+HEADER = Array.hpp Array.tpp
 
 OBJ = $(SRC:.cpp=.o)
 
