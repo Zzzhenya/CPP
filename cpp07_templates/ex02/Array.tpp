@@ -26,8 +26,8 @@ Array<T>::~Array(void)
 template <typename T>
 Array<T>::Array(const Array &other)
 {
-	if (this->_n > 0 || this->_arr != NULL)
-		delete [] this->_arr;
+	//if (this->_n > 0 || this->_arr != NULL)
+	//	delete [] this->_arr;
 
 	this->_n = other._n;
 	this->_arr = new T[other._n];
