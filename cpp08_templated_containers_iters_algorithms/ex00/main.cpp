@@ -12,6 +12,14 @@ void print_val(std::vector<int> &v, std::vector<int>::iterator &loc)
 		std::cout << "returned v.end()."  << std::endl;
 }
 
+void print_val_set(std::set<int> &v, std::set<int>::iterator &loc)
+{
+	if (loc != v.end())
+		std::cout << "val: " << *loc << std::endl;
+	else
+		std::cout << "returned v.end()."  << std::endl;
+}
+
 int vector_tests(void)
 {
 	std::cout  << "========= Vector tests =========" << std::endl;
@@ -81,23 +89,27 @@ int vector_tests(void)
 	return (1);
 }
 
-
-
 int set_tests(void)
 {
 	std::cout  << "========= set tests =========" << std::endl;
-	
-	std::set<int> keys;
-	keys.insert(3);
-	keys.insert(4);
-	// std::cout << easyfind(keys, 3) << std::endl; 
-	// std::cout << easyfind(keys, 4) << std::endl; 
-	// std::cout << easyfind(keys, -2) << std::endl;
-	std::set<int>::iterator ret = find(keys.begin(), keys.end(), 3);
-	if (ret != keys.end())
-		std::cout << *ret << std::endl;
-	else
-		std::cout << *ret << std::endl;
+	{
+		std::set<int> keys;
+		keys.insert(3);
+		keys.insert(4);
+
+		std::set<int>::iterator ret = easyfind(keys, 3);
+		print_val_set(keys, ret);
+		if (*ret != 3)
+			return (0);
+		ret = easyfind(keys, 4);
+		print_val_set(keys, ret);
+		if (*ret != 4)
+			return (0);
+		ret = easyfind(keys, -2);
+		print_val_set(keys, ret);
+		if (ret != keys.end())
+			return (0);
+	}
 
 	// std::cout << keys[1] << std::endl;
 
@@ -122,7 +134,9 @@ int main(void)
 	else
 		std::cout << "================================  OK" << std::endl;
 
-	// if (!set_tests())
-	// 	std::cout << "================================  ERROR" << std::endl;
+	if (!set_tests())
+		std::cout << "================================  ERROR" << std::endl;
+	else
+		std::cout << "================================  OK" << std::endl;
 	return (0);
 }
