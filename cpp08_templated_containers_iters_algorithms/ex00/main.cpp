@@ -21,6 +21,14 @@ void print_val_set(std::set<int> &v, std::set<int>::iterator &loc)
 		std::cout << "distance: " <<  distance(v.begin(),loc) << "\treturned v.end()"  << std::endl;
 }
 
+void print_val_multset(std::multiset<int> &v, std::multiset<int>::iterator &loc)
+{
+	if (loc != v.end())
+		std::cout << "distance: " <<  distance(v.begin(),loc) << "\tval: " << *loc << std::endl;
+	else
+		std::cout << "distance: " <<  distance(v.begin(),loc) << "\treturned v.end()"  << std::endl;
+}
+
 int vector_tests(void)
 {
 	std::cout  << "========= Vector tests =========" << std::endl;
@@ -107,6 +115,65 @@ int set_tests(void)
 		print_val_set(keys, ret);
 		if (ret != keys.end() || distance(keys.begin(),ret) != (int)keys.size())
 			return (0);
+		keys.erase(3);
+		ret = easyfind(keys, 3);
+		print_val_set(keys, ret);
+		if (ret != keys.end() || distance(keys.begin(),ret) != (int)keys.size())
+			return (0);
+		ret = easyfind(keys, 4);
+		print_val_set(keys, ret);
+		if (*ret != 4 || distance(keys.begin(),ret) != 0)
+			return (0);
+	}
+	return (1);
+}
+
+int multiset_tests(void)
+{
+	std::cout  << "========= set tests =========" << std::endl;
+	{
+		std::multiset<int> keys;
+		std::multiset<int>::iterator ret;
+
+		ret = easyfind(keys, 3);
+		print_val_multset(keys, ret);
+		if (ret != keys.end() || distance(keys.begin(),ret) != (int)keys.size())
+			return (0);
+
+		keys.insert(3);
+		keys.insert(4);
+		keys.insert(3);
+		keys.insert(4);
+		keys.insert(100); 
+
+		// 3 , 3 , 4 , 4 , 100
+
+		ret = easyfind(keys, 3);
+		print_val_multset(keys, ret);
+		if (*ret != 3 || distance(keys.begin(),ret) != 0)
+			return (0);
+
+		ret = easyfind(keys, 4);
+		print_val_multset(keys, ret);
+		if (*ret != 4 || distance(keys.begin(),ret) != 2)
+			return (0);
+
+		ret = easyfind(keys, -2);
+		print_val_multset(keys, ret);
+		if (ret != keys.end() || distance(keys.begin(),ret) != (int)keys.size())
+			return (0);
+
+		keys.erase(3); // deletes all 3's
+
+		ret = easyfind(keys, 3);
+		print_val_multset(keys, ret);
+		if (ret != keys.end() || distance(keys.begin(),ret) != (int)keys.size())
+			return (0);
+		
+		ret = easyfind(keys, 4);
+		print_val_multset(keys, ret);
+		if (*ret != 4 || distance(keys.begin(),ret) != 0)
+			return (0);
 	}
 	return (1);
 }
@@ -120,6 +187,11 @@ int main(void)
 		std::cout << "================================  OK" << std::endl;
 
 	if (!set_tests())
+		std::cout << "================================  ERROR" << std::endl;
+	else
+		std::cout << "================================  OK" << std::endl;
+
+	if (!multiset_tests())
 		std::cout << "================================  ERROR" << std::endl;
 	else
 		std::cout << "================================  OK" << std::endl;
