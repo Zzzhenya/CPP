@@ -7,12 +7,14 @@
 template <typename T>
 int easyfind(T &haystack, int needle)
 {
+	int i = 0;
 	try
 	{
-		for (unsigned long it = 0; it < haystack.size(); it++)
+		for (typename T::iterator it = haystack.begin(); it != haystack.end(); it++)
 		{
-			if (haystack[it] == needle)
-				return ((int)it);
+			if (*it == needle)
+				return (i);
+			i++;
 		}
 	}
 	catch(std::exception &e)
