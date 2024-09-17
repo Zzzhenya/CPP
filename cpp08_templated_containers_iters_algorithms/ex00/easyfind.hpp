@@ -3,26 +3,17 @@
 
 #include <iostream>
 #include <iterator>
+#include <algorithm>
 
 template <typename T>
-int easyfind(T &haystack, int needle)
+typename T::iterator easyfind(T &haystack, int needle)
 {
-	int i = 0;
-	try
+	for (typename T::iterator it = haystack.begin(); it != haystack.end(); it++)
 	{
-		for (typename T::iterator it = haystack.begin(); it != haystack.end(); it++)
-		{
-			if (*it == needle)
-				return (i);
-			i++;
-		}
+		if (*it == needle)
+			return (it);
 	}
-	catch(std::exception &e)
-	{
-		std::cerr << "Exception ";
-		std::cerr << e.what() << std::endl;
-	}
-	return (-1);
+	return (haystack.end());
 }
 
 #endif

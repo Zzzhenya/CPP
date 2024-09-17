@@ -1,7 +1,16 @@
 #include <iostream>
 #include <vector>
+#include <set>
 #include <limits>
 #include "easyfind.hpp"
+
+void print_val(std::vector<int> &v, std::vector<int>::iterator &loc)
+{
+	if (loc != v.end())
+		std::cout << "val: " << *loc << std::endl;
+	else
+		std::cout << "returned v.end()."  << std::endl;
+}
 
 int vector_tests(void)
 {
@@ -9,29 +18,20 @@ int vector_tests(void)
 	{
 		std::vector<int> v (6, 0);
 		for (int i = 0; i < 6; i++)
-		{
 			v[i] = i + 2;
-		}
-		int loc = ::easyfind(v, 5);
-		if (loc != -1)
-			std::cout << "loc: "  << loc << "\t val: "<< v[loc] << std::endl;
-		else
-			std::cout << "loc: "  << loc << std::endl;
-		if (loc != 3)
+
+		std::vector<int>::iterator loc = easyfind(v, 5);
+		print_val(v, loc);
+		if (*loc != 5)
 			return (0);
 	}
 	{
 		std::vector<int> v (6, 0);
 		for (int i = 0; i < 6; i++)
-		{
 			v[i] = 0;
-		}
-		int loc = ::easyfind(v, 5);
-		if (loc != -1)
-			std::cout << "loc: "  << loc << "\t val: "<< v[loc] << std::endl;
-		else
-			std::cout << "loc: "  << loc << std::endl;
-		if (loc != -1)
+		std::vector<int>::iterator loc = easyfind(v, 5);
+		print_val(v, loc);
+		if (loc != v.end())
 			return (0);
 	}
 	{
@@ -40,12 +40,9 @@ int vector_tests(void)
 		{
 			v[i] = 5;
 		}
-		int loc = ::easyfind(v, 5);
-		if (loc != -1)
-			std::cout << "loc: "  << loc << "\t val: "<< v[loc] << std::endl;
-		else
-			std::cout << "loc: "  << loc << std::endl;
-		if (loc != 0)
+		std::vector<int>::iterator loc  = easyfind(v, 5);
+		print_val(v, loc);
+		if (*loc != 5)
 			return (0);
 	}
 	{
@@ -54,12 +51,9 @@ int vector_tests(void)
 		// {
 		// 	v[i] = i + 2;
 		// }
-		int loc = ::easyfind(v, 5);
-		if (loc != -1)
-			std::cout << "loc: "  << loc << "\t val: "<< v[loc] << std::endl;
-		else
-			std::cout << "loc: "  << loc << std::endl;
-		if (loc != -1)
+		std::vector<int>::iterator loc = easyfind(v, 5);
+		print_val(v, loc);
+		if (loc != v.end())
 			return (0);
 	}
 	{
@@ -68,12 +62,9 @@ int vector_tests(void)
 		// {
 		// 	v[i] = i + 2;
 		// }
-		int loc = ::easyfind(v, 5);
-		if (loc != -1)
-			std::cout << "loc: "  << loc << "\t val: "<< v[loc] << std::endl;
-		else
-			std::cout << "loc: "  << loc << std::endl;
-		if (loc != -1)
+		std::vector<int>::iterator loc = easyfind(v, 5);
+		print_val(v, loc);
+		if (loc != v.end())
 			return (0);
 	}
 	{
@@ -82,18 +73,13 @@ int vector_tests(void)
 		{
 			v[i] = INT_MIN;
 		}
-		int loc = ::easyfind(v, INT_MIN);
-		if (loc != -1)
-			std::cout << "loc: "  << loc << "\t val: "<< v[loc] << std::endl;
-		else
-			std::cout << "loc: "  << loc << std::endl;
-		if (loc != 0)
+		std::vector<int>::iterator loc = easyfind(v, INT_MIN);
+		print_val(v, loc);
+		if (*loc != INT_MIN)
 			return (0);
 	}
 	return (1);
 }
-
-#include <set>
 
 
 
@@ -103,7 +89,7 @@ int set_tests(void)
 	
 	std::set<int> keys;
 	keys.insert(3);
-	// keys.insert(4);
+	keys.insert(4);
 	// std::cout << easyfind(keys, 3) << std::endl; 
 	// std::cout << easyfind(keys, 4) << std::endl; 
 	// std::cout << easyfind(keys, -2) << std::endl;
@@ -113,6 +99,7 @@ int set_tests(void)
 	else
 		std::cout << *ret << std::endl;
 
+	// std::cout << keys[1] << std::endl;
 
 	return (1);
 }
@@ -130,10 +117,12 @@ int main(void)
 	// if (ret != v.end())
 	// 	std::cout << *ret << std::endl;
 
-	// if (!vector_tests())
-	// 	std::cout << "================================  ERROR" << std::endl;
-
-	if (!set_tests())
+	if (!vector_tests())
 		std::cout << "================================  ERROR" << std::endl;
+	else
+		std::cout << "================================  OK" << std::endl;
+
+	// if (!set_tests())
+	// 	std::cout << "================================  ERROR" << std::endl;
 	return (0);
 }
