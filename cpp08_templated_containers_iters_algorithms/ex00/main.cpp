@@ -5,30 +5,6 @@
 #include <algorithm>
 #include "easyfind.hpp"
 
-// void print_val(std::vector<int> &v, std::vector<int>::iterator &loc)
-// {
-// 	if (loc != v.end())
-// 		std::cout << "distance: " <<  distance(v.begin(),loc) << "\tval: " << *loc << std::endl;
-// 	else
-// 		std::cout << "distance: " <<  distance(v.begin(),loc) << "\treturned v.end()"  << std::endl;
-// }
-
-// void print_val_set(std::set<int> &v, std::set<int>::iterator &loc)
-// {
-// 	if (loc != v.end())
-// 		std::cout << "distance: " <<  distance(v.begin(),loc) << "\tval: " << *loc << std::endl;
-// 	else
-// 		std::cout << "distance: " <<  distance(v.begin(),loc) << "\treturned v.end()"  << std::endl;
-// }
-
-// void print_val_multset(std::multiset<int> &v, std::multiset<int>::iterator &loc)
-// {
-// 	if (loc != v.end())
-// 		std::cout << "distance: " <<  distance(v.begin(),loc) << "\tval: " << *loc << std::endl;
-// 	else
-// 		std::cout << "distance: " <<  distance(v.begin(),loc) << "\treturned v.end()"  << std::endl;
-// }
-
 int vector_tests(void)
 {
 	std::cout  << "========= Vector tests =========" << std::endl;
@@ -185,7 +161,7 @@ int main(void)
 		std::cout << "================================  ERROR" << std::endl;
 	else
 		std::cout << "================================  OK" << std::endl;
-	
+
 	if (!set_tests())
 		std::cout << "================================  ERROR" << std::endl;
 	else
@@ -195,5 +171,6 @@ int main(void)
 		std::cout << "================================  ERROR" << std::endl;
 	else
 		std::cout << "================================  OK" << std::endl;
+	
 	return (0);
 }
