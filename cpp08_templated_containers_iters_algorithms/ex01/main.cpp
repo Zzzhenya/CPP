@@ -6,11 +6,14 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:05:23 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/19 00:48:32 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/19 01:48:45 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
+#include <cstdlib>
+#include <ctime>
+#include <limits>
 
 void	add_a_num(Span &sp, int num)
 {
@@ -48,7 +51,7 @@ void	try_longest_span(Span &sp)
 	}	
 }
 
-int main(void)
+void add_a_num_tests(void)
 {
 	{
 		Span sp = Span(0);
@@ -67,6 +70,10 @@ int main(void)
 		add_a_num(sp, 12);
 		sp.printSpan();
 	}
+}
+
+void span_tests(void)
+{
 	{
 	 	Span sp = Span(5);
   		sp.addNumber(6);
@@ -92,5 +99,25 @@ int main(void)
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 	}
+}
+
+void bulk_add_tests(void)
+{
+	std::srand(std::time(0));
+	std::vector<int> vtr(10);
+	for (std::vector<int>::iterator it = vtr.begin(); it != vtr.end(); it++)
+		*it = std::rand() % 200;
+	Span sp = Span(5);
+	sp.addNumRange(vtr.begin(), vtr.end());
+	//::iter<int>(arr, 2, ::mult<int, 4>);
+	//sp.addNumRange(vtr.begin(), vtr.end());
+}
+
+int main(void)
+{
+	// add_a_num_tests();
+	// span_tests();
+
+	bulk_add_tests();
 	return (0);
 }
