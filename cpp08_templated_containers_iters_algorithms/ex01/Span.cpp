@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:03:01 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/18 22:15:47 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/18 23:45:36 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ Span::Span(const unsigned int N): _N(N)
 	std::cout << "Span constructor" << std::endl;
 }
 
-Span::~Span()
+Span::~Span(void)
 {
 	std::cout << "Span destructor" << std::endl;
 }
 
-void Span::addNumber(int number)
+void Span::addNumber(const int number)
 {
 	if (_stash.size() < _N)
 	{
 		_stash.push_back(number);
-		std::cout << "added " << number << std::endl;
+		std::cout << "Added " << number << std::endl;
 	}
 	else
-		std::cout << "full\n";
+		throw std::length_error("Exception: length_error: The stash is full");
 }
 
