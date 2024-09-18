@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:04:40 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/18 22:26:59 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/19 00:44:07 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <vector>
 # include <iostream>
 # include <iterator>
+# include <cmath>
+# include <exception>
 
 class Span
 {
@@ -24,6 +26,9 @@ class Span
 		~Span(void);
 
 		void	addNumber(const int number);
+		int		shortestSpan(void);
+		int		longestSpan(void);
+		void	printSpan(void);
 
 	private:
 		std::vector<int>		_stash;
