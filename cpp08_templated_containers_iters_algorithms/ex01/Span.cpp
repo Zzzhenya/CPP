@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:03:01 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/19 01:52:11 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/19 14:57:26 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,18 +90,5 @@ void	Span::printSpan(void)
 	else
 		std::cout << "Stash:\t0 size" << std::endl;
 
-}
-
-void	Span::addNumRange(const std::vector<int>::iterator &start, const std::vector<int>::iterator &end)
-{
-	if (start == end)
-	{
-		std::cout << "start == end\n";
-		return;
-	}
-	for (std::vector<int>::iterator it = start; it != end; it++)
-	{
-		this->addNumber(*it);
-	}
 }
 

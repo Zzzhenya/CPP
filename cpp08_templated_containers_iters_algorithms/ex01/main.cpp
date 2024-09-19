@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:05:23 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/19 01:48:45 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/19 15:03:54 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <limits>
+#include <vector>
+#include <set>
 
 void	add_a_num(Span &sp, int num)
 {
@@ -104,20 +106,27 @@ void span_tests(void)
 void bulk_add_tests(void)
 {
 	std::srand(std::time(0));
-	std::vector<int> vtr(10);
-	for (std::vector<int>::iterator it = vtr.begin(); it != vtr.end(); it++)
-		*it = std::rand() % 200;
-	Span sp = Span(5);
-	sp.addNumRange(vtr.begin(), vtr.end());
-	//::iter<int>(arr, 2, ::mult<int, 4>);
-	//sp.addNumRange(vtr.begin(), vtr.end());
+	{
+		std::vector<int> vtr(10);
+		for (std::vector<int>::iterator it = vtr.begin(); it != vtr.end(); it++)
+			*it = std::rand() % 200;
+		Span sp = Span(5);
+		sp.addNumRange< std::vector<int> >(vtr.begin(), vtr.end());
+	}
+	{
+		int len = 20;
+		std::set<int> keys;
+		for (int i = 0; i < len; i++)
+			keys.insert(std::rand() % 200);
+		Span sp = Span(len);
+		sp.addNumRange< std::set<int> >(keys.begin(), keys.end());
+	}
 }
 
 int main(void)
 {
-	// add_a_num_tests();
-	// span_tests();
-
+	add_a_num_tests();
+	span_tests();
 	bulk_add_tests();
 	return (0);
 }
