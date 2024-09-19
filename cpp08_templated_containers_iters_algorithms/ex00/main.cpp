@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <deque>
+#include <list>
 #include <set>
 #include <limits>
 #include <algorithm>
@@ -154,23 +156,150 @@ int multiset_tests(void)
 	return (1);
 }
 
+int deque_tests(void)
+{
+	std::cout  << "========= Deque tests =========" << std::endl;
+	{
+		std::deque<int> v (6, 0);
+		for (int i = 0; i < (int)v.size(); i++)
+			v[i] = i + 2;
+
+		std::deque<int>::iterator loc = easyfind(v, 5);
+		print_val(v, loc);
+		if ( *loc != 5 || distance(v.begin(),loc) != 3)
+			return (0);
+	}
+	{
+		std::deque<int> v (6, 0);
+		for (int i = 0; i < (int)v.size(); i++)
+			v[i] = 0;
+
+		std::deque<int>::iterator loc = easyfind(v, 5);
+		print_val(v, loc);
+		if (loc != v.end() || distance(v.begin(),loc) != (int)v.size())
+			return (0);
+	}
+	{
+		std::deque<int> v (6, 0);
+		for (int i = 0; i < (int)v.size(); i++)
+			v[i] = 5;
+
+		std::deque<int>::iterator loc  = easyfind(v, 5);
+		print_val(v, loc);
+		if (*loc != 5 || distance(v.begin(),loc) != 0)
+			return (0);
+	}
+	{
+		std::deque<int> v (0, 0);
+		std::deque<int>::iterator loc = easyfind(v, 5);
+		print_val(v, loc);
+		if (loc != v.end() || distance(v.begin(),loc) != (int)v.size())
+			return (0);
+	}
+	{
+		std::deque<int> v;
+		std::deque<int>::iterator loc = easyfind(v, 5);
+		print_val(v, loc);
+		if (loc != v.end() || distance(v.begin(),loc) != (int)v.size())
+			return (0);
+	}
+	{
+		std::deque<int> v (6, 0);
+		for (int i = 0; i < 6; i++)
+			v[i] = INT_MIN;
+		std::deque<int>::iterator loc = easyfind(v, INT_MIN);
+		print_val(v, loc);
+		if (*loc != INT_MIN || distance(v.begin(),loc) != 0)
+			return (0);
+	}
+	return (1);
+}
+
+int list_tests(void)
+{
+	std::cout  << "========= List tests =========" << std::endl;
+	{
+		std::list<int> v;
+		for (int i = 0; i < 6; i++)
+			v.push_back(i + 2);
+
+		std::list<int>::iterator loc = easyfind(v, 5);
+		print_val(v, loc);
+		if ( *loc != 5 || distance(v.begin(),loc) != 3)
+			return (0);
+	}
+	{
+		std::list<int> v;
+		for (int i = 0; i < 6; i++)
+			v.push_back(0);
+
+		std::list<int>::iterator loc = easyfind(v, 5);
+		print_val(v, loc);
+		if (loc != v.end() || distance(v.begin(),loc) != (int)v.size())
+			return (0);
+	}
+	{
+		std::list<int> v;
+		for (int i = 0; i < 6; i++)
+			v.push_back(5);
+
+		std::list<int>::iterator loc  = easyfind(v, 5);
+		print_val(v, loc);
+		if (*loc != 5 || distance(v.begin(),loc) != 0)
+			return (0);
+	}
+	{
+		std::list<int> v;
+		std::list<int>::iterator loc = easyfind(v, 5);
+		print_val(v, loc);
+		if (loc != v.end() || distance(v.begin(),loc) != (int)v.size())
+			return (0);
+	}
+	{
+		std::list<int> v;
+		std::list<int>::iterator loc = easyfind(v, 5);
+		print_val(v, loc);
+		if (loc != v.end() || distance(v.begin(),loc) != (int)v.size())
+			return (0);
+	}
+	{
+		std::list<int> v;
+		for (int i = 0; i < 6; i++)
+			v.push_back(INT_MIN);
+		std::list<int>::iterator loc = easyfind(v, INT_MIN);
+		print_val(v, loc);
+		if (*loc != INT_MIN || distance(v.begin(),loc) != 0)
+			return (0);
+	}
+	return (1);
+}
+
 int main(void)
 {
-
 	if (!vector_tests())
 		std::cout << "================================  ERROR" << std::endl;
 	else
 		std::cout << "================================  OK" << std::endl;
 
-	if (!set_tests())
+	if (!deque_tests())
 		std::cout << "================================  ERROR" << std::endl;
 	else
 		std::cout << "================================  OK" << std::endl;
 
-	if (!multiset_tests())
+	if (!list_tests())
 		std::cout << "================================  ERROR" << std::endl;
 	else
 		std::cout << "================================  OK" << std::endl;
+
+	// if (!set_tests())
+	// 	std::cout << "================================  ERROR" << std::endl;
+	// else
+	// 	std::cout << "================================  OK" << std::endl;
+
+	// if (!multiset_tests())
+	// 	std::cout << "================================  ERROR" << std::endl;
+	// else
+	// 	std::cout << "================================  OK" << std::endl;
 	
 	return (0);
 }
