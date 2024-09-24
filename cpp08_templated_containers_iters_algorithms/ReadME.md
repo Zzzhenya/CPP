@@ -50,9 +50,22 @@
 
 	vector( const vector& other );
 
-* What is a std::Allocator? 
+What is a std::Allocator? 
 
 
-https://stackoverflow.com/questions/11134497/constant-sized-vector
+* https://stackoverflow.com/questions/11134497/constant-sized-vector
 
-	
+## Exceptions
+
+* https://en.cppreference.com/w/cpp/error/exception
+
+* https://rollbar.com/blog/error-exceptions-in-c/
+
+## std::stack
+
+template<
+    class T,
+    class Container = std::deque<T>
+> class stack;
+
+template <class Type, class Container = deque<Type> > class stack;
