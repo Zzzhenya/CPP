@@ -1,10 +1,13 @@
 #include <iostream>
-#include <fstream>
-#include <exception>
-#include <string>
-#include <map>
+#include "BitcoinExchange.hpp"
 
-#define DATABASE_NAME "data.csv"
+// #include <iostream>
+// #include <fstream>
+// #include <exception>
+// #include <string>
+// #include <map>
+
+// #define DATABASE_NAME "data.csv"
 
 /*
  * 	- check all dates of the timeframe are included
@@ -21,32 +24,32 @@
 
 // }
 
-void	read_line_by_line(std::fstream &database, std::map<std::string,std::string> &dbmap)
-{
-	std::string		line;
-	std::string		date;
-	std::string		value;
+// void	read_line_by_line(std::fstream &database, std::map<std::string,std::string> &dbmap)
+// {
+// 	std::string		line;
+// 	std::string		date;
+// 	std::string		value;
 
-	//(void)dbmap;
-	bool ret = 0;
-	ret = std::getline(database, line);
-	while (ret)	
-	{
-		ret = std::getline(database, date, ',');
-		if (ret)
-		{
-			std::getline(database, value, '\n');
-			//dbmap.insert({date, value});
-			dbmap.insert(std::pair<std::string,std::string>(date,value));
-			// std::cout << date << " : " << value << std::endl;
-		}
-		// else
-		// {
-		// 	// empty line at end
-		// 	std::cout << date << " : " << std::endl;
-		// }
-	}
-}
+// 	//(void)dbmap;
+// 	bool ret = 0;
+// 	ret = std::getline(database, line);
+// 	while (ret)	
+// 	{
+// 		ret = std::getline(database, date, ',');
+// 		if (ret)
+// 		{
+// 			std::getline(database, value, '\n');
+// 			//dbmap.insert({date, value});
+// 			dbmap.insert(std::pair<std::string,std::string>(date,value));
+// 			// std::cout << date << " : " << value << std::endl;
+// 		}
+// 		// else
+// 		// {
+// 		// 	// empty line at end
+// 		// 	std::cout << date << " : " << std::endl;
+// 		// }
+// 	}
+// }
 
 /*
  * Open data.csv
@@ -60,22 +63,22 @@ void	read_line_by_line(std::fstream &database, std::map<std::string,std::string>
  * 	- start and end date of database
 */
 
-int	setup_database(std::map<std::string,std::string> &dbmap)
-{
-	// try
-	// {
-		std::fstream database(DATABASE_NAME, std::ios::in);
-		//database.exceptions(std::fstream::failbit | std::ifstream::badbit);
-		read_line_by_line(database, dbmap);
-		database.close();
-	// }
-	// catch (const std::ios_base::failure &fail)
-	// {
-	// 	std::cerr << "failed to open " << std::string(DATABASE_NAME) << std::endl;
-	// 	std::cerr << fail.what() << std::endl;
-	// }
-	return (1);
-}
+// int	setup_database(std::map<std::string,std::string> &dbmap)
+// {
+// 	// try
+// 	// {
+// 		std::fstream database(DATABASE_NAME, std::ios::in);
+// 		//database.exceptions(std::fstream::failbit | std::ifstream::badbit);
+// 		read_line_by_line(database, dbmap);
+// 		database.close();
+// 	// }
+// 	// catch (const std::ios_base::failure &fail)
+// 	// {
+// 	// 	std::cerr << "failed to open " << std::string(DATABASE_NAME) << std::endl;
+// 	// 	std::cerr << fail.what() << std::endl;
+// 	// }
+// 	return (1);
+// }
 
 /**
  * Open data.csv
@@ -102,10 +105,13 @@ int	setup_database(std::map<std::string,std::string> &dbmap)
 */
 int main(void)
 {
-	std::map<std::string,std::string> dbmap;
-	if (!setup_database(dbmap))
-		return (1);
-	for (std::map<std::string,std::string>::iterator it = dbmap.begin(); it != dbmap.end(); it++)
-		std::cout << it->first << " : " << it->second << std::endl;
+	BitcoinExchange bt;
+
+	bt.print_dbmap();
+	// std::map<std::string,std::string> dbmap;
+	// if (!setup_database(dbmap))
+	// 	return (1);
+	// for (std::map<std::string,std::string>::iterator it = dbmap.begin(); it != dbmap.end(); it++)
+	// 	std::cout << it->first << " : " << it->second << std::endl;
 	return (0);
 }
