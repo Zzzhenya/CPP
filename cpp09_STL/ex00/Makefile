@@ -6,7 +6,7 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/27 00:19:45 by sde-silv          #+#    #+#              #
-#    Updated: 2024/09/27 18:41:51 by sde-silv         ###   ########.fr        #
+#    Updated: 2024/09/29 17:43:04 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ HEADER = BitcoinExchange.hpp
 
 OBJ = $(SRC:.cpp=.o)
 
-CXX = clang++
+CXX = g++ #-H
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Wpedantic
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic-errors #-Wpedantic
 
 all: $(NAME)
 

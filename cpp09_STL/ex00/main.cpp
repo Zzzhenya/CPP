@@ -1,5 +1,6 @@
 #include <iostream>
 #include "BitcoinExchange.hpp"
+#include <cstdlib>
 
 // #include <iostream>
 // #include <fstream>
@@ -80,6 +81,24 @@
 // 	return (1);
 // }
 
+void find_and_calc(BitcoinExchange &bt,std::string &date, std::string &amount)
+{
+	std::map<std::string,std::string>::iterator it;
+
+	if (*(date.end() - 1) == ' ' )
+		date.erase(date.end() - 1);
+	//std::cout << date << std::endl;
+	it = bt.dbmap.find(date);
+	if (it != bt.dbmap.end())
+	{
+		if (*(amount.begin()+ 1) == ' ' )
+			amount.erase(amount.begin() + 1);
+		std::cout << date << ":" << amount << ": " \
+		<< it->second << " = "\
+		<<  (std::atof(amount.c_str())) * (std::atof(it->second.c_str())) << std::endl;
+	}
+}
+
 /**
  * Open data.csv
  * Read data into a map - unique keys sorted
@@ -103,11 +122,39 @@
  * 			- go to previous date
  * 			- repeat until a date - value pair is found
 */
-int main(void)
+int main(int argc, char **argv)
 {
+	if (argc != 2)
+	{
+		std::cout << "./btc file_to_convert(in date | value format)" << std::endl;
+		return (1);
+	}
+
+	std::fstream file(argv[1], std::ios::in);
+	
+
 	BitcoinExchange bt;
 
-	bt.print_dbmap();
+	//bt.print_dbmap();
+
+	std::string		line;
+	std::string		date;
+	std::string		amount;
+
+	bool ret = 0;
+	ret = std::getline(file, line);
+	while (ret)	
+	{
+		ret = std::getline(file, date, '|');
+		if (ret)
+		{
+			std::getline(file, amount, '\n');
+			find_and_calc(bt, date, amount);
+			// std::cout << date << " : " << amount << std::endl;
+		}
+	}
+	file.close();
+
 	// std::map<std::string,std::string> dbmap;
 	// if (!setup_database(dbmap))
 	// 	return (1);

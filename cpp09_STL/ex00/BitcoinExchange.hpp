@@ -5,6 +5,7 @@
 # include <fstream>
 # include <exception>
 # include <string>
+# include <utility>
 # include <map>
 
 # define DATABASE_NAME "data.csv"
@@ -16,10 +17,9 @@ class BitcoinExchange
 		~BitcoinExchange(void);
 		// BitcoinExchange(const BitcoinExchange &other);
 		// BitcoinExchange &operator=(const BitcoinExchange &other);
-		//bool	setPair(std::string &date, std::string &value);
-		void print_dbmap(void);
+		void 	print_dbmap(void);
 
-	private:
+	//private:
 		std::map<std::string,std::string> dbmap;
 };
 
