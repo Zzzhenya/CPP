@@ -87,39 +87,17 @@ void find_and_calc(BitcoinExchange &bt,std::string &date, std::string &amount)
 
 	if (*(date.end() - 1) == ' ' )
 		date.erase(date.end() - 1);
-	//std::cout << date << std::endl;
 	if (*(amount.begin()+ 1) == ' ' )
 		amount.erase(amount.begin() + 1);
 	it = bt.dbmap.find(date);
-	if (it != bt.dbmap.end())
+	if (it == bt.dbmap.end())
 	{
-		std::cout << date << ":" << amount << "\t: " \
-		<< it->second << " =\t"\
-		<<  (std::atof(amount.c_str())) * (std::atof(it->second.c_str())) << std::endl;
-		return;
+		it = bt.dbmap.lower_bound(date);
+		it --;
 	}
-	else
-	{
-		std::cout << date << "\t:" << amount << ": " \
-		<< "\tcan't find date" << std::endl;
-	}
-	// while (it == bt.dbmap.end())
-	// {
-	// 	std::cout << date << std::endl;
-	// 	if (date.end() - 1 != date.begin())
-	// 		date.erase(date.end() - 1);
-	// 	else
-	// 		break;
-	// 	it = bt.dbmap.find(date);
-	// }
-	// std::cout << it->first << std::endl;
-	// if (it != bt.dbmap.end())
-	// {
-	// 	std::cout << date << ":" << amount << ": " \
-	// 	<< it->second << " = "\
-	// 	<<  (std::atof(amount.c_str())) * (std::atof(it->second.c_str())) << std::endl;
-	// 	return;
-	// }
+	std::cout << date << "\t:" << amount << "\t* " \
+	<< it->second << "\t=\t"\
+	<<  (std::atof(amount.c_str())) * (std::atof(it->second.c_str())) << std::endl;
 }
 
 /**
