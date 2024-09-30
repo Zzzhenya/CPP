@@ -32,7 +32,7 @@ int	setup_database(std::map<std::string,std::string> &dbmap)
 	// try
 	// {
 		std::fstream database(DATABASE_NAME, std::ios::in);
-		//database.exceptions(std::fstream::failbit | std::ifstream::badbit);
+		database.exceptions(std::fstream::failbit | std::ifstream::badbit);
 		read_line_by_line(database, dbmap);
 		database.close();
 	// }
@@ -40,6 +40,7 @@ int	setup_database(std::map<std::string,std::string> &dbmap)
 	// {
 	// 	std::cerr << "failed to open " << std::string(DATABASE_NAME) << std::endl;
 	// 	std::cerr << fail.what() << std::endl;
+	// 	return (0);
 	// }
 	return (1);
 }
@@ -47,8 +48,19 @@ int	setup_database(std::map<std::string,std::string> &dbmap)
 BitcoinExchange::BitcoinExchange(void)
 {
 	std::cout << "BitcoinExchange default constructor" << std::endl;
-	if (!setup_database(dbmap))
-		std::cout << "Database setup failed" << std::endl;
+	try
+	{
+		setup_database(dbmap);
+	}
+	catch(const std::ios_base::failure &fail)
+	{
+		throw std::runtime_error("exception: failed to open " + std::string(DATABASE_NAME));
+		// std::cerr << "failed to open " << std::string(DATABASE_NAME) << std::endl;
+		// std::cerr << fail.what() << std::endl;
+	}
+	// if (!setup_database(dbmap))
+	// 	throw std::runtime_error("");
+		//std::cout << "Database setup failed" << std::endl;
 }
 
 BitcoinExchange::~BitcoinExchange(void)

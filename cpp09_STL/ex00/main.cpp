@@ -123,21 +123,10 @@ void find_and_calc(BitcoinExchange &bt,std::string &date, std::string &amount)
  * 			- go to previous date
  * 			- repeat until a date - value pair is found
 */
-int main(int argc, char **argv)
+
+void run_query(std::string filename, BitcoinExchange &bt)
 {
-	if (argc != 2)
-	{
-		std::cout << "./btc file_to_convert(in date | value format)" << std::endl;
-		return (1);
-	}
-
-	std::fstream file(argv[1], std::ios::in);
-	
-
-	BitcoinExchange bt;
-
-	//bt.print_dbmap();
-
+	std::fstream file(filename, std::ios::in);
 	std::string		line;
 	std::string		date;
 	std::string		amount;
@@ -151,15 +140,27 @@ int main(int argc, char **argv)
 		{
 			std::getline(file, amount, '\n');
 			find_and_calc(bt, date, amount);
-			// std::cout << date << " : " << amount << std::endl;
 		}
 	}
 	file.close();
+}
 
-	// std::map<std::string,std::string> dbmap;
-	// if (!setup_database(dbmap))
-	// 	return (1);
-	// for (std::map<std::string,std::string>::iterator it = dbmap.begin(); it != dbmap.end(); it++)
-	// 	std::cout << it->first << " : " << it->second << std::endl;
+int main(int argc, char **argv)
+{
+	if (argc != 2)
+	{
+		std::cout << "./btc file_to_convert(in date | value format)" << std::endl;
+		return (1);
+	}
+	try
+	{
+		BitcoinExchange bt;
+		run_query(argv[1], bt);
+	}
+	catch (std::exception &e)
+	{
+		std::cout  << e.what() << std::endl;
+		return (1);
+	}
 	return (0);
 }
