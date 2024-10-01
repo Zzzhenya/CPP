@@ -54,7 +54,7 @@ BitcoinExchange::BitcoinExchange(void)
 	}
 	catch(const std::ios_base::failure &fail)
 	{
-		throw std::runtime_error("exception: failed to open " + std::string(DATABASE_NAME));
+		throw std::logic_error("exception: failed to open " + std::string(DATABASE_NAME));
 		// std::cerr << "failed to open " << std::string(DATABASE_NAME) << std::endl;
 		// std::cerr << fail.what() << std::endl;
 	}
