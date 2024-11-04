@@ -2,7 +2,7 @@ NAME = account_log
 
 CC = c++
 
-CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -g #-std=c++98
 
 SRC = tests.cpp Account.cpp
 
