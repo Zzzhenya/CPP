@@ -12,7 +12,12 @@ void	Account::_displayTimestamp( void )
 {
     time_t now;
     std::time(&now);
-    std::cout <<  now << " ";
+    // std::cout <<  now << " ";
+    struct tm datetime = *localtime(&now);
+    // datetime.tm_mon = 0;
+    char output[100];
+    strftime(output, 50, "%Y%m%d_%H%M%S", &datetime);
+    std::cout << "[" << output << "] ";
 }
 
 Account::Account( int initial_deposit )
