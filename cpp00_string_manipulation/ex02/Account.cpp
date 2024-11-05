@@ -47,15 +47,24 @@ void	Account::displayStatus( void ) const
     std::cout << "withdrawals:" << _nbWithdrawals << std::endl;
 }
 
+/*
+Insert this to test:
+    datetime.tm_year = 1992 - 1900;
+    datetime.tm_mon = 0;
+    datetime.tm_mday = 4;
+    datetime.tm_hour = 9;
+    datetime.tm_min = 15;
+    datetime.tm_sec = 32;
+*/
+//19920104_091532
 void	Account::_displayTimestamp( void )
 {
     time_t now;
     std::time(&now);
-    // std::cout <<  now << " ";
     struct tm datetime = *localtime(&now);
-    // datetime.tm_mon = 0;
-    char output[100];
-    strftime(output, 50, "%Y%m%d_%H%M%S", &datetime);
+    // Insert here and get diff to test
+    char output[18];
+    strftime(output, 18, "%Y%m%d_%H%M%S", &datetime);
     std::cout << "[" << output << "] ";
 }
 
