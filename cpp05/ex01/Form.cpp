@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:07:36 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/05 16:07:57 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/11/13 22:11:39 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 Form::Form(void):_name("default"),_signed(0),
 	_sign_grade(HIGHEST_GRADE),_exec_grade(LOWEST_GRADE)
 {
-	debug(std::cout << "Form default constructor\n");
+	debug(std::cout << "Form default constructor for " << *this);
 }
 
 Form::Form(const Form &other):_name(other._name),_signed(0),
 	_sign_grade(other._sign_grade),_exec_grade(other._exec_grade)
 {
-	debug(std::cout << "Form copy constructor\n");
+	debug(std::cout << "Form copy constructor for " << *this);
 }
 
 /*
@@ -42,7 +42,7 @@ Form::Form(std::string name, int sign_grade, int exec_grade):_name(name),
 		throw Bureaucrat::GradeTooLowException();
 	else if (sign_grade < HIGHEST_GRADE || exec_grade < HIGHEST_GRADE)
 		throw Bureaucrat::GradeTooHighException();
-	debug(std::cout << "Form constructor\n");
+	debug(std::cout << "Form constructor for" << *this);
 }
 
 Form::~Form(void)
@@ -94,7 +94,7 @@ std::ostream& operator<<(std::ostream& streamRef,const Form& form)
 		streamRef << "Signed";
 	else
 		streamRef << "Unsigned";
-	streamRef << "\tS: " << form.getSignGrade();
-	streamRef << "  E: " << form.getExecGrade() << std::endl;
+	streamRef << "\tSign: " << form.getSignGrade();
+	streamRef << "  Exec: " << form.getExecGrade() << std::endl;
 	return (streamRef);
 }

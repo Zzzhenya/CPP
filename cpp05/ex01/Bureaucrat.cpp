@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 02:27:06 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/05 16:07:37 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/11/13 22:10:43 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,16 @@
 
 Bureaucrat::Bureaucrat(void):_name("default"),_grade(LOWEST_GRADE)
 {
-	debug(std::cout << "Bureaucrat default constructor\n");
+	debug(std::cout << "Bureaucrat default constructor for " << *this);
+}
+
+Bureaucrat::Bureaucrat(std::string name, int grade):_name(name), _grade(grade)
+{
+	if (grade > LOWEST_GRADE)
+		throw Bureaucrat::GradeTooLowException();
+	else if (grade < HIGHEST_GRADE)
+		throw Bureaucrat::GradeTooHighException();
+	debug(std::cout << "Bureaucrat constructor for " << *this);
 }
 
 Bureaucrat::~Bureaucrat(void)
@@ -32,15 +41,6 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 	this->_grade = other._grade;
 	debug(std::cout << "Bureaucrat copy assignment operator overload\n");
 	return (*this);
-}
-
-Bureaucrat::Bureaucrat(std::string name, int grade):_name(name), _grade(grade)
-{
-	if (grade > LOWEST_GRADE)
-		throw Bureaucrat::GradeTooLowException();
-	else if (grade < HIGHEST_GRADE)
-		throw Bureaucrat::GradeTooHighException();
-	debug(std::cout << "Bureaucrat constructor\n");
 }
 
 const std::string		&Bureaucrat::getName() const
@@ -66,6 +66,7 @@ void	Bureaucrat::upGrade(void)
 	else if (new_grade > LOWEST_GRADE)
 		throw Bureaucrat::GradeTooLowException();
 	setGrade((unsigned int)new_grade);
+	debug(std::cout << "Upgrade " << *this);
 }
 
 void	Bureaucrat::downGrade(void)
@@ -77,6 +78,14 @@ void	Bureaucrat::downGrade(void)
 	else if (new_grade > LOWEST_GRADE)
 		throw Bureaucrat::GradeTooLowException();
 	setGrade((unsigned int)new_grade);
+	debug(std::cout << "Downgrade " << *this);
+}
+
+std::ostream& operator<<(std::ostream& streamRef,const Bureaucrat& bcat)
+{
+	streamRef << bcat.getName() << ", bureaucrat grade ";
+	streamRef << bcat.getGrade() << "." << std::endl;
+	return (streamRef);
 }
 
 void	Bureaucrat::signForm(Form *form) const
@@ -93,11 +102,4 @@ void	Bureaucrat::signForm(Form *form) const
 		std::cout << this->getName();
 		std::cout << " signed " << form->getName() << std::endl;
 	}
-}
-
-std::ostream& operator<<(std::ostream& streamRef,const Bureaucrat& bcat)
-{
-	streamRef << bcat.getName() << ", bureaucrat grade ";
-	streamRef << bcat.getGrade() << "." << std::endl;
-	return (streamRef);
 }

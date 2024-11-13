@@ -6,18 +6,18 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 00:59:17 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/05 16:08:35 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/11/13 20:19:46 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Bureaucrat.hpp"
+#define LB std::cerr << "=======================================\n"
 
 void	basic_stack(std::string name, int val)
 {
 	Bureaucrat b2 = Bureaucrat(name, val);
 	std::cout << b2;
-	debug(std::cerr << "=======================================\n");
 }
 
 void	basic_heap(std::string name, int val)
@@ -25,7 +25,6 @@ void	basic_heap(std::string name, int val)
 	Bureaucrat *b1 = new Bureaucrat(name, val);
 	std::cout << *b1;
 	delete b1;
-	debug(std::cerr << "=======================================\n");
 }
 
 void basic(void)
@@ -34,19 +33,21 @@ void basic(void)
 	{
 		Bureaucrat b1;
 		std::cout << b1;
-		debug(std::cerr << "=======================================\n");
+		LB;
 	}
 	{
 		basic_stack("Bob", 20);
+		LB;
 	}
 	{
 		Bureaucrat *b1 = new Bureaucrat();
 		std::cout << *b1;
 		delete b1;
-		debug(std::cerr << "=======================================\n");
+		LB;
 	}
 	{
 		basic_heap("Bob", 4);
+		LB;
 	}
 }
 
@@ -76,6 +77,7 @@ void	simple_tests(void)
 			else
 				std::cerr << "ERROR" << std::endl;
 		}
+		LB;
 	}
 	{
 		try
@@ -89,6 +91,7 @@ void	simple_tests(void)
 			else
 				std::cerr << "ERROR" << std::endl;
 		}
+		LB;
 	}
 	{
 		try
@@ -102,6 +105,7 @@ void	simple_tests(void)
 			else
 				std::cerr << "ERROR" << std::endl;
 		}
+		LB;
 	}
 	std::cout << "Heap\n";
 	{
@@ -116,6 +120,7 @@ void	simple_tests(void)
 			else
 				std::cerr << "ERROR" << std::endl;
 		}
+		LB;
 	}
 	{
 		try
@@ -129,6 +134,7 @@ void	simple_tests(void)
 			else
 				std::cerr << "ERROR" << std::endl;
 		}
+		LB;
 	}
 	{
 		try
@@ -142,6 +148,7 @@ void	simple_tests(void)
 			else
 				std::cerr << "ERROR" << std::endl;
 		}
+		LB;
 	}
 }
 
@@ -165,7 +172,7 @@ void	combination_test(void)
 			else
 				std::cerr << "ERROR" << std::endl;
 		}
-		debug(std::cerr << "=======================================\n");
+		LB;
 	}
 	{
 		try
@@ -185,7 +192,7 @@ void	combination_test(void)
 			else
 				std::cerr << "ERROR" << std::endl;
 		}
-		debug(std::cerr << "=======================================\n");
+		LB;
 	}
 }
 

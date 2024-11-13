@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 01:22:42 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/05 16:08:26 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/11/13 21:21:54 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,16 @@
 
 Bureaucrat::Bureaucrat(void):_name("default"),_grade(LOWEST_GRADE)
 {
-	debug(std::cout << "Bureaucrat default constructor\n");
+	debug(std::cout << "Bureaucrat default constructor for " << *this);
+}
+
+Bureaucrat::Bureaucrat(std::string name, int grade):_name(name), _grade(grade)
+{
+	if (grade > LOWEST_GRADE)
+		throw Bureaucrat::GradeTooLowException();
+	else if (grade < HIGHEST_GRADE)
+		throw Bureaucrat::GradeTooHighException();
+	debug(std::cout << "Bureaucrat constructor for " << *this);
 }
 
 Bureaucrat::~Bureaucrat(void)
@@ -27,28 +36,19 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other):_name(other._name),_grade(other.
 	debug(std::cout << "Bureaucrat copy constructor\n");
 }
 
-Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
+Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &other)
 {
 	this->_grade = other._grade;
 	debug(std::cout << "Bureaucrat copy assignment operator overload\n");
 	return (*this);
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade):_name(name), _grade(grade)
-{
-	if (grade > LOWEST_GRADE)
-		throw Bureaucrat::GradeTooLowException();
-	else if (grade < HIGHEST_GRADE)
-		throw Bureaucrat::GradeTooHighException();
-	debug(std::cout << "Bureaucrat constructor\n");
-}
-
-const std::string		&Bureaucrat::getName() const
+const std::string	&Bureaucrat::getName() const
 {
 	return (this->_name);
 }
 
-const unsigned int		&Bureaucrat::getGrade() const
+const unsigned int	&Bureaucrat::getGrade() const
 {
 	return (this->_grade);
 }
@@ -66,6 +66,7 @@ void	Bureaucrat::upGrade(void)
 	else if (new_grade > LOWEST_GRADE)
 		throw Bureaucrat::GradeTooLowException();
 	setGrade((unsigned int)new_grade);
+	debug(std::cout << "Upgrade " << *this);
 }
 
 void	Bureaucrat::downGrade(void)
@@ -77,9 +78,10 @@ void	Bureaucrat::downGrade(void)
 	else if (new_grade > LOWEST_GRADE)
 		throw Bureaucrat::GradeTooLowException();
 	setGrade((unsigned int)new_grade);
+	debug(std::cout << "Downgrade " << *this);
 }
 
-std::ostream& operator<<(std::ostream& streamRef,const Bureaucrat& bcat)
+std::ostream&	operator<<(std::ostream& streamRef, const Bureaucrat& bcat)
 {
 	streamRef << bcat.getName() << ", bureaucrat grade ";
 	streamRef << bcat.getGrade() << "." << std::endl;
