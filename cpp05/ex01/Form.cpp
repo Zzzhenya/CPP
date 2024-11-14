@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:07:36 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/11/13 22:11:39 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/11/14 22:36:54 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,19 @@ Form	&Form::operator=(const Form &other)
 	return (*this);
 }
 
-Form::Form(std::string name, int sign_grade, int exec_grade):_name(name),
+Form::Form(std::string name, unsigned int sign_grade, unsigned int exec_grade):_name(name),
 	_signed(0),_sign_grade(sign_grade),_exec_grade(exec_grade)
 {
 	if (sign_grade > LOWEST_GRADE || exec_grade > LOWEST_GRADE)
 		throw Bureaucrat::GradeTooLowException();
 	else if (sign_grade < HIGHEST_GRADE || exec_grade < HIGHEST_GRADE)
 		throw Bureaucrat::GradeTooHighException();
-	debug(std::cout << "Form constructor for" << *this);
+	debug (std::cout << "Form constructor for" << *this);
 }
 
 Form::~Form(void)
 {
-	debug(std::cout << "Form destructor\n");
+	debug (std::cout << "Form destructor\n");
 }
 
 bool	Form::getStatus(void) const
@@ -57,17 +57,17 @@ bool	Form::getStatus(void) const
 
 std::string 	Form::getName(void) const
 {
-	return(this->_name);
+	return (this->_name);
 }
 
 unsigned int 	Form::getSignGrade(void) const
 {
-	return(this->_sign_grade);
+	return (this->_sign_grade);
 }
 
 unsigned int 	Form::getExecGrade(void) const
 {
-	return(this->_exec_grade);
+	return (this->_exec_grade);
 }
 
 void	Form::setStatus(bool status)
@@ -85,7 +85,6 @@ void Form::beSigned(const Bureaucrat &bcat)
 		throw Bureaucrat::GradeTooHighException();
 	bcat.signForm(this);
 }
-
 
 std::ostream& operator<<(std::ostream& streamRef,const Form& form)
 {

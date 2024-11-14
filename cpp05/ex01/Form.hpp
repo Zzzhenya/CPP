@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 12:06:15 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/11/13 21:58:26 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/11/14 22:31:18 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class Form
 		Form(void);
 		~Form(void);
 		Form(const Form &other);
-		Form(std::string name, int sign_grade, int exec_grade);
+		Form(std::string name, unsigned int sign_grade, unsigned int exec_grade);
 
 		bool				getStatus(void) const;
 		std::string 		getName(void) const;
