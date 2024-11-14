@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/12 14:54:50 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/11/14 23:46:21 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ void try_int(const std::string &val)
 {
 	try
 	{
-		int ret = std::stoi(val, 0);
+		//int ret = std::stoi(val, 0);
+		int ret = std::atoi(val.c_str());
 		std::cout << "int:\t" << static_cast <int>(ret) << std::endl;
 	}
 	catch(std::exception &e)
@@ -121,7 +122,8 @@ void try_float(const std::string &val)
 	try
 	{
 		//float ret = std::stof(val);
-		double ret = std::stof(val);
+		//double ret = std::stof(val);
+		double ret = std::atof(val.c_str()); // really?
 		os << static_cast<float>(ret);
 	}
 	catch(std::exception &e)
@@ -136,8 +138,10 @@ void try_float(const std::string &val)
 		{
 			if (val.find('.') == val.npos || !(os.str().find('+') && os.str().find('-')))
 				os << ".0";
-			else if (val.find('.') != val.npos && std::stol(val) == std::stof(val))
+			else if (val.find('.') != val.npos && std::atol(val.c_str()) == std::atof(val.c_str()))
 				os << ".0";
+			// else if (val.find('.') != val.npos && std::stol(val) == std::stof(val))
+			// 	os << ".0";
 		}
 		os << "f";
 		std::cout << os.str() << std::endl;
@@ -166,7 +170,8 @@ void try_double(const std::string &val)
 {
 	try
 	{
-		double ret = std::stod(val, 0);
+		// double ret = std::stod(val, 0);
+		double ret = std::atof(val.c_str());
 		std::cout << "double:\t" << static_cast <double>(ret) << std::endl;
 	}
 	catch(std::exception &e)
@@ -180,7 +185,8 @@ void	try_char(const std::string &val)
 {
 	try
 	{
-		float ret = std::stof(val, 0);
+		//float ret = std::stof(val, 0);
+		float ret = std::atof(val.c_str());
 		if (ret < 0 || ret > 127)
 			std::cout << "char:\t" << "Impossible" << std::endl;
 		else
@@ -257,20 +263,29 @@ int is_float_structure(std::string str)
     if (it != str.end() && *it == '.')
     	it++;
     loop_through_digits(str, it); 
-    if (it != str.end() && *it == 'f')
-    	it++;
+    // if (it != str.end() && *it == 'f')
+    // 	it++;
 	if (it == str.end())
 		return (1);
 	else
 		return(0);
 }
+/*
+ScalarConverter.cpp:266:5: error: this ‘if’ clause does not guard... [-Werror=misleading-indentation]
+  266 |     if (it != str.end() && *it == 'f')
+      |     ^~
+ScalarConverter.cpp:268:9: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  268 |         if (it == str.end())
+      |         ^~
 
+*/
 int is_a_float(const std::string &val)
 {
 	try
 	{
 		if (is_float_structure(val) || is_special_float(val))
-			std::stof(val);
+			std::atof(val.c_str());
+			//std::stof(val);
 		else
 			return (0);
 		return (1);
