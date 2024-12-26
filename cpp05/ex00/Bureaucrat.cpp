@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 01:22:42 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/11/13 21:21:54 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/12/27 00:43:31 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	Bureaucrat::setGrade(unsigned int new_grade)
 void	Bureaucrat::upGrade(void)
 {
 	int new_grade = getGrade() - 1;
+
 	if (new_grade < HIGHEST_GRADE)
 		throw Bureaucrat::GradeTooHighException();
 	else if (new_grade > LOWEST_GRADE)
