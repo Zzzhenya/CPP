@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 00:59:17 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/12/27 00:45:16 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/12/27 16:25:17 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,35 +18,38 @@
 
 void	basic_stack(std::string name, int val)
 {
-	Bureaucrat b1;
-
 	if (name.length() > 0)
 	{
-		std::string nme = std::string(name);
-		Bureaucrat b1 = Bureaucrat(nme, val);
+		Bureaucrat b1(name, val);
+		std::cout << b1;
 	}
 	else
+	{
 		Bureaucrat b1;
-	std::cout << b1;
+		std::cout << b1;
+	}
+	
 }
 
 void	basic_heap(std::string name, int val)
 {
-	Bureaucrat *b1 = NULL;
-
 	if (name.length() > 0)
 	{
-		std::string nme = std::string(name);
-		b1 = new Bureaucrat(nme, val);
+		Bureaucrat *b1 = new Bureaucrat(name, val);
+		std::cout << *b1;
+		delete b1;
 	}
 	else
-		b1 = new Bureaucrat();
-	std::cout << *b1;
-	delete b1;
+	{
+		Bureaucrat *b1 = new Bureaucrat();
+		std::cout << *b1;
+		delete b1;
+	}
 }
 
 void	try_make_b(std::string name, int grade, char type)
 {
+	std::cerr << "Test: " << name << " " << grade << std::endl;
 	try
 	{
 		if (type == STACK)

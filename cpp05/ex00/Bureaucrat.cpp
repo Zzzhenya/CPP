@@ -6,13 +6,13 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 01:22:42 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/12/27 00:43:31 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/12/27 16:20:07 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(void):_name("default"),_grade(LOWEST_GRADE)
+Bureaucrat::Bureaucrat(void):_name("Default"),_grade(LOWEST_GRADE)
 {
 	debug(std::cout << "Bureaucrat default constructor for " << *this);
 }
