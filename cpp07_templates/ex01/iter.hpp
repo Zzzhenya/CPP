@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 00:02:33 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/15 00:11:23 by sde-silv         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:49:52 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,23 @@
  * 	3: a function that will be called on every element of the array
 **/
 template <typename T> 
-void iter(T arr[], std::size_t length, void (*func)(T &))
+void iter(T arr[], std::size_t length, void (* func)(T &))
 {
 	if (!arr)
 		return;
 	for (std::size_t i=0; i < length; i++)
 		func(arr[i]);
 }
+
+template <typename T> 
+void iter(T arr[], std::size_t length, void (* func)(const T &))
+{
+	if (!arr)
+		return;
+	for (std::size_t i=0; i < length; i++)
+		func(arr[i]);
+}
+
 
 template < typename T >
 void print(T &obj)
