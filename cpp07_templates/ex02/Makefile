@@ -6,7 +6,7 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/13 23:17:41 by sde-silv          #+#    #+#              #
-#    Updated: 2024/09/15 19:32:34 by sde-silv         ###   ########.fr        #
+#    Updated: 2025/04/02 14:44:16 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ = $(SRC:.cpp=.o)
 
 OBJ_TEST = $(SRC_TEST:.cpp=.o)
 
-CXX = clang++
+CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Wpedantic
 

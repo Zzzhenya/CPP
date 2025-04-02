@@ -6,7 +6,7 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/13 23:17:41 by sde-silv          #+#    #+#              #
-#    Updated: 2025/01/30 15:49:59 by sde-silv         ###   ########.fr        #
+#    Updated: 2025/04/02 14:42:42 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HEADER = iter.hpp
 
 OBJ = $(SRC:.cpp=.o)
 
-CXX = clang++
+CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Wpedantic
 
