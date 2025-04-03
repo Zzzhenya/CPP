@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2025/04/03 21:00:26 by sde-silv         ###   ########.fr       */
+/*   Updated: 2025/04/03 21:05:30 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,13 +220,13 @@ void	convert_to_float(const std::string &val)
 		std::cout << "float:\t" << val << std::endl;
 	else if (ret >= -(std::numeric_limits<float>::max()) && ret <= std::numeric_limits<float>::max())
 	{
-		std::stringstream ss;
-		ss << ret;
-		ss << "f";
-		if (ss.str() == val)
+		// std::stringstream ss;
+		// ss << ret;
+		// ss << "f";
+		// if (ss.str() == val)
 			std::cout << "float:\t" <<  static_cast<float>(ret)  << "f" << std::endl;
-		else
-			std::cout << "float:\t" <<  val << std::endl;
+		// else
+		// 	std::cout << "float:\t" <<  val << std::endl;
 	}
 	else
 		std::cout << "float:\t" << "Impossible" << std::endl;
@@ -247,12 +247,12 @@ void	convert_to_double(const std::string &val)
 		std::cout << "double:\t" << val << std::endl;
 	else if (ret >= -(std::numeric_limits<double>::max()) && ret <= std::numeric_limits<double>::max())
 	{
-		std::stringstream ss;
-		ss << ret;
-		if (ss.str() == val)
+		// std::stringstream ss;
+		// ss << ret;
+		// if (ss.str() == val)
 			std::cout << "double:\t" <<  static_cast<double>(ret) << std::endl;
-		else
-			std::cout << "double:\t" <<  val << std::endl;
+		// else
+		// 	std::cout << "double:\t" <<  val << std::endl;
 	}
 	else
 		std::cout << "double:\t" << "Impossible" << std::endl;
