@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:19:39 by sde-silv          #+#    #+#             */
-/*   Updated: 2025/04/03 21:01:34 by sde-silv         ###   ########.fr       */
+/*   Updated: 2025/04/03 21:02:42 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	run_converter(const char *ptr)
 		std::cout << "Value passed is a null pointer." << std::endl;
 		return;
 	}
-	std::cout << ptr;
+	// std::cout << ptr << std::endl;
 	const std::string		val = ptr;
 	ScalarConverter::convert(val);
 }
