@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:49 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/11/14 23:37:11 by sde-silv         ###   ########.fr       */
+/*   Updated: 2025/04/03 19:58:12 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ Except for char parameters, only the decimal notation will be used.
 # include <climits>
 # include <limits>
 //# include <cstdint>
+# include <iomanip> 
 
 # ifdef _DEBUG
 # define debug(x) ((x))

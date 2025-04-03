@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/11/14 23:46:21 by sde-silv         ###   ########.fr       */
+/*   Updated: 2025/04/03 21:00:26 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ ScalarConverter::~ScalarConverter(void)
 {
 	std::cout << "ScalarConverter destructor\n";
 }
-
 
 ScalarConverter::ScalarConverter(void)
 {
@@ -74,19 +73,6 @@ int	value_is_empty(const std::string &val)
 	return (0);
 }
 
-
-void	convert_to_char(const int val)
-{
-	std::cout << "char:\t";
-	
-	if ((val < 32  && val >= 0 )|| val == 127)
-		std::cout << "Non displayable" << std::endl;
-	else if (std::isprint(val))
-		std::cout << "'" << static_cast <char>(val) << "'" << std::endl;
-	else
-		std::cout << "Impossible" << std::endl;
-}
-
 int is_a_char(const std::string &val)
 {
 	if (val.length() == 1)
@@ -94,13 +80,41 @@ int is_a_char(const std::string &val)
 	return (0);
 }
 
-void try_int(const std::string &val)
+template <typename T>
+void	try_char(T val, std::string str)
+{
+	(void)str;
+		// else if (is_special_float(str) || is_special_double(str))
+		// 	std::cout << "char:\t" << "Impossible" << std::endl;
+	try
+	{
+		if (val < std::numeric_limits<char>::min() || val > std::numeric_limits<char>::max())
+			std::cout << "char:\t" << "Impossible" << std::endl;
+		else if ((val < 32  && val >= 0 ) || val == 127)
+			std::cout << "char:\t" << "Non displayable" << std::endl;
+		else if (std::isprint(static_cast <char>(val)))
+			std::cout << "char:\t" << "'" << static_cast <char>(val) << "'" << std::endl;
+		else
+			std::cout << "char:\t" << "Impossible" << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "char:\t" << "Impossible" << std::endl;
+		debug(std::cerr << e.what() << std::endl);
+	}
+}
+
+template <typename T>
+void	try_int(T val, std::string str)
 {
 	try
 	{
-		//int ret = std::stoi(val, 0);
-		int ret = std::atoi(val.c_str());
-		std::cout << "int:\t" << static_cast <int>(ret) << std::endl;
+		if (is_special_float(str) || is_special_double(str))
+			std::cout << "int:\t" << "Impossible" << std::endl;
+		else if (val >= std::numeric_limits<int>::min() && val <= std::numeric_limits<int>::max())
+			std::cout << "int:\t" << static_cast <int>(val) << std::endl;
+		else
+			std::cout << "int:\t" << "Impossible" << std::endl;
 	}
 	catch(std::exception &e)
 	{
@@ -109,70 +123,42 @@ void try_int(const std::string &val)
 	}
 }
 
-void	convert_to_int(const std::string &val)
+template <typename T>
+void try_float(T val, std::string str)
 {
-	try_int(val);
-}
 
-void try_float(const std::string &val)
-{
-	std::ostringstream 	os;
-
-	std::cout << "float:\t";
 	try
 	{
 		//float ret = std::stof(val);
 		//double ret = std::stof(val);
-		double ret = std::atof(val.c_str()); // really?
-		os << static_cast<float>(ret);
+		// double ret = std::atof(val.c_str()); // really?
+		// os << static_cast<float>(ret);
+		if (val >= -(std::numeric_limits<float>::max()) && val <= std::numeric_limits<float>::max())
+			std::cout << "float:\t" << static_cast<float>(val) << "f" << std::endl;
+		else if (is_special_float(str) || is_special_double(str))
+			std::cout << "float:\t" << static_cast<float>(val) << "f" << std::endl;
+		else
+			std::cout << "float:\t" << "Impossible" << std::endl;
 	}
 	catch(std::exception &e)
 	{
 		debug(std::cerr << e.what() << std::endl);
-		std::cout << "Impossible" << std::endl;
-		return;
-	}
-	try
-	{
-		if (!is_special_float(val) && !is_special_double(val))
-		{
-			if (val.find('.') == val.npos || !(os.str().find('+') && os.str().find('-')))
-				os << ".0";
-			else if (val.find('.') != val.npos && std::atol(val.c_str()) == std::atof(val.c_str()))
-				os << ".0";
-			// else if (val.find('.') != val.npos && std::stol(val) == std::stof(val))
-			// 	os << ".0";
-		}
-		os << "f";
-		std::cout << os.str() << std::endl;
-	}
-	catch(std::exception &e)
-	{
-		debug(std::cerr << e.what() << std::endl);
-		std::cout << "Impossible" << std::endl;
+		std::cout << "float:\t" << "Impossible" << std::endl;
 		return;
 	}
 }
 
-
-void	convert_to_float(const std::string &val)
-{
-	size_t		f_loc = val.find('f');
-
-	if (f_loc == (val.length() - 1))
-		try_float(val);
-	else
-		std::cout << "Impossible" << std::endl;
-}
-
-
-void try_double(const std::string &val)
+template <typename T>
+void try_double(T val, std::string str)
 {
 	try
 	{
-		// double ret = std::stod(val, 0);
-		double ret = std::atof(val.c_str());
-		std::cout << "double:\t" << static_cast <double>(ret) << std::endl;
+		if (is_special_float(str) || is_special_double(str))
+			std::cout << "double:\t" << static_cast<double>(val) << std::endl;
+		else if (val >= -(std::numeric_limits<double>::max()) && val <= std::numeric_limits<double>::max())
+			std::cout << "double:\t" << static_cast <double>(val) << std::endl;
+		else
+			std::cout << "double:\t" << "Impossible" << std::endl;
 	}
 	catch(std::exception &e)
 	{
@@ -181,22 +167,95 @@ void try_double(const std::string &val)
 	}
 }
 
-void	try_char(const std::string &val)
+void	convert_to_char(const std::string str)
+{
+	char val = str[0];
+
+	if (val < std::numeric_limits<char>::min() || val > std::numeric_limits<char>::max())
+		std::cout << "char:\t" << "Impossible" << std::endl;
+	else if ((val < 32  && val >= 0 ) || val == 127)
+		std::cout << "char:\t"<< "Non displayable" << std::endl;
+	else if (std::isprint(val))
+		std::cout << "char:\t"<< "'" << static_cast <char>(val) << "'" << std::endl;
+	else
+		std::cout << "char:\t" << "Impossible" << std::endl;
+
+	try_int<char>(static_cast <char>(val),str);
+	try_float<char>(static_cast <char>(val), str);
+	try_double<char>(static_cast <char>(val), str);
+}
+
+void	convert_to_int(const std::string &str)
 {
 	try
 	{
-		//float ret = std::stof(val, 0);
-		float ret = std::atof(val.c_str());
-		if (ret < 0 || ret > 127)
-			std::cout << "char:\t" << "Impossible" << std::endl;
+		//int ret = std::stoi(val, 0);
+		int val = std::atoi(str.c_str());
+		try_char<int>(val, str);
+		if (val >= std::numeric_limits<int>::min() && val <= std::numeric_limits<int>::max())
+			std::cout << "int:\t" << static_cast <int>(val) << std::endl;
 		else
-			convert_to_char(ret);
+			std::cout << "int:\t" << "Impossible" << std::endl;
+		try_float<int>(val, str);
+		try_double<int>(val, str);
 	}
-	catch (std::exception &e)
+	catch(std::exception &e)
 	{
-		std::cout << "char:\t" << "Impossible" << std::endl;
+		std::cout << "int:\t" << "Impossible" << std::endl;
 		debug(std::cerr << e.what() << std::endl);
 	}
+}
+
+
+void	convert_to_float(const std::string &val)
+{
+	double ret = std::atof(val.c_str());
+
+	try_char<float>(ret, val);
+	try_int<float>(ret, val);
+	// size_t		f_loc = val.find('f');
+	// if (f_loc == (val.length() - 1) || is_special_float(val))
+	// if (ret == std::numeric_limits<float>::infinity() || ret == -std::numeric_limits<float>::infinity()) // nanf??
+	if (is_special_float(val))
+		std::cout << "float:\t" << val << std::endl;
+	else if (ret >= -(std::numeric_limits<float>::max()) && ret <= std::numeric_limits<float>::max())
+	{
+		std::stringstream ss;
+		ss << ret;
+		ss << "f";
+		if (ss.str() == val)
+			std::cout << "float:\t" <<  static_cast<float>(ret)  << "f" << std::endl;
+		else
+			std::cout << "float:\t" <<  val << std::endl;
+	}
+	else
+		std::cout << "float:\t" << "Impossible" << std::endl;
+	try_double<float>(ret, val);
+}
+
+void	convert_to_double(const std::string &val)
+{
+	double ret = std::atof(val.c_str());
+
+	try_char<double>(ret, val);
+	try_int<double>(ret, val);
+	try_float<double>(ret, val);
+	// size_t		f_loc = val.find('f');
+	// if (f_loc == (val.length() - 1) || is_special_float(val))
+	// if (ret == std::numeric_limits<float>::infinity() || ret == -std::numeric_limits<float>::infinity()) // nanf??
+	if (is_special_double(val))
+		std::cout << "double:\t" << val << std::endl;
+	else if (ret >= -(std::numeric_limits<double>::max()) && ret <= std::numeric_limits<double>::max())
+	{
+		std::stringstream ss;
+		ss << ret;
+		if (ss.str() == val)
+			std::cout << "double:\t" <<  static_cast<double>(ret) << std::endl;
+		else
+			std::cout << "double:\t" <<  val << std::endl;
+	}
+	else
+		std::cout << "double:\t" << "Impossible" << std::endl;
 }
 
 int is_an_int(const std::string &val)
@@ -259,26 +318,21 @@ int is_float_structure(std::string str)
 	std::string::iterator it; 
       
     it = str.begin();
+    if (it != str.end() && (*it == '+' || *it == '-'))
+    	it++;
     loop_through_digits(str, it);
     if (it != str.end() && *it == '.')
     	it++;
     loop_through_digits(str, it); 
-    // if (it != str.end() && *it == 'f')
-    // 	it++;
+    if (it != str.end() && *it == 'f')
+    	it++;
 	if (it == str.end())
 		return (1);
 	else
 		return(0);
 }
-/*
-ScalarConverter.cpp:266:5: error: this ‘if’ clause does not guard... [-Werror=misleading-indentation]
-  266 |     if (it != str.end() && *it == 'f')
-      |     ^~
-ScalarConverter.cpp:268:9: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
-  268 |         if (it == str.end())
-      |         ^~
 
-*/
+
 int is_a_float(const std::string &val)
 {
 	try
@@ -322,22 +376,21 @@ void	ScalarConverter::convert(const std::string val)
 	{
 		case CHAR:
 			std::cout << std::endl << val << " is a char" << std::endl << std::endl;
-			convert_to_char(val[0]); try_int(val); try_double(val); try_float(val);
+			convert_to_char(val);
 			break;
 		case INT:
 			std::cout << std::endl << val << " is an int" << std::endl << std::endl;
-			try_char(val); convert_to_int(val); try_double(val); try_float(val);
+			convert_to_int(val);
 			break;
 		case DBL:
 			std::cout << std::endl << val << " is a double" << std::endl << std::endl;
-			try_char(val); try_int(val); try_double(val); try_float(val);
+			convert_to_double(val);
 			break;
 		case FLT:
 			std::cout << std::endl << val << " is a float" << std::endl << std::endl;
-			try_char(val); try_int(val); try_double(val); convert_to_float(val);
+			convert_to_float(val);
 			break;
 		default:
 			std::cout << std::endl << val << " is unknown" << std::endl << std::endl;
-			try_char(val); try_int(val); try_double(val); try_float(val);
 	}
 }
