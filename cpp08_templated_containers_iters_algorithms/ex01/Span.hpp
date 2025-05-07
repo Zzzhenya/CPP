@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:04:40 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/19 15:04:15 by sde-silv         ###   ########.fr       */
+/*   Updated: 2025/05/07 18:59:38 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <iterator>
 # include <cmath>
 # include <exception>
+# include <algorithm>
 
 class Span
 {

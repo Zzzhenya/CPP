@@ -6,7 +6,7 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/06 01:17:00 by sde-silv          #+#    #+#              #
-#    Updated: 2024/09/12 21:25:49 by sde-silv         ###   ########.fr        #
+#    Updated: 2025/05/07 18:13:25 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HEADER = Serializer.hpp Data.hpp
 
 OBJ = $(SRC:.cpp=.o)
 
-CXX = clang++
+CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -g -std=c++98 -pedantic-errors #-Wshadow
 

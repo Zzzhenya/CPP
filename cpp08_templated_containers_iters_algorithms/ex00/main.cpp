@@ -57,10 +57,13 @@ int vector_tests(void)
 	{
 		std::vector<int> v (6, 0);
 		for (int i = 0; i < 6; i++)
-			v[i] = INT_MIN;
-		std::vector<int>::iterator loc = easyfind(v, INT_MIN);
+			v[i] = std::numeric_limits<int>::max();
+			//v[i] = INT_MIN;
+		std::vector<int>::iterator loc = easyfind(v, std::numeric_limits<int>::min());
+		//std::vector<int>::iterator loc = easyfind(v, INT_MIN);
 		print_val(v, loc);
-		if (*loc != INT_MIN || distance(v.begin(),loc) != 0)
+		// if (*loc != INT_MIN || distance(v.begin(),loc) != 0)
+		if (*loc != std::numeric_limits<int>::min() || distance(v.begin(),loc) != 0)
 			return (0);
 	}
 	return (1);
@@ -206,10 +209,13 @@ int deque_tests(void)
 	{
 		std::deque<int> v (6, 0);
 		for (int i = 0; i < 6; i++)
-			v[i] = INT_MIN;
-		std::deque<int>::iterator loc = easyfind(v, INT_MIN);
+			v[i] = std::numeric_limits<int>::min();
+			//v[i] = INT_MIN;
+		// std::deque<int>::iterator loc = easyfind(v, INT_MIN);
+		std::deque<int>::iterator loc = easyfind(v, std::numeric_limits<int>::min());
 		print_val(v, loc);
-		if (*loc != INT_MIN || distance(v.begin(),loc) != 0)
+		//if (*loc != INT_MIN || distance(v.begin(),loc) != 0)
+		if (*loc != std::numeric_limits<int>::min() || distance(v.begin(),loc) != 0)
 			return (0);
 	}
 	return (1);
@@ -265,10 +271,13 @@ int list_tests(void)
 	{
 		std::list<int> v;
 		for (int i = 0; i < 6; i++)
-			v.push_back(INT_MIN);
-		std::list<int>::iterator loc = easyfind(v, INT_MIN);
+			v.push_back(std::numeric_limits<int>::min());
+		//v.push_back(INT_MIN);
+		//std::list<int>::iterator loc = easyfind(v, INT_MIN);
+		std::list<int>::iterator loc = easyfind(v, std::numeric_limits<int>::min());
 		print_val(v, loc);
-		if (*loc != INT_MIN || distance(v.begin(),loc) != 0)
+		//if (*loc != INT_MIN || distance(v.begin(),loc) != 0)
+		if (*loc != std::numeric_limits<int>::min() || distance(v.begin(),loc) != 0)
 			return (0);
 	}
 	return (1);

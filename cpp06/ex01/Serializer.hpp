@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 21:21:13 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/12 21:27:10 by sde-silv         ###   ########.fr       */
+/*   Updated: 2025/05/07 18:12:43 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 # define SERIALIZER_HPP
 
 # include "Data.hpp"
-# include <cstdint>
+//# include <cstdint>
+// # include <stddef.h>
 # include <iostream>
+# include <stdint.h>
 
 class Serializer
 {

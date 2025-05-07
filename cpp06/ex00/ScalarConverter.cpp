@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 01:17:52 by sde-silv          #+#    #+#             */
-/*   Updated: 2025/04/03 21:05:30 by sde-silv         ###   ########.fr       */
+/*   Updated: 2025/05/07 17:57:53 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,17 +315,14 @@ void	loop_through_digits(std::string &str, std::string::iterator &it)
 
 int is_float_structure(std::string str)
 {
-	std::string::iterator it; 
-      
-    it = str.begin();
-    if (it != str.end() && (*it == '+' || *it == '-'))
-    	it++;
-    loop_through_digits(str, it);
-    if (it != str.end() && *it == '.')
-    	it++;
-    loop_through_digits(str, it); 
-    if (it != str.end() && *it == 'f')
-    	it++;
+	std::string::iterator it =  str.begin();
+
+	if (it != str.end() && (*it == '+' || *it == '-')) { it++;}
+	loop_through_digits(str, it);
+	if (it != str.end() && *it == '.') { it++;}
+	loop_through_digits(str, it); 
+	if (it != str.end() && *it == 'f') { it++;}
+	
 	if (it == str.end())
 		return (1);
 	else
@@ -338,8 +335,10 @@ int is_a_float(const std::string &val)
 	try
 	{
 		if (is_float_structure(val) || is_special_float(val))
-			std::atof(val.c_str());
-			//std::stof(val);
+		{
+			float ret = std::atof(val.c_str()); //std::stof(val);
+			(void)ret;
+		}
 		else
 			return (0);
 		return (1);

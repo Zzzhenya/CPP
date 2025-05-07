@@ -6,7 +6,8 @@
 # include <iostream>
 # include <iterator>
 
-template <typename T, typename Container = std::deque<T> >
+//template <typename T, typename Container = std::deque<T> >
+template <typename T, typename Container >
 class MutantStack : public std::stack<T>
 {
 	public:

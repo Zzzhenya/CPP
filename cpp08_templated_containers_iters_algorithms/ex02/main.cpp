@@ -6,7 +6,7 @@ int main(void)
 {
 	std::stack<int> stk;
 
-	MutantStack<int> mtstk;
+	MutantStack<int, std::deque<int> > mtstk;
 
 	mtstk.push(4);
 	mtstk.push(3);
@@ -15,7 +15,7 @@ int main(void)
 	
 	// for (std::stack<int>::iterator it = stk.begin(); it != stk.end(); it++)
 	// 	std::cout << *it << std::endl;
-	for (MutantStack<int>::iterator it = mtstk.begin(); it != mtstk.end(); it++)
+	for (MutantStack<int, std::deque<int> >::iterator it = mtstk.begin(); it != mtstk.end(); it++)
 		std::cout << *it << std::endl;
 
 	return (0);

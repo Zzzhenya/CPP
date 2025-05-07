@@ -6,7 +6,7 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/18 20:03:57 by sde-silv          #+#    #+#              #
-#    Updated: 2024/09/18 22:16:20 by sde-silv         ###   ########.fr        #
+#    Updated: 2025/05/07 19:00:01 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HEADER = Span.hpp
 
 OBJ = $(SRC:.cpp=.o)
 
-CXX = clang++
+CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Wpedantic
 

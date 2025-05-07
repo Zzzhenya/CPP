@@ -6,7 +6,7 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/18 20:03:57 by sde-silv          #+#    #+#              #
-#    Updated: 2024/09/25 00:04:31 by sde-silv         ###   ########.fr        #
+#    Updated: 2025/05/07 19:01:27 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ HEADER = MutantStack.hpp MutantStack.tpp
 
 OBJ = $(SRC:.cpp=.o)
 
-CXX = clang++
+CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Werror #-std=c++98 -Wpedantic
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Wpedantic
 
 all: $(NAME)
 
