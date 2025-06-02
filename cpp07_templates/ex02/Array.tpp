@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 17:57:33 by sde-silv          #+#    #+#             */
-/*   Updated: 2025/05/27 20:51:56 by sde-silv         ###   ########.fr       */
+/*   Updated: 2025/06/02 17:39:59 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,34 @@
 template <typename T> 
 Array<T>::Array(void):  _n(0)
 {
-	_arr = new T[0];
+	_arr = new T[0]();
 	std::cout << "default arr constructor\n";
 }
 
-template <typename T>
-T	*reset(T	*arr, unsigned int n)
-{
-	try
-	{
-		for (unsigned int i = 0; i < n; i++)
-			arr[i] = static_cast<T>( 0 );
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << e.what() << '\n';
-		std::cout << "trying std::string" << std::endl;
-		// for (unsigned int i = 0; i < n; i++)
-		// 	_arr[i] = static_cast<T>(std::string(""));
+// template <typename T>
+// T	*reset(T	*arr, unsigned int n)
+// {
+// 	try
+// 	{
+// 		for (unsigned int i = 0; i < n; i++)
+// 			arr[i] = static_cast<T>( 0 );
+// 	}
+// 	catch(const std::exception& e)
+// 	{
+// 		std::cout << e.what() << '\n';
+// 		std::cout << "trying std::string" << std::endl;
+// 		// for (unsigned int i = 0; i < n; i++)
+// 		// 	_arr[i] = static_cast<T>(std::string(""));
 
-	}
-	return (arr);
-}
+// 	}
+// 	return (arr);
+// }
 
 template <typename T> 
 Array<T>::Array(const unsigned int n): _n(n)
 {
-	_arr = new T[n];
-	_arr = reset<T>(_arr, _n);
+	_arr = new T[n]();
+	// _arr = reset<T>(_arr, _n);
 	std::cout << "n len = " << n << " arr constructor\n";
 }
 
@@ -62,8 +62,8 @@ Array<T>::Array(const Array &other)
 	//if (this->_n > 0 || this->_arr != NULL)
 	//	delete [] this->_arr;
 	this->_n = other._n;
-	this->_arr = new T[other._n];
-	_arr = reset<T>(_arr, _n);
+	this->_arr = new T[other._n]();
+	// _arr = reset<T>(_arr, _n);
 	for (unsigned int i = 0; i < other._n; i++)
 		this->setVal(i, other._arr[i]);
 
@@ -89,8 +89,8 @@ Array<T> &Array<T>::operator=(const Array &other)
 		delete [] this->_arr;
 
 	this->_n = other._n;
-	this->_arr = new T[other._n];
-	_arr = reset<T>(_arr, _n);
+	this->_arr = new T[other._n]();
+	// _arr = reset<T>(_arr, _n);
 	for (unsigned int i = 0; i < other._n; i++)
 		this->setVal(i, other._arr[i]);
 
