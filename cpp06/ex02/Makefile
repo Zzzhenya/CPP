@@ -6,7 +6,7 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/06 01:17:00 by sde-silv          #+#    #+#              #
-#    Updated: 2024/09/12 23:15:56 by sde-silv         ###   ########.fr        #
+#    Updated: 2025/05/27 21:12:25 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJ = $(SRC:.cpp=.o)
 
 DBGOBJ = $(SRC:.cpp=.dbg.o)
 
-CXX = clang++
+CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -g -std=c++98 -pedantic-errors #-Wshadow
 
