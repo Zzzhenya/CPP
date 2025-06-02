@@ -30,7 +30,7 @@ Array<T>::Array(void):  _n(0)
 // 	}
 // 	catch(const std::exception& e)
 // 	{
-// 		std::cout << e.what() << '\n';
+// 		std::cout << e.what() << '\n'; 
 // 		std::cout << "trying std::string" << std::endl;
 // 		// for (unsigned int i = 0; i < n; i++)
 // 		// 	_arr[i] = static_cast<T>(std::string(""));
