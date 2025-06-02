@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 23:27:06 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/13 23:36:05 by sde-silv         ###   ########.fr       */
+/*   Updated: 2025/05/27 18:05:02 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,7 @@ void max_tests(void)
 		x = new int(6); y = new int(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
 		std::cout << "max :" << ::max <int *> (x, y) << " - " << *::max <int *> (x, y) << std::endl;
+		delete x; delete y;
 	}
 	std::cout << std::endl << "=========== Class ============" << std::endl << std::endl;
 	{
@@ -218,6 +219,7 @@ void max_tests(void)
 		x = new Test(6); y = new Test(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
 		std::cout << "max :" << &(::max <Test> (*x, *y)) << " - " << ::max <Test> (*x, *y) << std::endl;
+		delete x; delete y;
 	}
 	std::cout << std::endl << "=========== Class * ============" << std::endl << std::endl;
 	{
@@ -233,6 +235,7 @@ void max_tests(void)
 		x = new Test(6); y = new Test(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
 		std::cout << "max :" << ::max <Test *> (x, y) << " - " << *::max <Test *> (x, y) << std::endl;
+		delete x; delete y;
 	}
 	std::cout << std::endl << "=========== std::string ============" << std::endl << std::endl;
 	{
@@ -277,6 +280,7 @@ void min_tests(void)
 		x = new int(6); y = new int(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
 		std::cout << "min :" << ::min <int *> (x, y) << " - " << *::min <int *> (x, y) << std::endl;
+		delete x; delete y;
 	}
 	std::cout << std::endl << "=========== Class ============" << std::endl << std::endl;
 	{
@@ -292,6 +296,7 @@ void min_tests(void)
 		x = new Test(6); y = new Test(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
 		std::cout << "min :" << &(::min <Test> (*x, *y)) << " - " << ::min <Test> (*x, *y) << std::endl;
+		delete x; delete y;
 	}
 	std::cout << std::endl << "=========== Class * ============" << std::endl << std::endl;
 	{
@@ -307,6 +312,7 @@ void min_tests(void)
 		x = new Test(6); y = new Test(2);
 		std::cout << "x: " << x << " - " << *x << " | y: " << y << " - "<< *y << std::endl;
 		std::cout << "min :" << ::min <Test *> (x, y) << " - " << *::min <Test *> (x, y) << std::endl;
+		delete x; delete y;
 	}
 	std::cout << std::endl << "=========== std::string ============" << std::endl << std::endl;
 	{
