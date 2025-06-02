@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 23:20:13 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/12 23:20:22 by sde-silv         ###   ########.fr       */
+/*   Updated: 2025/05/27 21:07:39 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,15 +101,8 @@ void identify(Base& p)
 	{
 		debug(std::cerr << "C::" << e.what() << std::endl);
 	}
-	try
-	{
-		std::cout << "Unknown" << std::endl;
-		return;
-	}
-	catch(std::exception &e)
-	{
-
-	}
+	std::cout << "Unknown" << std::endl;
+	return;
 }
 
 void	main_program(void)
