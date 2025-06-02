@@ -6,7 +6,7 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/13 23:17:41 by sde-silv          #+#    #+#              #
-#    Updated: 2025/04/02 14:44:16 by sde-silv         ###   ########.fr        #
+#    Updated: 2025/05/27 20:55:43 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJ_TEST = $(SRC_TEST:.cpp=.o)
 
 CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Wpedantic
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Wpedantic -g
 
 all: $(NAME)
 
@@ -52,4 +52,4 @@ re: fclean all
 leaks: all 
 	valgrind --leak-check=full ./$(NAME)
 
-.PHONY: all clean fclean re tests
+.PHONY: all clean fclean re test
