@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 01:11:13 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/12/29 16:32:11 by sde-silv         ###   ########.fr       */
+/*   Updated: 2024/09/05 16:08:30 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 # define LOWEST_GRADE 150
 # define HIGHEST_GRADE 1
-# define E_TOO_LOW "\033[1;31mException: Grade too low\033[0m"
-# define E_TOO_HIGH "\033[1;31mException: Grade too high\033[0m"
+# define E_TOO_LOW "Exception: Grade too low"
+# define E_TOO_HIGH "Exception: Grade too high"
 
 # ifdef _DEBUG
 # define debug(x) ((x))

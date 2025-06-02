@@ -6,7 +6,7 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/05 00:54:22 by sde-silv          #+#    #+#              #
-#    Updated: 2024/09/05 21:21:33 by sde-silv         ###   ########.fr        #
+#    Updated: 2025/03/06 21:31:44 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ = $(SRC:.cpp=.o)
 
 DBGOBJ = $(SRC:.cpp=.dbg.o)
 
-CXX = clang++
+CXX = c++
 
 CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98 #-Wshadow
 
@@ -51,7 +51,7 @@ clean:
 fclean: clean 
 	rm -rf $(NAME)
 	rm -rf $(DBGNAME)
-	rm *_shrubbery
+	rm -rf *_shrubbery 
 
 re: fclean all
 

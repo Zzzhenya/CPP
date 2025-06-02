@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 15:14:02 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/09 19:54:54 by sde-silv         ###   ########.fr       */
+/*   Updated: 2025/03/06 19:54:42 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void basic(void)
 		delete form;
 	}
 	{
-		AForm	*form = new ShrubberyCreationForm("home");
+		AForm	*form = new ShrubberyCreationForm("abc");
 		std::cout << *form;
 		form->beSigned(b1);
 		std::cout << *form;
@@ -52,7 +52,7 @@ void basic(void)
 
 int main(void)
 {
-	 basic();
+	basic();
 	//AForm form;
 
 	// copy constructor

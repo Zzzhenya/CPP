@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 15:14:02 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/06 00:42:03 by sde-silv         ###   ########.fr       */
+/*   Updated: 2025/03/06 20:09:46 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,46 +25,50 @@ int main(void)
 	{
 		AForm *ret = intern.makeForm("ShrubberyCreationForm", "home");
 		if (ret)
+		{
 			std::cout << *ret;
-		if (ret)
 			ret->beSigned(bcat);
-		if (ret)
 			std::cout << *ret;
-		if (ret)
+			ret->execute(bcat);
+			std::cout << *ret;
 			delete ret;
+		}
 	}
 	{
-		AForm *ret = intern.makeForm("Blahblah", "home");
+		AForm *ret = intern.makeForm("Blahblah", "abc");
 		if (ret)
+		{
 			std::cout << *ret;
-		if (ret)
 			ret->beSigned(bcat);
-		if (ret)
 			std::cout << *ret;
-		if (ret)
-			delete ret;	
+			ret->execute(bcat);
+			std::cout << *ret;
+			delete ret;
+		}
 	}
 	{
-		AForm *ret = intern.makeForm("RobotomyRequestForm", "home");
+		AForm *ret = intern.makeForm("RobotomyRequestForm", "cde");
 		if (ret)
+		{
 			std::cout << *ret;
-		if (ret)
 			ret->beSigned(bcat);
-		if (ret)
 			std::cout << *ret;
-		if (ret)
-			delete ret;	
+			ret->execute(bcat);
+			std::cout << *ret;
+			delete ret;
+		}
 	}
 	{
-		AForm *ret = intern.makeForm("PresidentialPardonForm", "home");
+		AForm *ret = intern.makeForm("PresidentialPardonForm", "efg");
 		if (ret)
+		{
 			std::cout << *ret;
-		if (ret)
 			ret->beSigned(bcat);
-		if (ret)
 			std::cout << *ret;
-		if (ret)
-			delete ret;	
+			ret->execute(bcat);
+			std::cout << *ret;
+			delete ret;
+		}	
 	}
 
 	{
@@ -73,6 +77,13 @@ int main(void)
     	rrf = someRandomIntern.makeForm("RobotomyRequestForm", "Bender");
     	std::cout << *rrf;
     	delete rrf;
+	}
+	{
+    	Intern  someRandomIntern;
+    	RobotomyRequestForm*   rrf;
+    	rrf = (RobotomyRequestForm *)someRandomIntern.makeForm("RobotomyRequestForm", "Bender");
+    	std::cout << *rrf;
+    	delete rrf;	
 	}
 	return (0);
 }
