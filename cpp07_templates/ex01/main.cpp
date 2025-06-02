@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 00:10:55 by sde-silv          #+#    #+#             */
-/*   Updated: 2024/09/15 00:12:27 by sde-silv         ###   ########.fr       */
+/*   Updated: 2025/05/27 18:20:14 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,23 +64,6 @@ void	int_arr(void)
 		::iter<int>(arr, 2, ::mult<int, 4>);
 		std::cout << "\tarray:\n";
 		::iter<int>(arr, 2, ::print<int>);
-	}
-	std::cout << "\t\tInt array: without values\n";
-	{
-		int size = 3;
-		int *arr = new int[size];
-		for (int i = 0; i < size; i++)
-		{
-			if (i>size)
-				arr[i] = 2 * i;
-		}
-		std::cout << "\tarray:\n";
-		::iter<int>(arr, size, ::print<int>);
-		std::cout << "\tmultiplying by 4...\n";
-		::iter<int>(arr, size, ::mult<int, 4>);
-		std::cout << "\tarray:\n";
-		::iter<int>(arr, size, ::print<int>);
-		delete []arr;
 	}
 }
 
