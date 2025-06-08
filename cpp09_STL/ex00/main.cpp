@@ -81,6 +81,7 @@
 // 	return (1);
 // }
 
+/*
 void find_and_calc(BitcoinExchange &bt,std::string &date, std::string &amount)
 {
 	std::map<std::string,std::string>::iterator it;
@@ -98,7 +99,7 @@ void find_and_calc(BitcoinExchange &bt,std::string &date, std::string &amount)
 	std::cout << date << "\t:" << amount << "\t* " \
 	<< it->second << "\t=\t"\
 	<<  (std::atof(amount.c_str())) * (std::atof(it->second.c_str())) << std::endl;
-}
+}*/
 
 /**
  * Open data.csv
@@ -124,9 +125,10 @@ void find_and_calc(BitcoinExchange &bt,std::string &date, std::string &amount)
  * 			- repeat until a date - value pair is found
 */
 
+/*
 void run_query(std::string filename, BitcoinExchange &bt)
 {
-	std::fstream file(filename, std::ios::in);
+	std::fstream 	file(filename, std::ios::in);
 	std::string		line;
 	std::string		date;
 	std::string		amount;
@@ -143,19 +145,23 @@ void run_query(std::string filename, BitcoinExchange &bt)
 		}
 	}
 	file.close();
-}
+}*/
 
 int main(int argc, char **argv)
 {
+	(void)argv;
 	if (argc != 2)
 	{
-		std::cout << "./btc file_to_convert(in date | value format)" << std::endl;
+		std::cout << "./btc file_to_convert(format: date | value )" << std::endl;
 		return (1);
 	}
 	try
 	{
 		BitcoinExchange bt;
-		run_query(argv[1], bt);
+		bt.initDB();
+		bt.runFile(argv[1]);
+		// bt.print_dbmap();
+		// run_query(argv[1], bt);
 	}
 	catch (std::exception &e)
 	{
