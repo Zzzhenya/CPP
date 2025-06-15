@@ -10,3 +10,13 @@
 
 * https://www.programiz.com/cpp-programming/assertions
 
+## fstream, ifstream, ofstream
+
+* https://stackoverflow.com/questions/67631098/what-is-the-difference-between-ifstream-ofstream-and-fstream
+
+## failbit badbit etc.
+
+* https://gehrcke.de/2011/06/reading-files-in-c-using-ifstream-dealing-correctly-with-badbit-failbit-eofbit-and-perror/
+
+## 
+

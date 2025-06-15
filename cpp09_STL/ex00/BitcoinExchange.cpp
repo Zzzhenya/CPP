@@ -1,151 +1,165 @@
 #include "BitcoinExchange.hpp"
 
-void	read_line_by_line(std::fstream &database, std::map<std::string,std::string> &dbmap)
-{
-
-	std::string		line;
-	std::string		line2;
-	int row = 2;
-
-	while (!database.eof())
-	{
-		std::getline(database, line, ',');
-		// std::cout << row << " "<< line<<"\n";
-		std::getline(database, line2, '\n');
-		std::cout << row << " "<< line << "+" << line2<<"\n";
-		dbmap.insert(std::pair<std::string,std::string>(line,line2));
-		row++;
-	}
-
-	// std::string		line;
-	// std::string		date;
-	// std::string		value;
-
-	// int row = 2;
-
-	// //(void)dbmap;
-	// bool ret = 0;
-	// ret = std::getline(database, line);
-	// // while (ret)	
-	// while (!database.eof())	
-	// {
-	// 	// ret = std::getline(database, date, ',');
-	// 	std::getline(database, date, ',');
-	// 	std::cout << row << " " << ret << " Here\n";
-	// 	// if (ret)
-	// 	// {
-	// 		// ret = 
-	// 		std::getline(database, value, '\n');
-	// 		//dbmap.insert({date, value});
-	// 		dbmap.insert(std::pair<std::string,std::string>(date,value));
-	// 		// std::cout << date << " : " << value << std::endl;
-	// 	// }
-	// 	// else
-	// 	// 	break;
-	// 	std::cout << row << " " << ret << " Here\n";
-	// 	row++;
-	// 	// else
-	// 	// {
-	// 	// 	// empty line at end
-	// 	// 	std::cout << date << " : " << std::endl;
-	// 	// }
-	// }
-}
-
-int	setup_database(std::map<std::string,std::string> &dbmap)
-{
-	try
-	{
-		std::fstream database(DATABASE_NAME, std::ios::in);
-		database.exceptions(std::fstream::failbit | std::ifstream::badbit);
-		read_line_by_line(database, dbmap);
-		database.close();
-	}
-	catch (const std::ios_base::failure &fail)
-	{
-		std::cerr << "failed to open " << std::string(DATABASE_NAME) << std::endl;
-		std::cerr << fail.what() << std::endl;
-		return (0);
-	}
-	return (1);
-}
+#define debug(x) (std::cerr << "\033[0;31m" << __FUNCTION__ << ": " <<__LINE__ << ":\t" << x << "\033[0m" << std::endl)
+#define message(x) (std::cerr << __FUNCTION__ << ": " <<__LINE__ << ":\t" << x  << std::endl)
 
 BitcoinExchange::BitcoinExchange(void)
 {
-	std::cout << "BitcoinExchange default constructor" << std::endl;
-}
-
-bool BitcoinExchange::initDB(void)
-{
-	try
-	{
-		setup_database(dbmap);
-		return (true);
-	}
-	catch(const std::ios_base::failure &fail)
-	{
-		throw std::logic_error("exception: failed setup " + std::string(DATABASE_NAME));
-		// std::cerr << "failed to open " << std::string(DATABASE_NAME) << std::endl;
-		// std::cerr << fail.what() << std::endl;
-	}
-	// if (!setup_database(dbmap))
-	// 	throw std::runtime_error("");
-		//std::cout << "Database setup failed" << std::endl;
-	return (false);
-}
-
-void find_and_calc(BitcoinExchange &bt,std::string &date, std::string &amount)
-{
-	std::map<std::string,std::string>::iterator it;
-
-	if (*(date.end() - 1) == ' ' )
-		date.erase(date.end() - 1);
-	if (*(amount.begin()+ 1) == ' ' )
-		amount.erase(amount.begin() + 1);
-	it = bt.dbmap.find(date);
-	if (it == bt.dbmap.end())
-	{
-		it = bt.dbmap.lower_bound(date);
-		it --;
-	}
-	std::cout << date << "\t:" << amount << "\t* " \
-	<< it->second << "\t=\t"\
-	<<  (std::atof(amount.c_str())) * (std::atof(it->second.c_str())) << std::endl;
-}
-
-bool BitcoinExchange::runFile(char *str)
-{
-	if (!str)
-		return (false);
-	std::string filename(str);
-	std::fstream 	file(filename, std::ios::in);
-	std::string		line;
-	std::string		date;
-	std::string		amount;
-
-	bool ret = 0;
-	ret = std::getline(file, line);
-	while (ret)	
-	{
-		ret = std::getline(file, date, '|');
-		if (ret)
-		{
-			std::getline(file, amount, '\n');
-			find_and_calc(*this, date, amount);
-		}
-	}
-	file.close();
-	return (true);
+	debug("BitcoinExchange default constructor");
 }
 
 BitcoinExchange::~BitcoinExchange(void)
 {
-	std::cout << "BitcoinExchange default destructor" << std::endl;
+	debug("BitcoinExchange default destructor");
+}
+
+int BitcoinExchange::read_csv_lines(std::fstream &db)
+{
+	std::string				line;
+	std::string::size_type	ret;
+	int row = 1;
+
+	debug("read_csv_lines");
+	while (std::getline(db, line))
+	{
+		// When a row is empty
+		if (line.empty())
+			return (row);
+		ret = line.find(",");
+		// When there is no commas
+		if (ret == std::string::npos)
+			return (row);
+		// std::cout <<row  <<": "<< line << std::endl;
+		// If comma is not at the end of the row -> process
+		if (ret + 1 != std::string::npos)
+		{
+			std::string first = line.substr(0, ret);
+			std::string second = line.substr(ret + 1, line.length() - 1);
+			// std::cout <<row  <<": "<< first << " " << second << std::endl;
+			// When there is only one comma, and strings are not empty -> insert to map
+			if (first.find(",") != std::string::npos || second.find(",") != std::string::npos)
+				return (row);
+			else if (first.empty() || second.empty())
+				return (row);
+			else
+				dbmap.insert(std::pair<std::string,std::string>(first,second));
+		}
+		else
+			return (row);
+		row++;
+	}
+	// When file is empty
+	if (dbmap.empty())
+		return (-1);
+	return (0);
+}
+
+bool BitcoinExchange::initDB(void)
+{
+	debug("initDB");
+	try
+	{
+		debug("openFile");
+		std::fstream db(DATABASE_NAME, std::ios::in);
+		if (!db.is_open() || db.bad() || db.fail())
+		{
+			if (!db.is_open())
+				message("Error opening file: " << DATABASE_NAME);
+			if (db.bad())
+				message("Error badbit is set: " << DATABASE_NAME);
+			if (db.fail())
+				message("Error: " << std::strerror(errno));
+			return (false);
+		}
+		debug("closeFile");
+		int line  = read_csv_lines(db);
+		if (line != 0)
+		{
+			message("CSV parse error on line: " << line);
+			dbmap.clear();
+		}
+		db.close();
+		if (!validateDB())
+			return (false);
+		return (true);
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << DATABASE_NAME << std::endl;
+	}
+	return (false);
+}
+
+bool validate_date(std::string date)
+{
+	(void)date;
+	return (true);
+}
+
+bool validate_value(std::string val)
+{
+	(void)val;
+	return (true);
+}
+
+bool BitcoinExchange::validateDB(void)
+{
+	int line = 1;
+	if (dbmap.empty())
+		return (false);
+	for (std::map<std::string,std::string>::iterator it = dbmap.begin(); it != dbmap.end(); it++)
+	{
+		bool date = 0;
+		bool val = 0;
+		date = validate_date(it->first);
+		val = validate_value(it->second);
+		if (!date)
+			message("Invalid date on: " << line <<" :"<< it->first);
+		if (!val)
+			message("Invalid value on: " << line <<" :"<< it->second);
+		if (!date || !val)
+		{
+			dbmap.clear();
+			return (false);
+		}
+	}
+	return (true);
+}
+
+bool BitcoinExchange::validateFile(char *str)
+{
+	if (!str || str[0] == '\0')
+	{
+		message("File name empty");
+		return (false);
+	}
+	std::string file = std::string(str);
+	debug("Open file");
+	(void)file;
+	return (true);
+}
+
+void BitcoinExchange::runQuery(void)
+{
+	debug("Query...");
+}
+
+bool BitcoinExchange::runFile(char *str)
+{
+	if (!validateFile(str))
+		return (false);
+	runQuery();
+	return (true);
 }
 
 void BitcoinExchange::print_dbmap(void)
 {
-	for (std::map<std::string,std::string>::iterator it = this->dbmap.begin(); it != this->dbmap.end(); it++)
-		std::cout << it->first << " : " << it->second << std::endl;
+	if (dbmap.empty())
+		std::cout << "empty" << std::endl;
+	else
+	{
+		for (std::map<std::string,std::string>::iterator it = this->dbmap.begin(); it != this->dbmap.end(); it++)
+			std::cout << it->first << " : " << it->second << std::endl;
+	}
 }
 
