@@ -8,24 +8,19 @@
 # include <utility>
 # include <map>
 
-# define DATABASE_NAME "data123.csv"
+# ifndef DATABASE_NAME
+#  define DATABASE_NAME "data123.csv"
+# endif
+# define debug(x) (std::cerr << "\033[0;31m" << __FUNCTION__ << ": " <<__LINE__ << ":\t" << x << "\033[0m" << std::endl)
+# define message(x) (std::cout << "Error" << ":\t" << x  << std::endl)
 // # define DATABASE_NAME "empty_line.csv"
 
 class BitcoinExchange
 {
 	public:
 		bool initDB(void);
-
-		void Query(std::string date, std::string amount);
-
-		int read_csv_lines(std::fstream &db);
-
-		// bool closeFile(std::fstream &file)
-		
 		bool runFile(char *str);
-		// 
-		
-		// validateQuery(void);
+		void Query(std::string date, std::string amount);
 
 		void 	print_dbmap(void);
 		void 	print_qlist(void);
@@ -33,14 +28,15 @@ class BitcoinExchange
 		BitcoinExchange(void);
 		~BitcoinExchange(void);
 
-		std::map<std::string,std::string> dbmap;
-		std::map<int,std::string> 			qlist;
-		//private:
 	private:
+
 		void runQuery(int no, std::string str);
 		bool validateDB(void);
 		bool validateFile(char *str);
-		//void runQuery(void);
+		int read_csv_lines(std::fstream &db);
+
+		std::map<int,std::string> 			qlist;
+		std::map<std::string,std::string> 	dbmap;
 
 		// BitcoinExchange(const BitcoinExchange &other);
 		// BitcoinExchange &operator=(const BitcoinExchange &other);

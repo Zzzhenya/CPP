@@ -1,8 +1,5 @@
 #include "BitcoinExchange.hpp"
 
-#define debug(x) (std::cerr << "\033[0;31m" << __FUNCTION__ << ": " <<__LINE__ << ":\t" << x << "\033[0m" << std::endl)
-#define message(x) (std::cout << "Error" << ":\t" << x  << std::endl)
-
 BitcoinExchange::BitcoinExchange(void)
 {
 	debug("BitcoinExchange default constructor");
