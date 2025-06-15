@@ -18,6 +18,7 @@ int main(int argc, char **argv)
 		// (void)argv;
 		bt.runFile(argv[1]);
 		//bt.print_dbmap();
+		//bt.print_qlist();
 		// run_query(argv[1], bt);
 	}
 	catch (std::exception &e)
