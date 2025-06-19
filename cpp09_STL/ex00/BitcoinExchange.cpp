@@ -10,11 +10,44 @@ BitcoinExchange::~BitcoinExchange(void)
 	debug("BitcoinExchange default destructor");
 }
 
+// Because the stringstream parsing for date only checks for numbers;
+// and not the leading zeros and spaces
+std::string getDate(std::string date)
+{
+	int year;
+	int month;
+	int day;
+	char sep1;
+	char sep2;
+
+	std::istringstream ss(date);
+
+	ss>>year;
+	ss>>sep1;
+	ss>>month;
+	ss>>sep2;
+	ss>>day;
+
+	std::stringstream ret;
+	ret << year << sep1;
+	if (month < 10)
+		ret << 0 << month;
+	else
+		ret << month;
+	ret << sep2;
+	if (day < 10)
+		ret << 0 << day;
+	else
+		ret << day;
+	return (ret.str());
+}
+
 int BitcoinExchange::read_csv_lines(std::fstream &db)
 {
 	std::string				line;
 	std::string::size_type	ret;
 	int row = 0;
+	// int errcount = 0;
 
 	debug("read_csv_lines");
 	while (std::getline(db, line))
@@ -41,7 +74,14 @@ int BitcoinExchange::read_csv_lines(std::fstream &db)
 			else
 			{
 				if (row > 0)
-					dbmap.insert(std::pair<std::string,std::string>(first,second));
+				{
+					//dbmap.insert(std::pair<std::string,std::string>(first,second));
+					std::pair<std::map<std::string,std::string>::iterator, bool> res = dbmap.insert(std::pair<std::string,std::string>(getDate(first),second));
+					if (res.second != true)
+					{
+						warning("insertion failed for row: " << row << " => " << line );
+					}
+				}
 			}
 		}
 		else
@@ -92,7 +132,34 @@ bool BitcoinExchange::initDB(void)
 
 bool validateDate(std::string date)
 {
-	(void)date;
+	int year;
+	int month;
+	int day;
+	char sep1;
+	char sep2;
+
+	std::istringstream ss(date);
+
+	// Spaces are ignored
+
+	if (!(ss>>year)) return (false);
+
+	if (year < 2000 ) return (false); //|| year > current year
+	if (!(ss>>sep1)) return (false);
+	if (sep1 != '-') return (false);
+
+	if (!(ss>>month)) return (false);
+
+	if (month < 1 || month > 12) return (false);
+
+	if (!(ss>>sep2)) return (false);
+
+	if (sep2 != '-') return (false);
+
+	if (!(ss>>day)) return (false);
+
+	if (day < 1 || day > 31) return (false);
+
 	return (true);
 }
 
@@ -106,12 +173,12 @@ bool validateAmount(std::string amount)
 		float ret = std::atof(amount.c_str());
 		if (ret < 0 )
 		{
-			message("amount too low");
+			message("amount too low => " << amount);
 			return false;
 		}
 		else if (ret > 1000)
 		{
-			message("amount too high");
+			message("amount too high => " << amount);
 			return (false);
 		}
 		return (true);
@@ -125,8 +192,25 @@ bool validateAmount(std::string amount)
 
 bool validateRate(std::string val)
 {
-	(void)val;
-	return (true);
+	// (void)val;
+	// return (true);
+	if (val.length() == 0)
+		return (false);
+	try
+	{
+		float ret = std::atof(val.c_str());
+		if (ret < 0 )
+		{
+			message("amount too low => " << val);
+			return false;
+		}
+		return (true);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	return (false);
 }
 
 bool BitcoinExchange::validateDB(void)
@@ -231,7 +315,10 @@ void BitcoinExchange::runQuery(int no, std::string str)
 			if (!date)
 				message("bad input => " << first);
 			if (date && amount)
-				Query(first, second);
+			{
+				Query(getDate(first), second);
+				//Query(first, second);
+			}
 		}
 		else
 			message("wrong format");

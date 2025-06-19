@@ -7,12 +7,14 @@
 # include <string>
 # include <utility>
 # include <map>
+# include <sstream>
 
 # ifndef DATABASE_NAME
 #  define DATABASE_NAME "data123.csv"
 # endif
 # define debug(x) (std::cerr << "\033[0;31m" << __FUNCTION__ << ": " <<__LINE__ << ":\t" << x << "\033[0m" << std::endl)
 # define message(x) (std::cout << "Error" << ":\t" << x  << std::endl)
+# define warning(x) (std::cout << "Warning" << ": " << x  << std::endl)
 // # define DATABASE_NAME "empty_line.csv"
 
 class BitcoinExchange
