@@ -165,52 +165,70 @@ bool validateDate(std::string date)
 
 bool validateAmount(std::string amount)
 {
-	//(void)date;
 	if (amount.length() == 0)
+	{
+		message("rate field empty => " << amount);
 		return (false);
-	try
-	{
-		float ret = std::atof(amount.c_str());
-		if (ret < 0 )
-		{
-			message("amount too low => " << amount);
-			return false;
-		}
-		else if (ret > 1000)
-		{
-			message("amount too high => " << amount);
-			return (false);
-		}
-		return (true);
 	}
-	catch (std::exception &e)
+
+	std::stringstream ss(amount);
+	double value;
+	ss >> value;
+
+	if (ss.fail()) 
 	{
-		std::cout << e.what() << std::endl;
+		message("not a float => " << amount);
+		return false;
 	}
-	return (false);
+	if (value < 0)
+	{
+		message("amount too low => " << amount);
+		return false;
+	}
+	if (value > 1000)
+	{
+		message("amount too high => " << amount);
+		return (false);
+	}
+	if (value > std::numeric_limits<float>::max())
+	{
+		message("amount out of range => " << amount);
+		return false;
+	}
+
+	return (true);
 }
 
 bool validateRate(std::string val)
 {
-	// (void)val;
-	// return (true);
 	if (val.length() == 0)
+	{
+		message("rate field empty => " << val);
 		return (false);
-	try
-	{
-		float ret = std::atof(val.c_str());
-		if (ret < 0 )
-		{
-			message("amount too low => " << val);
-			return false;
-		}
-		return (true);
 	}
-	catch (std::exception &e)
+
+	std::stringstream ss(val);
+	double value;
+	ss >> value;
+	if (ss.fail()) 
 	{
-		std::cout << e.what() << std::endl;
+		message("not a float => " << val);
+		return false;
 	}
-	return (false);
+	if (value < 0)
+	{
+		message("amount too low => " << val);
+		return false;
+	}
+	if (value > std::numeric_limits<float>::max())
+	{
+		message("amount out of range => " << val);
+		return false;
+	}
+	//// if (value == std::numeric_limits<float>::min()) return false; 
+	// if (value < std::numeric_limits<float>::lowest()) return false;
+
+	return (true);
 }
 
 bool BitcoinExchange::validateDB(void)
