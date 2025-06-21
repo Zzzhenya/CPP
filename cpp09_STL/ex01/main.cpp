@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 21:36:11 by sde-silv          #+#    #+#             */
-/*   Updated: 2025/06/21 13:30:33 by sde-silv         ###   ########.fr       */
+/*   Updated: 2025/06/21 16:36:59 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ assumptions from example : space is the delimiter
 ./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +" => 42
 
 3 4 + 5 6 + × => (3 + 4) × (5 + 6) => 77
+
+./RPN "1" => 1
+
+non RPN
+./RPN "+ +"
+./RPN "1 1"
+
 */
 
 int main(int argc, char **argv)
