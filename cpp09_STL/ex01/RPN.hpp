@@ -12,12 +12,22 @@
 
 class RPN
 {
-public:
-	bool processString(char *str);
+	public:
+		void calcRPN(char *str);
 
-	std::stack<double> stk;
+		
+		RPN(void);
+		~RPN(void);
+		RPN(const RPN &rhs);
+		RPN &operator=(const RPN &rhs);
 
-private:
+	private:
+		std::stack<double> stk;
+
+		bool processString(std::string str);
+		bool processOperator(char op);
+		bool isOperator(char op);
+		bool processResult(void);
 
 };
 

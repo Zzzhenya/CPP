@@ -6,7 +6,7 @@
 /*   By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 21:36:11 by sde-silv          #+#    #+#             */
-/*   Updated: 2025/06/21 16:36:59 by sde-silv         ###   ########.fr       */
+/*   Updated: 2025/06/21 17:53:51 by sde-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,18 @@ non RPN
 int main(int argc, char **argv)
 {
 	if (argc != 2)
-		message("write mathematical expression in reverse polish notation");
+		error("write the expression in reverse polish notation with 0-9 +*-/");
 	else
 	{
-		// message(argv[1]);
-		// (void)argv;
-		RPN calc;
-		calc.processString(argv[1]);
+		try
+		{
+			RPN calc;
+			calc.calcRPN(argv[1]);
+		}
+		catch (std::exception &e)
+		{
+			error("Error: " << e.what());
+		}
 	}
 	return (0);
 }

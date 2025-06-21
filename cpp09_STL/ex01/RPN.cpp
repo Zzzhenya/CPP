@@ -1,7 +1,38 @@
 #include "RPN.hpp"
 
+//OCF
+
+RPN::RPN(void)
+{
+	while (!stk.empty())
+		stk.pop();
+}
+
+RPN::~RPN(void)
+{
+	while (!stk.empty())
+		stk.pop();
+}
+
+RPN::RPN(const RPN &rhs)
+{
+	while (!this->stk.empty())
+		this->stk.pop();
+	this->stk = rhs.stk;
+}
+
+RPN &RPN::operator=(const RPN &rhs)
+{
+	if (this != &rhs)
+	{
+		while (!this->stk.empty())
+			this->stk.pop();
+		this->stk = rhs.stk;
+	}
+	return (*this);
+}
+
 /*
-Here's a step-by-step breakdown:
 
 1. Initialize an empty stack: This stack will hold the operands and intermediate results. 
 
@@ -21,28 +52,65 @@ https://en.wikipedia.org/wiki/Shunting_yard_algorithm
 
 */
 
-bool RPN::processString(char *arg)
+bool RPN::processOperator(char op)
 {
-	if (!arg || arg[0] == '\0')
+	double num1 = stk.top();
+	stk.pop();
+	double num2 = stk.top();
+	stk.pop();
+
+	if (op == '+')
+		stk.push(num2+num1);
+	else if (op == '-')
+		stk.push(num2 - num1);
+	else if (op == '*')
+		stk.push(num2*num1);
+	else if (op == '/')
 	{
-		error("Error: Null or empty input");
-	 	return (false);
+		if (num1 == 0)
+			return false;
+		stk.push(num2/num1);
 	}
+	return (true);
+}
 
-	std::string str(arg);
-	int loc = 0;
+bool RPN::isOperator(char op)
+{
+	if (op == '+' || op == '-' || op == '/' || op == '*')
+		return (true);
+	return (false);
+}
 
-	message(str);
-	std::istringstream ss(str);
+bool RPN::processResult(void)
+{
+	if (stk.size() == 1)
+	{
+		message(stk.top());
+		stk.pop();
+		return (true);
+	}
+	else
+	{
+		if (stk.size() == 0)
+			error("Error: stack is empty" << " : not a RPN");
+		else
+			error("Error: too many numbers left in the stack" << " : not a RPN");
+		return (false);
+	}
+}
 
-	// char curr;
-	std::string curr;
-	/*
-	reads until whitespace is reached or fails, 
-	also trims whitespaces from begining
-	when string is empty or consists of only white spaces -> fails
-	when end of string is reached -> fails
-	*/
+/*
+reads until whitespace is reached or fails, 
+also trims whitespaces from begining
+when string is empty or consists of only white spaces -> fails
+when end of string is reached -> fails
+*/
+bool RPN::processString(std::string str)
+{
+	int 				loc = 0;
+	std::istringstream	ss(str);
+	std::string 		curr;
+
 	while (!ss.eof() && ss >> curr)
 	{
 		if (curr.size() > 1 || curr.size() < 1)
@@ -53,52 +121,27 @@ bool RPN::processString(char *arg)
 		else
 		{
 			if (std::isdigit(curr[0]))
-			{
-				// push to stack
 				stk.push(curr[0] - '0');
-				// message("num");
-			}
-			else if (curr[0] == '+' || curr[0] == '-' || curr[0] == '/' || curr[0] == '*')
+			else if (isOperator(curr[0]) && stk.size() >= 2)
 			{
-				if (stk.size() >= 2)
+				try
 				{
-					double num1 = stk.top();
-					stk.pop();
-					double num2 = stk.top();
-					stk.pop();
-
-					if (curr[0] == '+')
+					if (!processOperator(curr[0]))
 					{
-						stk.push(num2+num1);
-						// message(stk.top());
-					}
-					else if (curr[0] == '-')
-					{
-						stk.push(num2 - num1);
-						// message(stk.top());
-					}
-					else if (curr[0] == '*')
-					{
-						stk.push(num2*num1);
-						// message(stk.top());
-					}
-					else if (curr[0] == '/')
-					{
-						if (num1 == 0)
-						{
-							error("Error: division by 0: ");
-							return false;
-						}
-						stk.push(num2/num1);
-						// message(stk.top());
+						error("Error: division by 0");
+						return (false);
 					}
 				}
-				else
+				catch (std::exception &e)
 				{
-					error("Error: invalid char: " << curr << " : not a RPN");
-					return false;
+					error("Exception: " << e.what());
+					return (false);
 				}
-				// message("opr");
+			}
+			else if (isOperator(curr[0]) && stk.size() < 2)
+			{
+				error("Error: invalid char: " << curr << " : not a RPN");
+				return false;
 			}
 			else
 			{
@@ -106,7 +149,6 @@ bool RPN::processString(char *arg)
 				return (false);
 			}
 		}
-		// message(curr);
 		loc++;
 	}
 	// only one string and only whitespaces
@@ -115,21 +157,21 @@ bool RPN::processString(char *arg)
 		error("Error: input consists of only whitespaces");
 		return false;
 	}
-
-	if (stk.size() == 1)
-	{
-		message("result: "<< stk.top());
-		return (true);
-	}
-	else
-	{
-		if (stk.size() == 0)
-			error("Error: stack is empty" << " : not a RPN");
-		else
-			error("Error: too many numbers left in the stack" << " : not a RPN");
-		return false;
-	}
-	// if (ss.eof())
-	// 	message("eof");
+	return (processResult());
 }
 
+void RPN::calcRPN(char *arg)
+{
+	while (!stk.empty())
+		stk.pop();
+	if (!arg || arg[0] == '\0')
+	{
+		error("Error: Null or empty input");
+	 	return;
+	}
+
+	std::string str(arg);
+	processString(str);
+	while (!stk.empty())
+		stk.pop();
+}
