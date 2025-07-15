@@ -18,5 +18,9 @@
 
 * https://gehrcke.de/2011/06/reading-files-in-c-using-ifstream-dealing-correctly-with-badbit-failbit-eofbit-and-perror/
 
-## 
+## Merge-insertion sort
+
+* http://en.wikipedia.org/wiki/Merge-insertion_sort
+
+
 
