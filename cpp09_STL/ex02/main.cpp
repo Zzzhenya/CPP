@@ -21,8 +21,20 @@ Output: on cout
 	Line4: [Time taken by the algorithm] [Container type]
 */
 
-int main(void)
+int main(int argc, char **argv)
 {
-	std::cout << "Hello World" << std::endl;
+	if (argc < 2) {
+		std::cerr << "Usage: ./pmergme < series of numbers >" << std::endl;
+		return (1);
+	}
+	PmergeMe machine;
+	for (int i = 1; i < argc; i++)
+	{
+		// check if string is a positive number and throw error
+		machine.pushNum(std::atoi(argv[i]));
+		// std::cout << argv[i] << std::endl;
+	}
+	machine.printSeries();
+
 	return (0);
 }
