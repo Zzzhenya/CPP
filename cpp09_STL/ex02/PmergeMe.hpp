@@ -11,6 +11,8 @@ public:
 	vectTree(int val);
 	vectTree(int first, int second);
 	vectTree(vectTree const &a, vectTree const &b);
+	vectTree(vectTree const &other);
+	vectTree &operator=(vectTree const &other);
 
 	int 					max;
 	std::vector<vectTree>	arr;
@@ -30,6 +32,7 @@ public:
 	std::vector<int> inSeries;
 
 	std::vector<vectTree>	vect;
+	std::vector<vectTree>	pend;
 };
 
 #endif
