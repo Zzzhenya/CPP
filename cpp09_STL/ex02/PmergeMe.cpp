@@ -28,12 +28,14 @@ void	PmergeMe::mergeInsertSort(void)
 	if (odd)
 	{
 		extra = vectTree(vect.back());
+		/* temp steps */
 		vect.pop_back();
 		pend.push_back(extra);
 	}
-	// sort 3 or less pairs
+	// sort 3 or rather sort final 2 for now
 	if (pairs < 2)
 	{
+		
 		// when the size is 3 or less
 		// sort  the max value of each tree branch
 		// if size - odd is more than 1 
