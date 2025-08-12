@@ -34,7 +34,8 @@ int main(int argc, char **argv)
 		machine.pushNum(std::atoi(argv[i]));
 		// std::cout << argv[i] << std::endl;
 	}
-	machine.printSeries();
+	machine.doVect();
+	// machine.printSeries();
 
 	return (0);
 }
