@@ -18,12 +18,57 @@ void PmergeMe::printSeries(void)
 	std::cout << std::endl;
 }
 
-void PmergeMe::doVect(void)
+void	PmergeMe::mergeInsertSort(void)
+{
+	size_t size = vect.size();
+	int pairs = size / 2;
+	// int odd = size % 2;
+	// vectTree extra;
+
+	// if (odd)
+	// {
+	// 	extra = vectTree(vect.back());
+	// 	vect.pop_back();
+	// }
+	// if (size <= 2 && !odd)
+	// 	return;
+	if (size <= 2)
+		return;
+	else
+	{
+		for (int i = 0; i < pairs; i++)
+		{
+			// vect[i] = vectTree(vect[i], vect[size - 1 - i]);
+			vect[i] = vectTree(vect[i], vect[pairs + i]);
+		}
+		for (int i = 0; i < pairs; i++)
+		{
+			vect.pop_back();
+		}
+		this->mergeInsertSort();
+	}
+}
+
+vectTree::vectTree(vectTree const &a, vectTree const &b) 
+{
+	if (a.max < b.max) {
+		max = b.max;
+		arr = b.arr;
+		arr.push_back(a);
+	} else {
+		max = a.max;
+		arr = a.arr;
+		arr.push_back(b);
+	}
+}
+
+void	PmergeMe::doVect(void)
 {
 	std::vector<int>::const_iterator it = inSeries.begin();
 	for (; it != inSeries.end(); it++)
 		vect.push_back(vectTree(*it));
-
+	printVectTree(vect, 0);
+	mergeInsertSort();
 	printVectTree(vect, 0);
 }
 
@@ -36,6 +81,7 @@ vectTree::vectTree(int val)
 {
 	max = val;
 }
+
 
 vectTree::vectTree(int first, int second)
 {
