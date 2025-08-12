@@ -25,6 +25,13 @@ void	PmergeMe::mergeInsertSort(void)
 	int odd = size % 2;
 	vectTree extra;
 
+	// if a series of 1 return - 
+	// to not apply binary insertion and pend creation at recursive level 1
+	if (!pairs) 
+	{ 
+		std::cout << "Here\n";
+		return; 
+	}
 	if (odd)
 	{
 		extra = vectTree(vect.back());
@@ -33,6 +40,8 @@ void	PmergeMe::mergeInsertSort(void)
 		pend.push_back(extra);
 	}
 	// sort 3 or rather sort final 2 for now
+	// third value is the odd straggler, straggler is also added in the latter half of the 
+	// algorithm and sorted at the end?
 	if (pairs < 2)
 	{
 		
@@ -46,6 +55,7 @@ void	PmergeMe::mergeInsertSort(void)
 
 		// if size 3 odd 1  do not include size 1 odd 1
 		// if 3rd is smaller than 2nd, swap
+		// doesn't do anything now, straggler is not present in the vect temporirily
 		// if (odd  && vect[2].max < vect[1].max) 
 		if (odd && vect[2].max < vect[1].max) 
 		{
