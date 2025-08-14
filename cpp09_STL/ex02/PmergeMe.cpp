@@ -36,8 +36,8 @@ void	PmergeMe::mergeInsertSort(void)
 	{
 		extra = vectTree(vect.back());
 		/* temp steps */
-		vect.pop_back();
-		pend.push_back(extra);
+		// vect.pop_back();
+		// pend.push_back(extra);
 	}
 	// sort 3 or rather sort final 2 for now
 	// third value is the odd straggler, straggler is also added in the latter half of the 
@@ -66,20 +66,50 @@ void	PmergeMe::mergeInsertSort(void)
 		}
 		return;
 	}
-	else
+	std::vector<vectTree> temp;
+	for (size_t i = 0; i + 1 < size; i += 2)
 	{
-		for (int i = 0; i < pairs; i++)
-		{
-			// vect[i] = vectTree(vect[i], vect[size - 1 - i]);
-			vect[i] = vectTree(vect[i], vect[pairs + i]);
-		}
-		for (int i = 0; i < pairs; i++)
-		{
-			vect.pop_back();
-		}
-		printVectTree(vect, 0);
-		this->mergeInsertSort();
+		temp.push_back(vectTree(vect[i], vect[i + 1]));
 	}
+	vect = temp;
+	std::cout << "vect l1: ";
+	printVectTree(vect, 0);
+	this->mergeInsertSort();
+	// generate the pend
+	for (
+		std::vector<vectTree>::iterator it = vect.begin();
+		it != vect.end(); ++it) 
+	{
+		pend.push_back(it->arr.back());
+		// also you remove the last element from vect.arr
+		it->arr.pop_back();
+	}
+	std::cout << "vect l2: ";
+	// add the straggler/odd fella to the pend
+	if (odd)
+		pend.push_back(extra);
+	std::cout << "pend: ";
+	printVectTree(pend, 0);
+
+	// insert from pend to vect
+	// first the first element from pend -> b1 -> idx 0 (Jacobsthal 1) no 1
+	// then Jacobsthal number's -> starting from 3 -> idx 2 no 3
+	// then in reverse until previous jacobsthal that is 3 to 1 -> only 2 here
+	// then Jacobsthal number 5 -> idx 4 no 5
+	// then in reverse until previous jacobsthal that is 5 to 3 -> only 4 here
+	// then Jacobsthal number 11 -> idx 10 no 11
+	// then in reverse until previous jacobsthal that is 11 to 5 -> no 10, 9, 8, 7, 6 here
+	// if pend has less number of elements than jacobsthal number, 
+	// add them in reverse order from the last element
+
+	// 
+	// std::vector<vectTree>	temp;
+	// vect.reserve((pairs << 1) + odd);
+	// only inseart the first element from pend to the front of temp
+	vect.insert(vect.begin(), pend.front());
+	
+	std::cout << "temp: ";
+	printVectTree(vect, 0);
 }
 
 vectTree::vectTree(vectTree const &a, vectTree const &b) 
