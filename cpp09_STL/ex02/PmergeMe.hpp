@@ -35,4 +35,7 @@ public:
 	std::vector<vectTree>	pend;
 };
 
+int jcobsthalSeries(int n);
+int startAtThree(int i);
+
 #endif

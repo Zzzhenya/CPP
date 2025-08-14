@@ -22,60 +22,31 @@ Output: on cout
 	Line4: [Time taken by the algorithm] [Container type]
 */
 
-int jcobsthalSeries(int n)
-{
-	static std::vector<int> series;
-	if (series.empty())
-	{
-		series.push_back(0);
-		series.push_back(1);
-	}
-	if (n == 0)
-		return (0);
-	else if (n == 1)
-		return (1);
-	else if (n < 0)
-	{
-		for (std::vector<int>::const_iterator i = series.begin();
-			i != series.end(); i++)
-			std::cout << *i << " ";
-		std::cout << std::endl;
-		return (-1);
-	}
-	for (int i = 2; i <= n; i++)
-	{
-		if (series.size() <= (size_t)i)
-		{
-			int temp = (series[i - 1]) + 2 * (series[i - 2]);
-			series.push_back(temp);
-		}
-	}
-	return (series[n]);
-}
-
 int main(int argc, char **argv)
 {
-	(void)argc; (void)argv;
+	// (void)argc; (void)argv;
 
-	int counter = 0;
-	for (int i = 0; i < 10; i++)
-		std::cout << jcobsthalSeries(i) << std::endl;
+	// for (int i = 0; i < 10; i++)
+	// 	std::cout << jcobsthalSeries(i) << std::endl;
+	// for (int i = 0; i < 10; i++)
+	// 	std::cout << startAtThree(i) << std::endl;
+	// jcobsthalSeries(-1);
 
-	jcobsthalSeries(-1);
+
  
-	// if (argc < 2) {
-	// 	std::cerr << "Usage: ./pmergme < series of numbers >" << std::endl;
-	// 	return (1);
-	// }
-	// PmergeMe machine;
-	// for (int i = 1; i < argc; i++)
-	// {
-	// 	// check if string is a positive number and throw error
-	// 	machine.pushNum(std::atoi(argv[i]));
-	// 	// std::cout << argv[i] << std::endl;
-	// }
-	// machine.doVect();
-	// // machine.printSeries();
+	if (argc < 2) {
+		std::cerr << "Usage: ./pmergme < series of numbers >" << std::endl;
+		return (1);
+	}
+	PmergeMe machine;
+	for (int i = 1; i < argc; i++)
+	{
+		// check if string is a positive number and throw error
+		machine.pushNum(std::atoi(argv[i]));
+		// std::cout << argv[i] << std::endl;
+	}
+	machine.doVect();
+	// machine.printSeries();
 
 	return (0);
 }

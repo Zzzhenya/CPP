@@ -1,5 +1,37 @@
 #include "PmergeMe.hpp"
 
+int jcobsthalSeries(int n)
+{
+	static std::vector<int> series;
+	if (series.empty())
+	{
+		series.push_back(0);
+		series.push_back(1);
+	}
+	if (n < 0)
+	{
+		for (std::vector<int>::const_iterator i = series.begin();
+			i != series.end(); i++)
+			std::cout << *i << " ";
+		std::cout << std::endl;
+		return (-1);
+	}
+	for (int i = 2; i <= n; i++)
+	{
+		if (series.size() <= (size_t)i)
+		{
+			int temp = (series[i - 1]) + 2 * (series[i - 2]);
+			series.push_back(temp);
+		}
+	}
+	return (series[n]);
+}
+
+int startAtThree(int i)
+{
+	return (jcobsthalSeries(i + 3));
+}
+
 
 void PmergeMe::pushNum(int num)
 {
@@ -107,7 +139,7 @@ void	PmergeMe::mergeInsertSort(void)
 	// vect.reserve((pairs << 1) + odd);
 	// only inseart the first element from pend to the front of temp
 	vect.insert(vect.begin(), pend.front());
-	
+
 	std::cout << "temp: ";
 	printVectTree(vect, 0);
 }
