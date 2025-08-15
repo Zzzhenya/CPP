@@ -10,10 +10,11 @@ int jcobsthalSeries(int n)
 	}
 	if (n < 0)
 	{
-		for (std::vector<int>::const_iterator i = series.begin();
-			i != series.end(); i++)
-			std::cout << *i << " ";
-		std::cout << std::endl;
+		// for (std::vector<int>::const_iterator i = series.begin();
+		// 	i != series.end(); i++)
+		// 	std::cout << *i << " ";
+		// std::cout << std::endl;
+		series.clear();
 		return (-1);
 	}
 	for (int i = 2; i <= n; i++)
@@ -186,6 +187,7 @@ void	PmergeMe::doVect(void)
 	printVectTree(vect, 0);
 	mergeInsertSort();
 	printVectTree(vect, 0);
+	jcobsthalSeries(-1);
 	// printVectTree(pend, 0);
 }
 
