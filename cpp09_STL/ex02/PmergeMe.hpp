@@ -13,6 +13,7 @@ public:
 	vectTree(vectTree const &a, vectTree const &b);
 	vectTree(vectTree const &other);
 	vectTree &operator=(vectTree const &other);
+	bool operator<(vectTree const &other) const;
 
 	int 					max;
 	std::vector<vectTree>	arr;

@@ -57,8 +57,7 @@ void	PmergeMe::mergeInsertSort(void)
 	int odd = size % 2;
 	vectTree extra;
 
-	// if a series of 1 return - 
-	// to not apply binary insertion and pend creation at recursive level 1
+	// if a series of  size 1 return - 
 	if (!pairs) 
 	{ 
 		std::cout << "Here\n";
@@ -106,8 +105,8 @@ void	PmergeMe::mergeInsertSort(void)
 	vect = temp;
 	std::cout << "vect l1: ";
 	printVectTree(vect, 0);
-	this->mergeInsertSort();
-	// generate the pend
+	this->mergeInsertSort(); 
+	// generate the pend and main, vect is main now
 	for (
 		std::vector<vectTree>::iterator it = vect.begin();
 		it != vect.end(); ++it) 
@@ -139,6 +138,28 @@ void	PmergeMe::mergeInsertSort(void)
 	// vect.reserve((pairs << 1) + odd);
 	// only inseart the first element from pend to the front of temp
 	vect.insert(vect.begin(), pend.front());
+	// we don't change the size of pend even when we insert to main, 
+	//because we need to keep track of the index
+	size_t subSeriesStart = 0;
+	size_t currALoc = 0;
+	int jcobNum = 0;
+
+
+	while (subSeriesStart < pend.size()){
+		size_t	idx = startAtThree(jcobNum) - 1;
+		// std::cout << "insert_mark J: " << idx + 1 << std::endl;
+		if (idx >= pend.size()) { idx = pend.size() - 1; }
+		currALoc = subSeriesStart + idx + 1;
+		while (idx > subSeriesStart) {
+			vect.insert(std::upper_bound(
+				vect.begin(), vect.begin() + currALoc, pend[idx]),
+				pend[idx]);
+			--idx;
+		}
+		subSeriesStart = startAtThree(jcobNum++) - 1;
+	}
+	pend.clear();
+
 
 	std::cout << "temp: ";
 	printVectTree(vect, 0);
@@ -165,7 +186,7 @@ void	PmergeMe::doVect(void)
 	printVectTree(vect, 0);
 	mergeInsertSort();
 	printVectTree(vect, 0);
-	printVectTree(pend, 0);
+	// printVectTree(pend, 0);
 }
 
 vectTree::vectTree(void)
@@ -191,6 +212,14 @@ vectTree::vectTree(int first, int second)
 		max = second;
 		arr.push_back(vectTree(first));
 	}
+}
+
+
+bool vectTree::operator<(vectTree const &other) const
+{
+	if (this->max < other.max)
+		return (true);
+	return (false);
 }
 
 
