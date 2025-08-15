@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
 #include "PmergeMe.hpp"
 
 /*
@@ -21,6 +22,7 @@ Output: on cout
 	Line3: [Time taken by the algorithm] [Container type]
 	Line4: [Time taken by the algorithm] [Container type]
 */
+
 
 int main(int argc, char **argv)
 {
@@ -46,6 +48,7 @@ int main(int argc, char **argv)
 		// std::cout << argv[i] << std::endl;
 	}
 	machine.doVect();
+	std::cout << "actual: " << machine.comparisons << std::endl;
 	// machine.printSeries();
 
 	return (0);

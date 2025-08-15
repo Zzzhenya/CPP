@@ -83,7 +83,10 @@ void	PmergeMe::mergeInsertSort(void)
 		// ie: size 2 odd 0, size 3 odd 1
 		// if 2nd is smaller than 1st, swap
 		if (size - odd > 1 && vect[1].max < vect[0].max)
+		{
 			std::swap(vect[0], vect[1]);
+		}
+		comparisons++;
 
 		// if size 3 odd 1  do not include size 1 odd 1
 		// if 3rd is smaller than 2nd, swap
@@ -94,14 +97,19 @@ void	PmergeMe::mergeInsertSort(void)
 			std::swap(vect[2], vect[1]);
 
 			if (vect[1].max < vect[0].max) 
+			{
 				std::swap(vect[0], vect[1]);
+			}
 		}
+		comparisons++;
+		comparisons++;
 		return;
 	}
 	std::vector<vectTree> temp;
 	for (size_t i = 0; i + 1 < size; i += 2)
 	{
 		temp.push_back(vectTree(vect[i], vect[i + 1]));
+		comparisons++;
 	}
 	vect = temp;
 	std::cout << "vect l1: ";
@@ -152,9 +160,11 @@ void	PmergeMe::mergeInsertSort(void)
 		if (idx >= pend.size()) { idx = pend.size() - 1; }
 		currALoc = subSeriesStart + idx + 1;
 		while (idx > subSeriesStart) {
-			vect.insert(std::upper_bound(
-				vect.begin(), vect.begin() + currALoc, pend[idx]),
-				pend[idx]);
+			
+			std::vector<vectTree>::iterator it = std::upper_bound(
+				vect.begin(), vect.begin() + currALoc, pend[idx]);
+			comparisons += std::distance(vect.begin(), it);
+			vect.insert(it,pend[idx]);
 			--idx;
 		}
 		subSeriesStart = startAtThree(jcobNum++) - 1;
@@ -181,6 +191,7 @@ vectTree::vectTree(vectTree const &a, vectTree const &b)
 
 void	PmergeMe::doVect(void)
 {
+	comparisons = 0;
 	std::vector<int>::const_iterator it = inSeries.begin();
 	for (; it != inSeries.end(); it++)
 		vect.push_back(vectTree(*it));

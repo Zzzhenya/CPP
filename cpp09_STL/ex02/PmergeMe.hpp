@@ -34,6 +34,7 @@ public:
 
 	std::vector<vectTree>	vect;
 	std::vector<vectTree>	pend;
+	int comparisons;
 };
 
 int jcobsthalSeries(int n);
