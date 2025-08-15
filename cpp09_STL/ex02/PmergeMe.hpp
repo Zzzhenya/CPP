@@ -25,16 +25,20 @@ void printVectTree(std::vector<vectTree> tr, int level);
 class PmergeMe
 {
 public:
+	PmergeMe(void);
 	void	pushNum(int num);
 	void	printSeries(void);
 	void	doVect(void);
 	void	mergeInsertSort(void);
 
-	std::vector<int> inSeries;
+	void	reset(void);
+
+	std::vector<int> 		inSeries;
 
 	std::vector<vectTree>	vect;
 	std::vector<vectTree>	pend;
-	int comparisons;
+
+	int 					comparisons;
 };
 
 int jcobsthalSeries(int n);

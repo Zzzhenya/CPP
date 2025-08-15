@@ -33,6 +33,12 @@ int startAtThree(int i)
 	return (jcobsthalSeries(i + 3));
 }
 
+PmergeMe::PmergeMe(void)
+{
+	comparisons = 0;
+	reset();
+	inSeries.clear();
+}
 
 void PmergeMe::pushNum(int num)
 {
@@ -51,101 +57,30 @@ void PmergeMe::printSeries(void)
 	std::cout << std::endl;
 }
 
-void	PmergeMe::mergeInsertSort(void)
+/*
+	insert from pend to vect(main)
+	first the first element from pend -> b1 -> idx 0 (Jacobsthal 1) no 1
+	then Jacobsthal number's -> starting from 3 -> idx 2 no 3
+	then in reverse until previous jacobsthal that is 3 to 1 -> only 2 here
+	then Jacobsthal number 5 -> idx 4 no 5
+	then in reverse until previous jacobsthal that is 5 to 3 -> only 4 here
+	then Jacobsthal number 11 -> idx 10 no 11
+	then in reverse until previous jacobsthal that is 11 to 5 -> no 10, 9, 8, 7, 6 here
+	
+	if pend has less number of elements than jacobsthal number, 
+	add them in reverse order from the last element
+
+	clear the pend after each iteration
+*/
+
+void vectInsertion(std::vector<vectTree> &pend,std::vector<vectTree> &vect, int &comparisons)
 {
-	size_t size = vect.size();
-	int pairs = size / 2;
-	int odd = size % 2;
-	vectTree extra;
-
-	// if a series of size 1 return
-	// exit condition 1 : only 1 number
-	if (!pairs)
-		return;
-
-	if (odd)
-		extra = vectTree(vect.back());
-
-	// sort 2 and sort 3 : sort the max value of each tree branch in ascending order
-	if (pairs < 2)
-	{
-		// for both size 2 and 3 if 2nd is smaller than 1st, swap
-		if (size - odd > 1 && vect[1].max < vect[0].max)
-		{
-			std::swap(vect[0], vect[1]);
-		}
-		comparisons++;
-		// for size 3 if 3rd is smaller than 2nd, swap
-		if ( odd && vect[2].max < vect[1].max) 
-		{
-			std::swap(vect[2], vect[1]);
-			// for size 3 if 2nd is smaller than 1st, swap
-			if (vect[1].max < vect[0].max) 
-			{
-				std::swap(vect[0], vect[1]);
-			}
-			comparisons++;
-		}
-		comparisons++;
-		// exit condition 2: only 2 or 3 numbers in the series ( originally or by merging)
-		return;
-	}
-	std::vector<vectTree> temp;
-	for (size_t i = 0; i + 1 < size; i += 2)
-	{
-		temp.push_back(vectTree(vect[i], vect[i + 1]));
-		comparisons++;
-	}
-	vect = temp;
-	printVectTree(vect, 0);
-	this->mergeInsertSort(); 
-
-	// generate the pend and main, vect is main now
-	for (
-		std::vector<vectTree>::iterator it = vect.begin();
-		it != vect.end(); ++it) 
-	{
-		pend.push_back(it->arr.back());
-		// also you remove the last element from vect.arr
-		it->arr.pop_back();
-	}
-	// std::cout << "vect l2: ";
-	// add the straggler/odd fella to the pend
-	if (odd)
-		pend.push_back(extra);
-	// std::cout << "pend: ";
-	// printVectTree(pend, 0);
-
-	// insert from pend to vect
-	// first the first element from pend -> b1 -> idx 0 (Jacobsthal 1) no 1
-	// then Jacobsthal number's -> starting from 3 -> idx 2 no 3
-	// then in reverse until previous jacobsthal that is 3 to 1 -> only 2 here
-	// then Jacobsthal number 5 -> idx 4 no 5
-	// then in reverse until previous jacobsthal that is 5 to 3 -> only 4 here
-	// then Jacobsthal number 11 -> idx 10 no 11
-	// then in reverse until previous jacobsthal that is 11 to 5 -> no 10, 9, 8, 7, 6 here
-	// if pend has less number of elements than jacobsthal number, 
-	// add them in reverse order from the last element
-
-	// 
-	// std::vector<vectTree>	temp;
-	// vect.reserve((pairs << 1) + odd);
-	// only inseart the first element from pend to the front of temp
-	vect.insert(vect.begin(), pend.front());
-	// we don't change the size of pend even when we insert to main, 
-	//because we need to keep track of the index
-	std::cout << "pend ";
-	printVectTree(pend, 0);
-	std::cout << "vect ";
-	printVectTree(vect, 0);
-	size_t subSeriesStart = 0;
-	size_t currALoc = 0;
-	int jcobNum = 0;
-
+	size_t 	subSeriesStart = 0;
+	size_t 	currALoc = 0;
+	int 	jcobNum = 0;
 
 	while (subSeriesStart < pend.size()){
 		size_t	idx = startAtThree(jcobNum) - 1;
-		// std::cout << "insert_mark J: " << idx + 1 << std::endl;
 		if (idx >= pend.size()) { idx = pend.size() - 1; }
 		currALoc = subSeriesStart + idx + 1;
 		while (idx > subSeriesStart) {
@@ -155,15 +90,91 @@ void	PmergeMe::mergeInsertSort(void)
 			comparisons += std::distance(vect.begin(), it);
 			vect.insert(it,pend[idx]);
 			--idx;
-			// printVectTree(vect, 0);
 		}
 		subSeriesStart = startAtThree(jcobNum++) - 1;
 	}
 	pend.clear();
+}
+
+/*
+	if a series of size 1 return
+		exit condition 1 : only 1 numberv
+
+	sort 2 and sort 3 : sort the max value of each tree branch in ascending order
+		for both size 2 and 3 if 2nd is smaller than 1st, swap
+		for size 3 if 3rd is smaller than 2nd, swap
+			for size 3 if 2nd is smaller than 1st, swap
+		exit condition 2: only 2 or 3 numbers in the series ( originally or by merging)
+
+	merge and make pairs
+	recurse()
+
+	generate the pend and main, vect is main now
+		also you remove the last element from vect.arr and add to pend
+			which is the b1; max + first element is a1
+			pend only has b's and main only has a's(part with max)
+		add the straggler/odd fella to the end of pend which is considered a "b"
+
+	start insert
+		insert the first element from pend to the front of main (b1, b1 is always less than a1)
+
+	we don't change the size of pend even when we insert to main, 
+	because we need to keep track of the index
+
+*/
+
+void	PmergeMe::mergeInsertSort(void)
+{
+	size_t size = vect.size();
+	int pairs = size / 2;
+	int odd = size % 2;
+	vectTree extra;
 
 
-	// std::cout << "temp: ";
+	if (!pairs)
+		return;
+
+	if (odd)
+		extra = vectTree(vect.back());
+
+	if (pairs < 2)
+	{
+		if (size - odd > 1 && vect[1] < vect[0])
+			std::swap(vect[0], vect[1]);
+		comparisons++;
+		if ( odd && vect[2] < vect[1]) 
+		{
+			std::swap(vect[2], vect[1]);
+			if (vect[1] < vect[0]) 
+				std::swap(vect[0], vect[1]);
+			comparisons++;
+		}
+		comparisons++;
+		return;
+	}
+	std::vector<vectTree> temp;
+	for (size_t i = 0; i + 1 < size; i += 2)
+	{
+		temp.push_back(vectTree(vect[i], vect[i + 1]));
+		comparisons++;
+	}
+	vect = temp;
 	// printVectTree(vect, 0);
+	this->mergeInsertSort(); 
+ 
+	for ( std::vector<vectTree>::iterator it = vect.begin();
+		it != vect.end();
+		it++) 
+	{
+		pend.push_back(it->arr.back());
+		it->arr.pop_back();
+	}
+	if (odd)
+		pend.push_back(extra);
+
+	vect.insert(vect.begin(), pend.front());
+
+	vectInsertion(pend, vect, comparisons);
 }
 
 vectTree::vectTree(vectTree const &a, vectTree const &b) 
@@ -179,17 +190,39 @@ vectTree::vectTree(vectTree const &a, vectTree const &b)
 	}
 }
 
+void	PmergeMe::reset(void)
+{
+	jcobsthalSeries(-1);
+	comparisons = 0;
+	vect.clear();
+	pend.clear();
+}
+
 void	PmergeMe::doVect(void)
 {
-	comparisons = 0;
+	bool Error = false;
 	std::vector<int>::const_iterator it = inSeries.begin();
 	for (; it != inSeries.end(); it++)
 		vect.push_back(vectTree(*it));
+	std::cout << "before:\t\t";
 	printVectTree(vect, 0);
 	mergeInsertSort();
-	printVectTree(vect, 0);
-	jcobsthalSeries(-1);
-	// printVectTree(pend, 0);
+	for (std::vector<vectTree>::const_iterator it = vect.begin(); it + 1 != vect.end(); it++)
+	{
+		if (*(it + 1) < *it)
+		{
+			Error = true;
+			break;
+		}
+	}
+	if (Error)
+		std::cerr << "Not sorted\n";
+	else
+	{
+		std::cout << "after :\t\t";
+		printVectTree(vect, 0);
+	}
+	reset();
 }
 
 vectTree::vectTree(void)
