@@ -58,51 +58,36 @@ void	PmergeMe::mergeInsertSort(void)
 	int odd = size % 2;
 	vectTree extra;
 
-	// if a series of  size 1 return - 
-	if (!pairs) 
-	{ 
-		std::cout << "Here\n";
-		return; 
-	}
+	// if a series of size 1 return
+	// exit condition 1 : only 1 number
+	if (!pairs)
+		return;
+
 	if (odd)
-	{
 		extra = vectTree(vect.back());
-		/* temp steps */
-		// vect.pop_back();
-		// pend.push_back(extra);
-	}
-	// sort 3 or rather sort final 2 for now
-	// third value is the odd straggler, straggler is also added in the latter half of the 
-	// algorithm and sorted at the end?
+
+	// sort 2 and sort 3 : sort the max value of each tree branch in ascending order
 	if (pairs < 2)
 	{
-		
-		// when the size is 3 or less
-		// sort  the max value of each tree branch
-		// if size - odd is more than 1 
-		// ie: size 2 odd 0, size 3 odd 1
-		// if 2nd is smaller than 1st, swap
+		// for both size 2 and 3 if 2nd is smaller than 1st, swap
 		if (size - odd > 1 && vect[1].max < vect[0].max)
 		{
 			std::swap(vect[0], vect[1]);
 		}
 		comparisons++;
-
-		// if size 3 odd 1  do not include size 1 odd 1
-		// if 3rd is smaller than 2nd, swap
-		// doesn't do anything now, straggler is not present in the vect temporirily
-		// if (odd  && vect[2].max < vect[1].max) 
-		if (odd && vect[2].max < vect[1].max) 
+		// for size 3 if 3rd is smaller than 2nd, swap
+		if ( odd && vect[2].max < vect[1].max) 
 		{
 			std::swap(vect[2], vect[1]);
-
+			// for size 3 if 2nd is smaller than 1st, swap
 			if (vect[1].max < vect[0].max) 
 			{
 				std::swap(vect[0], vect[1]);
 			}
+			comparisons++;
 		}
 		comparisons++;
-		comparisons++;
+		// exit condition 2: only 2 or 3 numbers in the series ( originally or by merging)
 		return;
 	}
 	std::vector<vectTree> temp;
@@ -112,9 +97,9 @@ void	PmergeMe::mergeInsertSort(void)
 		comparisons++;
 	}
 	vect = temp;
-	std::cout << "vect l1: ";
 	printVectTree(vect, 0);
 	this->mergeInsertSort(); 
+
 	// generate the pend and main, vect is main now
 	for (
 		std::vector<vectTree>::iterator it = vect.begin();
@@ -124,12 +109,12 @@ void	PmergeMe::mergeInsertSort(void)
 		// also you remove the last element from vect.arr
 		it->arr.pop_back();
 	}
-	std::cout << "vect l2: ";
+	// std::cout << "vect l2: ";
 	// add the straggler/odd fella to the pend
 	if (odd)
 		pend.push_back(extra);
-	std::cout << "pend: ";
-	printVectTree(pend, 0);
+	// std::cout << "pend: ";
+	// printVectTree(pend, 0);
 
 	// insert from pend to vect
 	// first the first element from pend -> b1 -> idx 0 (Jacobsthal 1) no 1
@@ -149,6 +134,10 @@ void	PmergeMe::mergeInsertSort(void)
 	vect.insert(vect.begin(), pend.front());
 	// we don't change the size of pend even when we insert to main, 
 	//because we need to keep track of the index
+	std::cout << "pend ";
+	printVectTree(pend, 0);
+	std::cout << "vect ";
+	printVectTree(vect, 0);
 	size_t subSeriesStart = 0;
 	size_t currALoc = 0;
 	int jcobNum = 0;
@@ -166,14 +155,15 @@ void	PmergeMe::mergeInsertSort(void)
 			comparisons += std::distance(vect.begin(), it);
 			vect.insert(it,pend[idx]);
 			--idx;
+			// printVectTree(vect, 0);
 		}
 		subSeriesStart = startAtThree(jcobNum++) - 1;
 	}
 	pend.clear();
 
 
-	std::cout << "temp: ";
-	printVectTree(vect, 0);
+	// std::cout << "temp: ";
+	// printVectTree(vect, 0);
 }
 
 vectTree::vectTree(vectTree const &a, vectTree const &b) 
