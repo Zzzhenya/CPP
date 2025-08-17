@@ -18,5 +18,7 @@
 
 * https://gehrcke.de/2011/06/reading-files-in-c-using-ifstream-dealing-correctly-with-badbit-failbit-eofbit-and-perror/
 
-## 
+## measure process time
+
+* https://levelup.gitconnected.com/8-ways-to-measure-execution-time-in-c-c-48634458d0f9
 

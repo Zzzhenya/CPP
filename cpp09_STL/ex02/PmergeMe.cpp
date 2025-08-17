@@ -198,8 +198,26 @@ void	PmergeMe::reset(void)
 	pend.clear();
 }
 
+std::string processDuration(const struct timespec& begin, const struct timespec& end)
+{
+
+	std::stringstream os;
+	// os.setprecision (2);
+    long seconds = end.tv_sec - begin.tv_sec;
+    long nanoseconds = end.tv_nsec - begin.tv_nsec;
+    // double elapsed = seconds + nanoseconds*1e-9;
+    long micro = (nanoseconds / 1000) + (seconds * 1000000);
+
+    os << micro  << " us";
+    return (os.str());
+}
+
 void	PmergeMe::doVect(void)
 {
+	struct timespec begin;
+	struct timespec end;
+
+	clock_gettime(CLOCK_REALTIME, &begin);
 	bool Error = false;
 	std::vector<int>::const_iterator it = inSeries.begin();
 	for (; it != inSeries.end(); it++)
@@ -222,7 +240,13 @@ void	PmergeMe::doVect(void)
 		std::cout << "after :\t\t";
 		printVectTree(vect, 0);
 	}
-	reset();
+	clock_gettime(CLOCK_REALTIME, &end);
+	
+	std::cout << "Time to process a range of " << inSeries.size();
+	std::cout << " elements with std::vector : ";
+	std::cout << processDuration(begin, end) << std::endl;
+
+	// reset();
 }
 
 vectTree::vectTree(void)

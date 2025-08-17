@@ -3,6 +3,9 @@
 
 # include <iostream>
 # include <vector>
+# include <time.h>
+# include <sstream>
+# include <iomanip>
 
 class vectTree
 {
