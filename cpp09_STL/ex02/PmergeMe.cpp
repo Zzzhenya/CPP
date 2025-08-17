@@ -332,6 +332,7 @@ vectTree::vectTree(vectTree const &other)
 	arr = other.arr;
 }
 
+// extra functions for listTree
 void printListTree(std::list<listTree> tr, int level)
 {
 	if (tr.size() == 0)
@@ -341,9 +342,15 @@ void printListTree(std::list<listTree> tr, int level)
 		std::cout << "{ ";
 	for (it = tr.begin(); it != tr.end(); it++)
 	{
-		std::cout  << it->max << " ";
-		printListTree(it->arr, level + 1);
 		std::list<listTree>::const_iterator temp = it;
+		std::advance(temp, 1);
+		if (level == 0 && temp == tr.end())
+			std::cout  << it->max;
+		else
+			std::cout  << it->max << " ";
+		printListTree(it->arr, level + 1);
+		// std::list<listTree>::const_iterator temp = it;
+		temp = it;
 		std::advance(temp, 1);
 		if (temp == tr.end())
 		{
@@ -365,7 +372,11 @@ void printVectTree(std::vector<vectTree> tr, int level)
 		std::cout << "{ ";
 	for (it = tr.begin(); it != tr.end(); it++)
 	{
-		std::cout  << it->max << " ";
+		if (level == 0 && it + 1 == tr.end())
+			std::cout  << it->max;
+		else
+			std::cout  << it->max << " ";
+		// std::cout  << it->max << " ";
 		printVectTree(it->arr, level + 1);
 		if (it + 1 == tr.end())
 		{
