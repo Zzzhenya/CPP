@@ -1,5 +1,7 @@
 #include "PmergeMe.hpp"
 
+// Jacobsthal Series
+
 int jcobsthalSeries(int n)
 {
 	static std::vector<int> series;
@@ -28,10 +30,14 @@ int jcobsthalSeries(int n)
 	return (series[n]);
 }
 
+// Jacobsthal Series - wrapper function
+
 int startAtThree(int i)
 {
 	return (jcobsthalSeries(i + 3));
 }
+
+// Class PmergeMe functions
 
 PmergeMe::PmergeMe(void)
 {
@@ -177,19 +183,6 @@ void	PmergeMe::mergeInsertSort(void)
 	vectInsertion(pend, vect, comparisons);
 }
 
-vectTree::vectTree(vectTree const &a, vectTree const &b) 
-{
-	if (a.max < b.max) {
-		max = b.max;
-		arr = b.arr;
-		arr.push_back(a);
-	} else {
-		max = a.max;
-		arr = a.arr;
-		arr.push_back(b);
-	}
-}
-
 void	PmergeMe::reset(void)
 {
 	jcobsthalSeries(-1);
@@ -200,12 +193,10 @@ void	PmergeMe::reset(void)
 
 std::string processDuration(const struct timespec& begin, const struct timespec& end)
 {
-
 	std::stringstream os;
-	// os.setprecision (2);
+
     long seconds = end.tv_sec - begin.tv_sec;
     long nanoseconds = end.tv_nsec - begin.tv_nsec;
-    // double elapsed = seconds + nanoseconds*1e-9;
     long micro = (nanoseconds / 1000) + (seconds * 1000000);
 
     os << micro  << " us";
@@ -241,7 +232,7 @@ void	PmergeMe::doVect(void)
 		printVectTree(vect, 0);
 	}
 	clock_gettime(CLOCK_REALTIME, &end);
-	
+
 	std::cout << "Time to process a range of " << inSeries.size();
 	std::cout << " elements with std::vector : ";
 	std::cout << processDuration(begin, end) << std::endl;
@@ -249,14 +240,61 @@ void	PmergeMe::doVect(void)
 	// reset();
 }
 
-vectTree::vectTree(void)
+void	PmergeMe::doList(void)
 {
-	max = -1;
+	struct timespec begin;
+	struct timespec end;
+
+	clock_gettime(CLOCK_REALTIME, &begin);
+
+	std::vector<int>::const_iterator it = inSeries.begin();
+	for (; it != inSeries.end(); it++)
+		list.push_back(listTree(*it));
+
+
+	clock_gettime(CLOCK_REALTIME, &end);
+
+	std::cout << "Time to process a range of " << inSeries.size();
+	std::cout << " elements with std::vector : ";
+	std::cout << processDuration(begin, end) << std::endl;
+	printListTree(list, 0);
+
 }
 
-vectTree::vectTree(int val)
+// Class listTree functions
+
+listTree::listTree(void): max(-1)
 {
-	max = val;
+
+}
+
+listTree::listTree(int val): max(val)
+{
+
+}
+
+
+// Class vectTree functions
+
+vectTree::vectTree(vectTree const &a, vectTree const &b) 
+{
+	if (a.max < b.max) {
+		max = b.max;
+		arr = b.arr;
+		arr.push_back(a);
+	} else {
+		max = a.max;
+		arr = a.arr;
+		arr.push_back(b);
+	}
+}
+
+vectTree::vectTree(void): max (-1)
+{
+}
+
+vectTree::vectTree(int val): max (val)
+{
 }
 
 
@@ -274,14 +312,12 @@ vectTree::vectTree(int first, int second)
 	}
 }
 
-
 bool vectTree::operator<(vectTree const &other) const
 {
 	if (this->max < other.max)
 		return (true);
 	return (false);
 }
-
 
 vectTree &vectTree::operator=(vectTree const &other)
 {
@@ -296,6 +332,30 @@ vectTree::vectTree(vectTree const &other)
 	arr = other.arr;
 }
 
+void printListTree(std::list<listTree> tr, int level)
+{
+	if (tr.size() == 0)
+		return;
+	std::list<listTree>::const_iterator it;
+	if (level > 0)
+		std::cout << "{ ";
+	for (it = tr.begin(); it != tr.end(); it++)
+	{
+		std::cout  << it->max << " ";
+		printListTree(it->arr, level + 1);
+		std::list<listTree>::const_iterator temp = it;
+		std::advance(temp, 1);
+		if (temp == tr.end())
+		{
+			if (level > 0)
+				std::cout << "} ";
+			else
+				std::cout << std::endl;
+		}
+	}	
+}
+
+// extra functions for vectTree
 void printVectTree(std::vector<vectTree> tr, int level)
 {
 	if (tr.size() == 0)

@@ -49,6 +49,8 @@ int main(int argc, char **argv)
 	}
 	machine.doVect();
 	std::cout << "actual: " << machine.comparisons << std::endl;
+	machine.reset();
+	machine.doList();
 	// machine.printSeries();
 
 	return (0);

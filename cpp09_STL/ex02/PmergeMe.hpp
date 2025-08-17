@@ -6,6 +6,19 @@
 # include <time.h>
 # include <sstream>
 # include <iomanip>
+# include <list>
+
+class listTree
+{
+public:
+	listTree(void);
+	listTree(int val);
+
+	int 					max;
+	std::list<listTree>		arr;
+};
+
+void printListTree(std::list<listTree> tr, int level);
 
 class vectTree
 {
@@ -33,13 +46,17 @@ public:
 	void	printSeries(void);
 	void	doVect(void);
 	void	mergeInsertSort(void);
-
 	void	reset(void);
+
+	void	doList(void);
 
 	std::vector<int> 		inSeries;
 
 	std::vector<vectTree>	vect;
 	std::vector<vectTree>	pend;
+
+	std::list<listTree>	list;
+	std::list<listTree>	lpend;
 
 	int 					comparisons;
 };
