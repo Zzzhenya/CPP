@@ -45,6 +45,7 @@ class PmergeMe
 {
 public:
 	PmergeMe(void);
+	~PmergeMe(void);
 	void	pushNum(int num);
 	void	printSeries(void);
 	void	reset(void);

@@ -49,6 +49,8 @@ int main(int argc, char **argv)
 	}
 	machine.doVect();
 	machine.doList();
+	machine.vect.clear();
+	machine.list.clear();
 	// machine.printSeries();
 
 	return (0);

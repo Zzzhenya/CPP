@@ -168,6 +168,7 @@ void	PmergeMe::mergeInsertSortVect(void)
 		temp.push_back(vectTree(vect[i], vect[i + 1]));
 		comparisons++;
 	}
+
 	vect = temp;
 	// printVectTree(vect, 0);
 	this->mergeInsertSortVect(); 
@@ -254,7 +255,6 @@ void	PmergeMe::mergeInsertSortList(void)
 		std::advance(second, 1);
 		if ( size - odd > 1 && second->max < first->max) 
 			list.splice(first, list, second);
-
 		comparisons++;
 		if ( odd && size == 3) 
 		{
@@ -317,6 +317,7 @@ void	PmergeMe::mergeInsertSortList(void)
 	lpend.clear();
 }
 
+
 void	PmergeMe::reset(void)
 {
 	jcobsthalSeries(-1);
@@ -325,6 +326,14 @@ void	PmergeMe::reset(void)
 	// list.clear();
 	pend.clear();
 	lpend.clear();
+}
+
+PmergeMe::~PmergeMe(void)
+{
+	reset();
+	vect.clear();
+	list.clear();
+	inSeries.clear();
 }
 
 std::string processDuration(const struct timespec& begin, const struct timespec& end)
@@ -440,7 +449,7 @@ void	PmergeMe::doList(void)
 
 
 	std::cout << "Time to process a range of " << inSeries.size();
-	std::cout << " elements with std::vector : ";
+	std::cout << " elements with std::list : ";
 	std::cout << processDuration(begin, end) << "\t";
 
 	// std::cout << "list: ";
