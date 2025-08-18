@@ -129,7 +129,7 @@ void vectInsertion(std::vector<vectTree> &pend,std::vector<vectTree> &vect, int 
 
 */
 
-void	PmergeMe::mergeInsertSort(void)
+void	PmergeMe::mergeInsertSortVect(void)
 {
 	size_t size = vect.size();
 	int pairs = size / 2;
@@ -158,6 +158,7 @@ void	PmergeMe::mergeInsertSort(void)
 		comparisons++;
 		return;
 	}
+	printVectTree(vect, 0);
 	std::vector<vectTree> temp;
 	for (size_t i = 0; i + 1 < size; i += 2)
 	{
@@ -166,7 +167,7 @@ void	PmergeMe::mergeInsertSort(void)
 	}
 	vect = temp;
 	// printVectTree(vect, 0);
-	this->mergeInsertSort(); 
+	this->mergeInsertSortVect(); 
  
 	for ( std::vector<vectTree>::iterator it = vect.begin();
 		it != vect.end();
@@ -183,12 +184,129 @@ void	PmergeMe::mergeInsertSort(void)
 	vectInsertion(pend, vect, comparisons);
 }
 
+void 	PmergeMe::binaryInsertionSort(size_t sort_end, listTree &insertVal)
+{
+	std::cout << "BI: " << insertVal.max  << " sort end idx: " << sort_end << std::endl;
+	std::cout << "BI: " << std::endl;
+	printListTree(list, 0);
+
+	size_t start = 0;
+	size_t oldmid = 0;
+	size_t mid = 0;
+
+	std::list<listTree>::iterator it = list.begin();
+	while (start <= sort_end)
+	{
+		oldmid = mid;
+		mid = start + ((sort_end - start)/2);
+		std::advance(it, mid - oldmid);
+		comparisons++;
+		if (*it < insertVal)
+			start = mid + 1;
+		else
+		{
+			if (mid == start)
+			{
+				list.insert(it, insertVal);
+				return;
+			}
+			sort_end = mid - 1;
+		}	
+	}
+	it = list.begin();
+	std::advance(it, start);
+	// if start is before the list.end() and value at start is less than the insertVallue advance 1
+	// else do not advance and insert at start
+	//if (start < sort_end && *it < insertVal) 
+	std::cout << "start: " << start << std::endl;
+	
+	if (start < list.size() && *it < insertVal) 
+		std::advance(it, 1);
+	// else
+	// 	std::cout << "this opetion\n";
+	comparisons++;
+	list.insert(it, insertVal);
+}
+
+void	PmergeMe::mergeInsertSortList(void)
+{
+	size_t		size = list.size();
+	int			pairs = size / 2;
+	int			odd = size % 2;
+	listTree	extra;
+
+	if (!pairs)
+		return;
+
+	if (odd)
+	{
+		extra = listTree(list.back());
+		list.pop_back();
+	}
+
+	if (pairs < 2)
+	{
+		std::list<listTree>::iterator	first = list.begin();
+		std::list<listTree>::iterator	second = list.begin();
+		std::advance(second, 1);
+		if ( size - odd > 1 && second->max < first->max) 
+			list.splice(first, list, second);
+
+		comparisons++;
+		if ( odd && size == 3) 
+		{
+			printListTree(list, 0);
+			// list.pop_back();
+			//binaryInsertionSort(1, *--list.end());
+			binaryInsertionSort(1, extra);
+		}	
+		return;
+	}
+	printListTree(list, 0);
+
+	std::list<listTree> temp;
+	std::list<listTree>::iterator p2 = list.begin();
+	std::list<listTree>::iterator p1 = list.begin();
+	std::advance(p2, 1);
+
+	size_t i  = 0;
+	while (i + 1 < size)
+	{
+		temp.push_back(listTree(*p1, *p2));
+		std::advance(p1, 2);
+		std::advance(p2, 2);
+		i += 2;
+		comparisons++;
+	}
+
+	list = temp;
+	this->mergeInsertSortList();
+
+	// for ( std::list<listTree>::iterator it = list.begin();
+	// 	it != list.end();
+	// 	it++) 
+	// {
+	// 	// lpend.push_back(it->arr.back());
+	// 	it->arr.pop_back();
+	// }
+	if (odd)
+		lpend.push_back(extra);
+
+	// list.insert(list.begin(), lpend.front());
+
+
+	// printListTree(list, 0);
+	// printListTree(lpend, 0);
+}
+
 void	PmergeMe::reset(void)
 {
 	jcobsthalSeries(-1);
 	comparisons = 0;
 	vect.clear();
+	list.clear();
 	pend.clear();
+	lpend.clear();
 }
 
 std::string processDuration(const struct timespec& begin, const struct timespec& end)
@@ -215,7 +333,7 @@ void	PmergeMe::doVect(void)
 		vect.push_back(vectTree(*it));
 	std::cout << "before:\t\t";
 	printVectTree(vect, 0);
-	mergeInsertSort();
+	mergeInsertSortVect();
 	for (std::vector<vectTree>::const_iterator it = vect.begin(); it + 1 != vect.end(); it++)
 	{
 		if (*(it + 1) < *it)
@@ -237,6 +355,9 @@ void	PmergeMe::doVect(void)
 	std::cout << " elements with std::vector : ";
 	std::cout << processDuration(begin, end) << std::endl;
 
+	std::cout << "comparison: " << comparisons << std::endl;
+	reset();
+
 	// reset();
 }
 
@@ -251,13 +372,36 @@ void	PmergeMe::doList(void)
 	for (; it != inSeries.end(); it++)
 		list.push_back(listTree(*it));
 
+	mergeInsertSortList();
+	// std::list<listTree> first;
+	
+	// first.push_back(listTree(33));
+	// first.push_back(listTree(32));
+
+	// std::list<listTree>::iterator i = list.begin();
+	// i++;
+	// i++;
+
+	// first.splice(++first.begin(), list, i);
 
 	clock_gettime(CLOCK_REALTIME, &end);
 
 	std::cout << "Time to process a range of " << inSeries.size();
 	std::cout << " elements with std::vector : ";
 	std::cout << processDuration(begin, end) << std::endl;
+
+	std::cout << "list: ";
 	printListTree(list, 0);
+	// std::cout << "first ";
+	// printListTree(first, 0);
+
+	std::cout << "comparison: " << comparisons << std::endl;
+
+	std::cout << "list: ";
+	printListTree(list, 0);
+	std::cout << "pend: ";
+	printListTree(lpend, 0);
+	reset();
 
 }
 
@@ -271,6 +415,26 @@ listTree::listTree(void): max(-1)
 listTree::listTree(int val): max(val)
 {
 
+}
+
+bool listTree::operator<(listTree const &other) const
+{
+	if (this->max < other.max)
+		return (true);
+	return (false);
+}
+
+listTree::listTree(listTree const &a, listTree const &b)
+{
+	if (a.max < b.max) {
+		max = b.max;
+		arr = b.arr;
+		arr.push_back(a);
+	} else {
+		max = a.max;
+		arr = a.arr;
+		arr.push_back(b);
+	}	
 }
 
 
@@ -298,19 +462,19 @@ vectTree::vectTree(int val): max (val)
 }
 
 
-vectTree::vectTree(int first, int second)
-{
-	if (first > second)
-	{
-		max = first;
-		arr.push_back(vectTree(second));
-	}
-	else
-	{
-		max = second;
-		arr.push_back(vectTree(first));
-	}
-}
+// vectTree::vectTree(int first, int second)
+// {
+// 	if (first > second)
+// 	{
+// 		max = first;
+// 		arr.push_back(vectTree(second));
+// 	}
+// 	else
+// 	{
+// 		max = second;
+// 		arr.push_back(vectTree(first));
+// 	}
+// }
 
 bool vectTree::operator<(vectTree const &other) const
 {

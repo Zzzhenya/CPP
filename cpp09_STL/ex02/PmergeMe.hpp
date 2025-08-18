@@ -14,6 +14,9 @@ public:
 	listTree(void);
 	listTree(int val);
 
+	listTree(listTree const &a, listTree const &b);
+	bool operator<(listTree const &other) const;
+
 	int 					max;
 	std::list<listTree>		arr;
 };
@@ -25,7 +28,7 @@ class vectTree
 public:
 	vectTree();
 	vectTree(int val);
-	vectTree(int first, int second);
+	// vectTree(int first, int second);
 	vectTree(vectTree const &a, vectTree const &b);
 	vectTree(vectTree const &other);
 	vectTree &operator=(vectTree const &other);
@@ -44,11 +47,14 @@ public:
 	PmergeMe(void);
 	void	pushNum(int num);
 	void	printSeries(void);
-	void	doVect(void);
-	void	mergeInsertSort(void);
 	void	reset(void);
 
+	void	doVect(void);
+	void	mergeInsertSortVect(void);
+
 	void	doList(void);
+	void	mergeInsertSortList(void);
+	void 	binaryInsertionSort(size_t sort_end, listTree &insertVal);
 
 	std::vector<int> 		inSeries;
 

@@ -48,8 +48,6 @@ int main(int argc, char **argv)
 		// std::cout << argv[i] << std::endl;
 	}
 	machine.doVect();
-	std::cout << "actual: " << machine.comparisons << std::endl;
-	machine.reset();
 	machine.doList();
 	// machine.printSeries();
 
