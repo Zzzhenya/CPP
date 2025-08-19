@@ -6,7 +6,7 @@
 #    By: sde-silv <sde-silv@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/27 00:19:45 by sde-silv          #+#    #+#              #
-#    Updated: 2025/06/21 18:24:28 by sde-silv         ###   ########.fr        #
+#    Updated: 2025/08/19 21:19:32 by sde-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJ = $(SRC:.cpp=.o)
 
 CXX = clang++ #-H
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic-errors #-Wpedantic
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic-errors -O3 #-Wpedantic
 
 all: $(NAME)
 
