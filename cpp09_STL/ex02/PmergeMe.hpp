@@ -16,6 +16,7 @@ public:
 
 	listTree(listTree const &a, listTree const &b);
 	bool operator<(listTree const &other) const;
+	listTree &operator=(listTree const &other);
 
 	int 					max;
 	std::list<listTree>		arr;

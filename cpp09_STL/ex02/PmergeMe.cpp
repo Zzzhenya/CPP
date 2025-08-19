@@ -227,7 +227,7 @@ void 	PmergeMe::binaryInsertionSort(size_t sort_end, listTree &insertVal)
 	if (start < list.size() && *it < insertVal) 
 		std::advance(it, 1);
 	// else
-	// 	std::cout << "this opetion\n";
+	// 	std::cout << "this option\n";
 	comparisons++;
 	list.insert(it, insertVal);
 }
@@ -253,7 +253,7 @@ void	PmergeMe::mergeInsertSortList(void)
 		std::list<listTree>::iterator	first = list.begin();
 		std::list<listTree>::iterator	second = list.begin();
 		std::advance(second, 1);
-		if ( size - odd > 1 && second->max < first->max) 
+		if ( size - odd > 1 && *second < *first) 
 			list.splice(first, list, second);
 		comparisons++;
 		if ( odd && size == 3) 
@@ -381,7 +381,7 @@ void	PmergeMe::doVect(void)
 	printVectTree(vect, 0);
 	if (Error)
 		std::cerr << "ERROR\tNot sorted\n";
-
+	comparisons=0;
 	// reset();
 }
 
@@ -440,6 +440,13 @@ listTree::listTree(void): max(-1)
 listTree::listTree(int val): max(val)
 {
 
+}
+
+listTree &listTree::operator=(listTree const &other)
+{
+	max = other.max;
+	arr = other.arr;
+	return (*this);
 }
 
 bool listTree::operator<(listTree const &other) const
