@@ -140,7 +140,6 @@ void	PmergeMe::mergeInsertSortVect(void)
 	int odd = size % 2;
 	vectTree extra;
 
-
 	if (!pairs)
 		return;
 
@@ -165,18 +164,18 @@ void	PmergeMe::mergeInsertSortVect(void)
 		comparisons++;
 		return;
 	}
-	// printVectTree(vect, 0);
 	std::vector<vectTree> temp;
+	// temp.reserve(pairs);
 	for (size_t i = 0; i + 1 < size; i += 2)
 	{
 		temp.push_back(vectTree(vect[i], vect[i + 1]));
 		comparisons++;
 	}
-
+	// vect.reserve(pairs);
 	vect = temp;
-	// printVectTree(vect, 0);
 	this->mergeInsertSortVect(); 
- 
+	// pend.reserve(pairs + odd);
+	// vect.reserve((pairs * 2) + odd);
 	for ( std::vector<vectTree>::iterator it = vect.begin();
 		it != vect.end();
 		it++) 
@@ -359,6 +358,7 @@ void	PmergeMe::doVect(void)
 
 	clock_gettime(CLOCK_REALTIME, &begin);
 	bool Error = false;
+	// vect.reserve(inSeries.size());
 	std::vector<int>::const_iterator it = inSeries.begin();
 	for (; it != inSeries.end(); it++)
 		vect.push_back(vectTree(*it));
