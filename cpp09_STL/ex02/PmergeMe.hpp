@@ -7,6 +7,8 @@
 # include <sstream>
 # include <iomanip>
 # include <list>
+# include <cstdlib>
+# include <algorithm>
 
 class listTree
 {
