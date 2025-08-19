@@ -363,6 +363,12 @@ void	PmergeMe::doVect(void)
 	mergeInsertSortVect();
 	clock_gettime(CLOCK_REALTIME, &end);
 
+	std::cout << "Time to process a range of " << inSeries.size();
+	std::cout << " elements with std::vector : ";
+	std::cout << processDuration(begin, end) << "\t";
+
+	std::cout << "comparison: " << comparisons << std::endl;
+
 	for (std::vector<vectTree>::const_iterator it = vect.begin(); it + 1 != vect.end(); it++)
 	{
 		if (*(it + 1) < *it)
@@ -375,13 +381,6 @@ void	PmergeMe::doVect(void)
 	printVectTree(vect, 0);
 	if (Error)
 		std::cerr << "ERROR\tNot sorted\n";
-
-	std::cout << "Time to process a range of " << inSeries.size();
-	std::cout << " elements with std::vector : ";
-	std::cout << processDuration(begin, end) << "\t";
-
-	std::cout << "comparison: " << comparisons << std::endl;
-	reset();
 
 	// reset();
 }
@@ -403,7 +402,12 @@ void	PmergeMe::doList(void)
 
 	clock_gettime(CLOCK_REALTIME, &end);
 
-	// size_t i  = 0;
+	std::cout << "Time to process a range of " << inSeries.size();
+	std::cout << " elements with std::list : ";
+	std::cout << processDuration(begin, end) << "\t";
+
+	std::cout << "comparison: " << comparisons << std::endl;
+
 	std::list<listTree>::iterator iter = list.begin();
 	for (std::vector<vectTree>::const_iterator it = vect.begin(); it!= vect.end(); it++)
 	{
@@ -415,58 +419,14 @@ void	PmergeMe::doList(void)
 		std::advance(iter, 1);
 	}
 
-	// std::list<listTree>::iterator p2 = list.begin();
-	// std::list<listTree>::iterator p1 = list.begin();
-	// std::advance(p2, 1);
-
-	// size_t i  = 0;
-	// while (i + 2 < list.size())
-	// {
-	// 	std::advance(p1, 1);
-	// 	std::advance(p2, 1);
-	// 	if (*(p2) < *p1)
-	// 	{
-	// 		Error = true;
-	// 		break;
-	// 	}
-	// 	i += 1;
-	// }
-	// printListTree(list, 0);
 	if (Error)
 		std::cerr << "ERROR\tNot sorted\n";
 
-	// std::list<listTree> first;
-	
-	// first.push_back(listTree(33));
-	// first.push_back(listTree(32));
-
-	// std::list<listTree>::iterator i = list.begin();
-	// i++;
-	// i++;
-
-	// first.splice(++first.begin(), list, i);
-
-
-
-	std::cout << "Time to process a range of " << inSeries.size();
-	std::cout << " elements with std::list : ";
-	std::cout << processDuration(begin, end) << "\t";
-
-	// std::cout << "list: ";
-	// printListTree(list, 0);
-	// std::cout << "first ";
-	// printListTree(first, 0);
-
-	std::cout << "comparison: " << comparisons << std::endl;
 
 	std::cout << "after :\t\t";
 	printListTree(list, 0);
 
-	// std::cout << "list: ";
-	// printListTree(list, 0);
-	// std::cout << "pend: ";
-	// printListTree(lpend, 0);
-	// reset();
+	reset();
 
 }
 
