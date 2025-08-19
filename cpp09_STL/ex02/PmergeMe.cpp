@@ -2,6 +2,8 @@
 
 // Jacobsthal Series
 
+int g_counter = 0;
+
 int jcobsthalSeries(int n)
 {
 	static std::vector<int> series;
@@ -93,7 +95,9 @@ void vectInsertion(std::vector<vectTree> &pend,std::vector<vectTree> &vect, int 
 			
 			std::vector<vectTree>::iterator it = std::upper_bound(
 				vect.begin(), vect.begin() + currALoc, pend[idx]);
+
 			comparisons += std::distance(vect.begin(), it);
+
 			vect.insert(it,pend[idx]);
 			--idx;
 		}
@@ -367,7 +371,8 @@ void	PmergeMe::doVect(void)
 	std::cout << " elements with std::vector : ";
 	std::cout << processDuration(begin, end) << "\t";
 
-	std::cout << "comparison: " << comparisons << std::endl;
+	// std::cout << "comparison: " << comparisons << "counter: " << g_counter << std::endl;
+	std::cout << "comparison: " << g_counter << std::endl;
 
 	for (std::vector<vectTree>::const_iterator it = vect.begin(); it + 1 != vect.end(); it++)
 	{
@@ -483,6 +488,7 @@ vectTree::vectTree(vectTree const &a, vectTree const &b)
 		arr = a.arr;
 		arr.push_back(b);
 	}
+	g_counter++;
 }
 
 vectTree::vectTree(void): max (-1)
@@ -510,6 +516,7 @@ vectTree::vectTree(int val): max (val)
 
 bool vectTree::operator<(vectTree const &other) const
 {
+	g_counter++;
 	if (this->max < other.max)
 		return (true);
 	return (false);
