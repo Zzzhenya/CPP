@@ -31,7 +31,6 @@ class vectTree
 public:
 	vectTree();
 	vectTree(int val);
-	// vectTree(int first, int second);
 	vectTree(vectTree const &a, vectTree const &b);
 	vectTree(vectTree const &other);
 	vectTree &operator=(vectTree const &other);

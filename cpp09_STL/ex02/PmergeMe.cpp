@@ -1,9 +1,8 @@
 #include "PmergeMe.hpp"
 
-// Jacobsthal Series
-
 int g_counter = 0;
 
+// Jacobsthal Series
 int jcobsthalSeries(int n)
 {
 	static std::vector<int> series;
@@ -33,7 +32,6 @@ int jcobsthalSeries(int n)
 }
 
 // Jacobsthal Series - wrapper function
-
 int startAtThree(int i)
 {
 	return (jcobsthalSeries(i + 3));
@@ -64,7 +62,6 @@ void PmergeMe::printSeries(void)
 	}
 	std::cout << std::endl;
 }
-
 /*
 	insert from pend to vect(main)
 	first the first element from pend -> b1 -> idx 0 (Jacobsthal 1) no 1
@@ -135,20 +132,15 @@ void vectInsertion(std::vector<vectTree> &pend,std::vector<vectTree> &vect, int 
 
 void	PmergeMe::mergeInsertSortVect(void)
 {
-	size_t size = vect.size();
-	int pairs = size / 2;
-	int odd = size % 2;
-	vectTree extra;
+	size_t		size = vect.size();
+	int			pairs = size / 2;
+	int			odd = size % 2;
+	vectTree	extra;
 
 	if (!pairs)
 		return;
-
 	if (odd)
-	{
 		extra = vectTree(vect.back());
-		// vect.pop_back();
-	}
-
 	if (pairs < 2)
 	{
 		if (size - odd > 1 && vect[1] < vect[0])
@@ -165,7 +157,7 @@ void	PmergeMe::mergeInsertSortVect(void)
 		return;
 	}
 	std::vector<vectTree> temp;
-	// temp.reserve(pairs);
+	temp.reserve(pairs);
 	for (size_t i = 0; i + 1 < size; i += 2)
 	{
 		temp.push_back(vectTree(vect[i], vect[i + 1]));
@@ -193,17 +185,12 @@ void	PmergeMe::mergeInsertSortVect(void)
 
 void 	PmergeMe::binaryInsertionSort(size_t sort_end, listTree &insertVal)
 {
-	// std::cout << "BI: " << insertVal.max  << " sort end idx: " << sort_end << std::endl;
-	// std::cout << "BI: " << std::endl;
-	// printListTree(list, 0);
-
-	size_t start = 0;
-	size_t oldmid = 0;
-	size_t mid = 0;
+	size_t	start = 0;
+	size_t	oldmid = 0;
+	size_t	mid = 0;
 
 	std::list<listTree>::iterator it = list.begin();
-	// std::cout << "insert: " << insertVal.max << "end" << sort_end << std::endl;
-	if (sort_end > list.size()) { sort_end = list.size(); }
+	// if (sort_end > list.size()) { sort_end = list.size(); }
 	while (start < sort_end)
 	{
 		oldmid = mid;
@@ -228,11 +215,8 @@ void 	PmergeMe::binaryInsertionSort(size_t sort_end, listTree &insertVal)
 	std::advance(it, start);
 	// if start is before the list.end() and value at start is less than the insertVallue advance 1
 	// else do not advance and insert at start
-	
 	if (start < list.size() && *it < insertVal) 
 		std::advance(it, 1);
-	// else
-	// 	std::cout << "this option\n";
 	comparisons++;
 	list.insert(it, insertVal);
 }
@@ -252,7 +236,6 @@ void	PmergeMe::mergeInsertSortList(void)
 		extra = listTree(list.back());
 		list.pop_back();
 	}
-
 	if (pairs < 2)
 	{
 		std::list<listTree>::iterator	first = list.begin();
@@ -263,14 +246,11 @@ void	PmergeMe::mergeInsertSortList(void)
 		comparisons++;
 		if ( odd && size == 3) 
 		{
-			// printListTree(list, 0);
-			// list.pop_back();
 			//binaryInsertionSort(1, *--list.end());
 			binaryInsertionSort(1, extra);
 		}	
 		return;
 	}
-	// printListTree(list, 0);
 
 	std::list<listTree> temp;
 	std::list<listTree>::iterator p2 = list.begin();
@@ -288,12 +268,7 @@ void	PmergeMe::mergeInsertSortList(void)
 	}
 
 	list = temp;
-	// std::cout << "list: ";
-	// printListTree(list, 0);
 	this->mergeInsertSortList();
-
-
-
 
 	for ( std::list<listTree>::iterator it = list.begin();
 		it != list.end();
@@ -307,11 +282,9 @@ void	PmergeMe::mergeInsertSortList(void)
 
 	list.insert(list.begin(), lpend.front());
 
-
 	size_t 	subSeriesStart = 0;
 	int 	jcobNum = 0;
 	size_t 	currALoc = 0;
-
 
 	while (subSeriesStart < lpend.size()){
 		size_t	idx = startAtThree(jcobNum) - 1;
@@ -380,10 +353,9 @@ void	PmergeMe::doVect(void)
 	printVectTree(vect, 0);
 
 	std::cout << "Time to process a range of " << inSeries.size();
-	std::cout << " elements with std::vector : ";
+	std::cout << " elements with std::vector :\t";
 	std::cout << processDuration(begin, end) << "\t";
 
-	// std::cout << "comparison: " << comparisons << "counter: " << g_counter << std::endl;
 	std::cout << "comparison: " << g_counter << std::endl;
 
 	for (std::vector<vectTree>::const_iterator it = vect.begin(); it + 1 != vect.end(); it++)
@@ -420,7 +392,7 @@ void	PmergeMe::doList(void)
 	clock_gettime(CLOCK_REALTIME, &end);
 
 	std::cout << "Time to process a range of " << inSeries.size();
-	std::cout << " elements with std::list : ";
+	std::cout << " elements with std::list :\t";
 	std::cout << processDuration(begin, end) << "\t\t";
 
 	std::cout << "comparison: " << comparisons << std::endl;
@@ -438,17 +410,10 @@ void	PmergeMe::doList(void)
 
 	if (Error)
 		std::cerr << "ERROR\tNot sorted\n";
-
-
-	// std::cout << "after :\t\t";
-	// printListTree(list, 0);
-
 	reset();
-
 }
 
 // Class listTree functions
-
 listTree::listTree(void): max(-1)
 {
 
@@ -486,9 +451,7 @@ listTree::listTree(listTree const &a, listTree const &b)
 	}	
 }
 
-
 // Class vectTree functions
-
 vectTree::vectTree(vectTree const &a, vectTree const &b) 
 {
 	if (a.max < b.max) {
@@ -510,21 +473,6 @@ vectTree::vectTree(void): max (-1)
 vectTree::vectTree(int val): max (val)
 {
 }
-
-
-// vectTree::vectTree(int first, int second)
-// {
-// 	if (first > second)
-// 	{
-// 		max = first;
-// 		arr.push_back(vectTree(second));
-// 	}
-// 	else
-// 	{
-// 		max = second;
-// 		arr.push_back(vectTree(first));
-// 	}
-// }
 
 bool vectTree::operator<(vectTree const &other) const
 {
@@ -564,7 +512,6 @@ void printListTree(std::list<listTree> tr, int level)
 		else
 			std::cout  << it->max << " ";
 		printListTree(it->arr, level + 1);
-		// std::list<listTree>::const_iterator temp = it;
 		temp = it;
 		std::advance(temp, 1);
 		if (temp == tr.end())
@@ -591,7 +538,6 @@ void printVectTree(std::vector<vectTree> tr, int level)
 			std::cout  << it->max;
 		else
 			std::cout  << it->max << " ";
-		// std::cout  << it->max << " ";
 		printVectTree(it->arr, level + 1);
 		if (it + 1 == tr.end())
 		{
