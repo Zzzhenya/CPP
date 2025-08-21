@@ -12,32 +12,48 @@
 
 class listTree
 {
-public:
-	listTree(void);
-	listTree(int val);
+	public:
+		// OCF
+		listTree(void);
+		~listTree(void);
+		listTree(listTree const &other);
+		listTree 					&operator=(listTree const &other);
+		listTree(int val);
+		listTree(listTree const &a, listTree const &b);
 
-	listTree(listTree const &a, listTree const &b);
-	bool operator<(listTree const &other) const;
-	listTree &operator=(listTree const &other);
+		bool 						operator<(listTree const &other) const;
+		
+		const listTree 				&getLastOfArr(void) const;
+		const std::list<listTree> 	&getArr(void) const;
+		int							getMax(void) const;
+		bool						popLastOfArr(void);
+		
 
-	int 					max;
-	std::list<listTree>		arr;
+	private:
+		int 					max;
+		std::list<listTree>		arr;
 };
 
 void printListTree(std::list<listTree> tr, int level);
 
 class vectTree
 {
-public:
-	vectTree();
-	vectTree(int val);
-	vectTree(vectTree const &a, vectTree const &b);
-	vectTree(vectTree const &other);
-	vectTree &operator=(vectTree const &other);
-	bool operator<(vectTree const &other) const;
+	public:
+		vectTree();
+		vectTree(int val);
+		vectTree(vectTree const &a, vectTree const &b);
+		vectTree(vectTree const &other);
+		vectTree &operator=(vectTree const &other);
+		bool operator<(vectTree const &other) const;
 
-	int 					max;
-	std::vector<vectTree>	arr;
+		const vectTree 				&getLastOfArr(void) const;
+		const std::vector<vectTree> &getArr(void) const;
+		bool						popLastOfArr(void);
+		int							getMax(void) const;
+
+	private:
+		int 					max;
+		std::vector<vectTree>	arr;
 
 };
 

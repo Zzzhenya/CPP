@@ -172,8 +172,10 @@ void	PmergeMe::mergeInsertSortVect(void)
 		it != vect.end();
 		it++) 
 	{
-		pend.push_back(it->arr.back());
-		it->arr.pop_back();
+		// pend.push_back(it->arr.back());
+		pend.push_back(it->getLastOfArr());
+		// it->arr.pop_back();
+		it->popLastOfArr();
 	}
 	if (odd)
 		pend.push_back(extra);
@@ -274,8 +276,10 @@ void	PmergeMe::mergeInsertSortList(void)
 		it != list.end();
 		it++) 
 	{
-		lpend.push_back(it->arr.back());
-		it->arr.pop_back();
+		lpend.push_back(it->getLastOfArr());
+		// lpend.push_back(it->arr.back());
+		it->popLastOfArr();
+		// it->arr.pop_back();
 	}
 	if (odd)
 		lpend.push_back(extra);
@@ -371,7 +375,8 @@ void	PmergeMe::doVect(void)
 	if (Error)
 		std::cerr << "ERROR\tNot sorted\n";
 	comparisons=0;
-	// reset();
+	// jcobsthalSeries(-1);
+	reset();
 }
 
 void	PmergeMe::doList(void)
@@ -397,16 +402,35 @@ void	PmergeMe::doList(void)
 
 	std::cout << "comparison: " << comparisons << std::endl;
 
-	std::list<listTree>::iterator iter = list.begin();
-	for (std::vector<vectTree>::const_iterator it = vect.begin(); it!= vect.end(); it++)
+
+	std::list<listTree>::iterator p2 = list.begin();
+	std::list<listTree>::iterator p1 = list.begin();
+	std::advance(p2, 1);
+
+	size_t i  = 0;
+	while (i + 2 < list.size())
 	{
-		if (it->max != iter->max)
+		std::advance(p1, 1);
+		std::advance(p2, 1);
+		if (*(p2) < *p1)
 		{
 			Error = true;
 			break;
 		}
-		std::advance(iter, 1);
-	}
+		i += 1;
+	}	
+
+	// std::list<listTree>::iterator iter = list.begin();
+	// for (std::vector<vectTree>::const_iterator it = vect.begin(); it!= vect.end(); it++)
+	// {
+	// 	// if (it->max != iter->max)
+	// 	if (it->getMax() != iter->getMax())
+	// 	{
+	// 		Error = true;
+	// 		break;
+	// 	}
+	// 	std::advance(iter, 1);
+	// }
 
 	if (Error)
 		std::cerr << "ERROR\tNot sorted\n";
@@ -419,6 +443,12 @@ listTree::listTree(void): max(-1)
 
 }
 
+listTree::~listTree(void)
+{
+	max = -1;
+	arr.clear();
+}
+
 listTree::listTree(int val): max(val)
 {
 
@@ -429,6 +459,11 @@ listTree &listTree::operator=(listTree const &other)
 	max = other.max;
 	arr = other.arr;
 	return (*this);
+}
+
+listTree::listTree(listTree const &other)
+{
+	*this = other;
 }
 
 bool listTree::operator<(listTree const &other) const
@@ -449,6 +484,32 @@ listTree::listTree(listTree const &a, listTree const &b)
 		arr = a.arr;
 		arr.push_back(b);
 	}	
+}
+
+const listTree &listTree::getLastOfArr(void) const
+{
+	return (arr.back());
+}
+
+bool	listTree::popLastOfArr(void)
+{
+	arr.pop_back();
+	return (true);
+}
+
+const std::list<listTree> &listTree::getArr(void) const
+{
+	return (arr);
+}
+
+int listTree::getMax(void) const
+{
+	return (max);
+}
+
+int	vectTree::getMax(void) const
+{
+	return (max);
 }
 
 // Class vectTree functions
@@ -474,12 +535,28 @@ vectTree::vectTree(int val): max (val)
 {
 }
 
+bool	vectTree::popLastOfArr(void)
+{
+	arr.pop_back();
+	return (true);
+}
+
+const std::vector<vectTree> &vectTree::getArr(void) const
+{
+	return (arr);
+}
+
 bool vectTree::operator<(vectTree const &other) const
 {
 	g_counter++;
 	if (this->max < other.max)
 		return (true);
 	return (false);
+}
+
+const vectTree &vectTree::getLastOfArr(void) const
+{
+	return (arr.back());
 }
 
 vectTree &vectTree::operator=(vectTree const &other)
@@ -507,11 +584,16 @@ void printListTree(std::list<listTree> tr, int level)
 	{
 		std::list<listTree>::const_iterator temp = it;
 		std::advance(temp, 1);
+		// if (level == 0 && temp == tr.end())
+		// 	std::cout  << it->max;
+		// else
+		// 	std::cout  << it->max << " ";
 		if (level == 0 && temp == tr.end())
-			std::cout  << it->max;
+			std::cout  << it->getMax();
 		else
-			std::cout  << it->max << " ";
-		printListTree(it->arr, level + 1);
+			std::cout  << it->getMax() << " ";
+		//printListTree(it->arr, level + 1);
+		printListTree(it->getArr(), level + 1);
 		temp = it;
 		std::advance(temp, 1);
 		if (temp == tr.end())
@@ -535,10 +617,10 @@ void printVectTree(std::vector<vectTree> tr, int level)
 	for (it = tr.begin(); it != tr.end(); it++)
 	{
 		if (level == 0 && it + 1 == tr.end())
-			std::cout  << it->max;
+			std::cout  << it->getMax();
 		else
-			std::cout  << it->max << " ";
-		printVectTree(it->arr, level + 1);
+			std::cout  << it->getMax() << " ";
+		printVectTree(it->getArr(), level + 1);
 		if (it + 1 == tr.end())
 		{
 			if (level > 0)
