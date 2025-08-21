@@ -46,6 +46,24 @@ PmergeMe::PmergeMe(void)
 	inSeries.clear();
 }
 
+
+PmergeMe::PmergeMe(std::vector<int> arr)
+{
+	comparisons = 0;
+	reset();
+	inSeries.clear();
+	if (arr.size() > 0)
+	{
+		for (std::vector<int>::const_iterator it = arr.begin();
+			it != arr.end(); it++)
+		{
+			if (*it > 0)
+				pushNum(*it);
+		}
+	}
+}
+
+
 void PmergeMe::pushNum(int num)
 {
 	inSeries.push_back(num);
@@ -326,6 +344,22 @@ PmergeMe::~PmergeMe(void)
 	inSeries.clear();
 }
 
+PmergeMe &PmergeMe::operator=(const PmergeMe &other)
+{
+	inSeries = other.inSeries;
+	vect=other.vect;
+	pend= other.pend;
+	list = other.list;
+	lpend = other.lpend;
+	comparisons = other.comparisons;
+	return (*this);
+}
+
+PmergeMe::PmergeMe(const PmergeMe &other)
+{
+	*this = other;
+}
+
 std::string processDuration(const struct timespec& begin, const struct timespec& end)
 {
 	std::stringstream os;
@@ -345,7 +379,7 @@ void	PmergeMe::doVect(void)
 
 	clock_gettime(CLOCK_REALTIME, &begin);
 	bool Error = false;
-	// vect.reserve(inSeries.size());
+	vect.reserve(inSeries.size());
 	std::vector<int>::const_iterator it = inSeries.begin();
 	for (; it != inSeries.end(); it++)
 		vect.push_back(vectTree(*it));
@@ -376,7 +410,7 @@ void	PmergeMe::doVect(void)
 		std::cerr << "ERROR\tNot sorted\n";
 	comparisons=0;
 	// jcobsthalSeries(-1);
-	reset();
+	
 }
 
 void	PmergeMe::doList(void)

@@ -10,6 +10,8 @@
 # include <cstdlib>
 # include <algorithm>
 
+extern int g_counter;
+
 class listTree
 {
 	public:
@@ -64,14 +66,20 @@ class PmergeMe
 public:
 	PmergeMe(void);
 	~PmergeMe(void);
+	PmergeMe(std::vector<int> arr);
+
 	void	pushNum(int num);
 	void	printSeries(void);
-	void	reset(void);
-
 	void	doVect(void);
-	void	mergeInsertSortVect(void);
-
 	void	doList(void);
+
+
+private:
+	PmergeMe(const PmergeMe &other);
+	PmergeMe &operator=(const PmergeMe &other);
+
+	void	reset(void);
+	void	mergeInsertSortVect(void);
 	void	mergeInsertSortList(void);
 	void 	binaryInsertionSort(size_t sort_end, listTree &insertVal);
 
